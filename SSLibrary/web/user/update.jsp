@@ -14,18 +14,16 @@ function update(f) {
 	var pwdcheck = f.pwdcheck.value;
 	var name = f.name.value;
 	
-	if(id == null || id == ''){
-		alert("ID를 입력하세요.");
-	}else if(pwd == null || pwd == ''){
+	if(pwd == null || pwd == ''){
 		alert("PWD를 입력하세요.");
 	}else if(pwd != pwdcheck){
 		alert("비밀번호가 같지 않습니다.");
-	}else if(name == null || name == ''){
-		alert("NAME을 입력하세요.");
+	}else if((pwd.length < 8 || pwd.length > 16) || (pwdcheck.length < 8 || pwdcheck.length > 16)){
+		alert("비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.");	
 	}else{
-		var c = confirm('등록 하시겠습니까?');
+		var c = confirm('수정 하시겠습니까?');
 		if (c == true) {
-			f.action = '.do';
+			f.action = 'update.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -33,28 +31,29 @@ function update(f) {
 }
 
 function del(f) {
-		var c = confirm('삭제 하시겠습니까?');
-		if (c == true) {
-			f.action = 'del.do';
-			f.method = 'POST';
-			f.submit();
-		};		
+	var c = confirm('삭제 하시겠습니까?');
+	var id = f.id.value;
+	if (c == true) {
+		f.action = 'del.do';/* 추후 수정 */
+		f.method = 'POST';
+		f.submit();
+		alert(id+"님이 탈퇴되셨습니다.")
+	};		
 }
-
 </script>
 <style></style>
 </head>
 <body>
 	<h1>회원수정</h1>
 	<form>
-		<input type="hidden" name="oldimg" value="#{user.img}"><br><!-- 원래 등록이미지 -->
-		<input type="hidden" name="isadmin" value="#{user.isadmin}"><br>
-		<input type="text" name="id" id="id" value="#{user.id}" disabled="disabled"><br>
+		<input type="hidden" name="oldimg" value="${user.img}"><br><!-- 원래 등록이미지 -->
+		<input type="hidden" name="isadmin" value="${user.isadmin}"><br>
+		<input type="text" name="id" id="id" value="${user.id}" disabled="disabled"><br>
 		<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
-		<input type="text" name="name" value="#{user.name}"><br>
-		<input type="text" name="phone" value=""><br>
-		<input type="text" name="birth" placeholder="BIRTH"><br>
+		<input type="text" name="name" value="${user.name}"><br>
+		<input type="text" name="phone" value="${user.phone}"><br>
+		<input type="text" name="email" value="${user.email}"><br>
 		<input type="file" name="img"><br><!-- 새로운 등록이미지 -->
 		<input type="button" value="update" onclick="update(this.form);">
 		<input type="button" value="delete" onclick="del(this.form);">

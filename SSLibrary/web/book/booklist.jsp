@@ -13,9 +13,9 @@
 <h1 align="center">Book List Page</h1>
 <table width="700">
 <thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
-<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr>
+<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>
 <tbody>
-<c:forEach items="${booklist}" var="b">
+<c:forEach items="${booklist}" var="b"> <!-- 추후수정 -->
 <tr>
 <td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
 <td>${b.name}</td>

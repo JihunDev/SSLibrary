@@ -28,17 +28,16 @@ function displaybook(data) {
 	$('#book_result').empty();
 	var output = '';
 	output+='<table>'
-	output+='<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
+	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
 	$(data).each(function(index, item) {
 		with (item) {
 			output += '<tr><td>'+id+'</td>';
-			output += '<td>'+name+'</td>';
-			output += '<td>'+writer+'</td>';
-			output += '<td><img width="50px" src="img/'+img+'"></td>';
-			output += '<td>'+floor+'</td>';
-			output += '<td>'+ total_qt+'</td>';
-			output += '<td>'+current_qt+'</td>';
-			output += '<td>'+reg_date+'</td></tr>';
+			output += '<td>'+b_id+'</td>';
+			output += '<td>'+u_id+'</td>';
+			output += '<td>'+start_date+'"></td>';
+			output += '<td>'+end_date+'</td>';
+			output += '<td>'+real_date+'</td>';
+			output += '<td>'+renew_qt+'</td></tr>';
 		}
 	});
 	output+="</table>"
@@ -67,25 +66,23 @@ function getBook() {
 <body>
 <div id="home_center">
 <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
-<div  id="book_result">
+<h1 align="center">도서 과거 대여 내역</h1>
 <table width="700">
-<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
-<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>
+<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
 <tbody>
-<c:forEach items="${booklist}" var="b"> <!-- 추후수정 -->
+<c:forEach items="${pastbooklist}" var="b"> <!-- 추후수정 -->
 <tr>
-<td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
-<td>${b.name}</td>
-<td>${b.writer}</td>
-<td><img width="50px" src="img/${b.img}"></td>
-<td>${b.floor}</td>
-<td>${b.current_qt}</td>
-<td>${b.reg_date}</td>
+<td>${b.id}</td>
+<td>${b.b_id}</td>
+<td>${b.u_id}</td>
+<td>${b.start_date}</td>
+<td>${b.end_date}</td>
+<td>${b.real_date}</td>
+<td>${b.renew_qt}</td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
-</div>
 </div>
 </body>
 </html>

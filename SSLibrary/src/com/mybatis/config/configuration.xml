@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+        <typeAlias type="com.entity.User" alias="user"/>
+        <typeAlias type="com.entity.MessageLog" alias="messagelog"/>
+        <typeAlias type="com.entity.Board" alias="board"/>	
+	
+		<typeAlias type="com.entity.Book" alias="book" />
+		<typeAlias type="com.entity.BookLog" alias="booklog" />
+		<typeAlias type="com.entity.UserBook" alias="userbook" />
+
+		<typeAlias type="com.entity.Seat" alias="seat" />
+		<typeAlias type="com.entity.UserSeat" alias="userseat" />
+		<typeAlias type="com.entity.SeatLog" alias="seatlog" />
+
+
+	</typeAliases>
+
+	<mappers>
+        <mapper resource="com/mybatis/mapper/user.xml"/>
+        <mapper resource="com/mybatis/mapper/messagelog.xml"/>
+        <mapper resource="com/mybatis/mapper/board.xml"/>
+        
+        <mapper resource="com/mybatis/mapper/book.xml"/>
+        <mapper resource="com/mybatis/mapper/booklog.xml"/>
+        <mapper resource="com/mybatis/mapper/userbook.xml"/>
+        
+		<mapper resource="com/mybatis/mapper/seat.xml" />
+		<mapper resource="com/mybatis/mapper/seatlog.xml" />
+		<mapper resource="com/mybatis/mapper/userseat.xml" />
+	</mappers>
+</configuration>

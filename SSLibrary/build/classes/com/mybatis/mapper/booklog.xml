@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.BookLogMapper">
+	<select id="selectlogbooks" resultType="booklog">
+	SELECT * FROM A_BOOKLOG
+	</select>
+	<select id="selectlogbook" parameterType="booklog" resultType="booklog">
+	SELECT * FROM A_BOOKLOG WHERE ID = #{id}
+	</select>
+	<select id="selectnamelogbooks" parameterType="java.lang.String" resultType="booklog">
+	SElECT * FROM A_BOOKLOG WHERE * LIKE '%'||#{s}||'%'
+	</select>
+	<insert id="insertlogbook" parameterType="booklog">
+	INSERT INTO A_BOOKLOG VALUES(BOOKLOG_SQ.NEXTVAL,#{b_id},#{u_id},SYSDATE,SYSDATE+14,null,0)
+	
+	<selectKey resultType="booklog">
+	SELECT * FROM A_BOOKLOG WHERER ID = #{id}
+	</selectKey>
+	</insert>
+	<delete id="deletelogbook" parameterType="booklog">
+	DELETE FROM A_BOOKLOG WHERE ID = #{id}
+	</delete>
+	<update id="updatelogbook" parameterType="booklog">
+	UPDATE A_BOOKLOG SET B_ID=#{b_id}, U_ID=#{u_id}, REAL_DATE=SYSDATE, RENEW_QT=#{renew_qt} WHERE ID=#{id}
+	</update>
+</mapper>

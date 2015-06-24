@@ -20,12 +20,14 @@ function register(f) {
 		alert("PWD를 입력하세요.");
 	}else if(pwd != pwdcheck){
 		alert("비밀번호가 같지 않습니다.");
+	}else if((pwd.length < 8 || pwd.length > 16) || (pwdcheck.length < 8 || pwdcheck.length > 16)){
+		alert("비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.");	
 	}else if(name == null || name == ''){
 		alert("NAME을 입력하세요.");
 	}else{
 		var c = confirm('등록 하시겠습니까?');
 		if (c == true) {
-			f.action = '.do';
+			f.action = 'register.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -36,7 +38,7 @@ function idcheck() {
 	$.ajax({
 		type : 'POST',
 		anync : 'false',
-		url : 'send.do',
+		url : 'send.do',/* 추후 수정 */
 		data : {
 			'id' : id
 		},
@@ -47,7 +49,7 @@ function idcheck() {
 }
 function display(data) {
 	var output = '';
-	if(data == 1){
+	if(data == 1){/* ajax에서 보내는 data를 0,1이라 가정 <추후 수정 가능>*/
 		output ='사용가능';
 	}else{
 		output ='사용불가능';
@@ -72,6 +74,7 @@ $(document).ready(function() {
 		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 		<input type="text" name="name" placeholder="NAME"><br>
 		<input type="text" name="phone" placeholder="PHONE"><br>
+		<input type="text" name="email" placeholder="E-Mail"><br>
 		<input type="text" name="birth" placeholder="BIRTH"><br>
 		<input type="file" name="img"><br>
 		<input type="button" value="register" onclick="register(this.form);">

@@ -53,7 +53,7 @@ function del(f) {
 		<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 		<input type="text" name="name" value="#{user.name}"><br>
-		<input type="text" name="phone" varue><br>
+		<input type="text" name="phone" value=""><br>
 		<input type="text" name="birth" placeholder="BIRTH"><br>
 		<input type="file" name="img"><br><!-- 새로운 등록이미지 -->
 		<input type="button" value="update" onclick="update(this.form);">

@@ -10,7 +10,7 @@
 <script>
 function update(f){
 
-	var c = confirm('수정하시겠습니까?');
+	var c = confirm('수정하시겠습니까?'); /* 추후 수정 */
 	if(c==true){
 		f.action='bookupdateimpl.do';
 		f.method = 'POST';

@@ -23,8 +23,8 @@
 </tbody>
 </table>
 <div>
-<div><a href="bookdelete.do?id=${bookdetail.id}">삭제</a></div> <!-- 추후수정 -->
-<div><a href="bookupdate.do?id=${bookdetail.id}">수정</a></div> <!-- 추후수정 -->
+<div><a href="bookremoveimpl.do?id=${bookdetail.id}">삭제</a></div> <!-- 추후수정 -->
+<div><a href="bookmodify.do?id=${bookdetail.id}">수정</a></div> <!-- 추후수정 -->
 </div>
 </fieldset>
 </body>

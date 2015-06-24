@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.UserBookMapper">
+	<select id="selectuserbooks" resultType="userbook">
+	SELECT * FROM A_USERBOOK
+	</select>
+	<select id="selectuserbook" parameterType="userbook" resultType="userbook">
+	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id}
+	</select>
+	<select id="selectiduserbooks" parameterType="java.lang.String" resultType="userbook">
+	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%'
+	</select>
+	<insert id="insertuserbook" parameterType="userbook">
+	INSERT INTO A_USERBOOK VALUES(#{u_id},#{b_id},SYSDATE,SYSDATE+14,0)	
+	<selectKey resultType="userbook">
+	SELECT * FROM A_USERBOOK WHERER U_ID = #{u_id}
+	</selectKey>
+	</insert>
+	<delete id="deleteuserbook" parameterType="userbook">
+	DELETE FROM A_USERBOOK WHERE U_ID=#{u_id} AND B_ID = #{b_id}
+	</delete>
+	<update id="updateuserbook" parameterType="userbook">
+	UPDATE A_USERBOOK SET END_DATE=END_DATE+7, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND B_ID=#{b_id}
+	</update>
+</mapper>

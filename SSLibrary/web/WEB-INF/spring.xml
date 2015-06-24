@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- 맨처음 등록해야 할게 handler입니다. -->
+	<!--Schema기반의 Spring MVC를할거 -->
+	<context:component-scan base-package="com.*"/>
+	
+	<!--앞에 슬래시 뒤에 .jsp붙여주는거란다-->
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+
+<!-- 	<bean id="handler"class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"></bean> -->
+<!--어노테이션에서 따라가니까 필요없엉 bean도-->
+</beans>

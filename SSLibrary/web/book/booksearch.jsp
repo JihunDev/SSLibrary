@@ -53,8 +53,10 @@ function getBook() {
 	$.ajax({
 		type : 'post',
 		async:'false', /* 화면에 전송한다음에 내려오기 전에 뿌릴 것이면 false  */
-		data:{'id': search},				/* 전송하기 전에 뿌릴 것이면 true*/
-		url : 'search.do',
+		data:{
+			'category' : category,
+			'id': search},				/* 전송하기 전에 뿌릴 것이면 true*/
+		url : 'booksearch.do',
 		success:function(data){
 			displaybook(data);
 			makeHeight();
@@ -66,6 +68,7 @@ function getBook() {
 </head>
 <body>
 <div id="home_center">
+<select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
 <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 <div  id="book_result">
 <table width="700">

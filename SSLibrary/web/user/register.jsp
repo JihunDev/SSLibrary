@@ -40,7 +40,7 @@ function idcheck() {
 	$.ajax({
 		type : 'POST',
 		anync : 'false',
-		url : 'send.do',/* 추후 수정 */
+		url : '.do',/* 추후 수정 */
 		data : {
 			'id' : id
 		},
@@ -77,7 +77,7 @@ $(document).ready(function() {
 			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 			<input type="text" name="name" placeholder="NAME"><br> 
 			<input type="text" name="phone" placeholder="PHONE"><br> 
-			<input type="text" name="email" placeholder="E-Mail"><br> 
+			<input type="text" name="email" placeholder="EMail"><br> 
 			<input type="file" name="img"><br> 
 			<input type="button" value="register" onclick="register(this.form);">
 		</form>

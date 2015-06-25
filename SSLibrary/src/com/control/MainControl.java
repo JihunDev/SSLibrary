@@ -58,7 +58,11 @@ public class MainControl {
 			System.out.println("있음");
 			mv.addObject("nav", Nav.register);
 			mv.addObject("left", "user/loginok.jsp");
-			mv.addObject("center", "center.jsp");			
+			mv.addObject("center", "center.jsp");
+			HttpSession session = request.getSession();
+			session.setAttribute("user", result);
+			// 로그인시 유저 정보 세션에 넣음
+			
 		}else{
 			System.out.println("없음");
 			mv.addObject("check", "fail");

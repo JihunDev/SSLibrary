@@ -89,7 +89,7 @@ public class BookControl {
 		header.add("Content-type", "application/json;charset=EUC-KR");
 		
 		ArrayList<Object> list = null;
-		ArrayList<Object> resultlist = null;
+		ArrayList<Object> resultlist = new ArrayList<Object>();
 		
 		System.out.println(issearch);
 		System.out.println(category);
@@ -126,6 +126,7 @@ public class BookControl {
 			for (Object o : list) {
 				Book b = (Book) o;
 				if(b.getId().substring(0,1).equals("i")){
+					System.out.println(b);
 					resultlist.add(o);
 					System.out.println(resultlist);
 				}

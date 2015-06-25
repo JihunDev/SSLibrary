@@ -15,6 +15,22 @@ public class UserCommand {
 	public UserCommand() {
 		super();
 	}
+	
+	
+	
+	public UserCommand(String id, String pwd, String name, String phone,
+			MultipartFile img, String email, String isadmin) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.phone = phone;
+		this.img = img;
+		this.email = email;
+		this.isadmin = isadmin;
+	}
+
+
 
 	public UserCommand(String id, String pwd, String name, String phone,
 			MultipartFile img, String email, String reg_date, String isadmin) {

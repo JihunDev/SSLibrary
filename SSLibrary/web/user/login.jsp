@@ -42,7 +42,7 @@ function display(data) {
 			<input type="text" name="id" id="id" placeholder="ID"><br>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 			<input type="button" value="login" onclick="login(this.form);">
-			<input type="button" value="register" onclick="register.do"><!-- 추후수정 -->
+			<a href="register.do">등록</a><!-- 추후수정 -->
 		</form>
 </fieldset>
 </body>

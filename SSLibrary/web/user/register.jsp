@@ -75,9 +75,8 @@ $(document).ready(function() {
 		<input type="text" name="name" placeholder="NAME"><br>
 		<input type="text" name="phone" placeholder="PHONE"><br>
 		<input type="text" name="email" placeholder="E-Mail"><br>
-		<input type="text" name="birth" placeholder="BIRTH"><br>
 		<input type="file" name="img"><br>
-		<input type="button" value="register" onclick="register(this.form);">
+		<atype="button" value="register" onclick="register(this.form);">
 	</form>
 </div>
 </body>

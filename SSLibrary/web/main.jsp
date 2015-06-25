@@ -44,6 +44,38 @@ header{
 	/* border-left : solid #f0c413 1px;
 	border-right : solid #f0c413 1px; */
 }
+header > #bottom{
+	position: absolute;
+	bottom : 0;
+	left : 200px;
+}
+
+header > #bottom > ul > li{
+	float : left;
+	background : black;
+	width : 100px;
+	height : 45px;
+	line-height : 45px;
+	text-align : center;
+	border : solid #f0c413 1px;
+	
+}
+header > #bottom > ul > li > a{
+	width : 200px;
+	margin : 20px;
+	color : white;
+	font-size : 1.1em;
+	
+}
+header > #bottom > ul > li > a:HOVER{
+	color : red;
+}
+header>#bottom>ul>li:FIRST-CHILD {
+	border-radius: 20px 20px 0 0;
+}
+header>#bottom>ul>li:LAST-CHILD {
+	border-radius: 20px 20px 0 0;
+}
 
 /** Nav CSS**/
 nav{

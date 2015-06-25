@@ -37,7 +37,7 @@
 			</tbody><!-- test후 페이지 넘어가는 거 만듬 -->
 		</table>
 <div>
-<input type="button" value="등록" onclick="a.do"><!-- 추후수정 -->
+<input type="button" value="등록" onclick="a.do?id='${b.id}'"><!-- 추후수정 -->
 </div>
 </body>
 </html>

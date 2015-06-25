@@ -29,7 +29,7 @@ function register(f) {
 	</select>
 	<input type="text" placeholder="제목을 입력하세요."><br>
 	<textarea rows="40" cols="40"></textarea><br>
-	<input type="submit" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
+	<input type="button" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
 </form>
 </body>
 </html>

@@ -32,7 +32,7 @@ function update(f) {
 	<input type="text" id="title" value="${boardupdate.title}"><br>
 	<textarea rows="40" cols="40" id="text">${boarddetail.content}</textarea><br>
 	
-	<input type="submit" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
+	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
 </form>	
 </body>
 </html>

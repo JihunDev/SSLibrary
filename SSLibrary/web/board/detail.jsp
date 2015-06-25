@@ -88,7 +88,7 @@ $(document).ready(function() {
 	
 	</table>
 	<input type="button" value="삭제" onclick="del(this.form)"><!-- 추후 수정 -->
-	<input type="submit" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
+	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
 </form>		
 	<div id="repl">	</div>
 <form>

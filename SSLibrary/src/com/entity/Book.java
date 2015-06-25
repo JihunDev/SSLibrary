@@ -101,7 +101,5 @@ public class Book {
 				+ total_qt + ", current_qt=" + current_qt + ", reg_date="
 				+ reg_date + "]";
 	}
-
-	
 	
 }

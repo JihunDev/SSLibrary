@@ -29,7 +29,7 @@ function register(f) {
 	}else{
 		var c = confirm('등록 하시겠습니까?');
 		if (c == true) {
-			f.action = 'register.do';/* 추후 수정 */
+			f.action = 'registerimpl.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -67,19 +67,20 @@ $(document).ready(function() {
 <style></style>
 </head>
 <body>
-<div>
-	<h1>회원가입</h1>
-	<form>
-		<input type="hidden" name="isadmin"	value="n"><br>
-		<input type="text" name="id" id="id" placeholder="ID"><br><div id="idcheck"></div>
-		<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
-		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
-		<input type="text" name="name" placeholder="NAME"><br>
-		<input type="text" name="phone" placeholder="PHONE"><br>
-		<input type="text" name="email" placeholder="E-Mail"><br>
-		<input type="file" name="img"><br>
-		<input type="button" value="register" onclick="register(this.form);">
-	</form>
-</div>
+	<div>
+		<h1>회원가입</h1>
+		<form>
+			<input type="hidden" name="isadmin" value="n"><br> 
+			<input type="text" name="id" id="id" placeholder="ID"><br>
+			<div id="idcheck"></div>
+			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
+			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
+			<input type="text" name="name" placeholder="NAME"><br> 
+			<input type="text" name="phone" placeholder="PHONE"><br> 
+			<input type="text" name="email" placeholder="E-Mail"><br> 
+			<input type="file" name="img"><br> 
+			<input type="button" value="register" onclick="register(this.form);">
+		</form>
+	</div>
 </body>
 </html>

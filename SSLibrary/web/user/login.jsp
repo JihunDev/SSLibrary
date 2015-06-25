@@ -10,15 +10,15 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-function check(){
-	if(user.getId.equals('')||user.getId==null){
-		alert('아이디와 비밀번호가 맞지 않습니다.');
-	}
-}
 
+/* window.onload = function() {
+	alert("ehoa");
+};
 $(document).ready(function() {
-	check();
-});
+	alert("ehoa");
+}); */
+//alert이 동작하지 않음 여기서 그만둠
+
 </script>
 <style></style>
 </head>

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-function login(f) {
+function register(f) {
 	var id = f.id.value;
 	var pwd = f.pwd.value;
 	$.ajax({
@@ -43,7 +43,7 @@ function display(data) {
 			<input type="text" name="id" id="id" placeholder="ID"><br>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 			<input type="button" value="login" onclick="login(this.form);">
-			<input type="button" value="register" onclick="register.do"><!-- 추후수정 -->
+			<a href="register.do">등록</a><!-- 추후수정 -->
 		</form>
 </fieldset>
 </body>

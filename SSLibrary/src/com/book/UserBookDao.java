@@ -59,4 +59,10 @@ public class UserBookDao implements Dao, SearchDao {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Object> searchid(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

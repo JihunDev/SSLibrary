@@ -6,6 +6,7 @@ public class UserBook {
 	private String start_date;
 	private String end_date;
 	private int renew_qt;
+	private String isreturn;
 	
 	public UserBook() {
 		super();
@@ -68,12 +69,27 @@ public class UserBook {
 	public void setRenew_qt(int renew_qt) {
 		this.renew_qt = renew_qt;
 	}
+	
+
+	public String getIsreturn() {
+		return isreturn;
+	}
+
+
+
+	public void setIsreturn(String isreturn) {
+		this.isreturn = isreturn;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "UserBook [u_id=" + u_id + ", b_id=" + b_id + ", start_date="
 				+ start_date + ", end_date=" + end_date + ", renew_qt="
-				+ renew_qt + "]";
+				+ renew_qt + ", isreturn=" + isreturn + "]";
 	}
+
+
 	
 }

@@ -38,7 +38,7 @@ public class UserBookDao implements Dao, SearchDao {
 
 	@Override
 	public ArrayList<Object> searchname(Object obj) throws Exception {
-		return mapper.selectiduserbooks(obj);
+		return null;
 	}
 
 	@Override
@@ -61,8 +61,8 @@ public class UserBookDao implements Dao, SearchDao {
 
 	@Override
 	public ArrayList<Object> searchid(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectiduserbooks(obj);
+		
 	}
 
 }

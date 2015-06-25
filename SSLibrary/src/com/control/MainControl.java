@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.User;
@@ -37,39 +38,33 @@ public class MainControl {
 		mv.addObject("center", "user/register.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/loginimpl.do")
 	public ModelAndView loginimpl(HttpServletRequest request, String id, String pwd) {
 		User result = null;
+		String check = "";
 		
 		try {
 			result = (User) biz.get(new User(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String center = "center.jsp";
 		System.out.println(result);
-	
+		
+		
 		if(result!=null && (result.getPwd()).equals(pwd)){
-			confirm("로그인하시겠습니까?");
-			HttpSession session = request.getSession();
-			session.setAttribute("user", result);
+			check = "ok";
 		}else{
-			alert("아이디와 비밀번호가 맞지 않습니다. 다시 입력해주세요");
+			check = "fail";
 		}
+		HttpSession session = request.getSession();
+		session.setAttribute("user", result);
+		session.setAttribute("check", check);
+	
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("left","left.jsp");
-		mv.addObject("center",center);
+		mv.addObject("center","center.jsp");
 		return mv;
 	}
 
-	private void confirm(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void alert(String string) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -19,6 +19,7 @@
 				<tr>
 					<th>글번호</th>
 					<th>제목</th>
+					<th>글쓴이</th>
 					<th>작성일</th>
 					<th>조회수</th>
 				</tr>
@@ -28,6 +29,7 @@
 					<tr>
 						<td>${b.id}</td>
 						<td><a href="a.do?id='${b.title}'">${b.title}</a></td><!-- 추후 수정 -->
+						<td>${b.u_id}</td>
 						<td>${b.reg_date}</td>
 						<td>${b.counter}</td>
 					</tr>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <fieldset>
-	<legend>mainpage</legend>
+	<legend>MainPage</legend>
 			<table>
 			<tbody>
 			<tr>

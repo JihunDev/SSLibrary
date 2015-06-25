@@ -12,4 +12,6 @@ public interface MessageLogMapper {
 	public Object selectmessagelog(Object obj);
 
 	public ArrayList<Object> selectmessagelogs();
+	
+	public ArrayList<Object> selectidmessagelogs(Object obj);
 }

@@ -13,6 +13,11 @@
 		resultType="messagelog">
 		SELECT *FROM A_MESSAGELOG WHERE ID = #{id}
 	</select>
+	
+	<select id="selectidmessagelog" parameterType="messagelog"
+		resultType="messagelog">
+		SELECT * FROM A_MESSAGELOG WHERE U_ID = #{u_id}
+	</select>
 
 	<insert id="insertmessagelog" parameterType="messagelog">
 		INSERT INTO A_MESSAGELOG VALUES(MESSAGELOG_SQ.NEXTVAL,#{u_id},#{s_id},#{sender_id},#{text},'y',SYSDATE,null)

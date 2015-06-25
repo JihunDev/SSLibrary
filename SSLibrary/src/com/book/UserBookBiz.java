@@ -45,7 +45,7 @@ public class UserBookBiz implements Biz, SearchBiz {
 
 	@Override
 	public ArrayList<Object> getname(Object obj) throws Exception {
-		return dao2.searchname(obj);
+		return null;
 	}
 
 	@Override
@@ -68,8 +68,7 @@ public class UserBookBiz implements Biz, SearchBiz {
 
 	@Override
 	public ArrayList<Object> getid(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchname(obj);
 	}
 
 }

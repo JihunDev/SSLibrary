@@ -26,7 +26,7 @@ function login(f) {
 }
 
 function display(data) {
-	if(data==null||data==''){
+	if(data == 'ok'){
 		
 	}else{
 		alert("아이디와 비밀번호가 맞지 않습니다. 다시 입력해주세요");

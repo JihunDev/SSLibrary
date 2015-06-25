@@ -8,13 +8,13 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-function register(f) {
+function login(f) {
 	var id = f.id.value;
 	var pwd = f.pwd.value;
 	$.ajax({
 		type : 'POST',
 		anync : 'false',
-		url : 'send.do',/* 추후 수정 */
+		url : 'loginimpl.do',/* 추후 수정 */
 		data : {
 			'id' : id,
 			'pwd' : pwd			

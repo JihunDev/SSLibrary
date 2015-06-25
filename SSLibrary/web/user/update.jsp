@@ -1,3 +1,4 @@
+<%@page import="com.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -23,7 +24,7 @@ function update(f) {
 	}else{
 		var c = confirm('수정 하시겠습니까?');
 		if (c == true) {
-			f.action = 'update.do';/* 추후 수정 */
+			f.action = 'modifyimpl.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -45,15 +46,16 @@ function del(f) {
 </head>
 <body>
 	<h1>회원수정</h1>
-	<form>
-		<input type="hidden" name="oldimg" value="${user.img}"><br><!-- 원래 등록이미지 -->
-		<input type="hidden" name="isadmin" value="${user.isadmin}"><br>
-		<input type="text" name="id" id="id" value="${user.id}" disabled="disabled"><br>
+	<form enctype="multipart/form-data">
+		<input type="hidden" name="oldimg" value="${userupdate.img}"><br><!-- 원래 등록이미지 -->
+		<input type="hidden" name="isadmin" value="${userupdate.isadmin}"><br>
+		<input type="hidden" name="id" value="${userupdate.id}"><br>
+		<input type="text" name="id" id="id" value="${userupdate.id}" disabled="disabled"><br>
 		<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
-		<input type="text" name="name" value="${user.name}"><br>
-		<input type="text" name="phone" value="${user.phone}"><br>
-		<input type="text" name="email" value="${user.email}"><br>
+		<input type="text" name="name" value="${userupdate.name}"><br>
+		<input type="text" name="phone" value="${userupdate.phone}"><br>
+		<input type="text" name="email" value="${userupdate.email}"><br>
 		<input type="file" name="img"><br><!-- 새로운 등록이미지 -->
 		<input type="button" value="update" onclick="update(this.form);">
 		<input type="button" value="delete" onclick="del(this.form);">

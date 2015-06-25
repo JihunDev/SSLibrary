@@ -14,7 +14,7 @@
 			<table>
 			<tbody>
 			<tr>
-				<td rowspan="3"><img src="${user.img}"></td>
+				<td rowspan="2"><img src="${user.img}"></td>
 				<td>${user.id}님</td>
 			</tr>
 			<tr>
@@ -22,6 +22,7 @@
 			</tr>
 			<tr>
 				<td><a href="detail.do?id='${user.id}'">마이페이지</a></td>
+				<td><a href="logout.do">로그아웃</a></td>
 			</tr>
 			</tbody>
 			

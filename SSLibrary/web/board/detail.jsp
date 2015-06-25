@@ -32,6 +32,8 @@ function register(f) {
 			f.submit();
 		};
 	}
+	
+	/* 리플 불러오기 */
 function repls() {
 	var reg_date = $('#reg_date').val/* 이게 맞나 잘모르겠음 */
 	$.ajax({
@@ -91,7 +93,7 @@ $(document).ready(function() {
 	<div id="repl">	</div>
 <form>
 	<div>
-	<input type="hidden" id="reg_date" value="${boarddetail.id}"><br>
+	<input type="hidden" id="reg_date" value="${boarddetail.id}"><br><!-- 리플때문에 보냄 -->
 	<textarea rows="5" cols="40"></textarea>
 	<input type="button" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
 	</div>

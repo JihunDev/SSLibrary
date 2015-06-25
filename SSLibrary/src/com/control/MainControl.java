@@ -69,8 +69,15 @@ public class MainControl {
 			mv.addObject("left", "left.jsp");
 			mv.addObject("center", "center.jsp");
 		}
-		
 		return mv;
 	}
 
+	@RequestMapping("/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session!=null){
+			session.invalidate();
+		}
+		return "redirect:/main.do";
+	}
 }

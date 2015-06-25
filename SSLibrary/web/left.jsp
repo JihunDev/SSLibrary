@@ -14,7 +14,7 @@ function register(f) {
 	$.ajax({
 		type : 'POST',
 		anync : 'false',
-		url : 'send.do',/* 추후 수정 */
+		url : 'loginimpl.do',/* 추후 수정 */
 		data : {
 			'id' : id,
 			'pwd' : pwd			
@@ -39,10 +39,10 @@ function display(data) {
 <h1>Left</h1>
 <fieldset>
 	<legend>Login</legend>
-		<form>
+		<form action="loginimpl.do" method="POST">
 			<input type="text" name="id" id="id" placeholder="ID"><br>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
-			<input type="button" value="login" onclick="login(this.form);">
+			<input type="submit" value="login">
 			<a href="register.do">등록</a><!-- 추후수정 -->
 		</form>
 </fieldset>

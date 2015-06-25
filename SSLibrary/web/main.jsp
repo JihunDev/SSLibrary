@@ -18,6 +18,7 @@ li{
 }
 a{
 	text-decoration: none;
+	color : black;
 }
 table {
 	margin : 0 auto;
@@ -35,8 +36,8 @@ fieldset {
 
 /** Header CSS**/
 header{
-	width : 900px;
-	height : 300px;
+	width : 100%;
+	height : 200px;
 	margin : 0 auto;
 	background : #f0c413;  /*  #EB613B; */
 	position : relative;
@@ -46,24 +47,24 @@ header{
 
 /** Nav CSS**/
 nav{
-	width : 900px;
+	width : 100%;
 	height : 40px;
 	margin : 0 auto;
-	background : black;
+	background : white;
 	/* border : dashed #f0c413 2px; */
 	line-height : 40px;
-	color : white;
+	color : black;
 }
 
 /** Section CSS**/
 section {
-	width : 900px;
+	width : 100%;
 /* 	height : 600px; */
 	margin : 0 auto;
 	background : gray;
 }
 #left{
-	width : 200px;
+	width : 20%;
 /* 	height : 600px; */
 	float : left;
 	background : #fae6c3; /*  #f5e9dc; */
@@ -73,7 +74,7 @@ section {
 }
 
 #center{
-	width : 700px;
+	width : 80%;
 /* 	height : 600px; */
 	float : left;
 	
@@ -82,7 +83,7 @@ section {
 
 /** Footer CSS**/
 footer{
-	width : 900px;
+	width : 100%;
 	height : 50px;
 	margin : 0 auto;
 	background : black;
@@ -100,8 +101,8 @@ function makeHeight(){
 	
 	var mHeight = center.clientHeight;
 	/* ClientHeight를 써서 표 높이만큼 늘리게 함. */
-	if(mHeight < 400){
-		mHeight = 400;
+	if(mHeight < 600){
+		mHeight = 600;
 	}
 	center.style.height = mHeight + 'px';
 	section.style.height = mHeight + 'px';

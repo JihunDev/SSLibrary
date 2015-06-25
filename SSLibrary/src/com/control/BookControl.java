@@ -88,8 +88,10 @@ public class BookControl {
 		HttpHeaders header = new HttpHeaders(); 
 		header.add("Content-type", "application/json;charset=EUC-KR");
 		
-		ArrayList<Object> list = null;
+		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> resultlist = new ArrayList<Object>();
+		ArrayList<Object> sublist1 = new ArrayList<Object>();
+		ArrayList<Object> sublist2 = new ArrayList<Object>();	
 		
 		System.out.println(issearch);
 		System.out.println(category);
@@ -112,21 +114,36 @@ public class BookControl {
 			
 		}else{
 			try {
-				list.add(biz2.getname(search));
-				list.add(biz2.getwriter(search));	
+				list = biz2.getname(search);
+				for (Object o : list) {
+					sublist1.add(o);
+				}
+				
+				sublist2 = biz2.getwriter(search);
+				for (Object o1 : sublist2) {
+					Book b1 = (Book) o1;
+					for (Object o2 : sublist1) {
+						Book b2 = (Book) o2;
+						if(b1.getId().equals(b2.getId())){
+						}else{
+							sublist1.add(o1);							
+						}
+					}
+				}
+				
+				list = sublist1;				
+	
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		System.out.println(list);
 		
 		switch(category){
 		case "i":
 			for (Object o : list) {
 				Book b = (Book) o;
 				if(b.getId().substring(0,1).equals("i")){
-					System.out.println(b);
 					resultlist.add(o);
 					System.out.println(resultlist);
 				}
@@ -149,16 +166,12 @@ public class BookControl {
 			}
 			break;
 		default : 
-			for (Object o : list) {
-				Book b = (Book) o;
-				resultlist.add(o);
-			}
+				resultlist = list;
 			break;
 		}
 		
-		System.out.println("resultlist = "+resultlist);
-		
 		/*Collections.sort(resultlist, new IDCompare<Object>());	*/
+		
 		
 		JSONArray ja = new JSONArray();
 		for(Object obj:resultlist){
@@ -184,13 +197,13 @@ public class BookControl {
 	}
 	
 	
-/*	static class IDCompare<Object> implements Comparator<Object>{
+/*static class IDCompare<Object> implements Comparator<Object>{
 
 		@Override
 		public int compare(Object o1, Object o2) {
 			Book b1 = (Book) o1;
 			Book b2 = (Book) o2;
-			return b1.getId().compareTo(b2.getId());
+			return b1.getId().compareToIgnoreCase(b2.getId());
 		}
 		
 		

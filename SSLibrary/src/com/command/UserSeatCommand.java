@@ -1,16 +1,25 @@
-package com.entity;
+package com.command;
 
-public class UserSeat {
+public class UserSeatCommand {
 	private String u_id;
 	private int s_id;
 	private String start_time;
 	private String end_time;
 	private int renew_qt;
-	public UserSeat() {
+	public UserSeatCommand() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserSeat(String u_id, int s_id, String start_time, String end_time,
+	public UserSeatCommand(String u_id) {
+		super();
+		this.u_id = u_id;
+	}
+	
+	public UserSeatCommand(int s_id) {
+		super();
+		this.s_id = s_id;
+	}
+	public UserSeatCommand(String u_id, int s_id, String start_time, String end_time,
 			int renew_qt) {
 		super();
 		this.u_id = u_id;
@@ -19,14 +28,10 @@ public class UserSeat {
 		this.end_time = end_time;
 		this.renew_qt = renew_qt;
 	}
-	public UserSeat(String u_id, int s_id) {
+	public UserSeatCommand(String u_id, int s_id) {
 		super();
 		this.u_id = u_id;
 		this.s_id = s_id;
-	}
-	public UserSeat(String u_id) {
-		super();
-		this.u_id = u_id;
 	}
 	public String getU_id() {
 		return u_id;
@@ -64,9 +69,6 @@ public class UserSeat {
 				+ start_time + ", end_time=" + end_time + ", renew_qt="
 				+ renew_qt + "]";
 	}
-	
-	
-	
 	
 	
 }

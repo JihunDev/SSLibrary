@@ -90,6 +90,10 @@ public class BookControl {
 		
 		ArrayList<Object> list = null;
 		ArrayList<Object> resultlist = null;
+		
+		System.out.println(issearch);
+		System.out.println(category);
+		System.out.println(search);
 
 		if(issearch.equals("name")){
 			try {
@@ -115,19 +119,22 @@ public class BookControl {
 			}
 		}
 		
+		System.out.println(list);
+		
 		switch(category){
 		case "i":
 			for (Object o : list) {
 				Book b = (Book) o;
-				if(b.getId().substring(0,1) == "i"){
+				if(b.getId().substring(0,1).equals("i")){
 					resultlist.add(o);
+					System.out.println(resultlist);
 				}
 			}
 			break;
 		case "n": 
 			for (Object o : list) {
 				Book b = (Book) o;
-				if(b.getId().substring(0,1) == "n"){
+				if(b.getId().substring(0,1).equals("n")){
 					resultlist.add(o);
 				}
 			}
@@ -135,7 +142,7 @@ public class BookControl {
 		case "m": 
 			for (Object o : list) {
 				Book b = (Book) o;
-				if(b.getId().substring(0,1) == "m"){
+				if(b.getId().substring(0,1).equals("m")){
 					resultlist.add(o);
 				}
 			}
@@ -147,6 +154,8 @@ public class BookControl {
 			}
 			break;
 		}
+		
+		System.out.println("resultlist = "+resultlist);
 		
 		/*Collections.sort(resultlist, new IDCompare<Object>());	*/
 		

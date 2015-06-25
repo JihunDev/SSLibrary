@@ -48,6 +48,9 @@ function update(f) {
 	<input type="button" value="삭제" onclick="del(this.form)"><!-- 추후 수정 -->
 	<input type="submit" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
 	<input type="submit" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
+	<div id="re">
+	
+	</div>
 </form>
 </body>
 </html>

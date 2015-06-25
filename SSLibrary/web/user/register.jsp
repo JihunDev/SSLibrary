@@ -19,7 +19,7 @@ function register(f) {
 	}else if(pwd == null || pwd == ''){
 		alert("PWD를 입력하세요.");
 	}else if(pwdcheck == null || pwdcheck ==''){
-		alert("비밀번호 확인을 입력해주세요.");
+		alert("비밀번호 확인을 입력바랍니다");
 	}else if(pwd != pwdcheck){
 		alert("비밀번호가 같지 않습니다.");
 	}else if((pwd.length < 8 || pwd.length > 16) || (pwdcheck.length < 8 || pwdcheck.length > 16)){

@@ -6,7 +6,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.entity.UserBook;
-import com.frame.Biz;
 import com.frame.SearchBiz;
 
 public class selectidall {
@@ -18,7 +17,7 @@ public class selectidall {
 		
 		ArrayList<Object> result= null;
 		try {
-			result = biz.getname("id01");
+			result = biz.getid("id01");
 			for(Object o : result){
 				UserBook c = (UserBook) o;
 				System.out.println(c);

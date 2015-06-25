@@ -13,7 +13,7 @@ function register(f) {
 	var pwd = f.pwd.value;
 	var pwdcheck = f.pwdcheck.value;
 	var name = f.name.value;
-	
+	alert(f.img.value);
 	if(id == null || id == ''){
 		alert("ID를 입력하세요.");
 	}else if(pwd == null || pwd == ''){
@@ -69,7 +69,7 @@ $(document).ready(function() {
 <body>
 	<div>
 		<h1>회원가입</h1>
-		<form>
+		<form enctype="multipart/form-data" >
 			<input type="hidden" name="isadmin" value="n"><br> 
 			<input type="text" name="id" id="id" placeholder="ID"><br>
 			<div id="idcheck"></div>

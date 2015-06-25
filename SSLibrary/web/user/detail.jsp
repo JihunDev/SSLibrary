@@ -1,6 +1,8 @@
+<%@page import="com.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +25,7 @@
 	</table>
 	<div>
 	<div><a href="usinginfo.do?id=${user.id}">현재이용정보</a></div> <!-- 추후수정 -->
-	<div><a href="modifyimpl.do?id=${user.id}">개인정보수정</a></div> <!-- 추후수정 -->
+	<div><a href="modify.do?id=${user.id}">개인정보수정</a></div> <!-- 추후수정 -->
 	<div><a href="msgloglist.do?id=${user.id}">메세지 내역</a></div> <!-- 추후수정 -->
 	</div>
 </fieldset>

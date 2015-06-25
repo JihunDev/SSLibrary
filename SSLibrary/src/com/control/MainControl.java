@@ -37,32 +37,35 @@ public class MainControl {
 		mv.addObject("center", "user/register.jsp");
 		return mv;
 	}
-
+	
 	@RequestMapping("/loginimpl.do")
-	public ModelAndView loginimpl(HttpServletRequest request, String id, String pwd) {
+	public ModelAndView loginimpl(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
 		User result = null;
-		String check = "";
+		
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		System.out.println(id+"  "+pwd);	
 		
 		try {
 			result = (User) biz.get(new User(id));
+			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(result);
-		
-		
+				
 		if(result!=null && (result.getPwd()).equals(pwd)){
-			check = "ok";
+			System.out.println("있음");
+			mv.addObject("nav", Nav.register);
+			mv.addObject("left", "user/loginok.jsp");
+			mv.addObject("center", "center.jsp");			
 		}else{
-			check = "fail";
+			System.out.println("없음");
+			mv.addObject("check", "fail");
+			mv.addObject("left", "left.jsp");
+			mv.addObject("center", "center.jsp");
 		}
-		HttpSession session = request.getSession();
-		session.setAttribute("user", result);
-		session.setAttribute("check", check);
-	
-		ModelAndView mv = new ModelAndView("main");
-		mv.addObject("left","left.jsp");
-		mv.addObject("center","center.jsp");
+		
 		return mv;
 	}
 

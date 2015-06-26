@@ -209,6 +209,15 @@ public class BookControl {
 		return mv; 
 	}
 	
+	@RequestMapping("/bookregister.do")
+	public ModelAndView bookregister(String id){
+		ModelAndView mv = new ModelAndView("main");
+		mv.addObject("nav", Nav.bookregister);
+		mv.addObject("left", "left.jsp");
+		mv.addObject("center", "admin/book/register.jsp");
+		return mv; 
+	}
+	
 
 }
 

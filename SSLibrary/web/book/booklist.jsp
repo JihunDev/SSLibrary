@@ -20,7 +20,7 @@
 <td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
 <td>${b.name}</td>
 <td>${b.writer}</td>
-<td><img width="50px" src="img/${b.img}"></td>
+<td><img width="50px" src="img/book/${b.img}"></td>
 <td>${b.floor}</td>
 <td>${b.current_qt}</td>
 <td>${b.reg_date}</td>

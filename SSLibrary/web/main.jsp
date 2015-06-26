@@ -18,7 +18,6 @@ li{
 }
 a{
 	text-decoration: none;
-	color : black;
 }
 table {
 	margin : 0 auto;

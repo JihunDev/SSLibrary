@@ -13,7 +13,7 @@ public class Get {
 	      Biz biz = (Biz)factory.getBean("messagelogbiz");
 		
 		try {
-			System.out.println(biz.get(21));
+			System.out.println(biz.get(23));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

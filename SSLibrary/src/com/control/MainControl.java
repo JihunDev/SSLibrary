@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
+import com.entity.MessageLog;
 import com.entity.User;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -23,7 +24,7 @@ import com.util.Nav;
 public class MainControl {
 	@Resource(name = "userbiz")
 	Biz biz;
-	
+
 	@Resource(name = "messagelogbiz")
 	SearchBiz mbiz;
 
@@ -52,19 +53,19 @@ public class MainControl {
 	public ModelAndView registerimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
 		System.out.println(com);
-		
+
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-		
+
 		System.out.println(user);
-		
+
 		try {
 			biz.register(user);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user";
 		String img = file.getOriginalFilename();
@@ -80,15 +81,14 @@ public class MainControl {
 				out.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
-			
+			}
+
 		}
 		mv.addObject("nav", Nav.register);
 		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
-	
 
 	@RequestMapping("/loginimpl.do")
 	public ModelAndView loginimpl(HttpServletRequest request) {
@@ -136,21 +136,20 @@ public class MainControl {
 	@RequestMapping("/detail.do")
 	public ModelAndView detail(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		User user = null; 
-			try {
-				user = (User) biz.get(id);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println(user);
-	
-		mv.addObject("user",user);
+		User user = null;
+		try {
+			user = (User) biz.get(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(user);
+
+		mv.addObject("user", user);
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/detail.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/modify.do")
 	public ModelAndView modify(String id) {
 		User user = null;
@@ -159,7 +158,7 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.register);
 		mv.addObject("userupdate", user);
@@ -175,15 +174,15 @@ public class MainControl {
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-		
+
 		System.out.println(user);
-		
+
 		try {
 			biz.modify(user);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
@@ -199,29 +198,61 @@ public class MainControl {
 				out.close();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
-			
+			}
+
 		}
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/msgloglist.do")
 	public ModelAndView msgloglist(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(id);
-		ArrayList<Object> ml = null;
+		System.out.println("msglog : " + id);
+		ArrayList<Object> ml = new ArrayList<Object>();
+		ArrayList<Object> mlre = new ArrayList<Object>();
 		try {
 			ml = mbiz.getid(id);
-			System.out.println(ml);
+			System.out.println("msgloglist : " + ml);
+			for (Object ob : ml) {
+				MessageLog msg = (MessageLog) ob;
+				String text = msg.getText();
+				text = text.substring(0, 10);
+				text = text + "...";
+				MessageLog msgre = new MessageLog(msg.getId(), msg.getU_id(),
+						msg.getS_id(), msg.getSender_id(), text, msg.getRead(),
+						msg.getSend_date(), msg.getRead_date());
+				mlre.add(msgre);
+			}
+			System.out.println("msgloglist : " + mlre);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("nav", Nav.register);
-		mv.addObject("messagelog", ml);
+		mv.addObject("messagelog", mlre);
 		mv.addObject("center", "messagelog/messagelist.jsp");
 		return mv;
 	}
 	
+	@RequestMapping("/msgdetail.do")
+	public ModelAndView msglogdetail(String id) {
+		ModelAndView mv = new ModelAndView("main");
+		MessageLog msg = null ;
+		System.out.println(id);
+		try {
+			msg = (MessageLog)biz.get(id);
+			System.out.println(msg);
+			biz.modify(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("nav", Nav.register);
+		mv.addObject("messagelogdetail", msg);
+		mv.addObject("center", "messagelog/messagedetail.jsp");
+		
+		return mv;
+	}
+
 }

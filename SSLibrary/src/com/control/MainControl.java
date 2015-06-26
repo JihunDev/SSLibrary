@@ -26,6 +26,9 @@ public class MainControl {
 	Biz biz;
 
 	@Resource(name = "messagelogbiz")
+	Biz m_biz;
+	
+	@Resource(name = "messagelogbiz")
 	SearchBiz mbiz;
 
 	@RequestMapping("/main.do")
@@ -131,6 +134,26 @@ public class MainControl {
 			session.invalidate();
 		}
 		return "redirect:/main.do";
+	}
+	
+	@RequestMapping("/idcheck.do")
+	public String idcheck(String id) {
+		System.out.println("idcheck id : "+id);
+		User user;
+		String result = ""; 
+		try {
+			user = (User) biz.get(id);
+			System.out.println("idcheck get : "+user);
+			if (user != null) {
+				result = "1";
+			}else {
+				result = "0";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("idchek result : "+result);
+		return result;
 	}
 
 	@RequestMapping("/detail.do")
@@ -239,11 +262,13 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null ;
-		System.out.println(id);
+		int i = 0;
+		System.out.println("msgdetail id : "+id);
 		try {
-			msg = (MessageLog)biz.get(id);
-			System.out.println(msg);
-			biz.modify(id);
+			msg = (MessageLog)m_biz.get(id);
+			System.out.println("msgdetail get : "+msg);
+			i = (int) m_biz.modify(id);
+			System.out.println("msgdteail mod : "+i);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

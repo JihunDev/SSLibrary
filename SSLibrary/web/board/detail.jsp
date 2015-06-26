@@ -65,7 +65,6 @@ function display(data) {
 	
 	$('#repl').html(output);
 }
-
 $(document).ready(function() {
 		repls();
 });

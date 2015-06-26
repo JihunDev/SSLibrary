@@ -15,26 +15,35 @@ import com.command.SeatLogCommand;
 import com.command.UserSeatCommand;
 import com.entity.Seat;
 import com.entity.SeatLog;
+import com.entity.User;
 import com.entity.UserSeat;
 import com.frame.Biz;
 import com.util.Nav;
 
-
 @Controller
 public class SeatControl {
-	
-	@Resource(name="userseatbiz")
+
+	@Resource(name = "userseatbiz")
 	Biz ubiz;
-	@Resource(name="seatlogbiz")
+	@Resource(name = "seatlogbiz")
 	Biz lbiz;
-	@Resource(name="seatbiz")
+	@Resource(name = "seatbiz")
 	Biz biz;
-	
+
 	@RequestMapping("/seatmain.do")
-	public ModelAndView seatmain(HttpServletRequest request){
+	public ModelAndView seatmain(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		ArrayList<Object> seatlist = null;
 		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		
+		Object myseat = null;
+		try {
+			myseat = ubiz.get(user.getId());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}		
 		
 		try {
 			seatlist = biz.get();
@@ -42,30 +51,48 @@ public class SeatControl {
 			System.out.println("좌석 열람실 정보 실패");
 			e.printStackTrace();
 		}
-		
+	
 		mv.setViewName("main");
-		
+		if(user == null){
+			mv.addObject("left", "left.jsp");		
+		}	
 		mv.addObject("nav", Nav.seat);
 		mv.addObject("seatlist", seatlist);
-		mv.addObject("left", "left.jsp");
+		mv.addObject("myseat", myseat);
+			
 		mv.addObject("center", "seat/seatstate.jsp");
-		return mv; 
+		return mv;
+	}
+
+	@RequestMapping("/userseatregister.do")
+	public String userseatregister(HttpServletRequest request, SeatCommand s,
+			UserSeatCommand us, SeatLogCommand sl) throws Exception {
+
+		int s_id = us.getS_id();
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		String u_id = user.getId(); 
+		
+		System.out.println("s_id: " + s_id);
+		System.out.println("u_id: " + u_id);
+
+		try {
+			ubiz.register(new UserSeat(u_id, s_id));
+			lbiz.register(new SeatLog(u_id, s_id));
+			biz.modify(new Seat(s_id, "n"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/seatmain.do";
 	}
 	
-	@RequestMapping("/userseatregister.do")
-	public String register(HttpServletRequest request, SeatCommand s, UserSeatCommand us, SeatLogCommand sl) throws Exception{
+	@RequestMapping("/seatmodify.do")
+	public ModelAndView seatmodify(HttpServletRequest request) {
+		String s_id = request.getParameter("s_id");
 		
-		int s_id = us.getS_id();
-		String u_id = "id01";	
-		System.out.println("s_id: "+ s_id);		
+		ModelAndView mv = new ModelAndView();
 		
-			try {
-				ubiz.register(new UserSeat(u_id, s_id));
-				lbiz.register(new SeatLog(u_id, s_id));
-				biz.modify(new Seat(s_id, "n"));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		return "redirect:/seatmain.do"; 
+		return mv;
 	}
+
 }

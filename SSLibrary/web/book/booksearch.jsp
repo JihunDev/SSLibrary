@@ -31,7 +31,7 @@ function displaybook(data) {
 	output+='<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
 	$(data).each(function(index, item) {
 		with (item) {
-			output += '<tr><td><a href="bookdetail.do?id=${b.id}">'+id+'</a></td>';
+			output += '<tr><td><a href="bookdetail.do?id='+bid+'">'+bid+'</a></td>';
 			output += '<td>'+name+'</td>';
 			output += '<td>'+writer+'</td>';
 			output += '<td><img width="50px" src="img/book/'+img+'"></td>';

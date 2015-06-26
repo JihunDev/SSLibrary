@@ -1,7 +1,6 @@
 package com.control;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -174,7 +173,7 @@ public class BookControl {
 		for(Object obj:resultlist){
 			Book book = (Book)obj;
 			JSONObject jo = new JSONObject();
-			jo.put("id", book.getId());
+			jo.put("bid", book.getId());
 			jo.put("name", book.getName());
 			jo.put("writer", book.getWriter());
 			jo.put("img", book.getImg());
@@ -194,20 +193,19 @@ public class BookControl {
 	}
 	
 	@RequestMapping("/bookdetail.do")
-	public ModelAndView bookdetail(HttpServletRequest request,String id){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
-		Object list = null;
+	public ModelAndView bookdetail(String id){
+		ModelAndView mv = new ModelAndView("main");
+		Object result = null;
 		try {
-			list= biz.get(id);
+			result= biz.get(id);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mv.addObject("bookdetail",list);
-		mv.addObject("nav", Nav.book);
+		mv.addObject("bookdetail",result);
+		mv.addObject("nav", Nav.bookdetail);
 		mv.addObject("left", "left.jsp");
-		mv.addObject("center", "book/booksearch.jsp");
+		mv.addObject("center", "book/bookdetail.jsp");
 		return mv; 
 	}
 	

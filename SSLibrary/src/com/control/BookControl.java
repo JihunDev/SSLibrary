@@ -257,13 +257,10 @@ public class BookControl {
 		return "redirect:/bookmain.do";
 	}
 	@RequestMapping("/bookremoveimpl.do")
-	public ModelAndView bookremoveimpl(String id){
+	public ModelAndView bookremoveimpl(String id) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/bookmain.do");
-		try {
 			biz.remove(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		return mv;	
 	}
 	@RequestMapping("/bookmodify.do")
@@ -273,6 +270,12 @@ public class BookControl {
 		mv.addObject("bookinfo",b);
 		mv.addObject("nav", Nav.bookupdate);
 		mv.addObject("center", "admin/book/update.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/bookmodifyimpl.do")
+	public ModelAndView bookmodifyimpl(){
+		ModelAndView mv = new ModelAndView("main");
 		return mv;
 	}
 	

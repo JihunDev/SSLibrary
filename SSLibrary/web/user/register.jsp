@@ -59,8 +59,6 @@ function idcheck(g) {
 		}
 	});
 }
-
-
 </script>
 <style></style>
 </head>

@@ -188,7 +188,7 @@ public class MainControl {
 		}
 		
 		MultipartFile file = com.getImg();
-		String dir = "C:/lib/SSLibrary/web/img/user";
+		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
 

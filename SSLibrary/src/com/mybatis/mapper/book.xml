@@ -4,21 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.BookMapper">
 	<select id="selectbooks" resultType="book">
-	SELECT * FROM A_BOOK
+	SELECT * FROM A_BOOK ORDER BY 1 ASC
 	</select>
 	<select id="selectbook" parameterType="book" resultType="book">
-	SELECT * FROM A_BOOK WHERE ID = #{id}
+	SELECT * FROM A_BOOK WHERE ID = #{id} ORDER BY 1 ASC
 	</select>
 	<select id="selectnamebooks" parameterType="java.lang.String" resultType="book">
-	SElECT * FROM A_BOOK WHERE NAME LIKE '%'||#{s}||'%'
+	SElECT * FROM A_BOOK WHERE NAME LIKE '%'||#{s}||'%' ORDER BY 1 ASC
 	</select>
 	<select id="selectwriterbooks" parameterType="java.lang.String" resultType="book">
-	SElECT * FROM A_BOOK WHERE WRITER LIKE '%'||#{s}||'%'
+	SElECT * FROM A_BOOK WHERE WRITER LIKE '%'||#{s}||'%' ORDER BY 1 ASC
 	</select>
 	<insert id="insertbook" parameterType="book">
 	INSERT INTO A_BOOK VALUES(#{id}||TO_CHAR(BOOK_SQ.NEXTVAL),#{name},#{writer},#{img},#{floor},#{total_qt},#{current_qt},SYSDATE)
 	<selectKey resultType="book">
-	SELECT * FROM A_BOOK WHERER ID = #{id}
+	SELECT * FROM A_BOOK WHERER ID = #{id} 
 	</selectKey>
 	</insert>
 	<delete id="deletebook" parameterType="book">

@@ -11,10 +11,10 @@
 
 	<select id="selectmessagelog" parameterType="messagelog"
 		resultType="messagelog">
-		SELECT *FROM A_MESSAGELOG WHERE ID = #{id}
+		SELECT * FROM A_MESSAGELOG WHERE ID = #{id}
 	</select>
 	
-	<select id="selectidmessagelog" parameterType="messagelog"
+	<select id="selectidmessagelogs" parameterType="messagelog"
 		resultType="messagelog">
 		SELECT * FROM A_MESSAGELOG WHERE U_ID = #{u_id}
 	</select>

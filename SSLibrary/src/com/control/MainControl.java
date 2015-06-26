@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
-import com.entity.MessageLog;
 import com.entity.User;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -110,10 +109,10 @@ public class MainControl {
 		if (result != null && (result.getPwd()).equals(pwd)) {
 			System.out.println("있음");
 			mv.addObject("nav", Nav.register);
-			mv.addObject("left", "user/loginok.jsp");
 			mv.addObject("center", "center.jsp");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
+			session.setAttribute("left", "user/loginok.jsp");
 			// 로그인시 유저 정보 세션에 넣음
 
 		} else {
@@ -148,7 +147,6 @@ public class MainControl {
 	
 		mv.addObject("user",user);
 		mv.addObject("nav", Nav.register);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "user/detail.jsp");
 		return mv;
 	}
@@ -165,7 +163,6 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.register);
 		mv.addObject("userupdate", user);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "user/update.jsp");
 		return mv;
 	}
@@ -206,7 +203,6 @@ public class MainControl {
 			
 		}
 		mv.addObject("nav", Nav.register);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -223,7 +219,6 @@ public class MainControl {
 			e.printStackTrace();
 		}
 		mv.addObject("nav", Nav.register);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("messagelog", ml);
 		mv.addObject("center", "messagelog/messagelist.jsp");
 		return mv;

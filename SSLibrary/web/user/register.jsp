@@ -13,7 +13,6 @@ function register(f) {
 	var pwd = f.pwd.value;
 	var pwdcheck = f.pwdcheck.value;
 	var name = f.name.value;
-	alert(f.img.value);
 	if(id == null || id == ''){
 		alert("ID를 입력하세요.");
 	}else if(pwd == null || pwd == ''){
@@ -22,7 +21,8 @@ function register(f) {
 		alert("비밀번호 확인을 입력바랍니다");
 	}else if(pwd != pwdcheck){
 		alert("비밀번호가 같지 않습니다.");
-	}else if((pwd.length < 8 || pwd.length > 16) || (pwdcheck.length < 8 || pwdcheck.length > 16)){
+	}else if((pwd.length < 8) || (pwd.length > 16) || 
+			(pwdcheck.length < 8) || (pwdcheck.length > 16)){
 		alert("비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.");	
 	}else if(name == null || name == ''){
 		alert("NAME을 입력하세요.");
@@ -35,31 +35,32 @@ function register(f) {
 		};
 	}			
 }
+
 function display(data) {
 	var output = '';
-	if(data == '1'){
-		output ='사용가능';
-		alert(data);
+	if(data=="1"){
+		output ="사용가능";
 	}else{
-		output ='사용불가능';
-		alert(data);
+		output ="사용불가능";
 	}
 	$('#idcheck').html(output);
 }
-function idcheck(f) {
-	var id = f.id.value;
+
+function idcheck(g) {
+	var id = g.id.value;
 	$.ajax({
 		type : 'POST',
 		async : 'false',
-		url : 'idcheck.do',/* 추후 수정 */
-		data : {
-			'id' : id
-		},
-		success : function(data) {
+		url : 'idcheck.do',
+		data : {'id' : id},
+		success : function(data){
+			alert(data);
 			display(data);
 		}
 	});
 }
+
+
 </script>
 <style></style>
 </head>
@@ -69,8 +70,8 @@ function idcheck(f) {
 		<form enctype="multipart/form-data" >
 			<input type="hidden" name="isadmin" value="n"><br> 
 			<input type="text" name="id" id="id" placeholder="ID">
-			<input type="button" value="중복체크" onclick="idcheck(this.form);">
-			<div id="idcheck"></div><br>
+			<input type="button" value="중복체크" onclick="idcheck(this.form);"><br>
+			<div id="idcheck"></div>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 			<input type="text" name="name" placeholder="NAME"><br> 

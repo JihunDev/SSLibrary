@@ -18,7 +18,18 @@ public class Book {
 	public Book(String id) {
 		this.id = id;
 	}
+	
 
+	public Book(String id, String name, String writer, String img,
+			String floor, int total_qt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.writer = writer;
+		this.img = img;
+		this.floor = floor;
+		this.total_qt = total_qt;
+	}
 
 	public Book(String id, String name, String writer, String img,
 			String floor, int total_qt, int current_qt) {

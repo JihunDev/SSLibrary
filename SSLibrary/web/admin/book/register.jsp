@@ -15,10 +15,8 @@ function register(f){
  	var img = f.img.value;
  	var total_qt = f.total_qt.value;
  	var floor = f.floor.value;
-	
-	if(id == null || id == ''){
-		alert('ID를 입력하세요');
-		f.id.focus();
+	if(id==""){
+		alert('책 종류를 선택해주세요');
 		return;
 	};
 	if(name == null || name == ''){
@@ -28,21 +26,20 @@ function register(f){
 	};
 	if(writer == null || writer == ''){
 		alert('WRITER를 입력하세요');
-		f.name.focus();
+		f.writer.focus();
 		return;
 	};
 	if(img == null || img == ''){
 		alert('IMG를 넣어주세요');
-		f.name.focus();
 		return;
 	};
 	if(floor == '선택'){
 		alert('층수를 선택해주세요');
-		f.name.focus();
 		return;
 	};
  	if(total_qt== null || total_qt == ''){
 		alert('수량을 입력하세요');
+		f.total_qt.focus();
 		return;
 	};
 	
@@ -62,7 +59,7 @@ function register(f){
 <legend>책 등록 양식</legend>
 <form enctype="multipart/form-data">
 <table>
-<tr><th>ID</th><td align="right"><input type="text" name="id" placeholder="ID"></td></tr>
+<tr><th>CATEGORY</th><td align="right"><select name="id"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select></td></tr>
 <tr><th>NAME</th><td align="right"><input type="text" name="name" placeholder="NAME"></td></tr>
 <tr><th>WRITER</th><td align="right"><input type="text" name="writer" placeholder="WRITER"></td></tr>
 <tr><th>IMG</th><td align="right"><input type="file" name="img"></td></tr>

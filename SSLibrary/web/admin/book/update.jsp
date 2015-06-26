@@ -25,6 +25,8 @@ function update(f){
 <fieldset>
 <legend>책 수정 양식</legend>
 <form name="updatebook" enctype="multipart/form-data">
+<input type ="hidden" name="id" value="${bookinfo.id}">
+<input type ="hidden" name="oldimg" value="${bookinfo.img}">
 <table>
 <tr><th>ID</th><td align="right"><input type="text" name="id" placeholder="ID" value="${bookinfo.id}" disabled></td></tr>
 <tr><th>NAME</th><td align="right"><input type="text" name="name" placeholder="NAME" value="${bookinfo.name}" ></td></tr>

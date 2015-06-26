@@ -274,8 +274,40 @@ public class BookControl {
 	}
 	
 	@RequestMapping("/bookmodifyimpl.do")
-	public ModelAndView bookmodifyimpl(){
-		ModelAndView mv = new ModelAndView("main");
+	public ModelAndView bookmodifyimpl(HttpServletRequest request, BookUploadCommand book) throws Exception{
+		System.out.println(book.getId()+" "+book.getName() +" "+ book.getWriter());
+		System.out.println(book.getImg().getOriginalFilename()+" "+book.getFloor()+" "+book.getCurrent_qt());
+		System.out.println(book.getTotal_qt()+" "+book.getReg_date());
+		String img = book.getImg().getOriginalFilename();
+		
+		String oldimg = request.getParameter("oldimg");
+		Book b;
+		
+		if(img==null || img.equals("")){
+			b = new Book(book.getId(),book.getName(), book.getWriter(), oldimg,
+					book.getFloor(),book.getTotal_qt());	
+			
+			System.out.println("oldimg : "+oldimg);
+			
+		}else{
+			b = new Book(book.getId(),book.getName(), book.getWriter(), 
+					img ,book.getFloor(),book.getTotal_qt());	
+			
+			System.out.println("new img : "+img);
+			
+			MultipartFile file = book.getImg();
+			String dir = "c:/lib/SSLibrary/web/img/book/";
+			if(file!= null){
+				byte[] data = file.getBytes(); //올라온 데이터를 byte array로 변환함. (모든 파일 가능)
+				FileOutputStream out = new FileOutputStream(dir+file.getOriginalFilename());
+				out.write(data);
+				out.close();
+			}
+		}
+		
+		biz.modify(b);
+		
+		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+book.getId());	
 		return mv;
 	}
 	

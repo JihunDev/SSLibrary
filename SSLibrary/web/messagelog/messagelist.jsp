@@ -8,47 +8,34 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-function m_list(){
-	$.ajax({
-		type : 'POST',
-		anync : 'false',
-		url : 'send.do',/* 추후 수정 */
-		success : function(data) {
-			display(data);
-		}
-	});
-};
-
-function display(data) {
-	var output = '';
-	output += "<table>";
-	output += "<thead>";
-	output += "<tr><th>ID</th><th>TEXT</th></tr>";
-	output += "</thead>";
-	output += "<tbody>";
-	$(data).each(function(index, item) {
-						with (item) {
-							output += '<tr>';
-							output += '<td>'+send_id+'</td>';
-							output += '<td>'+text+'</td>';
-							output += '</tr>';
-						}
-					});
-	output += "</tbody>";
-	output += "</table>";
-	$('#messagelist').html(output);
-};
-
-$(document).ready(function() {
-	setInterval('m_list()',5000);		
-});
 </script>
-<style></style>
+<style>
+</style>
 </head>
 <body>
-<h1>메세지 list</h1>
-<div id="messagelist">
-	
-</div>
+<h1 align="center">Message List Page</h1>
+	<table width="700">
+		
+		<thead>
+			<tr>
+				<th >번호</th>
+				<th>보낸사람 ID</th>
+				<th>text</th>
+				<th>보낸시간</th>
+				<th>읽었나 확인</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${messagelog}" var="m"> <!-- 추후수정 -->
+				<tr>
+					<td>${m.id}</td>
+					<td>${m.u_id}</td>
+					<td><a href="msgdetail.do?id='${m.id}'">${m.text}<a></td>
+					<td>${m.send_date}</td>
+					<td>${m.read}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>

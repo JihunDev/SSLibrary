@@ -1,7 +1,6 @@
 package com.control;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import javax.annotation.Resource;
@@ -170,8 +169,6 @@ public class BookControl {
 			break;
 		}
 		
-		/*Collections.sort(resultlist, new IDCompare<Object>());	*/
-		
 		
 		JSONArray ja = new JSONArray();
 		for(Object obj:resultlist){
@@ -196,18 +193,24 @@ public class BookControl {
 		return returnData;
 	}
 	
-	
-/*static class IDCompare<Object> implements Comparator<Object>{
-
-		@Override
-		public int compare(Object o1, Object o2) {
-			Book b1 = (Book) o1;
-			Book b2 = (Book) o2;
-			return b1.getId().compareToIgnoreCase(b2.getId());
+	@RequestMapping("/bookdetail.do")
+	public ModelAndView bookdetail(HttpServletRequest request,String id){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("main");
+		Object list = null;
+		try {
+			list= biz.get(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
-	}*/
+		mv.addObject("bookdetail",list);
+		mv.addObject("nav", Nav.book);
+		mv.addObject("left", "left.jsp");
+		mv.addObject("center", "book/booksearch.jsp");
+		return mv; 
+	}
+	
 
 }
 

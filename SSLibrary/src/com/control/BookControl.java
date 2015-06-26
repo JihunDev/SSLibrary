@@ -1,9 +1,13 @@
 package com.control;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,8 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.command.BookUploadCommand;
 import com.entity.Book;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -210,7 +216,7 @@ public class BookControl {
 	}
 	
 	@RequestMapping("/bookregister.do")
-	public ModelAndView bookregister(String id){
+	public ModelAndView bookregister(){
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.bookregister);
 		mv.addObject("left", "left.jsp");
@@ -218,6 +224,46 @@ public class BookControl {
 		return mv; 
 	}
 	
+	@RequestMapping("/bookregisterimpl.do")
+	public String bookregisterimpl(HttpServletRequest request, BookUploadCommand book){
+		Book b = new Book(book.getId(), book.getName(), book.getWriter(), 
+				book.getImg().getOriginalFilename(), book.getFloor(), 
+				book.getTotal_qt(), book.getTotal_qt());
+		System.out.println(b);
+		try {
+			Book b1= (Book) biz.register(b);
+			HttpSession session = request.getSession();
+			session.setAttribute("bookregister", b1);
+			System.out.println(b1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		MultipartFile file = book.getImg();
+		String dir = "c:/lib/SSLibrary/web/img/book/";
+		String img = file.getOriginalFilename();
+		System.out.println(img);
+		
+		if (img == null || img.equals("")) {
+		} else {
+			byte[] data;
+			try {
+				data = file.getBytes();
+				FileOutputStream out;
+				out = new FileOutputStream(dir
+						+ file.getOriginalFilename());
+				out.write(data);
+				out.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			
+		}
+		
+		return "redirect:/bookmain.do";
+	}
 
 }
 

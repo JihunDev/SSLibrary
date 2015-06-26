@@ -1,6 +1,5 @@
 package com.control;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +45,6 @@ public class BookControl {
 		}
 		mv.addObject("booklist",list);
 		mv.addObject("nav", Nav.book);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "book/booksearch.jsp");
 		return mv; 
 	}
@@ -210,7 +208,6 @@ public class BookControl {
 		}
 		mv.addObject("bookdetail",result);
 		mv.addObject("nav", Nav.bookdetail);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "book/bookdetail.jsp");
 		return mv; 
 	}
@@ -219,7 +216,6 @@ public class BookControl {
 	public ModelAndView bookregister(){
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.bookregister);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "admin/book/register.jsp");
 		return mv; 
 	}
@@ -244,9 +240,7 @@ public class BookControl {
 		String dir = "c:/lib/SSLibrary/web/img/book/";
 		String img = file.getOriginalFilename();
 		System.out.println(img);
-		
-		if (img == null || img.equals("")) {
-		} else {
+	
 			byte[] data;
 			try {
 				data = file.getBytes();
@@ -259,12 +253,32 @@ public class BookControl {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-			
-		}
-		
+				
 		return "redirect:/bookmain.do";
 	}
-
+	@RequestMapping("/bookremoveimpl.do")
+	public ModelAndView bookremoveimpl(String id){
+		ModelAndView mv = new ModelAndView("redirect:/bookmain.do");
+		try {
+			biz.remove(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;	
+	}
+	@RequestMapping("/bookmodify.do")
+	public ModelAndView bookmodify(String id) throws Exception{
+		ModelAndView mv = new ModelAndView("main");
+			Object b = biz.get(id);
+		mv.addObject("bookinfo",b);
+		mv.addObject("nav", Nav.bookupdate);
+		mv.addObject("center", "admin/book/update.jsp");
+		return mv;
+	}
+	
+	
+	
+	
 }
 
 

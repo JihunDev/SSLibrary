@@ -1,15 +1,16 @@
-<%@page import="com.entity.Book"%>
+<%@page import="com.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<%String id = request.getParameter("id");  %>
-
+<%User user = (User)session.getAttribute("user");%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+</script>
 <style></style>
 </head>
 <body>
@@ -25,10 +26,14 @@
 <tr><th>등록일</th><td>${bookdetail.reg_date}</td></tr>
 </tbody>
 </table>
-<div>
-<div><a href="bookremoveimpl.do?id=${bookdetail.id}">삭제</a></div> <!-- 추후수정 -->
-<div><a href="bookmodify.do?id=${bookdetail.id}">수정</a></div> <!-- 추후수정 -->
-</div>
+<%if(user!=null && user.getIsadmin().equals("y")){ %>
+<div><a href="bookmodify.do?id=${bookdetail.id}">수정</a></div>
+<div><a href="javascript:;" onClick="if (confirm('정말 삭제하시겠습니까?')) location.href='bookremoveimpl.do?id=${bookdetail.id}'">삭제</a></div>
+<div><a href="userbookregister.do?id=${bookdetail.id}">대여</a></div>
+<%}else if(user!=null && user.getIsadmin().equals("n")){ %>
+<div><a href="userbookregister.do?id=${bookdetail.id}">대여</a></div>
+<%}else{ %>
+<%} %>
 </fieldset>
 </body>
 </html>

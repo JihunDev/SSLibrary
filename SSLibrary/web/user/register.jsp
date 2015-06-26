@@ -35,12 +35,23 @@ function register(f) {
 		};
 	}			
 }
-function idcheck() {
-	var id = $('#id').value;
+function display(data) {
+	var output = '';
+	if(data == '1'){
+		output ='사용가능';
+		alert(data);
+	}else{
+		output ='사용불가능';
+		alert(data);
+	}
+	$('#idcheck').html(output);
+}
+function idcheck(f) {
+	var id = f.id.value;
 	$.ajax({
 		type : 'POST',
-		anync : 'false',
-		url : '.do',/* 추후 수정 */
+		async : 'false',
+		url : 'idcheck.do',/* 추후 수정 */
 		data : {
 			'id' : id
 		},
@@ -49,20 +60,6 @@ function idcheck() {
 		}
 	});
 }
-function display(data) {
-	var output = '';
-	if(data == 1){/* ajax에서 보내는 data를 0,1이라 가정 <추후 수정 가능>*/
-		output ='사용가능';
-	}else{
-		output ='사용불가능';
-	}
-	$('#idcheck').html(output);
-}
-$(document).ready(function() {
-	$('#pwd').click(function() {
-		idcheck();
-	});
-});
 </script>
 <style></style>
 </head>
@@ -71,8 +68,9 @@ $(document).ready(function() {
 		<h1>회원가입</h1>
 		<form enctype="multipart/form-data" >
 			<input type="hidden" name="isadmin" value="n"><br> 
-			<input type="text" name="id" id="id" placeholder="ID"><br>
-			<div id="idcheck"></div>
+			<input type="text" name="id" id="id" placeholder="ID">
+			<input type="button" value="중복체크" onclick="idcheck(this.form);">
+			<div id="idcheck"></div><br>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 			<input type="text" name="name" placeholder="NAME"><br> 

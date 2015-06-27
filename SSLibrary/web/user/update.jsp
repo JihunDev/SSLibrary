@@ -56,6 +56,7 @@ function del(f) {
 		<input type="text" name="name" value="${userupdate.name}"><br>
 		<input type="text" name="phone" value="${userupdate.phone}"><br>
 		<input type="text" name="email" value="${userupdate.email}"><br>
+		<h5>원래 사진 ${userupdate.img}</h5>
 		<input type="file" name="img"><br><!-- 새로운 등록이미지 -->
 		<input type="button" value="update" onclick="update(this.form);">
 		<input type="button" value="delete" onclick="del(this.form);">

@@ -133,6 +133,22 @@ public class MainControl {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("/del.do")
+	public ModelAndView del(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
+		String id = request.getParameter("id");
+		String is = "d";
+		System.out.println("삭제 id : "+id);
+		try {
+			biz.remove(new User(id,is));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("nav", Nav.register);//추후수정
+		mv.addObject("center", "center.jsp");
+		return mv;
+	}
 
 	@RequestMapping("/logout.do")
 	public String logout(HttpServletRequest request) {
@@ -267,6 +283,28 @@ public class MainControl {
 	
 	@RequestMapping("/msgdetail.do")
 	public ModelAndView msglogdetail(String id) {
+		ModelAndView mv = new ModelAndView("main");
+		MessageLog msg = null ;
+		int i = 0;
+		System.out.println("msgdetail id : "+id);
+		try {
+			msg = (MessageLog)m_biz.get(id);
+			System.out.println("msgdetail get : "+msg);
+			i = (int) m_biz.modify(id);
+			System.out.println("msgdteail mod : "+i);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("nav", Nav.register);
+		mv.addObject("messagelogdetail", msg);
+		mv.addObject("center", "messagelog/messagedetail.jsp");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/usinginfo.do")
+	public ModelAndView usinginfo(String id) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null ;
 		int i = 0;

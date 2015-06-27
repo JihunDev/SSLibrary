@@ -40,7 +40,6 @@ public class BookControl {
 		try {
 			list= biz.get();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mv.addObject("booklist",list);
@@ -261,6 +260,10 @@ public class BookControl {
 		ArrayList<Object> list = null;
 			try {
 				biz.remove(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
 				IsDelete = biz.get(id);
 				if(IsDelete==null){
 					IsDelete = 0;

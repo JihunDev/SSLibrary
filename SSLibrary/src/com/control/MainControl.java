@@ -27,13 +27,15 @@ public class MainControl {
 	@Resource(name = "userbiz")
 	Biz biz;
 	@Resource(name = "messagelogbiz")
-	Biz m_biz;
+	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
-	SearchBiz mbiz;
+	SearchBiz messagelogsearchbiz;
 	@Resource(name = "userbookbiz")
-	SearchBiz bbiz;	
+	SearchBiz userbookbiz;	
 	@Resource(name = "userseatbiz")
-	Biz sbiz;
+	Biz userseatbiz;
+	@Resource(name = "bookbiz")
+	Biz bookbiz;
 	
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
@@ -266,7 +268,7 @@ public class MainControl {
 		ArrayList<Object> ml = new ArrayList<Object>();
 		ArrayList<Object> mlre = new ArrayList<Object>();
 		try {
-			ml = mbiz.getid(id);
+			ml = messagelogsearchbiz.getid(id);
 			System.out.println("msgloglist : " + ml);
 			for (Object ob : ml) {
 				MessageLog msg = (MessageLog) ob;
@@ -295,9 +297,9 @@ public class MainControl {
 		int i = 0;
 		System.out.println("msgdetail id : "+id);
 		try {
-			msg = (MessageLog)m_biz.get(id);
+			msg = (MessageLog)messagelogbiz.get(id);
 			System.out.println("msgdetail get : "+msg);
-			i = (int) m_biz.modify(id);
+			i = (int) messagelogbiz.modify(id);
 			System.out.println("msgdteail mod : "+i);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -318,10 +320,11 @@ public class MainControl {
 		HttpSession session = request.getSession();
 		
 		try {
-			userbooklist = bbiz.getid(id);
+			userbooklist = userbookbiz.getid(id);
 			System.out.println("userbook getid : "+userbooklist);
-			userseat = sbiz.get(id);
+			userseat = userseatbiz.get(id);
 			System.out.println("userseat getid : "+userseat);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

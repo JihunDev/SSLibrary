@@ -3,6 +3,7 @@ package com.control;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +38,19 @@ public class MainControl {
 		mv.setViewName("main");
 		HttpSession session = request.getSession();
 		session.setAttribute("top", "top.jsp");
-		session.setAttribute("left", "left.jsp");
+		session.setAttribute("left", "user/login.jsp");
 		mv.addObject("nav", Nav.home);
 		mv.addObject("center", "center.jsp");
 		
+		String ls_name="";
+		String ls_value="";
+		Enumeration<String> enum_app=session.getAttributeNames();
+		while(enum_app.hasMoreElements()){
+			ls_name=enum_app.nextElement().toString();
+			ls_value=session.getAttribute(ls_name).toString();
+			System.out.println("얻어온 세션이름 :" + ls_name);
+			System.out.println("얻어온 세션 값 :" + ls_value);
+		}
 		return mv;
 	}
 
@@ -96,7 +106,7 @@ public class MainControl {
 	public ModelAndView loginimpl(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		User result = null;
-
+		System.out.println("loginimpl동작");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		System.out.println(id + "  " + pwd);

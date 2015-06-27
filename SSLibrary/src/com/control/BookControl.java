@@ -103,14 +103,12 @@ public class BookControl {
 			try {
 				list = biz2.getname(search);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(issearch.equals("writer")){
 				try {
 					list = biz2.getwriter(search);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			

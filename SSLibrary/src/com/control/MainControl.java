@@ -32,6 +32,8 @@ public class MainControl {
 	@Resource(name = "messagelogbiz")
 	SearchBiz mbiz;
 
+	
+	
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -124,6 +126,7 @@ public class MainControl {
 			mv.addObject("center", "center.jsp");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
+			session.setAttribute("id", id);
 			// 로그인시 유저 정보 세션에 넣음
 
 		} else {
@@ -306,21 +309,11 @@ public class MainControl {
 	@RequestMapping("/usinginfo.do")
 	public ModelAndView usinginfo(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		MessageLog msg = null ;
-		int i = 0;
-		System.out.println("msgdetail id : "+id);
-		try {
-			msg = (MessageLog)m_biz.get(id);
-			System.out.println("msgdetail get : "+msg);
-			i = (int) m_biz.modify(id);
-			System.out.println("msgdteail mod : "+i);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		
 		
 		mv.addObject("nav", Nav.register);
-		mv.addObject("messagelogdetail", msg);
-		mv.addObject("center", "messagelog/messagedetail.jsp");
+		mv.addObject("center", "user/usinginfo.jsp");
 		
 		return mv;
 	}

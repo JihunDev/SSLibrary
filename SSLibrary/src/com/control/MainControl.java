@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -163,6 +164,7 @@ public class MainControl {
 		return "redirect:/main.do";
 	}
 	
+	@ResponseBody 
 	@RequestMapping("/idcheck.do")
 	public String idcheck(String id) {
 		System.out.println("idcheck id : "+id);
@@ -176,11 +178,11 @@ public class MainControl {
 		}
 		
 		if (user != null) {
-			result = "1";
-		}else {
 			result = "0";
+		}else {
+			result = "1";
 		}
-		System.out.println("idchek result : "+result);
+		System.out.println("idcheck result : "+result);
 		
 		return result;
 	}

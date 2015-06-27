@@ -68,7 +68,7 @@ public class UserBookBiz implements Biz, SearchBiz {
 
 	@Override
 	public ArrayList<Object> getid(Object obj) throws Exception {
-		return dao2.searchname(obj);
+		return dao2.searchid(obj);
 	}
 
 }

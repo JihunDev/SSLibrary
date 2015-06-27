@@ -13,7 +13,7 @@ public class delete {
 				new ClassPathXmlApplicationContext("spring.xml");
 		Biz biz = (Biz)factory.getBean("userbookbiz");
 		
-		UserBook book = new UserBook("id02","E1");
+		UserBook book = new UserBook("id03","i5");
 		
 		try {
 			biz.remove(book);

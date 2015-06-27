@@ -285,6 +285,7 @@ public class BookControl {
 			mv.addObject("center", "book/booksearch.jsp");
 		return mv;	
 	}
+	
 	@RequestMapping("/bookmodify.do")
 	public ModelAndView bookmodify(String id) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
@@ -307,13 +308,13 @@ public class BookControl {
 		
 		if(img==null || img.equals("")){
 			b = new Book(book.getId(),book.getName(), book.getWriter(), oldimg,
-					book.getFloor(),book.getTotal_qt());	
+					book.getFloor(),book.getTotal_qt(),book.getCurrent_qt());	
 			
 			System.out.println("oldimg : "+oldimg);
 			
 		}else{
 			b = new Book(book.getId(),book.getName(), book.getWriter(), 
-					img ,book.getFloor(),book.getTotal_qt());	
+					img ,book.getFloor(),book.getTotal_qt(),book.getCurrent_qt());	
 			
 			System.out.println("new img : "+img);
 			
@@ -336,31 +337,53 @@ public class BookControl {
 	@RequestMapping("/userbookregister.do")
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		HttpSession session = request.getSession();
-		session.getAttribute("id");
-		System.out.println("session : "+session.getAttribute("id"));
+		String idd = session.getAttribute("id").toString();
 		User user = null;
 		try {
-			user = (User) ubiz.get(id);
+			user = (User) ubiz.get(idd);
 			System.out.println("user  :  "+user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("책 아이디 : "+id);
 		
-		UserBook book = new UserBook(user.getId(), id);
+			Book upbook;
+			Book upbooknew;
+			
+		int current_qt = 0;
 		try {
-			userbiz.register(book);
-			logbiz.register(book);
+			upbook = (Book)biz.get(id);
+			current_qt= upbook.getCurrent_qt();
+			if(upbook.getCurrent_qt()==0){
+				System.out.println("대여 가능한 책이 없어서 빌릴 수 없음!!!!!!!!!!!!!!!!");	
+			}else{
+				upbooknew = new Book(upbook.getId(),upbook.getName(),
+				upbook.getWriter(),upbook.getImg(),upbook.getFloor(),
+				upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
+				System.out.println("업데이트 한 book : "+upbooknew);	
+				biz.modify(upbooknew);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+			
+		if(current_qt==0){
+			System.out.println("userbook과 booklog에 등록이 되지 않아요~!");
+			
+		}else{
+			UserBook book = new UserBook(user.getId(), id);
+			System.out.println("userbook 등록 : "+book);
+			System.out.println();
 			try {
-				Book upbook = (Book)biz.get(id);
-				Book upbooknew = new Book(upbook.getId(),upbook.getName(),
-				upbook.getWriter(),upbook.getImg(),upbook.getFloor(),upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
-				biz.modify(upbooknew);
+				userbiz.register(book);
+				logbiz.register(book);
+				
+				System.out.println("userbook과 booklog에 등록 완료!!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}	
+		
 		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+id);	
 		return mv;
 	}

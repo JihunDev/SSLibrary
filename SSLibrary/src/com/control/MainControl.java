@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.command.UserCommand;
 import com.entity.MessageLog;
 import com.entity.User;
+import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.util.Nav;
@@ -25,14 +26,14 @@ import com.util.Nav;
 public class MainControl {
 	@Resource(name = "userbiz")
 	Biz biz;
-
 	@Resource(name = "messagelogbiz")
 	Biz m_biz;
-	
 	@Resource(name = "messagelogbiz")
 	SearchBiz mbiz;
-
-	
+	@Resource(name = "userbookbiz")
+	SearchBiz bbiz;	
+	@Resource(name = "userseatbiz")
+	Biz sbiz;
 	
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
@@ -165,20 +166,22 @@ public class MainControl {
 	@RequestMapping("/idcheck.do")
 	public String idcheck(String id) {
 		System.out.println("idcheck id : "+id);
-		User user;
+		User user = null;
 		String result = ""; 
 		try {
 			user = (User) biz.get(id);
 			System.out.println("idcheck get : "+user);
-			if (user != null) {
-				result = "1";
-			}else {
-				result = "0";
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		if (user != null) {
+			result = "1";
+		}else {
+			result = "0";
+		}
 		System.out.println("idchek result : "+result);
+		
 		return result;
 	}
 
@@ -309,7 +312,13 @@ public class MainControl {
 	@RequestMapping("/usinginfo.do")
 	public ModelAndView usinginfo(String id) {
 		ModelAndView mv = new ModelAndView("main");
+		ArrayList<Object> userbooklist = new ArrayList<Object>();
 		
+		try {
+			userbooklist = bbiz.getid(new UserBook(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 		mv.addObject("nav", Nav.register);

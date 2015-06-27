@@ -21,6 +21,13 @@ public class User {
 	public User(String id) {
 		this.id = id;
 	}
+	
+	
+	public User(String id, String isadmin) {
+		super();
+		this.id = id;
+		this.isadmin = isadmin;
+	}
 
 	public User(String id, String pwd, String name, String phone, String img,
 			String email, String isadmin) {

@@ -337,11 +337,11 @@ public class BookControl {
 	@RequestMapping("/userbookregister.do")
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		HttpSession session = request.getSession();
-		String idd = session.getAttribute("id").toString();
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보
 		User user = null;
 		int  borrowbook = 0;
 		try {
-			user = (User) ubiz.get(idd);
+			user = (User) ubiz.get(uid);
 			System.out.println("user  :  "+user);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -363,6 +363,7 @@ public class BookControl {
 				upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
 				System.out.println("업데이트 한 book : "+upbooknew);	
 				biz.modify(upbooknew);
+				current_qt=1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -370,25 +371,22 @@ public class BookControl {
 			
 		if(current_qt==0){
 			System.out.println("userbook과 booklog에 등록이 되지 않아요~!");
-			borrowbook = 1;
-			
+			borrowbook =1;
 		}else{
 			UserBook book = new UserBook(user.getId(), id);
 			System.out.println("userbook 등록 : "+book);
-			System.out.println();
 			try {
 				userbiz.register(book);
 				logbiz.register(book);
-		
-				borrowbook =2;
 				System.out.println("userbook과 booklog에 등록 완료!!");		
+				borrowbook =2;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}	
-		ModelAndView mv = new ModelAndView("main");	
-		mv.addObject("borrowbook",borrowbook);
-		mv.addObject("center","bookdetail.do?id="+id);
+	//	mv.addObject("borrowbook",borrowbook);
+		session.setAttribute("borrowbook", borrowbook);
+		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+id);	
 		return mv;
 	}
 

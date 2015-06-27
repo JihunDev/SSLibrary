@@ -318,6 +318,7 @@ public class MainControl {
 		
 		try {
 			userbooklist = bbiz.getid(new UserBook(id));
+			System.out.println("userbook getid : "+userbooklist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

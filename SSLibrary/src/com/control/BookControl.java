@@ -21,17 +21,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.command.BookUploadCommand;
 import com.entity.Book;
+import com.entity.User;
+import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.util.Nav;
 
 @Controller
 public class BookControl {
+	@Resource(name="userbiz")
+	Biz ubiz;
 	@Resource(name="bookbiz")
 	Biz biz;
 	@Resource(name="bookbiz")
 	SearchBiz biz2;
+	@Resource(name="userbookbiz")
+	Biz userbiz;
+	@Resource(name="booklogbiz")
+	Biz logbiz;
 	
+//	-------------------------------------Book------------------------------------------
 	@RequestMapping("/bookmain.do")
 	public ModelAndView bookmain(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
@@ -109,15 +118,13 @@ public class BookControl {
 					list = biz2.getwriter(search);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
-			
+				}	
 		}else{
 			try {
 				list = biz2.getname(search);
 				for (Object o : list) {
 					sublist1.add(o);
 				}
-				
 				sublist2 = biz2.getwriter(search);
 				for (Object o1 : sublist2) {
 					Book b1 = (Book) o1;
@@ -200,7 +207,6 @@ public class BookControl {
 		try {
 			result= biz.get(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mv.addObject("bookdetail",result);
@@ -229,7 +235,6 @@ public class BookControl {
 			session.setAttribute("bookregister", b1);
 			System.out.println(b1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -247,7 +252,6 @@ public class BookControl {
 				out.write(data);
 				out.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 				
@@ -328,10 +332,39 @@ public class BookControl {
 		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+book.getId());	
 		return mv;
 	}
-	
-	
-	
-	
+//	--------------------------------------UserBook---------------------------------------
+	@RequestMapping("/userbookregister.do")
+	public ModelAndView userbookregister(HttpServletRequest request, String id){
+		HttpSession session = request.getSession();
+		session.getAttribute("id");
+		System.out.println("session : "+session.getAttribute("id"));
+		User user = null;
+		try {
+			user = (User) ubiz.get(id);
+			System.out.println("user  :  "+user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		UserBook book = new UserBook(user.getId(), id);
+		try {
+			userbiz.register(book);
+			logbiz.register(book);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			try {
+				Book upbook = (Book)biz.get(id);
+				Book upbooknew = new Book(upbook.getId(),upbook.getName(),
+				upbook.getWriter(),upbook.getImg(),upbook.getFloor(),upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
+				biz.modify(upbooknew);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+id);	
+		return mv;
+	}
+
 }
 
 

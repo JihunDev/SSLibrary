@@ -55,7 +55,7 @@ function idcheck(g) {
 			display(data);
 		},
 		error : function(data) {
-            alert("에러발생"+data);
+	        alert("에러발생"+data);
       }
 	});
 }

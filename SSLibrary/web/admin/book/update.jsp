@@ -27,11 +27,12 @@ function update(f){
 <form name="updatebook" enctype="multipart/form-data">
 <input type ="hidden" name="id" value="${bookinfo.id}">
 <input type ="hidden" name="oldimg" value="${bookinfo.img}">
+<input type ="hidden" name="current_qt" value="${bookinfo.current_qt}">
 <table>
 <tr><th>ID</th><td align="right"><input type="text" name="id" placeholder="ID" value="${bookinfo.id}" disabled></td></tr>
 <tr><th>NAME</th><td align="right"><input type="text" name="name" placeholder="NAME" value="${bookinfo.name}" ></td></tr>
 <tr><th>WRITER</th><td align="right"><input type="text" name="writer" placeholder="WRITER" value="${bookinfo.writer}"></td></tr>
-<tr><th>IMG</th><td align="right">${bookinfo.img}</td></tr>
+<tr><th>IMG</th><td align="right"><img width="30" src="img/book/${bookinfo.img}">${bookinfo.img}</td></tr>
 <tr><th>NEW IMG</th><td><input type="file" name="img"></td></tr>
 <tr><th>FLOOR</th>
 <td align="right">

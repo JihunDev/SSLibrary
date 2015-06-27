@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
+
 </script>
 <style></style>
 </head>
@@ -17,10 +18,10 @@
 <%if(user == null){  %>
 	<fieldset>
 		<legend>Login</legend>
-			<form>
+			<form action="loginimpl.do" method="POST">
 				<input type="text" name="id" id="id" placeholder="ID"><br>
 				<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
-				<input type="button" value="login" onclick="login(this.form);">
+				<input type="submit" value="login">
 				<a href="register.do">µî·Ï</a>
 			</form>
 	</fieldset>

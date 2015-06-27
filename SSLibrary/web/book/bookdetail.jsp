@@ -30,7 +30,7 @@
 <%if(user!=null && user.getIsadmin().equals("y")){ %>
 <div><a href="bookmodify.do?id=${bookdetail.id}">수정</a></div>
 <div><a href="javascript:;" onClick="if (confirm('정말 삭제하시겠습니까?')) location.href='bookremoveimpl.do?id=${bookdetail.id}'">삭제</a></div>
-<div><a href="userbookregister.do?id=${bookdetail.id}">대여</a></div>
+<div><a href="javascript:;" onClick="if (confirm('대여하시겠습니까?')) location.href='userbookregister.do?id=${bookdetail.id}'">대여</a></div>
 <%}else if(user!=null && user.getIsadmin().equals("n")){ %>
 <div><a href="userbookregister.do?id=${bookdetail.id}">대여</a></div>
 <%}else{ %>

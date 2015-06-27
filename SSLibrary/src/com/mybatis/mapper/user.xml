@@ -21,10 +21,9 @@
 		</selectKey>
 	</insert>
 
-	<delete id="deleteuser" parameterType="user">
-		DELETE FROM A_USER WHERE
-		ID = #{id}
-	</delete>
+	<update id="deleteuser" parameterType="user" >
+		UPDATE A_USER SET ISADMIN = #{isadmin} WHERE ID = #{id}
+	</update>
 
 	<update id="updateuser" parameterType="user">
 		UPDATE A_USER SET PWD =

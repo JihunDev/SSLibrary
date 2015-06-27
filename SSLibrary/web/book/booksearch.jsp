@@ -67,6 +67,19 @@ function getBook() {
 		}
 	});
 };
+function deletebook(isdelete){
+	if(isdelete=="1"){
+		alert("누군가 대여 중이어서 삭제할 수 없습니다.");
+	}else{
+	}
+}
+
+$(document).ready(function(){
+	makeHeight();
+	var isdelete = $('#isdelete').val();
+		deletebook(isdelete);
+});
+
 
 /* function display(data){
 	$('#book_result').empty(); //remove는 style까지 다 지움
@@ -114,6 +127,7 @@ $(document).ready(function(){
 <style></style>
 </head>
 <body>
+<input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
 	<select id="issearch"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
 	<select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>

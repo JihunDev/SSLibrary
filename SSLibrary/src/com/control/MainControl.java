@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.command.UserCommand;
 import com.entity.MessageLog;
 import com.entity.User;
+import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.util.Nav;
@@ -324,6 +325,11 @@ public class MainControl {
 			System.out.println("userbook getid : "+userbooklist);
 			userseat = userseatbiz.get(id);
 			System.out.println("userseat getid : "+userseat);
+			for (Object obj : userbooklist) {
+				UserBook ub = (UserBook)obj;
+				String bid = ub.getB_id();
+				System.out.println(bookbiz.get(bid));
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.command.UserCommand;
 import com.entity.MessageLog;
 import com.entity.User;
-import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.util.Nav;
@@ -312,18 +311,23 @@ public class MainControl {
 	}
 	
 	@RequestMapping("/usinginfo.do")
-	public ModelAndView usinginfo(String id) {
+	public ModelAndView usinginfo(String id,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
+		Object userseat = null;
+		HttpSession session = request.getSession();
 		
 		try {
-			userbooklist = bbiz.getid(new UserBook(id));
+			userbooklist = bbiz.getid(id);
 			System.out.println("userbook getid : "+userbooklist);
+			userseat = sbiz.get(id);
+			System.out.println("userseat getid : "+userseat);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+		session.setAttribute("userbooklist", userbooklist);
+		session.setAttribute("userseat", userseat);
+					
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
 		

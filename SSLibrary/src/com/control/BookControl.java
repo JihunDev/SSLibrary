@@ -259,33 +259,21 @@ public class BookControl {
 	@RequestMapping("/bookremoveimpl.do")
 	public ModelAndView bookremoveimpl(String id){
 		ModelAndView mv = new ModelAndView("main");
+		Object IsDelete = null;
+		ArrayList<Object> list = null;
 			try {
 				biz.remove(id);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			Object IsDelete = null;
-			try {
 				IsDelete = biz.get(id);
 				if(IsDelete==null){
 					IsDelete = 0;
 				}else{
 					IsDelete = 1;
 				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			System.out.println(IsDelete);
-			ArrayList<Object> list = null;
-			try {
 				list= biz.get();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			mv.addObject("isdelete",IsDelete);
 			mv.addObject("booklist",list);
 			mv.addObject("nav", Nav.book);

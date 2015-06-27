@@ -257,10 +257,39 @@ public class BookControl {
 		return "redirect:/bookmain.do";
 	}
 	@RequestMapping("/bookremoveimpl.do")
-	public ModelAndView bookremoveimpl(String id) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/bookmain.do");
-			biz.remove(id);
-		
+	public ModelAndView bookremoveimpl(String id){
+		ModelAndView mv = new ModelAndView("main");
+			try {
+				biz.remove(id);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			Object IsDelete = null;
+			try {
+				IsDelete = biz.get(id);
+				if(IsDelete==null){
+					IsDelete = 0;
+				}else{
+					IsDelete = 1;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(IsDelete);
+			ArrayList<Object> list = null;
+			try {
+				list= biz.get();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			mv.addObject("isdelete",IsDelete);
+			mv.addObject("booklist",list);
+			mv.addObject("nav", Nav.book);
+			mv.addObject("center", "book/booksearch.jsp");
 		return mv;	
 	}
 	@RequestMapping("/bookmodify.do")

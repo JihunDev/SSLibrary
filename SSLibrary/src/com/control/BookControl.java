@@ -339,6 +339,7 @@ public class BookControl {
 		HttpSession session = request.getSession();
 		String idd = session.getAttribute("id").toString();
 		User user = null;
+		int  borrowbook = 0;
 		try {
 			user = (User) ubiz.get(idd);
 			System.out.println("user  :  "+user);
@@ -369,6 +370,7 @@ public class BookControl {
 			
 		if(current_qt==0){
 			System.out.println("userbook과 booklog에 등록이 되지 않아요~!");
+			borrowbook = 1;
 			
 		}else{
 			UserBook book = new UserBook(user.getId(), id);
@@ -377,14 +379,16 @@ public class BookControl {
 			try {
 				userbiz.register(book);
 				logbiz.register(book);
-				
-				System.out.println("userbook과 booklog에 등록 완료!!");
+		
+				borrowbook =2;
+				System.out.println("userbook과 booklog에 등록 완료!!");		
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}	
-		
-		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+id);	
+		ModelAndView mv = new ModelAndView("main");	
+		mv.addObject("borrowbook",borrowbook);
+		mv.addObject("center","bookdetail.do?id="+id);
 		return mv;
 	}
 

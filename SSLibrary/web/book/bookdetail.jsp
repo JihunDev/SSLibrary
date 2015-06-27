@@ -3,13 +3,16 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%User user = (User)session.getAttribute("user");%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
+$(document).ready(function(){
+	var borrowbook = $('#borrowbook').val();
+		if(borrowbook=1){
+			alert("대여 가능한 도서가 없습니다. 대여가 불가능 합니다.")		
+		}else if(borrowbook=2){
+			alert("대여가 완료되었습니다.");
+		}
+});
 </script>
 <style></style>
 </head>
@@ -27,6 +30,7 @@
 <tr><th>등록일</th><td>${bookdetail.reg_date}</td></tr>
 </tbody>
 </table>
+<input type="hidden" id="borrowbook" value="${borrowbook}">
 <%if(user!=null && user.getIsadmin().equals("y")){ %>
 <div><a href="bookmodify.do?id=${bookdetail.id}">수정</a></div>
 <div><a href="javascript:;" onClick="if (confirm('정말 삭제하시겠습니까?')) location.href='bookremoveimpl.do?id=${bookdetail.id}'">삭제</a></div>

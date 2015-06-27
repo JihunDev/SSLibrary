@@ -29,7 +29,7 @@ function register(f) {
 	}else{
 		var c = confirm('등록 하시겠습니까?');
 		if (c == true) {
-			f.action = 'registerimpl.do';/* 추후 수정 */
+			f.action = 'registerimpl.do';
 			f.method = 'POST';
 			f.submit();
 		};
@@ -37,13 +37,11 @@ function register(f) {
 }
 
 function display(data) {
-	var output = '';
 	if(data=="1"){
-		output ="사용가능";
+		alert("사용가능");
 	}else{
-		output ="사용불가능";
+		alert("사용불가능");
 	}
-	$('#idcheck').html(output);
 }
 
 function idcheck(g) {
@@ -54,9 +52,11 @@ function idcheck(g) {
 		url : 'idcheck.do',
 		data : {'id' : id},
 		success : function(data){
-			alert(data);
 			display(data);
-		}
+		},
+		error : function(data) {
+            alert("에러발생"+data);
+      }
 	});
 }
 </script>
@@ -69,7 +69,6 @@ function idcheck(g) {
 			<input type="hidden" name="isadmin" value="n"><br> 
 			<input type="text" name="id" id="id" placeholder="ID">
 			<input type="button" value="중복체크" onclick="idcheck(this.form);"><br>
-			<div id="idcheck"></div>
 			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
 			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
 			<input type="text" name="name" placeholder="NAME"><br> 

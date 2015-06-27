@@ -3,7 +3,6 @@ package com.control;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -38,24 +37,7 @@ public class MainControl {
 		mv.setViewName("main");
 		HttpSession session = request.getSession();
 		session.setAttribute("top", "top.jsp");
-		String ls_name="";
-		String ls_value="";
-		
-		Enumeration<String> enum_app=session.getAttributeNames();
-		while(enum_app.hasMoreElements()){
-		ls_name = enum_app.nextElement().toString();
-		ls_value=session.getAttribute(ls_name).toString();
-
-		System.out.println("얻어온 세션의 이름 : "+ls_name);
-		System.out.println("얻어온 세션의 값 : "+ls_value);
-		System.out.println("얻어온 세션의 주소값 : "+session.getAttributeNames().toString());
-			if(ls_name.equals("user")){
-				session.setAttribute("left", "leftok.jsp");
-			}else {
-				session.setAttribute("left", "left.jsp");
-			}
-		}		
-		
+		session.setAttribute("left", "left.jsp");
 		mv.addObject("nav", Nav.home);
 		mv.addObject("center", "center.jsp");
 		
@@ -66,7 +48,6 @@ public class MainControl {
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.register);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "user/register.jsp");
 		return mv;
 	}
@@ -107,7 +88,6 @@ public class MainControl {
 
 		}
 		mv.addObject("nav", Nav.register);
-		mv.addObject("left", "left.jsp");
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -129,18 +109,16 @@ public class MainControl {
 		}
 
 		if (result != null && (result.getPwd()).equals(pwd)) {
-			System.out.println("있음");
+			System.out.println("찾음");
 			mv.addObject("nav", Nav.register);
 			mv.addObject("center", "center.jsp");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
-			session.setAttribute("left", "user/loginok.jsp");
 			// 로그인시 유저 정보 세션에 넣음
 
 		} else {
 			System.out.println("없음");
 			mv.addObject("check", "fail");
-			mv.addObject("left", "left.jsp");
 			mv.addObject("center", "center.jsp");
 		}
 		return mv;

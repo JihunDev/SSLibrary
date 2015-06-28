@@ -131,10 +131,10 @@ $(document).ready(function(){
 <body>
 <input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
-<%if(user!=null && user.getIsadmin().equals("y")){ %>
 	<select id="issearch"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
 	<select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
 	<input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
+	<%if(user!=null && user.getIsadmin().equals("y")){ %>
 	<a href="bookregister.do">등록</a>
 	<%} %>
 	<div  id="book_result">

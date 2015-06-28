@@ -6,12 +6,17 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 $(document).ready(function(){
-	var borrowbook = $('#borrowbook').val();
-		if(borrowbook=1){
-			alert("대여 가능한 도서가 없습니다. 대여가 불가능 합니다.")		
-		}else if(borrowbook=2){
+var borrowbook = $('#borrowbook').val();
+		if(borrowbook==1){
+			alert("대여 가능한 도서가 없습니다. 대여가 불가능 합니다.")	
+		    session.removeValue("borrowbook");
+		}else if(borrowbook==2){
 			alert("대여가 완료되었습니다.");
+		    session.removeValue("borrowbook");
 		}
+		
+		
+
 });
 </script>
 <style></style>

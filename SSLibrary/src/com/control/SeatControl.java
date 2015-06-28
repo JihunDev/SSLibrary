@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.SeatCommand;
@@ -56,14 +57,22 @@ public class SeatControl {
 		if(user == null){
 			mv.addObject("left", "left.jsp");		
 		}	
-		mv.addObject("nav", Nav.seat);
+		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
+		
+		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
 		mv.addObject("myseat", myseat);
-			
+		
+		
+		mv.addObject("modifypage", "seatmodify.jsp");		
+		mv.addObject("registermsg", "register.jsp");
+
+		mv.addObject("nav", Nav.seat);
 		mv.addObject("center", "seat/seatstate.jsp");
 		return mv;
 	}
-
+	
+	// 사용자 좌석 예약 메소드
 	@RequestMapping("/userseatregister.do")
 	public String userseatregister(HttpServletRequest request, SeatCommand s,
 			UserSeatCommand us, SeatLogCommand sl) throws Exception {
@@ -85,14 +94,39 @@ public class SeatControl {
 		}
 		return "redirect:/seatmain.do";
 	}
-	
+
+	// 해당 좌석 상태 반환
+	@ResponseBody
 	@RequestMapping("/seatmodify.do")
-	public ModelAndView seatmodify(HttpServletRequest request) {
-		String s_id = request.getParameter("s_id");
+	public String seatmodify(String s_id,HttpServletRequest request) {
+		int sid_num = Integer.parseInt(s_id);
+		Seat seat = null;
+		try {
+			seat = (Seat) biz.get(new Seat(sid_num));
+		} catch (Exception e) {
+			System.out.println("seatmodify.do : biz.get(new Seat("+sid_num+") 실패");
+			e.printStackTrace();
+		}
+		//HttpSession session = request.getSession();
+		//session.setAttribute("seatstate", seat.getState());		
+		System.out.println("seatstate: " + seat.getState());
+	
+		return seat.getState();
+	}
+	
+	//좌석 수정 수행
+	@RequestMapping("/seatmodifyimpl.do")
+	public String seatmodifyimpl(String s_id, String state, HttpServletRequest request) {
+		int sid_num = Integer.parseInt(s_id);
+				
+		try {
+			biz.modify(new Seat(sid_num, state));
+		} catch (Exception e) {
+			System.out.println("seatmodifyimpl.do : " + sid_num+"좌석 정보 수정 실패");
+			e.printStackTrace();
+		}
+		return "redirect:/seatmain.do";
 		
-		ModelAndView mv = new ModelAndView();
-		
-		return mv;
 	}
 
 }

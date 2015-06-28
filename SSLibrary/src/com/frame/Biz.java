@@ -13,5 +13,4 @@ public interface Biz {
 	public Object remove(Object obj) throws Exception;
 	public Object get(Object obj) throws Exception;
 	public ArrayList<Object> get() throws Exception;
-
 }

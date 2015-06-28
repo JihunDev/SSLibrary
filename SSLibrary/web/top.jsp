@@ -6,6 +6,19 @@
 <h1 id="mainname"><a href="main.do"><img width="80%"src="img/css/mainname.gif"></a></h1>
 </div>
 <div id="sub">
+<font id="text">도서 검색 :</font>
+<select id="issearch">
+<option value="">선택</option>
+<option value="name">책이름</option>
+<option value="writer">저자</option>
+</select>
+	<select id="category">
+	<option value="">선택</option>
+	<option value="i">IT</option>
+	<option value="n">소설</option>
+	<option value="m">만화책</option></select>
+	<input type="text" id="search">
+	<input type="button" value="검색" onclick="getBook();">
 </div>
 <div id="bottom">
 <ul>

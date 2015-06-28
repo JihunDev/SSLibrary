@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.command.SeatCommand;
-import com.command.SeatLogCommand;
 import com.command.UserSeatCommand;
 import com.entity.Seat;
 import com.entity.SeatLog;
@@ -43,17 +41,8 @@ public class SeatControl {
 		User user = (User) session.getAttribute("user");
 
 		Object myseat = null;
-		
-		try {
-			seatlist = biz.get();
-		} catch (Exception e) {
-			System.out.println("좌석 열람실 정보 실패");
-			e.printStackTrace();
-		}
-
-		mv.setViewName("main");
 		if (user == null) {
-			mv.addObject("left", "left.jsp");
+			mv.addObject("left", "user/login.jsp");
 		}else{
 			try {
 				myseat = ubiz.get(user.getId());
@@ -62,6 +51,15 @@ public class SeatControl {
 				e1.printStackTrace();
 			}
 		}
+		try {
+			seatlist = biz.get();
+		} catch (Exception e) {
+			System.out.println("좌석 열람실 정보 실패");
+			e.printStackTrace();
+		}
+
+		mv.setViewName("main");
+
 		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
 
@@ -105,17 +103,19 @@ public class SeatControl {
 		int sid_num = Integer.parseInt(s_id);
 		Seat seat = null;
 
-		HttpSession session = request.getSession();
 		try {
 			seat = (Seat) biz.get(new Seat(sid_num));
 		} catch (Exception e) {
-			System.out.println("seatmodify.do : biz.get(new Seat(" + sid_num
-					+ ") 실패");
+			System.out.println("seatmodify.do : biz.get(new Seat(" + sid_num+ ") 실패");
 			e.printStackTrace();
 		}
 		String result = seat.getState();
-		// HttpSession session = request.getSession();
-		// session.setAttribute("seatstate", seat.getState());
+		HttpSession session = request.getSession();
+		session.setAttribute("seatstate", seat.getState());
+		session.setAttribute("receiver_id", seat.getId());
+		
+		System.out.println("receiver_id: " +  seat.getId());
+		
 		System.out.println("seatstate: " + result);
 		session.setAttribute("s_state", result);
 		
@@ -125,8 +125,7 @@ public class SeatControl {
 	// 좌석 수정 수행 및 결과 반환
 	@ResponseBody
 	@RequestMapping("/seatmodifyimpl.do")
-	public String seatmodifyimpl(String s_id, String state,
-			HttpServletRequest request) {
+	public String seatmodifyimpl(String s_id, String state, HttpServletRequest request) {
 		int sid_num = Integer.parseInt(s_id);
 		String result = "";
 		String new_state = state;
@@ -148,7 +147,7 @@ public class SeatControl {
 					}
 					ubiz.remove(u_id);
 				}
-				result = 	(String) biz.modify(new Seat(sid_num, new_state));;
+				result = 	(String) biz.modify(new Seat(sid_num, new_state));
 
 			} catch (Exception e) {
 				e.printStackTrace();

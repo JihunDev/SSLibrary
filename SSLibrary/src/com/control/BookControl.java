@@ -372,26 +372,35 @@ public class BookControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} 
+		String bid ="";
 		
-		if(userbooklist.size()==0){
+		if(userbooklist.size()==0){ // 대여를 한번도 안한 경우
 			overlap=2;
-			borrowbook=1;
 			System.out.println("중복 안됬지롱");
-		}else{
+			
+		}else{ // 대여를 한번이라도 한 사람인 경우
 			
 			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
 				UserBook userbook = (UserBook) obj; 
-				String bid = userbook.getB_id();// id 뽑아와서 넣기
+				bid = userbook.getB_id();// id 뽑아와서 넣기
 			
-				if(bid==id){// 대여할려는 책이 중복일 경우
+				if(bid.equals(id) || bid==id){// 대여할려는 책이 중복일 경우
 					System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
 					overlap =1; //중복된 경우
 					borrowbook =1;
+					try {
+						upbook = (Book)biz.get(id);//현재 빌리려는 책의 정보를 가져온다.
+						mv.addObject("bookdetail",upbook);
+						break;
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 
+					
 				}else{
 					overlap =2; //중복 안 된경우
-					borrowbook =1;
 				}
 			}
+			System.out.println("중복 여부 : "+overlap);
 		}	
 		
 		if(overlap==2){ //중복이 안된 경우
@@ -407,11 +416,16 @@ public class BookControl {
 					if(current_qt==0){ //대여 가능한 책 수량이 0일 경우
 							System.out.println("---------------------대여 가능한 책 0---------------------");
 							borrowbook=2;
-					}
-					//3. 대여가 가능한 경우(대여 중복이 아니면서 대여할 책이 있는 경우)
-					//upbooknew에 갯수를 한개를 빼서 업데이트 한다.
-					//userbook과 booklog에 등록한다.
-					else{//대여가 가능할 경우
+							try {
+								upbook = (Book)biz.get(id);//현재 빌리려는 책의 정보를 가져온다.
+								mv.addObject("bookdetail",upbook);
+							} catch (Exception e) {
+								e.printStackTrace();
+							} 			
+					}else if(current_qt!=0 && bid!=id){//대여가 가능할 경우
+						//3. 대여가 가능한 경우(대여 중복이 아니면서 대여할 책이 있는 경우)
+						//upbooknew에 갯수를 한개를 빼서 업데이트 한다.
+						//userbook과 booklog에 등록한다.
 							upbooknew = new Book(upbook.getId(),upbook.getName(),
 									upbook.getWriter(),upbook.getImg(),upbook.getFloor(),
 									upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
@@ -424,7 +438,9 @@ public class BookControl {
 							BookLog logbook = new BookLog(id, user.getId()); //booklog에 등록
 							logbiz.register(logbook);
 							System.out.println("userbook과 booklog에 등록 완료!!");		
-							borrowbook=3;									
+							borrowbook=3;
+							Book newbook = (Book) biz.get(upbooknew.getId());
+							mv.addObject("bookdetail",newbook);
 						}
 								
 				}catch (Exception e) {

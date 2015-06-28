@@ -44,7 +44,7 @@
 				<tr>
 					<td>도서번호${book[0]}</td>
 					<td colspan="2">대여 기간</td>
-					<td><a href="#">연장</a></td><!-- 추후수정 -->
+					<td><a href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userbookmodifyimpl.do'">연장</a></td><!-- 추후수정 -->
 					<c:if test="${status.first}">
 						<td rowspan="2"><a href="#">이력</a></td><!-- 추후수정 -->
 					</c:if>

@@ -55,7 +55,7 @@ public class MainControl {
 		while (enum_app.hasMoreElements()) {
 			ls_name = enum_app.nextElement().toString();
 			ls_value = session.getAttribute(ls_name).toString();
-			System.out.println("얻어온 세션이름 :" + ls_name);
+			System.out.println("얻어온 세션 이름 :" + ls_name);
 			System.out.println("얻어온 세션 값 :" + ls_value);
 		}
 		return mv;
@@ -72,13 +72,10 @@ public class MainControl {
 	@RequestMapping("/registerimpl.do")
 	public ModelAndView registerimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(com);
 
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-
-		System.out.println(user);
 
 		try {
 			biz.register(user);
@@ -113,20 +110,16 @@ public class MainControl {
 	public ModelAndView loginimpl(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		User result = null;
-		System.out.println("loginimpl동작");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		System.out.println(id + "  " + pwd);
 
 		try {
 			result = (User) biz.get(new User(id));
-			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (result != null && (result.getPwd()).equals(pwd)) {
-			System.out.println("찾음");
 			mv.addObject("nav", Nav.register);
 			mv.addObject("center", "center.jsp");
 			HttpSession session = request.getSession();
@@ -135,7 +128,6 @@ public class MainControl {
 			// 로그인시 유저 정보 세션에 넣음
 
 		} else {
-			System.out.println("없음");
 			mv.addObject("check", "fail");
 			mv.addObject("center", "center.jsp");
 		}
@@ -147,7 +139,6 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView("main");
 		String id = request.getParameter("id");
 		String is = "d";
-		System.out.println("삭제 id : " + id);
 		try {
 			biz.remove(new User(id, is));
 		} catch (Exception e) {
@@ -170,12 +161,10 @@ public class MainControl {
 	@ResponseBody
 	@RequestMapping("/idcheck.do")
 	public String idcheck(String id) {
-		System.out.println("idcheck id : " + id);
 		User user = null;
 		String result = "";
 		try {
 			user = (User) biz.get(id);
-			System.out.println("idcheck get : " + user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -185,7 +174,6 @@ public class MainControl {
 		} else {
 			result = "1";
 		}
-		System.out.println("idcheck result : " + result);
 
 		return result;
 	}
@@ -199,7 +187,6 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(user);
 
 		mv.addObject("user", user);
 		mv.addObject("nav", Nav.register);
@@ -226,13 +213,10 @@ public class MainControl {
 	@RequestMapping("/modifyimpl.do")
 	public ModelAndView modifyimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(com);
 
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-
-		System.out.println(user);
 
 		try {
 			biz.modify(user);
@@ -266,12 +250,10 @@ public class MainControl {
 	@RequestMapping("/msgloglist.do")
 	public ModelAndView msgloglist(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println("msglog : " + id);
 		ArrayList<Object> ml = new ArrayList<Object>();
 		ArrayList<Object> mlre = new ArrayList<Object>();
 		try {
 			ml = messagelogsearchbiz.getid(id);
-			System.out.println("msgloglist : " + ml);
 			for (Object ob : ml) {
 				MessageLog msg = (MessageLog) ob;
 				String text = msg.getText();
@@ -282,7 +264,6 @@ public class MainControl {
 						msg.getSend_date(), msg.getRead_date());
 				mlre.add(msgre);
 			}
-			System.out.println("msgloglist : " + mlre);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -296,13 +277,10 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-		int i = 0;
-		System.out.println("msgdetail id : " + id);
+		
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
-			System.out.println("msgdetail get : " + msg);
-			i = (int) messagelogbiz.modify(id);
-			System.out.println("msgdteail mod : " + i);
+			messagelogbiz.modify(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -332,14 +310,13 @@ public class MainControl {
 				Book book = (Book) bookbiz.get(bid);
 
 				String[] info = { bid, book.getName(),
-						userbook.getStart_date(), userbook.getEnd_date()};
+						userbook.getStart_date(), userbook.getEnd_date() };
 				booklist.add(info);
 			}
 			userseat = userseatbiz.get(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(booklist);
 		session.setAttribute("booklist", booklist);
 		session.setAttribute("userseat", userseat);
 

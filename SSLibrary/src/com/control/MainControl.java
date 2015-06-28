@@ -319,9 +319,10 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("booklist", booklist);
+		
 		session.setAttribute("userseat", userseat);
-
+		
+		mv.addObject("booklist",booklist);
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
 

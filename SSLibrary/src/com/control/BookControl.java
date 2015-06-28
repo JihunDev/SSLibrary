@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.command.BookUploadCommand;
 import com.entity.Book;
+import com.entity.BookLog;
 import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
@@ -353,7 +354,7 @@ public class BookControl {
 		
 		try {
 			user = (User) ubiz.get(uid);  //지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
-			System.out.println("지금 로그인 한 user  :  "+user);
+			System.out.println("지금 로그인 한 user  :  "+user.getId());
 			System.out.println("빌리려는 책 아이디 : "+id); //지금 빌리려고 하는 책 id
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -367,23 +368,29 @@ public class BookControl {
 		ArrayList<Object> userbooklist = new ArrayList<Object>(); //회원이 빌렸던 책들 알기 위해 만든 변수
 		try {
 			userbooklist = usearchbiz.getid(uid);// user가 빌린 책 넣기
+			System.out.println("user가 빌린 책 : "+userbooklist);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} 
-		
-		for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
-			UserBook userbook = (UserBook) obj; 
-			String bid = userbook.getB_id();// id 뽑아와서 넣기
-		
-			if(bid==id){// 대여할려는 책이 중복일 경우
-				System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
-				overlap =1; //중복된 경우
-				borrowbook =1;
-			}else{
-				overlap =2; //중복 안 된경우
-				borrowbook =1;
+		if(userbooklist ==null){
+			overlap=2;
+			borrowbook=1;
+		}else{
+			
+			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
+				UserBook userbook = (UserBook) obj; 
+				String bid = userbook.getB_id();// id 뽑아와서 넣기
+			
+				if(bid==id){// 대여할려는 책이 중복일 경우
+					System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
+					overlap =1; //중복된 경우
+					borrowbook =1;
+				}else{
+					overlap =2; //중복 안 된경우
+					borrowbook =1;
+				}
 			}
-		}
+		}	
 		
 		if(overlap==2){ //중복이 안된 경우
 			//2. 대여할 책이 없는 경우(중복 안되고 current_qt = 0)
@@ -411,17 +418,17 @@ public class BookControl {
 							UserBook book = new UserBook(user.getId(), id); 
 							userbiz.register(book); //userbook에 등록
 							System.out.println("userbook 등록 : "+book);
-							logbiz.register(book);
+							
+							BookLog logbook = new BookLog(id, user.getId()); //booklog에 등록
+							logbiz.register(logbook);
 							System.out.println("userbook과 booklog에 등록 완료!!");		
-							borrowbook=3;
-							mv.addObject("bookdetail",upbooknew);										
+							borrowbook=3;									
 						}
 								
 				}catch (Exception e) {
 					e.printStackTrace();
 				}
-		}
-				
+		}			
 		
 		mv.addObject("borrowbook",borrowbook);
 		mv.addObject("nav", Nav.bookdetail);

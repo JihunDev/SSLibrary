@@ -8,11 +8,11 @@
 $(document).ready(function(){
 var borrowbook = $('#borrowbook').val();
 		if(borrowbook==1){
-			alert("대여 가능한 도서가 없습니다. 대여가 불가능 합니다.")	
-		    session.removeValue("borrowbook");
+			alert("이미 빌린 책입니다.")	
 		}else if(borrowbook==2){
+			alert("현재 도서가 0개입니다. 대여가 불가능 합니다.")	
+		}else if(borrowbook==3){
 			alert("대여가 완료되었습니다.");
-		    session.removeValue("borrowbook");
 		}
 		
 		

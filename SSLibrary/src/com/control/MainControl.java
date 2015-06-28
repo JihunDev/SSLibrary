@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
+import com.entity.Book;
 import com.entity.MessageLog;
 import com.entity.User;
 import com.entity.UserBook;
@@ -32,12 +33,12 @@ public class MainControl {
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
 	@Resource(name = "userbookbiz")
-	SearchBiz userbookbiz;	
+	SearchBiz userbookbiz;
 	@Resource(name = "userseatbiz")
 	Biz userseatbiz;
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
-	
+
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -47,13 +48,13 @@ public class MainControl {
 		session.setAttribute("left", "user/login.jsp");
 		mv.addObject("nav", Nav.home);
 		mv.addObject("center", "center.jsp");
-		
-		String ls_name="";
-		String ls_value="";
-		Enumeration<String> enum_app=session.getAttributeNames();
-		while(enum_app.hasMoreElements()){
-			ls_name=enum_app.nextElement().toString();
-			ls_value=session.getAttribute(ls_name).toString();
+
+		String ls_name = "";
+		String ls_value = "";
+		Enumeration<String> enum_app = session.getAttributeNames();
+		while (enum_app.hasMoreElements()) {
+			ls_name = enum_app.nextElement().toString();
+			ls_value = session.getAttribute(ls_name).toString();
 			System.out.println("얻어온 세션이름 :" + ls_name);
 			System.out.println("얻어온 세션 값 :" + ls_value);
 		}
@@ -140,19 +141,19 @@ public class MainControl {
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping("/del.do")
 	public ModelAndView del(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		String id = request.getParameter("id");
 		String is = "d";
-		System.out.println("삭제 id : "+id);
+		System.out.println("삭제 id : " + id);
 		try {
-			biz.remove(new User(id,is));
+			biz.remove(new User(id, is));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("nav", Nav.register);//추후수정
+		mv.addObject("nav", Nav.register);// 추후수정
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -165,27 +166,27 @@ public class MainControl {
 		}
 		return "redirect:/main.do";
 	}
-	
-	@ResponseBody 
+
+	@ResponseBody
 	@RequestMapping("/idcheck.do")
 	public String idcheck(String id) {
-		System.out.println("idcheck id : "+id);
+		System.out.println("idcheck id : " + id);
 		User user = null;
-		String result = ""; 
+		String result = "";
 		try {
 			user = (User) biz.get(id);
-			System.out.println("idcheck get : "+user);
+			System.out.println("idcheck get : " + user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		if (user != null) {
 			result = "0";
-		}else {
+		} else {
 			result = "1";
 		}
-		System.out.println("idcheck result : "+result);
-		
+		System.out.println("idcheck result : " + result);
+
 		return result;
 	}
 
@@ -290,56 +291,61 @@ public class MainControl {
 		mv.addObject("center", "messagelog/messagelist.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/msgdetail.do")
 	public ModelAndView msglogdetail(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		MessageLog msg = null ;
+		MessageLog msg = null;
 		int i = 0;
-		System.out.println("msgdetail id : "+id);
+		System.out.println("msgdetail id : " + id);
 		try {
-			msg = (MessageLog)messagelogbiz.get(id);
-			System.out.println("msgdetail get : "+msg);
+			msg = (MessageLog) messagelogbiz.get(id);
+			System.out.println("msgdetail get : " + msg);
 			i = (int) messagelogbiz.modify(id);
-			System.out.println("msgdteail mod : "+i);
+			System.out.println("msgdteail mod : " + i);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		mv.addObject("nav", Nav.register);
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping("/usinginfo.do")
-	public ModelAndView usinginfo(String id,HttpServletRequest request) {
+	public ModelAndView usinginfo(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
+		ArrayList<Object> booklist = new ArrayList<Object>();
+
 		Object userseat = null;
 		HttpSession session = request.getSession();
-		
+
 		try {
 			userbooklist = userbookbiz.getid(id);
-			System.out.println("userbook getid : "+userbooklist);
-			userseat = userseatbiz.get(id);
-			System.out.println("userseat getid : "+userseat);
 			for (Object obj : userbooklist) {
-				UserBook ub = (UserBook)obj;
-				String bid = ub.getB_id();
-				System.out.println(bookbiz.get(bid));
+				UserBook userbook = (UserBook) obj;
+				String bid = userbook.getB_id();
+
+				Book book = (Book) bookbiz.get(bid);
+
+				String[] info = { bid, book.getName(),
+						userbook.getStart_date(), userbook.getEnd_date()};
+				booklist.add(info);
 			}
-			
+			userseat = userseatbiz.get(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("userbooklist", userbooklist);
+		System.out.println(booklist);
+		session.setAttribute("booklist", booklist);
 		session.setAttribute("userseat", userseat);
-					
+
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
-		
+
 		return mv;
 	}
 

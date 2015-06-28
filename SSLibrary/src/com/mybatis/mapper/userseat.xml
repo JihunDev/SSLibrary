@@ -6,6 +6,10 @@
 	<select id="selectuserseat" resultType="userseat" parameterType="userseat">
 		SELECT * FROM A_USERSEAT WHERE U_ID=#{u_id}
 	</select>
+	
+	<select id="selectuserseatbys_id" resultType="userseat" parameterType="userseat">
+		SELECT * FROM A_USERSEAT WHERE S_ID=#{s_id}
+	</select>
 
 	<select id="selectuserseats" resultType="userseat">
 		SELECT * FROM A_USERSEAT

@@ -10,6 +10,24 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
+	// 좌석 현황 페이지 호출
+	function showSeatList(f){
+		f.action = "seatmain.do";
+		f.method = "POST";
+		f.submit();		
+	}
+	// 좌석 등록 함수	
+	function register(f) {
+		var s_id = f.s_id.value;
+		var c = confirm(s_id + "번 자리를 등록하시겠습니까?");
+
+		if (c == true) {
+			f.action = "userseatregister.do?s_id=" + s_id;
+			f.method = "POST";
+			f.submit();
+		}
+	}
+	// 메세지 전송 함수
 	function sendMsg(f) {
 		var text = prompt("메세지 내용을 입력하세요.");
 
@@ -23,26 +41,27 @@
 			alert("질문창 취소버튼 클릭 했습니다.");
 	}
 
+	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
 		alert("이미 예약된 좌석입니다. ");
 	}
+	
+	// 사용자가 수리 중인 좌석을 클릭한 경우
 	function repairState() {
 		alert("수리 중입니다");
 	}
-
+	// 예약한 사람이 다른 빈 좌석을 클릭한 경우
 	function registeredUser() {
 		alert("이미 좌석을 예약하셨습니다.");
-
 	}
-
+	// 관리자가 클릭했을 때의 Dialog창 호출 내용
 	function showDialog(s_id, data) {
 		var state = data;
-		$(".seatstate").val(data);	
-		$(".seatid").val(s_id);	
-		alert("상태 : " + data);
+		$(".seatstate").val(data);
+		$(".seatid").val(s_id);
+		//alert("상태 : " + data);
 
 		if (state == 'y') {
-			$('input[id=ableseatY]').attr('checked');
 			$("#modifyY").dialog({
 				'modal' : true,
 				'width' : 300,
@@ -59,7 +78,6 @@
 
 		}
 		if (state == 'f') {
-			$('input[id=fixseatG]').attr('checked');
 			$("#modifyG").dialog({
 				'modal' : true,
 				'width' : 300,
@@ -67,6 +85,8 @@
 			});
 		}
 	}
+	
+	// 관리자가 좌석을 클릭한 경우
 	function changeState(f) {
 		var s_id = f.s_id.value;
 		$.ajax({
@@ -85,51 +105,42 @@
 
 		});
 	};
-
-	function register(f) {
-		var s_id = f.s_id.value;
-		var c = confirm(s_id + "번 자리를 등록하시겠습니까?");
-
-		if (c == true) {
-			f.action = "userseatregister.do?s_id=" + s_id;
-			f.method = "POST";
-			f.submit();
-		}
-	}
-
-	function modifystate(f,i){
+	
+	// 좌석 상태 변경 함수
+	function modifystate(f, i) {
 		var s_id = f.seatid.value;
-		var state = $('input[name='+ i +']:radio:checked').val();
-	//	alert("State: "+ state + "s_id" + s_id);
-		var c = confirm(s_id + "번 자리의 상태를 변경하시겠습니까?");
-		if(c==true){
-			f.action = "seatmodifyimpl.do?s_id=" + s_id+"&state="+state;
-			f.method = "POST";
-			f.submit();
-
-			
-			/* $.ajax({
-				type : 'post',
-				data : {
-					's_id' : s_id,
-					'state' : state
-				},
-				async : 'false',
-				url : 'seatmodifyimpl.do',
-				success : function(data) {
-					alert(s_id+"번 좌석의 상태가 변경되었습니다.");
-				},
-				error : function() {
-					alert("오류로 인해 좌석의 상태가 변경되지 않았습니다.");
-				}
-
-			}); */
-			
-			
+		var old_state = f.seatstate.value;
+		var new_state = $('input[name=' + i + ']:radio:checked').val();
+		//	alert("New State: "+ new_state + "s_id: " + s_id + "Old State: "+ old_state);
+		
+		if(old_state != new_state){
+			var c = confirm(s_id + "번 자리의 상태를 변경하시겠습니까?");
+			if (c == true) {
+				$.ajax({
+					type : 'post',
+					data : {
+						's_id' : s_id,
+						'state' : new_state
+					},
+					async : 'false',
+					url : 'seatmodifyimpl.do',
+					success : function(data) {
+						alert(s_id + "번 좌석의 상태가 변경되었습니다.");
+						showSeatList(f);
+					},
+					error : function() {
+						alert("오류로 인해 좌석의 상태가 변경되지 않았습니다.");
+					}
+				});
+			}	
+		}else{
+			var c = confirm(s_id + "번 자리의 상태를 유지하시겠습니까?");
+			if(c == true){
+				alert(s_id + "번 좌석의 상태를 유지합니다.");
+				showSeatList(f);
+			}
 		}
 		
-		
-			
 	}
 </script>
 <style>
@@ -156,8 +167,7 @@
 }
 </style>
 
-<h1>Seat State(현재 좌석 정보) (login: ${user.id}, Admin:
-	${user.isadmin}</h1>
+<h1>Seat State(현재 좌석 정보) (login: ${user.id}, Admin: ${user.isadmin}</h1>
 <table>
 	<tr>
 		<c:forEach items="${seatlist}" var="s" varStatus="i">
@@ -219,8 +229,8 @@
 				<c:choose>
 					<c:when test="${s.state == 'y'}">
 						<form>
-						<td><input type="button" class="${s.state}_btn" name="s_id"
-							onclick="changeState(this.form);" value="${s.id}"></td>
+							<td><input type="button" class="${s.state}_btn" name="s_id"
+								onclick="changeState(this.form);" value="${s.id}"></td>
 						</form>
 					</c:when>
 					<c:when test="${s.state == 'n'}">
@@ -231,8 +241,8 @@
 					</c:when>
 					<c:when test="${s.state == 'f'}">
 						<form>
-						<td><input type="button" class="${s.state}_btn" name="s_id"
-							onclick="changeState(this.form);" value="${s.id}"></td>
+							<td><input type="button" class="${s.state}_btn" name="s_id"
+								onclick="changeState(this.form);" value="${s.id}"></td>
 						</form>
 					</c:when>
 				</c:choose>
@@ -264,48 +274,5 @@
 		</c:forEach>
 	</tr>
 </table>
-<div class="modify" id="modifyR" title="관리자 페이지">
-	<div id="modifytabs">
-		<ul id="tabs">
-			<li><a href="#modifyradio">좌석 상태</a></li>
-			<li><a href="#sendMsg">메세지 전송</a></li>
-		</ul>
-		<div id="modifycontent">
-			<div class="modify" id="modifyradio" title="좌석 상태">
-			<form>
-				<input type="hidden" class="seatstate">	<br>
-				<input type="hidden" class="seatid" name="seatid">	<br>
-				<input type="radio" class="stateclass" name="seat1" id="ableseatR" value="y" >예약 가능<br>
-				<input type="radio" class="stateclass" name="seat1" id="unableseatR" value="n"checked>예약 불가<br>
-				<input type="radio" class="stateclass" name="seat1" id="fixseatR" value="f">수리 중<br>
-				<input type="button" name="Rbtn" id="Rbtn" value="확인" onclick="modifystate(this.form, 'seat1');">
-			</form>
-			</div>
-			<div id="sendMsg">
-				<jsp:include page="${registermsg}" />
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="modify" id="modifyY" title="좌석 상태">
-<form>
-<input type="hidden" class="seatstate">	<br>
-	<input type="hidden" class="seatid" name="seatid"><br>
-	<input type="radio" class="stateclass" name="seat2" id="ableseatY" value="y" checked>예약 가능<br>
-	<input type="radio" class="stateclass" name="seat2" id="fixseatY" value="f">수리 중<br>
-	<input type="button" name="Ybtn" id="Ybtn" value="확인" onclick="modifystate(this.form, 'seat2');">
-	</form>
-</div>
-
-<div class="modify" id="modifyG" title="좌석 상태">
-
-	<form>
-	<input type="hidden" class="seatstate">	<br>
-	<input type="hidden" class="seatid" name="seatid">	<br>
-	<input type="radio" class="stateclass" name="seat3" id="ableseatG" value="y">예약 가능<br>
-	<input type="radio" class="stateclass" name="seat3" id="fixseatG" value="f" checked>수리 중<br>
-	<input type="button" name="Gbtn" id="Gbtn" value="확인" onclick="modifystate(this.form, 'seat3');">
-</form>
-</div>
-	
+<jsp:include page="${modifypage}" />

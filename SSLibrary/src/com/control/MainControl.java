@@ -244,7 +244,7 @@ public class MainControl {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		
+
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "center.jsp");
 		return mv;
@@ -280,7 +280,7 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-		
+
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
@@ -315,7 +315,7 @@ public class MainControl {
 				String[] info = { bid, book.getName(),
 						userbook.getStart_date(), userbook.getEnd_date() };
 				// 현재 이용 정보에 필요한 값 String 배열에 넣음
-				booklist.add(info);//array에 담음
+				booklist.add(info);// array에 담음
 			}
 			userseat = userseatbiz.get(id);
 		} catch (Exception e) {

@@ -345,7 +345,7 @@ public class BookControl {
 		User user = null;
 		int  borrowbook = 0; // 책을 빌렸는지 확인 여부 
 		//(0 : 아무일도 없음 / 1 : 중복 대여 불가  / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료  )
-		int overlap = 0; //대여가 중복되었는지 여부 (1 : 중복됨 / 0 : 중복 안됨)
+		int overlap = 0; //대여가 중복되었는지 여부 (1 : 중복됨 / 2 : 중복 안됨)
 		
 		Book upbook; // 빌리려는 책 정보 가져오는 곳
 		Book upbooknew;  //대여 성공시 대여가능 수 1개 줄이기 위해 넣어줘야 하는 책 업데이트 정보	
@@ -372,9 +372,11 @@ public class BookControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		} 
-		if(userbooklist ==null){
+		
+		if(userbooklist.size()==0){
 			overlap=2;
 			borrowbook=1;
+			System.out.println("중복 안됬지롱");
 		}else{
 			
 			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함

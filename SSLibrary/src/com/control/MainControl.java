@@ -302,16 +302,17 @@ public class MainControl {
 		HttpSession session = request.getSession();
 
 		try {
-			userbooklist = userbookbiz.getid(id);
+			userbooklist = userbookbiz.getid(id);// userbook에서 꺼내옴
 			for (Object obj : userbooklist) {
 				UserBook userbook = (UserBook) obj;
-				String bid = userbook.getB_id();
+				String bid = userbook.getB_id();// id 뽑아옴
 
-				Book book = (Book) bookbiz.get(bid);
+				Book book = (Book) bookbiz.get(bid);// 하나씩 찾음
 
 				String[] info = { bid, book.getName(),
 						userbook.getStart_date(), userbook.getEnd_date() };
-				booklist.add(info);
+				// 현재 이용 정보에 필요한 값 String 배열에 넣음
+				booklist.add(info);//array에 담음
 			}
 			userseat = userseatbiz.get(id);
 		} catch (Exception e) {

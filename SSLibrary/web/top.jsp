@@ -5,6 +5,8 @@
 <div id="top">
 <h1 id="mainname"><a href="main.do"><img width="80%"src="img/css/mainname.gif"></a></h1>
 </div>
+<div id="sub">
+</div>
 <div id="bottom">
 <ul>
 <li><a href="seatmain.do"><b>¿­¶÷½Ç</b></b></a></li>

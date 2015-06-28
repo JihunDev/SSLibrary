@@ -14,8 +14,6 @@ var borrowbook = $('#borrowbook').val();
 		}else if(borrowbook==3){
 			alert("대여가 완료되었습니다.");
 		}
-		
-		
 
 });
 </script>

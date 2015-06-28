@@ -14,8 +14,6 @@
 <body>
 <fieldset>
 	<legend>상세페이지</legend>
-	${userseat}
-	${userbooklist}
 		<table border="3" width="700">
 			<thead>
 				<tr>
@@ -30,29 +28,31 @@
 					<td>열람실 좌석</td>
 					<td>${userseat.s_id}번 좌석</td>
 					<td>연장회수</td>
-					<td><a href="#">연장</a></td>
-					<td rowspan="2"><a href="#">이력</a></td>
+					<td><a href="#">연장</a></td><!-- 추후수정 -->
+					<td rowspan="2"><a href="#">이력</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td>사용시간</td>
 					<td>${userseat.start_time}~${userseat.end_time}</td>
 					<td>${userseat.renew_qt}</td>
-					<td><a href="#">반납</a></td>
+					<td><a href="#">반납</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td colspan="6">현재대여 도서 정보</td>
 				</tr>
-				<c:forEach items="${userbooklist}" var="list">
+				<c:forEach items="${booklist}" var="book" varStatus="status">
 				<tr>
-					<td>도서번호</td>
+					<td>도서번호${book[0]}</td>
 					<td colspan="2">대여 기간</td>
-					<td><a href="#">연장</a></td>
-					<td rowspan="2"><a href="#">이력</a></td>
+					<td><a href="#">연장</a></td><!-- 추후수정 -->
+					<c:if test="${status.first}">
+						<td rowspan="2"><a href="#">이력</a></td><!-- 추후수정 -->
+					</c:if>
 				</tr>
 				<tr>
-					<td>책이름</td>
-					<td colspan="2">${list.start_date}~${list.end_date}</td>
-					<td><a href="#">반납</a></td>
+					<td>책이름${book[1]}</td>
+					<td colspan="2">${book[2]}~${book[3]}</td>
+					<td><a href="#">반납</a></td><!-- 추후수정 -->
 				</tr>
 				</c:forEach>
 			</tbody>

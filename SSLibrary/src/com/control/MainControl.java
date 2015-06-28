@@ -125,8 +125,6 @@ public class MainControl {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
 			session.setAttribute("id", id);
-			// 로그인시 유저 정보 세션에 넣음
-
 		} else {
 			mv.addObject("check", "fail");
 			mv.addObject("center", "center.jsp");

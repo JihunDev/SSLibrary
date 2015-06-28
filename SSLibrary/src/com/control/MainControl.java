@@ -84,7 +84,7 @@ public class MainControl {
 		}
 
 		MultipartFile file = com.getImg();
-		String dir = "C:/lib/SSLibrary/web/img/user";
+		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
 
@@ -242,6 +242,9 @@ public class MainControl {
 			}
 
 		}
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "center.jsp");
 		return mv;

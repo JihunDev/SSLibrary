@@ -38,7 +38,7 @@ header{
 	width : 100%;
 	height : 200px;
 	margin : 0 auto;
-	background : #f0c413;  /*  #EB613B; */
+	background : white;/* #f0c413; */  /*  #EB613B; */
 	position : relative;
 	/* border-left : solid #f0c413 1px;
 	border-right : solid #f0c413 1px; */
@@ -46,23 +46,27 @@ header{
 header>#top>#mainname{
 	position: absolute;
 	top : 25px;
-	left : 42%;
+	left : 20px;
 }
 header>#sub{
 	position: absolute;
 	bottom : 0;
 	right : 0;
 	margin : 0 auto;
-	width : 40%;
+	width : 45%;
 	height : 50px;
 	background : #036daa;
 	border-radius : 20px 0px 0px 20px;
+	line-height : 50px;
+	color : white;
+	float : left;
 }
 
 header > #bottom{
 	position: absolute;
 	bottom : 0;
-	left : 200px;
+	left : 240px;
+	width : 100%;
 }
 
 header > #bottom > ul > li{
@@ -72,7 +76,7 @@ header > #bottom > ul > li{
 	height : 45px;
 	line-height : 45px;
 	text-align : center;
-	border : solid #f0c413 1px;
+	border : solid/*  #f0c413 */ white 1px;
 	
 }
 header > #bottom > ul > li > a{
@@ -97,10 +101,13 @@ nav{
 	width : 100%;
 	height : 40px;
 	margin : 0 auto;
-	background : white;
+	background : black;
 	/* border : dashed #f0c413 2px; */
 	line-height : 40px;
 	color : black;
+}
+nav>a{
+	color : white;
 }
 
 /** Section CSS**/

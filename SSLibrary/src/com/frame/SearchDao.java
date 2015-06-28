@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface SearchDao {
 	
-//	userbook(u_id), board(u_id)
+//	userbook(u_id), board(u_id), userseat(s_id)
 	public ArrayList<Object> searchid(Object obj) throws Exception;
 	
 //	board

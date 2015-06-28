@@ -1,7 +1,8 @@
+<%@page import="com.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
-<%User user = (User)session.getAttribute("user");%>  
+<%User user = (User)session.getAttribute("user");%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +136,7 @@ $(document).ready(function(){
 	<select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
 	<input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 	<a href="bookregister.do">등록</a>
-<%} %>
+	<%} %>
 	<div  id="book_result">
 		<table width="700">
 		<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>

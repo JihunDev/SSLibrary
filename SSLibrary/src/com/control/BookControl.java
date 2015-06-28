@@ -453,6 +453,14 @@ public class BookControl {
 		mv.addObject("center", "book/bookdetail.jsp");
 		return mv;
 	}
+	
+	@RequestMapping("/userbookmodifyimpl.do")
+	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id){
+	 ModelAndView mv = new ModelAndView("main");
+	 
+	 mv.addObject("center","user/usinginfo.jsp");
+	 return mv;
+	}
 
 }
 

@@ -457,7 +457,30 @@ public class BookControl {
 	@RequestMapping("/userbookmodifyimpl.do")
 	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id){
 	 ModelAndView mv = new ModelAndView("main");
-	 
+	 HttpSession session = request.getSession();
+	 String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+	 UserBook book =  new UserBook(uid, id); 
+	 ArrayList<Object> userbooklist = new ArrayList<Object>();
+	 ArrayList<Object> booklist = new ArrayList<Object>();
+	 try {
+		userbiz.modify(book);//유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만 되야함...
+	
+		userbooklist = usearchbiz.getid(uid);// userbook에서 꺼내옴
+		for (Object obj : userbooklist) {
+			UserBook userbook = (UserBook) obj;
+			String bid = userbook.getB_id();// id 뽑아옴
+			Book book1 = (Book)biz.get(bid);// 하나씩 찾음
+
+			String[] info = { bid, book1.getName(),
+					userbook.getStart_date(), userbook.getEnd_date() };
+			// 현재 이용 정보에 필요한 값 String 배열에 넣음
+			booklist.add(info);// array에 담음
+		}
+		mv.addObject("booklist",booklist);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
 	 mv.addObject("center","user/usinginfo.jsp");
 	 return mv;
 	}

@@ -319,9 +319,9 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("booklist", booklist);
+		
 		session.setAttribute("userseat", userseat);
-
+		mv.addObject("booklist",booklist); //session을 addobject로 바꿨습니다.
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
 

@@ -94,7 +94,7 @@
 			data : {
 				's_id' : s_id
 			},
-			async : 'false',
+			async : 'true',
 			url : 'seatmodify.do',
 			success : function(data) {
 				showDialog(s_id, data);

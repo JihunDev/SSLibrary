@@ -16,7 +16,7 @@ public class BoardControl {
 	Biz biz;
 	
 	@RequestMapping("/boardmain.do")
-	public ModelAndView boardmain(HttpServletRequest request) {
+	public ModelAndView boardmain(String sort) {
 		
 		return null;
 	}

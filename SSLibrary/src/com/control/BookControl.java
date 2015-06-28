@@ -37,6 +37,8 @@ public class BookControl {
 	SearchBiz biz2;
 	@Resource(name="userbookbiz")
 	Biz userbiz;
+	@Resource(name="userbookbiz")
+	SearchBiz usearchbiz;
 	@Resource(name="booklogbiz")
 	Biz logbiz;
 	
@@ -337,35 +339,67 @@ public class BookControl {
 	@RequestMapping("/userbookregister.do")
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		HttpSession session = request.getSession();
-		
-		String uid = session.getAttribute("id").toString(); //회원 아이디 정보
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
 		User user = null;
-		int  borrowbook = 0;
+		int  borrowbook = 0; // 책을 빌렸는지 확인 여부 (0 : 아무일도 없음 / 1 : 대여할 수 없음  / 2 : 대여완료   / 3 : 중복 대여 불가)
 		try {
 			user = (User) ubiz.get(uid);
-			System.out.println("user  :  "+user);
+			System.out.println("지금 로그인 한 user  :  "+user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("책 아이디 : "+id);
+		System.out.println("빌리려는 책 아이디 : "+id);
 		
-			Book upbook;
-			Book upbooknew;
+			ArrayList<Object> userbooklist = new ArrayList<Object>(); //회원 빌렸던 책들 알기 위해 만든 변수
+
+			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
+				UserBook userbook = (UserBook) obj; 
+				String bid = userbook.getB_id();// id 뽑아옴
+				
+				if(bid==id){// 대여할려는 책이 중복일 경우
+					System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
+				}
+			}
 			
-		int current_qt = 0;
+		Book upbook; // 빌리려는 책 정보 가져오는 곳
+		Book upbooknew;  //대여 성공시 대여가능 수 1개 줄이기 위해 넣어줘야 하는 책 업데이트 정보	
+		int current_qt = 0; //대여 가능한 책이 몇개인지 가져오는 변수
 		try {
-			upbook = (Book)biz.get(id);
-			current_qt= upbook.getCurrent_qt();
-			if(upbook.getCurrent_qt()==0){
-				System.out.println("대여 가능한 책이 없어서 빌릴 수 없음!!!!!!!!!!!!!!!!");	
-			}else{
+			upbook = (Book)biz.get(id); //원래 정보 가져온다.
+			current_qt= upbook.getCurrent_qt(); // 대여 가능한 수 확인한다.
+			userbooklist = usearchbiz.getid(uid); // user가 빌린 책 확인
+			
+			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
+				UserBook userbook = (UserBook) obj; 
+				String bid = userbook.getB_id();// id 뽑아옴
+				
+				if(bid==id){// 대여할려는 책이 중복일 경우
+					System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
+				}else if(current_qt==0){ //대여 가능한 책 수량이 0일 경우
+					System.out.println("---------------------대여 가능한 책 0---------------------");
+					
+				}else{//대여가 가능할 경우
+					upbooknew = new Book(upbook.getId(),upbook.getName(),
+							upbook.getWriter(),upbook.getImg(),upbook.getFloor(),
+							upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
+							System.out.println("업데이트 한 book : "+upbooknew);	
+							biz.modify(upbooknew);
+							current_qt=1;
+						}
+							
+			}
+			
+			/*if(current_qt==0){ //대여 가능한 책 수량이 0일 경우
+				System.out.println("---------------------대여 가능한 책 0---------------------");
+				
+			}else{//대여가 가능할 경우
 				upbooknew = new Book(upbook.getId(),upbook.getName(),
 				upbook.getWriter(),upbook.getImg(),upbook.getFloor(),
 				upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
 				System.out.println("업데이트 한 book : "+upbooknew);	
 				biz.modify(upbooknew);
 				current_qt=1;
-			}
+			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

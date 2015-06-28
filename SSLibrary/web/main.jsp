@@ -43,6 +43,12 @@ header{
 	/* border-left : solid #f0c413 1px;
 	border-right : solid #f0c413 1px; */
 }
+header>#top>#mainname{
+	position: absolute;
+	top : 25px;
+	left : 42%;
+}
+
 header > #bottom{
 	position: absolute;
 	bottom : 0;

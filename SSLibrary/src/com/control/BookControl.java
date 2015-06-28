@@ -337,6 +337,7 @@ public class BookControl {
 	@RequestMapping("/userbookregister.do")
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		HttpSession session = request.getSession();
+		
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보
 		User user = null;
 		int  borrowbook = 0;

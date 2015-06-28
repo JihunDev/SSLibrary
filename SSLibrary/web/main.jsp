@@ -48,6 +48,16 @@ header>#top>#mainname{
 	top : 25px;
 	left : 42%;
 }
+header>#sub{
+	position: absolute;
+	bottom : 0;
+	right : 0;
+	margin : 0 auto;
+	width : 40%;
+	height : 50px;
+	background : #036daa;
+	border-radius : 20px 0px 0px 20px;
+}
 
 header > #bottom{
 	position: absolute;

@@ -44,7 +44,7 @@ public class BookControl {
 	Biz logbiz;
 	
 //	-------------------------------------Book------------------------------------------
-	@RequestMapping("/bookmain.do")
+	@RequestMapping("/bookmain.do")  //메인
 	public ModelAndView bookmain(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
@@ -93,7 +93,7 @@ public class BookControl {
 		return returnData;
 	}*/
 	
-	@ResponseBody
+	@ResponseBody //검색하기
 	@RequestMapping("/booksearch.do")
 	public ResponseEntity<String> booksearch(String issearch, String category,String search){
 		ResponseEntity<String> returnData = null;
@@ -337,7 +337,7 @@ public class BookControl {
 		return mv;
 	}
 //	--------------------------------------UserBook---------------------------------------
-	@RequestMapping("/userbookregister.do")
+	@RequestMapping("/userbookregister.do")  //대여하기
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		ModelAndView mv = new ModelAndView("main");		
 		HttpSession session = request.getSession();
@@ -454,7 +454,7 @@ public class BookControl {
 		return mv;
 	}
 	
-	@RequestMapping("/userbookmodifyimpl.do")
+	@RequestMapping("/userbookmodifyimpl.do") //연장하기
 	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id){
 	 ModelAndView mv = new ModelAndView("main");
 	 HttpSession session = request.getSession();
@@ -476,7 +476,7 @@ public class BookControl {
 			// 현재 이용 정보에 필요한 값 String 배열에 넣음
 			booklist.add(info);// array에 담음
 		}
-		mv.addObject("booklist",booklist);
+		mv.addObject("booklist",booklist); //바뀐것 다시 넣어줌
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

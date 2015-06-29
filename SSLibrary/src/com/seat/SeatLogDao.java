@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
+import com.frame.SearchDao;
 import com.frame.UpdateAndReturnDao;
 import com.mybatis.mapper.SeatLogMapper;
 
 @Repository("seatlogdao")
-public class SeatLogDao implements Dao, UpdateAndReturnDao {
+public class SeatLogDao implements Dao, UpdateAndReturnDao, SearchDao {
 
 	@Autowired
 	SeatLogMapper mapper;	
@@ -34,8 +35,7 @@ public class SeatLogDao implements Dao, UpdateAndReturnDao {
 
 	@Override
 	public Object select(Object obj) throws Exception {
-		Object result = mapper.selectseatlog(obj);
-		return result;
+		return null;
 	}
 
 	@Override
@@ -54,6 +54,36 @@ public class SeatLogDao implements Dao, UpdateAndReturnDao {
 	public Object logreturn(Object obj) throws Exception {
 		Object result = mapper.updateseatlog_return(obj);
 		return result;
+	}
+
+	@Override
+	public ArrayList<Object> searchid(Object obj) throws Exception {
+		ArrayList<Object> result = mapper.selectseatlog(obj);		
+		return result;
+	}
+
+	@Override
+	public ArrayList<Object> searchtitle(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> searchcontent(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> searchname(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> searchwriter(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

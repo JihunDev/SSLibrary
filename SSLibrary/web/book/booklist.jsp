@@ -10,7 +10,7 @@
 <style></style>
 </head>
 <body>
-<h1 align="center">Book List Page</h1>
+<h1 align="center">과거 대여 정보</h1>
 <table width="700">
 <thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
 <th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>

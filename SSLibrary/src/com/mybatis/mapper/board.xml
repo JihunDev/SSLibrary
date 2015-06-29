@@ -11,38 +11,44 @@
 	<select id="selectboard" parameterType="board" resultType="board">
 		SELECT * FROM A_BOARD WHERE ID = #{id}
 	</select>
-	
-	<select id="selecttitleboards" parameterType="java.lang.String" resultType="board">
+
+	<select id="selecttitleboards" parameterType="java.lang.String"
+		resultType="board">
 		SELECT * FROM A_BOARD WHERE TITLE LIKE '%'||#{s}||'%'
 	</select>
-	
-	<select id="selectcontentboards" parameterType="java.lang.String" resultType="board">
+
+	<select id="selectcontentboards" parameterType="java.lang.String"
+		resultType="board">
 		SELECT * FROM A_BOARD WHERE CONTENT LIKE '%'||#{s}||'%'
 	</select>
-	
-	<select id="selectidboards" parameterType="java.lang.String" resultType="board">
+
+	<select id="selectidboards" parameterType="java.lang.String"
+		resultType="board">
 		SELECT * FROM A_BOARD WHERE SORT = #{s} ORDER BY ID ASC
 	</select>
 
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD
-		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title},#{content},SYSDATE,#{sort},#{file_name},#{reg_number})
+		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title,jdbcType=VARCHAR},#{content},SYSDATE,#{sort},#{file_name,jdbcType=VARCHAR},#{reg_number})
 
 		<selectKey resultType="board">
-			SELECT * FROM A_BOARD WHERE	ID = #{id}
+			SELECT * FROM A_BOARD WHERE ID = #{id}
 		</selectKey>
 	</insert>
-	
+
 	<delete id="delectboard" parameterType="board">
-		DELETE FROM A_BOARD WHERE ID = #{id}
+		DELETE FROM A_BOARD WHERE
+		ID = #{id}
 	</delete>
 
 	<update id="updateboard" parameterType="board">
-		UPDATE A_BOARD SET TITLE = #{title}, CONTENT = #{content}, SORT = #{sort}, FILE_NAME=#{file_name} WHERE ID = #{id}
+		UPDATE A_BOARD SET TITLE = #{title}, CONTENT = #{content}, SORT = #{sort},
+		FILE_NAME=#{file_name} WHERE ID = #{id}
 	</update>
-	
+
 	<update id="updatecounterboard" parameterType="board">
-		UPDATE A_BOARD SET COUNTER = COUNTER+1 WHERE ID = #{id}
+		UPDATE A_BOARD SET
+		COUNTER = COUNTER+1 WHERE ID = #{id}
 	</update>
 </mapper>
 

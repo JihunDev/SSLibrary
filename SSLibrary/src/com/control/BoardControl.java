@@ -176,6 +176,7 @@ public class BoardControl {
 		System.out.println(board);
 		Board board2 = new Board(board.getU_id(), board.getContent(),
 				board.getSort(),board.getReg_number());
+		System.out.println(board2);
 		try {
 			biz.register(board2);
 		} catch (Exception e) {
@@ -188,7 +189,7 @@ public class BoardControl {
 
 	@RequestMapping("/boardreplylist.do")
 	public ModelAndView boardreplylist(Board board) {
-
+		
 		return null;
 	}
 }

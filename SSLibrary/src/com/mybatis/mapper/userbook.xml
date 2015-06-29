@@ -21,7 +21,4 @@
 	<delete id="deleteuserbook" parameterType="userbook">
 	DELETE FROM A_USERBOOK WHERE U_ID=#{u_id} AND B_ID=#{b_id}
 	</delete>
-	<update id="updateuserbook" parameterType="userbook">
-	UPDATE A_USERBOOK SET END_DATE=END_DATE+7, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND B_ID=#{b_id}
-	</update>
 </mapper>

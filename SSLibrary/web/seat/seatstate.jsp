@@ -22,25 +22,24 @@
 			f.submit();
 		}
 	}
-	// 메세지 전송 함수
-	function sendMsg(f) {
-		var text = prompt("메세지 내용을 입력하세요.");
-
-		/* if(name_value == true) else false */
-		if (text) {
-			var c = confirm("메세지를 보내시겠습니까?");
-			if (c == true) {
-
-			}
-		} else
-			alert("질문창 취소버튼 클릭 했습니다.");
+	
+	//회원의 메세지 전송 함수
+	function sendMsg(s_id) {
+		// 좌석의 id 값 대입
+		$(".seatid").val(s_id);
+		//메세지 전송 다이얼로그 출력
+		$("#sendMsg").dialog({
+			'modal' : true,
+			'width' : 500,
+			'height' : 400
+		});		
 	}
 
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
 		alert("이미 예약된 좌석입니다. ");
 	}
-	
+
 	// 사용자가 수리 중인 좌석을 클릭한 경우
 	function repairState() {
 		alert("수리 중입니다");
@@ -54,8 +53,6 @@
 		var state = data;
 		$(".seatstate").val(data);
 		$(".seatid").val(s_id);
-		//alert("상태 : " + data);
-
 		if (state == 'y') {
 			$("#modifyY").dialog({
 				'modal' : true,
@@ -80,7 +77,7 @@
 			});
 		}
 	}
-	
+
 	// 관리자가 좌석을 클릭한 경우
 	function changeState(f) {
 		var s_id = f.s_id.value;
@@ -97,10 +94,8 @@
 			error : function() {
 				alert("으앙 앙대ㅠㅠ");
 			}
-
 		});
 	};
-
 </script>
 <style>
 .y_btn {
@@ -130,9 +125,8 @@
 <table>
 	<tr>
 		<c:forEach items="${seatlist}" var="s" varStatus="i">
-			<c:if test="${i.index %10 == 0}">
-	</tr>
-	<tr>
+		<c:if test="${i.index % 8 == 0}">
+				</tr><tr>
 		</c:if>
 		<c:choose>
 			<c:when test="${user.isadmin == 'n' }">
@@ -140,22 +134,22 @@
 					<c:when test="${myseat == null}">
 						<c:choose>
 							<c:when test="${s.state == 'y'}">
-								<form>
-									<td><input type="button" class="${s.state}_btn"
-										name="s_id" onclick="register(this.form);" value="${s.id}"></td>
-								</form>
+									<td>
+								<form><input type="button" class="${s.state}_btn"
+										name="s_id" onclick="register(this.form);" value="${s.id}">
+								</form></td>
 							</c:when>
 							<c:when test="${s.state == 'n'}">
-								<form>
-									<td><input type="button" class="${s.state}_btn"
-										name="s_id" onclick="registeredSeat();" value="${s.id}"></td>
-								</form>
+									<td>
+								<form><input type="button" class="${s.state}_btn"
+										name="s_id" onclick="registeredSeat();" value="${s.id}">
+								</form></td>
 							</c:when>
 							<c:when test="${s.state == 'f'}">
-								<form>
-									<td><input type="button" class="${s.state}_btn"
-										name="s_id" onclick="repairState();" value="${s.id}"></td>
-								</form>
+									<td>
+								<form><input type="button" class="${s.state}_btn"
+										name="s_id" onclick="repairState();" value="${s.id}">
+								</form></td>
 							</c:when>
 						</c:choose>
 					</c:when>
@@ -171,7 +165,7 @@
 							<c:when test="${s.state == 'n'}">
 								<form>
 									<td><input type="button" class="${s.state}_btn"
-										name="s_id" onclick="sendMsg();" value="${s.id}"></td>
+										name="s_id" onclick="sendMsg(${s.id});" value="${s.id}"></td>
 								</form>
 							</c:when>
 							<c:when test="${s.state == 'f'}">
@@ -187,22 +181,22 @@
 			<c:when test="${user.isadmin == 'y'}">
 				<c:choose>
 					<c:when test="${s.state == 'y'}">
-						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								onclick="changeState(this.form);" value="${s.id}"></td>
-						</form>
+						<td><form>
+							<input type="button" class="${s.state}_btn" name="s_id"
+								onclick="changeState(this.form);" value="${s.id}">
+						</form></td>
 					</c:when>
-					<c:when test="${s.state == 'n'}">
+					<c:when test="${s.state == 'n'}"><td>
 						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								onclick="changeState(this.form);" value="${s.id}"></td>
-						</form>
+							<input type="button" class="${s.state}_btn" name="s_id"
+								onclick="changeState(this.form);" value="${s.id}">
+						</form></td>
 					</c:when>
-					<c:when test="${s.state == 'f'}">
+					<c:when test="${s.state == 'f'}"><td>
 						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								onclick="changeState(this.form);" value="${s.id}"></td>
-						</form>
+							<input type="button" class="${s.state}_btn" name="s_id"
+								onclick="changeState(this.form);" value="${s.id}">
+						</form></td>
 					</c:when>
 				</c:choose>
 			</c:when>
@@ -210,22 +204,22 @@
 			<c:when test="${user == null}">
 				<c:choose>
 					<c:when test="${s.state == 'y'}">
-						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								disabled value="${s.id}"></td>
-						</form>
+							<td>
+						<form><input type="button" class="${s.state}_btn" name="s_id"
+								disabled value="${s.id}">
+						</form></td>
 					</c:when>
 					<c:when test="${s.state == 'n'}">
-						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								disabled value="${s.id}"></td>
-						</form>
+							<td>
+						<form><input type="button" class="${s.state}_btn" name="s_id"
+								disabled value="${s.id}">
+						</form></td>
 					</c:when>
 					<c:when test="${s.state == 'f'}">
-						<form>
-							<td><input type="button" class="${s.state}_btn" name="s_id"
-								disabled value="${s.id}"></td>
-						</form>
+							<td>
+						<form><input type="button" class="${s.state}_btn" name="s_id"
+								disabled value="${s.id}">
+						</form></td>
 					</c:when>
 				</c:choose>
 			</c:when>

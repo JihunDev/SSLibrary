@@ -64,7 +64,7 @@ function modifystate(f, i) {
 					 <input type="button" name="Rbtn" id="Rbtn" value="È®ÀÎ" onclick="modifystate(this.form, 'seatR');">
 				</form>
 			</div>
-			<div id="sendMsg">
+			<div class="modify" id="sendMsg">
 				<jsp:include page="${registermsg}" />
 			</div>
 		</div>

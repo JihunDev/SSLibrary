@@ -582,6 +582,20 @@ public class BookControl {
 	}
 	
 	
+	@RequestMapping("/booklist.do") //자기 대여 내역 보기
+	public ModelAndView booklist(HttpServletRequest request, String id) throws Exception{
+		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+		ArrayList<Object> result = new ArrayList<Object>();
+		result= sbooklogbiz.getname(uid); //uid로 가져온 booklog의 리스트들....
+		System.out.println(result);
+		mv.addObject("booklist",result);
+		mv.addObject("center", "book/booklist.jsp");
+		return mv; 
+		
+	}
+	
 }
 
 

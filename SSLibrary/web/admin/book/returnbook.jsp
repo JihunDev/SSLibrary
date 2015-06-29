@@ -12,29 +12,28 @@
 <style></style>
 </head>
 <body>
-<h1 align="center">도서 반납</h1>
+<h1 align="center">실시간 반납 도서 정보</h1>
 <fieldset>
 <legend>반납 정보</legend>
 <form>
 <div>
 <table width="700">
 <thead><tr><th>U_ID</th><th >B_ID</th><th >START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
-</tr></thead>
+<th>ISRETURN</th></tr></thead>
 <tbody>
 <c:forEach items="${userbooklist}" var="b"> <!-- 추후수정 -->
 <tr>
 <td>${b.u_id}</td>
 <td>${b.b_id}</td>
-<td>${b.name}</td>
-<td>${b.writer}</td>
-<td><img width="50px" src="img/${b.img}"></td>
-<td>${b.floor}</td>
-<td>${b.current_qt}</td>
-<td>${b.reg_date}</td>
+<td>${b.start_date}</td>
+<td>${b.end_date}</td>
+<td>${b.renew_qt}</td>
+<td>${b.isreturn}</td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
+<input type="button" value="반납확인" onclick="">
 </div>
 </form>
 </fieldset>

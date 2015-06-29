@@ -16,4 +16,6 @@ public interface BoardMapper {
 	public ArrayList<Object> selecttitleboards(Object obj);
 	
 	public ArrayList<Object> selectcontentboards(Object obj);
+	
+	public ArrayList<Object> selectidboards(Object obj);
 }

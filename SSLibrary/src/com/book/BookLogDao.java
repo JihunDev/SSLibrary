@@ -59,8 +59,7 @@ public class BookLogDao implements Dao, SearchDao, UpdateAndReturnDao {
 
 	@Override
 	public ArrayList<Object> searchname(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectuseridlogbooks(obj); //booklog에서 유저 아이디로 다 찾아오기
 	}
 
 	@Override

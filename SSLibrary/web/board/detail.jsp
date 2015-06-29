@@ -11,7 +11,7 @@
 function del(f) {/* delete가 예약어라 del씀 */
 	var c = confirm('삭제 하시겠습니까?');
 		if (c == true) {
-			f.action = 'a.do';/* 추후 수정 */
+			f.action = 'boardremoveimpl.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -19,7 +19,7 @@ function del(f) {/* delete가 예약어라 del씀 */
 function update(f) {
 	var c = confirm('수정 하시겠습니까?');
 		if (c == true) {
-			f.action = 'a.do';/* 추후 수정 */
+			f.action = 'boardmodify.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -66,14 +66,14 @@ function display(data) {
 	$('#repl').html(output);
 }
 $(document).ready(function() {
-		repls();
+		/* repls(); */
 });
 </script>
 <style></style>
 </head>
 <body>
 <h1>board detail</h1>
-<form>
+
 	<table border="1">
 	<tbody>
 		<tr>
@@ -88,7 +88,7 @@ $(document).ready(function() {
 			<td>조회</td>
 			<td>${boarddetail.counter}</td>
 		</tr>
-		<tr>
+		<tr>	
 			<td colspan="6">
 				${boarddetail.content}
 			</td>
@@ -96,6 +96,9 @@ $(document).ready(function() {
 	</tbody>
 	
 	</table>
+<form>
+	<input type="hidden" name="sort" value="${boarddetail.sort}">
+	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="button" value="삭제" onclick="del(this.form)"><!-- 추후 수정 -->
 	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
 </form>		

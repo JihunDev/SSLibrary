@@ -36,7 +36,7 @@ public class BookControl {
 	@Resource(name="bookbiz")
 	Biz bookbiz;
 	@Resource(name="bookbiz")
-	SearchBiz biz2;
+	SearchBiz sbookbiz;
 	@Resource(name="userbookbiz")
 	Biz userbookbiz;
 	@Resource(name="userbookbiz")
@@ -117,23 +117,23 @@ public class BookControl {
 
 		if(issearch.equals("name")){ //책제목 검색할 때
 			try {
-				list = biz2.getname(search);
+				list = sbookbiz.getname(search);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if(issearch.equals("writer")){ //글쓴이 검색할 때
 				try {
-					list = biz2.getwriter(search);
+					list = sbookbiz.getwriter(search);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}	
 		}else{ //책제목과 글쓴이 모두에서 검색할 때
 			try {
-				list = biz2.getname(search);
+				list = sbookbiz.getname(search);
 				for (Object o : list) {
 					sublist1.add(o);
 				}
-				sublist2 = biz2.getwriter(search);
+				sublist2 = sbookbiz.getwriter(search);
 				for (Object o1 : sublist2) {
 					Book b1 = (Book) o1;
 					for (Object o2 : sublist1) {

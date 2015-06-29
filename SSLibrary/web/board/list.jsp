@@ -7,9 +7,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-
-</script>
+<script></script>
 <style></style>
 </head>
 <body>
@@ -28,7 +26,7 @@
 				<c:forEach items="${boardlist}" var="b">
 					<tr>
 						<td>${b.id}</td>
-						<td><a href="a.do?id='${b.title}'">${b.title}</a></td><!-- 추후 수정 -->
+						<td><a href="a.do?id='${b.title}'">${b.title}</a></td>
 						<td>${b.u_id}</td>
 						<td>${b.reg_date}</td>
 						<td>${b.counter}</td>
@@ -36,8 +34,6 @@
 				</c:forEach>
 			</tbody><!-- test후 페이지 넘어가는 거 만듬 -->
 		</table>
-<div>
-<input type="button" value="등록" onclick="a.do?id='${b.id}'"><!-- 추후수정 -->
-</div>
+<a href="boardwrite.do">등록</a>
 </body>
 </html>

@@ -11,7 +11,7 @@
 function register(f) {
 	var c = confirm('등록 하시겠습니까?');
 		if (c == true) {
-			f.action = 'a.do';/* 추후 수정 */
+			f.action = 'boardwriteimpl.do';
 			f.method = 'POST';
 			f.submit();
 		};
@@ -21,15 +21,18 @@ function register(f) {
 </head>
 <body>
 <h1>board register</h1>
-<form>
-	<select id="boradsort">
+<form enctype="multipart/form-data" >
+<input type="hidden" name="u_id" value="${id}">
+<input type="hidden" name="reg_number" value="0">
+	<select name="sort">
 		<option value="">선택</option>
-		<option value="n">공지사항</option>
-		<option value="f">자유게시판</option>
+		<option value="notie">공지사항</option>
+		<option value="free">자유게시판</option>
 	</select>
-	<input type="text" placeholder="제목을 입력하세요."><br>
-	<textarea rows="40" cols="40"></textarea><br>
-	<input type="button" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
+	<input type="text" name="title" placeholder="제목을 입력하세요."><br>
+	<textarea rows="20" cols="40" name="content"></textarea><br>
+	<input type="file" name="file_name"><br> 
+	<input type="button" value="등록" onclick="register(this.form)">
 </form>
 </body>
 </html>

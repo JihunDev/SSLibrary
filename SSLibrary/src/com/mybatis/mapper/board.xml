@@ -24,7 +24,12 @@
 
 	<select id="selectidboards" parameterType="java.lang.String"
 		resultType="board">
-		SELECT * FROM A_BOARD WHERE SORT = #{s} ORDER BY ID ASC
+		SELECT * FROM A_BOARD WHERE SORT = #{s} AND REG_NUMBER IN(0) ORDER BY 1 DESC 
+	</select>
+	
+	<select id="selectreplyboards" parameterType="board"
+		resultType="board">
+		SELECT * FROM A_BOARD WHERE REG_NUMBER = #{id} AND SORT = #{sort} ORDER BY 1 ASC 
 	</select>
 
 	<insert id="insertboard" parameterType="board">

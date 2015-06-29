@@ -135,16 +135,16 @@ public class SeatControl {
 		}
 
 		String result = seat.getState();
-		HttpSession session = request.getSession();
-		session.setAttribute("seatstate", seat.getState());
-		session.setAttribute("receiver_sid", seat.getId());
-		session.setAttribute("receiver_uid", u_id);
+	//	HttpSession session = request.getSession();
+	//	session.setAttribute("seatstate", seat.getState());
+	//	session.setAttribute("receiver_sid", seat.getId());
+	//  session.setAttribute("receiver_uid", u_id);
 
 		System.out.println("receiver_sid: " + seat.getId());
 		System.out.println("receiver_uid: " + u_id);
-
 		System.out.println("seatstate: " + result);
-		session.setAttribute("s_state", result);
+		
+	//	session.setAttribute("s_state", result);
 
 		return result;
 	}

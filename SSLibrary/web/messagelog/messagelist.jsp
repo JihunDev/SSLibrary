@@ -29,7 +29,7 @@
 			<c:forEach items="${messagelog}" var="m"> <!-- 추후수정 -->
 				<tr>
 					<td>${m.id}</td>
-					<td>${m.u_id}</td>
+					<td>${m.sender_id}</td>
 					<td><a href="msgdetail.do?id=${m.id}">${m.text}</a></td>
 					<td>${m.send_date}</td>
 					<td>${m.read}</td>

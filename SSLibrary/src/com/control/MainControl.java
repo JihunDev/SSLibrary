@@ -258,8 +258,10 @@ public class MainControl {
 			for (Object ob : ml) {
 				MessageLog msg = (MessageLog) ob;
 				String text = msg.getText();
-				text = text.substring(0, 10);
-				text = text + "...";
+				if(text.length() > 10){
+					text = text.substring(0, 10);
+					text = text + "...";					
+				}
 				MessageLog msgre = new MessageLog(msg.getId(), msg.getU_id(),
 						msg.getS_id(), msg.getSender_id(), text, msg.getRead(),
 						msg.getSend_date(), msg.getRead_date());

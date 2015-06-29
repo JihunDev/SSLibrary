@@ -2,7 +2,49 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
+// 좌석 상태 변경 함수
+	// 좌석 현황 페이지 호출
+	function showSeatList(f){
+		f.action = "seatmain.do";
+		f.method = "POST";
+		f.submit();		
+	}
 
+function modifystate(f, i) {
+	var s_id = f.seatid.value;
+	var old_state = f.seatstate.value;
+	var new_state = $('input[name=' + i + ']:radio:checked').val();
+	//	alert("New State: "+ new_state + "s_id: " + s_id + "Old State: "+ old_state);
+	
+	if(old_state != new_state){
+		var c = confirm(s_id + "번 자리의 상태를 변경하시겠습니까?");
+		if (c == true) {
+			$.ajax({
+				type : 'post',
+				data : {
+					's_id' : s_id,
+					'state' : new_state
+				},
+				async : 'false',
+				url : 'seatmodifyimpl.do',
+				success : function(data) {
+					alert(s_id + "번 좌석의 상태가 변경되었습니다.");
+					showSeatList(f);
+				},
+				error : function() {
+					alert("오류로 인해 좌석의 상태가 변경되지 않았습니다.");
+				}
+			});
+		}	
+	}else{
+		var c = confirm(s_id + "번 자리의 상태를 유지하시겠습니까?");
+		if(c == true){
+			alert(s_id + "번 좌석의 상태를 유지합니다.");
+			showSeatList(f);
+		}
+	}
+	
+}
 </script>
 
 <div class="modify" id="modifyR" title="관리자 페이지">

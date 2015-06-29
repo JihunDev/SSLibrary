@@ -19,6 +19,10 @@ public class UserSeat {
 		this.end_time = end_time;
 		this.renew_qt = renew_qt;
 	}
+	public UserSeat(int s_id) {
+		super();
+		this.s_id = s_id;
+	}
 	public UserSeat(String u_id, int s_id) {
 		super();
 		this.u_id = u_id;

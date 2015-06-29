@@ -3,17 +3,20 @@ package com.control;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.MessageLog;
 import com.frame.Biz;
-import com.frame.SearchBiz;
 
+
+@Controller
 public class MessageControl {
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 
+	@ResponseBody
 	@RequestMapping("/msgsendimpl.do")
 	public String msgsendimpl(String u_id, String s_id_str, String sender_id, String text, HttpServletRequest request){
 		int s_id = Integer.parseInt(s_id_str);

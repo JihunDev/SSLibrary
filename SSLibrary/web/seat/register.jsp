@@ -31,7 +31,7 @@ function	 sendMsgImpl(f){
 			async : 'false',
 			url : 'msgsendimpl.do',
 			success : function(data) {
-				alert(s_id + " 좌석으로 메세지를 전송하였습니다.");
+				alert(s_id + "번 좌석으로 메세지를 전송하였습니다.");
 				showSeatList(f);
 			},
 			error : function() {

@@ -44,7 +44,7 @@ public class BookControl {
 	@Resource(name="booklogbiz")
 	Biz booklogbiz;
 	@Resource(name="booklogbiz")
-	SearchBiz slogbiz;
+	SearchBiz sbooklogbiz;
 	@Resource(name="booklogbiz")
 	UpdateAndReturnBiz uprebiz;
 	
@@ -482,7 +482,7 @@ public class BookControl {
 	 //booklog  업데이트
 	 BookLog blog = new BookLog(id, uid);
 	 ArrayList<Object> booklog = new ArrayList<Object>(); 
-	 booklog = slogbiz.getid(blog); //Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
+	 booklog = sbooklogbiz.getid(blog); //Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
 	
 	 
 	 for (Object obj : booklog) {//새로 연장한 정보를 넣어준다.

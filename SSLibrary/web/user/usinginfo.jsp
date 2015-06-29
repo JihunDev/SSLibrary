@@ -14,6 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script>
 $(document).ready(function(){
+	if("${returnqt}"==1){
+		alert("대여반납이 확인되었습니다.");
+	}
 	var qt = $('#qt').val();
 			if(qt==1){
 				alert("더 이상 연장할 수 없습니다.(최대 2번 연장 가능)");	
@@ -89,7 +92,7 @@ function returnMySeat(){
 				<tr>
 					<td>책이름 : ${book[1]}</td>
 					<td colspan="2">${book[2]}~${book[3]}</td>
-					<td><a href="#">반납</a></td><!-- 추후수정 -->
+					<td><a href="javascript:;" onClick="if (confirm('반납하시겠습니까?')) location.href='userbookremove.do?id=${book[0]}'">반납</a></td><!-- 추후수정 -->
 				</tr>
 				</c:forEach>
 			</tbody>

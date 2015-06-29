@@ -7,9 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
 import com.frame.SearchDao;
+import com.frame.UpdateAndReturnDao;
 import com.mybatis.mapper.BookLogMapper;
 @Repository("booklogdao")
-public class BookLogDao implements Dao, SearchDao {
+public class BookLogDao implements Dao, SearchDao, UpdateAndReturnDao {
 	@Autowired
 	BookLogMapper mapper;
 	
@@ -64,6 +65,17 @@ public class BookLogDao implements Dao, SearchDao {
 
 	@Override
 	public ArrayList<Object> searchwriter(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		return mapper.updateQtlogbook(obj);
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

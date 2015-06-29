@@ -106,15 +106,51 @@ public class BoardControl {
 	public ModelAndView boardmodify(Board board) {
 		ModelAndView mv = new ModelAndView("main");
 		System.out.println(board);
-		mv.addObject("boardupdate", board);
+		Board board2 = null;
+		try {
+			board2 = (Board) biz.get(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("boardupdate", board2);
 		mv.addObject("center", "board/update.jsp");
 		return mv;
 	}
 
 	@RequestMapping("/boardmodifyimpl.do")
-	public ModelAndView boardmodifyimpl(HttpServletRequest request) {
+	public String boardmodifyimpl(BoardCommand com) {
+		System.out.println("modifyimpl "+com);
 		
-		return null;
+		Board board = new Board(com.getU_id(), com.getTitle(),
+				com.getContent(), com.getSort(), com.getFile_name().getOriginalFilename(),
+				com.getReg_number());
+		
+		System.out.println("command : " + board);
+		try {
+			biz.modify(board);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		MultipartFile file = com.getFile_name();
+		String dir = "C:/lib/SSLibrary/web/img/board/";
+		String img = file.getOriginalFilename();
+		if (img == null || img.equals("")) {
+
+		} else {
+			byte[] data;
+			try {
+				data = file.getBytes();
+				FileOutputStream out = new FileOutputStream(dir
+						+ file.getOriginalFilename());
+				out.write(data);
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return "boardmain.do?sort="+com.getSort();
 	}
 
 	@RequestMapping("/boardremoveimpl.do")

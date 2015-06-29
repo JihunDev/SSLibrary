@@ -10,12 +10,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-	// 좌석 현황 페이지 호출
-	function showSeatList(f){
-		f.action = "seatmain.do";
-		f.method = "POST";
-		f.submit();		
-	}
+
 	// 좌석 등록 함수	
 	function register(f) {
 		var s_id = f.s_id.value;
@@ -94,7 +89,7 @@
 			data : {
 				's_id' : s_id
 			},
-			async : 'true',
+			async : 'false',
 			url : 'seatmodify.do',
 			success : function(data) {
 				showDialog(s_id, data);
@@ -106,42 +101,7 @@
 		});
 	};
 	
-	// 좌석 상태 변경 함수
-	function modifystate(f, i) {
-		var s_id = f.seatid.value;
-		var old_state = f.seatstate.value;
-		var new_state = $('input[name=' + i + ']:radio:checked').val();
-		//	alert("New State: "+ new_state + "s_id: " + s_id + "Old State: "+ old_state);
-		
-		if(old_state != new_state){
-			var c = confirm(s_id + "번 자리의 상태를 변경하시겠습니까?");
-			if (c == true) {
-				$.ajax({
-					type : 'post',
-					data : {
-						's_id' : s_id,
-						'state' : new_state
-					},
-					async : 'false',
-					url : 'seatmodifyimpl.do',
-					success : function(data) {
-						alert(s_id + "번 좌석의 상태가 변경되었습니다.");
-						showSeatList(f);
-					},
-					error : function() {
-						alert("오류로 인해 좌석의 상태가 변경되지 않았습니다.");
-					}
-				});
-			}	
-		}else{
-			var c = confirm(s_id + "번 자리의 상태를 유지하시겠습니까?");
-			if(c == true){
-				alert(s_id + "번 좌석의 상태를 유지합니다.");
-				showSeatList(f);
-			}
-		}
-		
-	}
+
 </script>
 <style>
 .y_btn {

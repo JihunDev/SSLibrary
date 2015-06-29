@@ -621,6 +621,7 @@ public class BookControl {
 			userbookbiz.remove(userbook); //이 객체를 userbook리스트에서 지운다.
 			System.out.println("반납확인완료");
 		}
+		result = suserbookbiz.getname(uid);//다시 반납이 y인 유저들의 정보를 계속 불러온다
 		mv.addObject("userbooklist",result);
 		mv.addObject("center", "admin/book/returnbook.jsp");
 		return mv;

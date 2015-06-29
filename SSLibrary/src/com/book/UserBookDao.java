@@ -39,8 +39,8 @@ public class UserBookDao implements Dao, SearchDao, UpdateAndReturnDao {
 
 	@Override
 	public ArrayList<Object> searchname(Object obj) throws Exception {
-		return null;
-	}
+		return mapper.selectreturnuserbooks(obj); //반납이 y인 유저들의 정보 
+	} 
 
 	@Override
 	public ArrayList<Object> searchtitle(Object obj) throws Exception {

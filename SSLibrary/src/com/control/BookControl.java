@@ -582,8 +582,8 @@ public class BookControl {
 	}
 	
 	
-	@RequestMapping("/booklist.do") //자기 대여 내역 보기 (마이페이지 : 도서 이력)////////////////////
-	public ModelAndView booklist(HttpServletRequest request, String id) throws Exception{
+	@RequestMapping("/bookloglist.do") //자기 대여 내역 보기 (마이페이지 : 도서 이력)////////////////////
+	public ModelAndView bookloglist(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
@@ -594,7 +594,17 @@ public class BookControl {
 		return mv; 
 	}
 	
-	
+	@RequestMapping("/userbookreturn.do") //관리자가 
+	public ModelAndView userbookreturn(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+		ArrayList<Object> result = new ArrayList<Object>();
+		result = suserbookbiz.getname(uid); //반납이 y인 유저들의 정보 
+		mv.addObject("userbooklist",result);
+		mv.addObject("center", "admin/book/returnbook.jsp");
+		return mv;
+	}
 	
 }
 

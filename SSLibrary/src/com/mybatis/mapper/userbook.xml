@@ -27,4 +27,8 @@
 	<update id="updatereturnuserbook" parameterType="userbook">   <!-- 반납 -->
 	UPDATE A_USERBOOK SET ISRETURN=#{isreturn} WHERE U_ID=#{u_id} AND B_ID=#{b_id}
 	</update>
+	<select id="selectreturnuserbooks" parameterType="userbook" resultType="userbook">
+	<!-- 반납이 y인 유저들의 정보 -->
+	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('y')
+	</select>
 </mapper>

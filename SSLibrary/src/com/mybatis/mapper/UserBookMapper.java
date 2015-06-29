@@ -10,6 +10,7 @@ public interface UserBookMapper {
 	public int updateuserbook(Object obj);
 	public ArrayList<Object> selectiduserbooks(Object obj);
 	public int updatereturnuserbook(Object obj);
+	public ArrayList<Object> selectreturnuserbooks(Object obj); //반납이 y인 유저들의 정보 
 	
 	
 }

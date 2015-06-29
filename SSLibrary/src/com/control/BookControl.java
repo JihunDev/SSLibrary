@@ -34,7 +34,7 @@ public class BookControl {
 	@Resource(name="userbiz")
 	Biz userbiz;
 	@Resource(name="bookbiz")
-	Biz biz;
+	Biz bookbiz;
 	@Resource(name="bookbiz")
 	SearchBiz biz2;
 	@Resource(name="userbookbiz")
@@ -55,7 +55,7 @@ public class BookControl {
 		mv.setViewName("main");
 		ArrayList<Object> list = null;
 		try {
-			list= biz.get();
+			list= bookbiz.get();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,7 +73,7 @@ public class BookControl {
 		HttpHeaders header = new HttpHeaders(); 
 		header.add("Content-type", "application/json;charset=EUC-KR");
 		ArrayList<Object> list = new ArrayList<Object>();
-		list = biz.get();
+		list = bookbiz.get();
 		
 		JSONArray ja = new JSONArray();
 		for(Object obj:list){
@@ -213,7 +213,7 @@ public class BookControl {
 		ModelAndView mv = new ModelAndView("main");
 		Object result = null;
 		try {
-			result= biz.get(id);
+			result= bookbiz.get(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -238,7 +238,7 @@ public class BookControl {
 				book.getTotal_qt(), book.getTotal_qt());
 		System.out.println(b);
 		try {
-			Book b1= (Book) biz.register(b);
+			Book b1= (Book) bookbiz.register(b);
 			HttpSession session = request.getSession();
 			session.setAttribute("bookregister", b1);
 			System.out.println(b1);
@@ -271,18 +271,18 @@ public class BookControl {
 		Object IsDelete = null;
 		ArrayList<Object> list = null;
 			try {
-				biz.remove(id);
+				bookbiz.remove(id);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			try {
-				IsDelete = biz.get(id);
+				IsDelete = bookbiz.get(id);
 				if(IsDelete==null){
 					IsDelete = 0;
 				}else{
 					IsDelete = 1;
 				}
-				list= biz.get();
+				list= bookbiz.get();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -297,7 +297,7 @@ public class BookControl {
 	@RequestMapping("/bookmodify.do") //책 수정페이지
 	public ModelAndView bookmodify(String id) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
-			Object b = biz.get(id);
+			Object b = bookbiz.get(id);
 		mv.addObject("bookinfo",b);
 		mv.addObject("nav", Nav.bookupdate);
 		mv.addObject("center", "admin/book/update.jsp");
@@ -336,7 +336,7 @@ public class BookControl {
 			}
 		}
 		
-		biz.modify(b);
+		bookbiz.modify(b);
 		
 		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+book.getId());	
 		return mv;
@@ -394,7 +394,7 @@ public class BookControl {
 					overlap =1; //중복된 경우
 					borrowbook =1;
 					try {
-						upbook = (Book)biz.get(id);//현재 빌리려는 책의 정보를 가져온다.
+						upbook = (Book)bookbiz.get(id);//현재 빌리려는 책의 정보를 가져온다.
 						mv.addObject("bookdetail",upbook);
 						break;
 					} catch (Exception e) {
@@ -414,7 +414,7 @@ public class BookControl {
 			//남은 갯수(current_qt)가 0인것은 대여할 수 없다는 표시를 한다. (borrowbook =2)
 		
 			try {
-					upbook = (Book)biz.get(id); //현재 빌리려는 책의 정보를 가져온다.
+					upbook = (Book)bookbiz.get(id); //현재 빌리려는 책의 정보를 가져온다.
 					current_qt= upbook.getCurrent_qt(); // 대여 가능한 수 확인한다.
 				
 						
@@ -422,7 +422,7 @@ public class BookControl {
 							System.out.println("---------------------대여 가능한 책 0---------------------");
 							borrowbook=2;
 							try {
-								upbook = (Book)biz.get(id);//현재 빌리려는 책의 정보를 가져온다.
+								upbook = (Book)bookbiz.get(id);//현재 빌리려는 책의 정보를 가져온다.
 								mv.addObject("bookdetail",upbook);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -435,7 +435,7 @@ public class BookControl {
 									upbook.getWriter(),upbook.getImg(),upbook.getFloor(),
 									upbook.getTotal_qt(),upbook.getCurrent_qt()-1);
 							System.out.println("업데이트 한 book : "+upbooknew);	
-							biz.modify(upbooknew);
+							bookbiz.modify(upbooknew);
 							UserBook book = new UserBook(user.getId(), id); 
 							userbookbiz.register(book); //userbook에 등록
 							System.out.println("userbook 등록 : "+book);
@@ -444,7 +444,7 @@ public class BookControl {
 							booklogbiz.register(logbook);
 							System.out.println("userbook과 booklog에 등록 완료!!");		
 							borrowbook=3;
-							Book newbook = (Book) biz.get(upbooknew.getId());
+							Book newbook = (Book) bookbiz.get(upbooknew.getId());
 							mv.addObject("bookdetail",newbook);
 						}
 								
@@ -502,7 +502,7 @@ public class BookControl {
 	for (Object obj : userbooklist) {
 		UserBook userbook = (UserBook) obj;
 		String bid = userbook.getB_id();// id 뽑아옴
-		Book book1 = (Book)biz.get(bid);// 하나씩 찾음
+		Book book1 = (Book)bookbiz.get(bid);// 하나씩 찾음
 
 		String[] info = { bid, book1.getName(),
 				userbook.getStart_date(), userbook.getEnd_date() };

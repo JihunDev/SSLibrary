@@ -15,6 +15,15 @@ public class Board {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Board(int id) {
+		super();
+		this.id = id;
+	}
+
+
 
 	public Board(String u_id, String title, String content, String sort,
 			String file_name) {

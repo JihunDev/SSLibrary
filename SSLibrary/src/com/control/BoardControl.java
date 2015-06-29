@@ -16,7 +16,6 @@ import com.command.BoardCommand;
 import com.entity.Board;
 import com.frame.Biz;
 import com.frame.SearchBiz;
-import com.util.Nav;
 
 @Controller
 public class BoardControl {
@@ -51,7 +50,7 @@ public class BoardControl {
 
 	@RequestMapping("/boardwriteimpl.do")
 	public String boardwriteimpl(BoardCommand com) {
-		ModelAndView mv = new ModelAndView("main");
+		
 		System.out.println(com);
 		
 		Board board = new Board(com.getU_id(), com.getTitle(),
@@ -87,9 +86,20 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boarddetail.do")
-	public ModelAndView boarddetail(HttpServletRequest request) {
-
-		return null;
+	public ModelAndView boarddetail(int id) {
+		ModelAndView mv = new ModelAndView("main");
+		Board board = new Board(id);
+		Board board2 = null;
+		try {
+			board2 = (Board) biz.get(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("boarddetail", board2);
+		mv.addObject("center", "board/detail.jsp");
+		
+		return mv;
 	}
 
 	@RequestMapping("/boardmodify.do")

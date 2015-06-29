@@ -4,13 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.UserBookMapper">
 	<select id="selectuserbooks" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE ISRETURN in (n)
+	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('n')
 	</select>
 	<select id="selectuserbook" parameterType="userbook" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id}
+	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id} AND ISRETURN in ('n')
 	</select>
 	<select id="selectiduserbooks" parameterType="java.lang.String" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%'
+	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%' AND ISRETURN in ('n')
 	</select>
 	<insert id="insertuserbook" parameterType="userbook">
 	INSERT INTO A_USERBOOK VALUES(#{u_id},#{b_id},SYSDATE,SYSDATE+14,0,'n')	
@@ -21,7 +21,10 @@
 	<delete id="deleteuserbook" parameterType="userbook">
 	DELETE FROM A_USERBOOK WHERE U_ID=#{u_id} AND B_ID=#{b_id}
 	</delete>
-	<update id="updateuserbook" parameterType="userbook">
+	<update id="updateuserbook" parameterType="userbook">   <!--연장  -->
 	UPDATE A_USERBOOK SET END_DATE=END_DATE+7, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND B_ID=#{b_id}
+	</update>
+	<update id="updatereturnuserbook" parameterType="userbook">   <!-- 반납 -->
+	UPDATE A_USERBOOK SET ISRETURN=#{isreturn} WHERE U_ID=#{u_id} AND B_ID=#{b_id}
 	</update>
 </mapper>

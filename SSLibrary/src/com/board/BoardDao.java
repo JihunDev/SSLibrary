@@ -40,10 +40,10 @@ public class BoardDao implements Dao ,SearchDao, UpdateAndReturnDao {
 		return mapper.selectboards();
 	}
 
+	//리플 받아오는 용으로 사용
 	@Override
 	public ArrayList<Object> searchname(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectreplyboards(obj);
 	}
 
 	@Override

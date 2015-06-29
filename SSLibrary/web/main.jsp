@@ -53,11 +53,11 @@ header>#sub{
 	bottom : 0;
 	right : 0;
 	margin : 0 auto;
-	width : 45%;
-	height : 50px;
+	width : 40%;
+	height : 100px;
 	background : #036daa;
 	border-radius : 20px 0px 0px 20px;
-	line-height : 50px;
+	line-height : 100px;
 	color : white;
 	float : left;
 }

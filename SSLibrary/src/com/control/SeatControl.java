@@ -18,11 +18,14 @@ import com.entity.User;
 import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.SearchBiz;
+import com.frame.UpdateAndReturnBiz;
 import com.util.Nav;
 
 @Controller
 public class SeatControl {
 
+	MainControl mc;
+	
 	@Resource(name = "userseatbiz")
 	Biz ubiz;
 	@Resource(name = "userseatbiz")
@@ -30,6 +33,9 @@ public class SeatControl {
 
 	@Resource(name = "seatlogbiz")
 	Biz lbiz;
+	@Resource(name = "seatlogbiz")
+	UpdateAndReturnBiz ur_lbiz;
+	
 	@Resource(name = "seatbiz")
 	Biz biz;
 
@@ -177,4 +183,53 @@ public class SeatControl {
 		return result;
 	}
 
+	// ø¨¿Â
+	@RequestMapping("/userseatmodify.do")
+	public ModelAndView userseatmodify(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
+	//	int s_id =  (int) request.getAttribute("s_id");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		String u_id = user.getId();
+		Object userseat = null;
+		try {
+			ubiz.modify(new UserSeat(u_id));
+			ur_lbiz.logupdate(new SeatLog(u_id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			userseat = ubiz.get(new UserSeat(u_id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(userseat);
+		session.setAttribute("userseat", userseat);
+		mv.addObject("center","user/usinginfo.jsp");
+		return mv;
+	}
+
+	// π›≥≥
+	@RequestMapping("/userseatremove.do")
+	public String userseatremove(HttpServletRequest request) {
+		//ModelAndView mv = new ModelAndView();
+	//	int s_id =  (int) request.getAttribute("s_id");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		String u_id = user.getId();
+		String result = "";
+		
+		try {
+			ubiz.remove(new UserSeat(u_id));
+			ur_lbiz.logreturn(new SeatLog(u_id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mc.usinginfo(u_id, request);
+		return result;
+	}
 }

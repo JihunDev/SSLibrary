@@ -11,21 +11,19 @@
 <script>
 function	 sendMsgImpl(f){
 	// 수신자 좌석 정보
-	var u_id = f.receiver_uid.value;
 	var s_id = f.receiver_sid.value;
 	// 발신자
 	var sender_id = f.sender_uid.value;
 	// 내용
 	var text = f.textarea.value;
 	
-	alert("u_id: " +u_id+ " s_id: " +s_id  + " sender_id: " + sender_id + " text: "+ text);
+	alert("s_id: " +s_id  + " sender_id: " + sender_id + " text: "+ text);
 	
 	var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
 	if (c == true) {
 		$.ajax({
 			type : 'post',
 			data : {
-				'u_id' : u_id,
 				's_id_str' : s_id,
 				'sender_id' : sender_id,
 				'text': text
@@ -48,8 +46,7 @@ function	 sendMsgImpl(f){
 <!-- 추후 변경 -->
 <form>
 	<input type="hidden" name="sender_uid" value="${user.id}">
-	<input type="hidden" name="receiver_uid" value="${receiver_uid}">
-	<input type="hidden" name="receiver_sid" value="${receiver_sid}">
-	<textarea rows="10" cols="20" name="textarea" value=""></textarea>
+	<input type="hidden" name="receiver_sid" class="seatid">
+	<textarea rows="10" cols="20" name="textarea"></textarea>
 	<br> <input type="button" value="전송" onclick="sendMsgImpl(this.form);">	
 </form>

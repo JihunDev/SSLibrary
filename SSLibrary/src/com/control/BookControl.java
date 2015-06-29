@@ -270,8 +270,9 @@ public class BookControl {
 	
 	
 	@RequestMapping("/bookremoveimpl.do") // 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)//
-	public ModelAndView bookremoveimpl(String id){
+	public ModelAndView bookremoveimpl(String id, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
 		Object IsDelete = null;
 		ArrayList<Object> list = null;
 			try {
@@ -292,7 +293,8 @@ public class BookControl {
 			}
 			
 			mv.addObject("isdelete",IsDelete);
-			mv.addObject("booklist",list);
+			//mv.addObject("booklist",list);
+
 			mv.addObject("nav", Nav.book);
 			mv.addObject("center", "book/booksearch.jsp");
 		return mv;	
@@ -518,7 +520,8 @@ public class BookControl {
 		// 현재 이용 정보에 필요한 값 String 배열에 넣음
 		booklist.add(info);// array에 담음
 	}
-	 mv.addObject("booklist",booklist); //바뀐것 다시 넣어줌
+	 //mv.addObject("booklist",booklist); //바뀐것 다시 넣어줌
+	 session.setAttribute("booklist",booklist);
 	 mv.addObject("qt",isqt);
 	 mv.addObject("center","user/usinginfo.jsp");
 	 return mv;
@@ -536,10 +539,7 @@ public class BookControl {
 		
 		//2. UserBook의 isreturn을 y로 바꾼다.
 		UserBook userbook = new UserBook(uid, id);
-		userbookbiz.get(userbook);
-		
-		
-		
+		userbookbiz.get(userbook);	
 		
 		userbook = (UserBook) userbookbiz.get(userbook);
 		

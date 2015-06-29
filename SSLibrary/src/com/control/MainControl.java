@@ -320,9 +320,8 @@ public class MainControl {
 			e.printStackTrace();
 		}
 		
-		session.setAttribute("userseat", userseat);
-		
-		mv.addObject("booklist",booklist);
+		session.setAttribute("userseat", userseat);		
+		session.setAttribute("booklist",booklist);
 		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
 

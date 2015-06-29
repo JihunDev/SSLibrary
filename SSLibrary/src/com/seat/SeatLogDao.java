@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
+import com.frame.UpdateAndReturnDao;
 import com.mybatis.mapper.SeatLogMapper;
 
 @Repository("seatlogdao")
-public class SeatLogDao implements Dao {
+public class SeatLogDao implements Dao, UpdateAndReturnDao {
 
 	@Autowired
 	SeatLogMapper mapper;	
@@ -28,8 +29,7 @@ public class SeatLogDao implements Dao {
 
 	@Override
 	public Object update(Object obj) throws Exception {
-		int result = mapper.updateseatlog(obj);
-		return result;
+		return null;
 	}
 
 	@Override
@@ -41,6 +41,18 @@ public class SeatLogDao implements Dao {
 	@Override
 	public ArrayList<Object> select() throws Exception {
 		ArrayList<Object> result = mapper.selectseatlogs();
+		return result;
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		Object result = mapper.updateseatlog_extend(obj);
+		return result;
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
+		Object result = mapper.updateseatlog_return(obj);
 		return result;
 	}
 

@@ -28,7 +28,7 @@ $(document).ready(function(){
 <body>
 <input type="hidden" id="qt" value="${qt}">
 
-<input type="text" id="s_renew_qt" value="s_renew_qt : ${userseat.renew_qt}">
+<input type="hidden" id="s_renew_qt" value="s_renew_qt : ${userseat.renew_qt}">
 <fieldset>
 	<legend>상세페이지</legend>
 		<table border="3" width="700">

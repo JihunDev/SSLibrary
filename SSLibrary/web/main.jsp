@@ -77,10 +77,7 @@ header > #bottom > ul > li > a{
 header > #bottom > ul > li > a:HOVER{
 	color : red;
 }
-header>#bottom>ul>li:FIRST-CHILD {
-	border-radius: 20px 20px 0 0;
-}
-header>#bottom>ul>li:LAST-CHILD {
+header>#bottom>ul>li{
 	border-radius: 20px 20px 0 0;
 }
 

@@ -21,6 +21,14 @@ public class Board {
 		this.id = id;
 	}
 
+	public Board(String u_id, String content, String sort, int reg_number) {
+		super();
+		this.u_id = u_id;
+		this.content = content;
+		this.sort = sort;
+		this.reg_number = reg_number;
+	}
+
 	public Board(String u_id, String title, String content, String sort,
 			String file_name) {
 		this.u_id = u_id;

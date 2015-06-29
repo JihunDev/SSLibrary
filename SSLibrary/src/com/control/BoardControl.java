@@ -94,7 +94,7 @@ public class BoardControl {
 		Board board2 = null;
 		try {
 			board2 = (Board) biz.get(board);
-			boardUpdateAndReturnBiz.logupdate(board);//д╚©Нем
+			boardUpdateAndReturnBiz.logupdate(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -124,7 +124,7 @@ public class BoardControl {
 	@RequestMapping("/boardmodifyimpl.do")
 	public ModelAndView boardmodifyimpl(BoardCommand com) {
 		System.out.println(com);
-		Board board = new Board(com.getId(),com.getTitle(), com.getContent(),
+		Board board = new Board(com.getId(), com.getTitle(), com.getContent(),
 				com.getSort(), com.getFile_name().getOriginalFilename());
 
 		System.out.println("command : " + board);
@@ -168,7 +168,27 @@ public class BoardControl {
 		}
 		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
 				+ board.getSort());
-
 		return mv;
+	}
+
+	@RequestMapping("/boardreplyregister.do")
+	public ModelAndView boardreplyregister(Board board) {
+		System.out.println(board);
+		Board board2 = new Board(board.getU_id(), board.getContent(),
+				board.getSort(),board.getReg_number());
+		try {
+			biz.register(board2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView("redirect:/boarddetail.do?id="
+				+ board2.getReg_number());
+		return mv;
+	}
+
+	@RequestMapping("/boardreplylist.do")
+	public ModelAndView boardreplylist(Board board) {
+
+		return null;
 	}
 }

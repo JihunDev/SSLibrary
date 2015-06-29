@@ -69,7 +69,7 @@ function returnMySeat(){
 					<td>${userseat.s_id}번 좌석</td>
 					<td>연장회수</td>
 					<td><a href="javascript:;" onClick="extendMySeat();">연장</a></td><!-- 추후수정 -->
-					<td rowspan="2"><a href="#">이력</a></td><!-- 추후수정 -->
+					<td rowspan="2"><a href="seatloglist.do?id=${user.id}">이력</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td>사용시간</td>

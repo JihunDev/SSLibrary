@@ -40,7 +40,7 @@ public class BookControl {
 	@Resource(name="userbookbiz")
 	Biz userbookbiz;
 	@Resource(name="userbookbiz")
-	SearchBiz usearchbiz;
+	SearchBiz suserbookbiz;
 	@Resource(name="booklogbiz")
 	Biz booklogbiz;
 	@Resource(name="booklogbiz")
@@ -372,7 +372,7 @@ public class BookControl {
 		
 		ArrayList<Object> userbooklist = new ArrayList<Object>(); //회원이 빌렸던 책들 알기 위해 만든 변수
 		try {
-			userbooklist = usearchbiz.getid(uid);// user가 빌린 책 넣기
+			userbooklist = suserbookbiz.getid(uid);// user가 빌린 책 넣기
 			System.out.println("user가 빌린 책 : "+userbooklist);
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -498,7 +498,7 @@ public class BookControl {
  	 isqt =2;
 	}
 	
-	userbooklist = usearchbiz.getid(uid);// userbook에서 꺼내옴(다시 usinginfo에 들어갈 정보)
+	userbooklist = suserbookbiz.getid(uid);// userbook에서 꺼내옴(다시 usinginfo에 들어갈 정보)
 	for (Object obj : userbooklist) {
 		UserBook userbook = (UserBook) obj;
 		String bid = userbook.getB_id();// id 뽑아옴

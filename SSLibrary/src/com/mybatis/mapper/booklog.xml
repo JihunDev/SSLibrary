@@ -15,6 +15,10 @@
 	<select id="selectidlogbook" parameterType="booklog" resultType ="booklog">
 	SELECT * FROM A_BOOKLOG WHERE B_ID = #{b_id} AND U_ID = #{u_id} 
 	</select>
+	<select id="selectuseridlogbooks" parameterType="booklog" resultType ="booklog">
+	<!-- userid로 찾기 booklog 다 찾기 -->
+	SELECT * FROM A_BOOKLOG WHERE U_ID = #{u_id} 
+	</select>
 	<insert id="insertlogbook" parameterType="booklog">
 	INSERT INTO A_BOOKLOG VALUES(BOOKLOG_SQ.NEXTVAL,#{b_id},#{u_id},SYSDATE,SYSDATE+14,null,0)
 	

@@ -33,14 +33,20 @@ import com.util.Nav;
 public class BookControl {
 	@Resource(name="userbiz") //user정보
 	Biz userbiz;
+	
+//	---------------------------------------
 	@Resource(name="bookbiz") //책 정보
 	Biz bookbiz;
 	@Resource(name="bookbiz") //책 검색
 	SearchBiz sbookbiz;
+//	---------------------------------------	
 	@Resource(name="userbookbiz") //대여시 회원의 책들 정보
 	Biz userbookbiz;
 	@Resource(name="userbookbiz") //대여시 회원의 책들 정보에서 검색
 	SearchBiz suserbookbiz;
+	@Resource(name="userbookbiz") //반납 시 isreturn y로 바꿔주는 것
+	UpdateAndReturnBiz upreuserbookbiz;
+//	---------------------------------------	
 	@Resource(name="booklogbiz") //모든 대여한 회원들의 책 정보
 	Biz booklogbiz;
 	@Resource(name="booklogbiz") //대여한 모든 회원들의 책정보에서 검색
@@ -534,19 +540,37 @@ public class BookControl {
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
 		//1.회원의 아이디와 책 아이디를 가지고 booklog 테이블에 반납정보를 업데이트 한다.
-		BookLog booklog = new BookLog(id, uid); 
+		BookLog booklog = new BookLog(id, uid);
 		booklogbiz.modify(booklog); // 반납 정보 보내준다. real_date가 업데이트 됨
+		System.out.println("booklog 업데이트 완료");
 		
 		int returnqt = 0; // 반납했는지 안했는지 
 		
 		//2. UserBook의 isreturn을 y로 바꾼다.
 		UserBook userbook = new UserBook(uid, id);
-		userbookbiz.get(userbook);	
 		userbook = (UserBook) userbookbiz.get(userbook);
+		UserBook modifyuserbook = new UserBook(uid, id, "y");
+		upreuserbookbiz.logreturn(modifyuserbook); // y로 수정
 	
 		returnqt =1;
+		
+		ArrayList<Object> userbooklist = new ArrayList<Object>(); 
+		ArrayList<Object> booklist = new ArrayList<Object>();  //다시 usinginfo에 들어갈 정보
+		userbooklist = suserbookbiz.getid(uid);// userbook에서 꺼내옴(다시 usinginfo에 들어갈 정보)
+		for (Object obj : userbooklist) {
+			UserBook userbook1 = (UserBook) obj;
+			String bid = userbook1.getB_id();// id 뽑아옴
+			Book book1 = (Book)bookbiz.get(bid);// 하나씩 찾음
+			
+			String[] info = { bid, book1.getName(),
+					userbook1.getStart_date(), userbook1.getEnd_date() };
+			// 현재 이용 정보에 필요한 값 String 배열에 넣음
+			booklist.add(info);// array에 담음
+		}
+		
 		System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
 		mv.addObject("returnqt",returnqt);
+		session.setAttribute("booklist",booklist);
 		mv.addObject("center","user/usinginfo.jsp");
 		return mv;
 	}

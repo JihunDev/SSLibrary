@@ -76,11 +76,21 @@ $(document).ready(function() {
 <form>
 	<table border="1">
 	<tbody>
-		<tr><td>${boarddetail.title}제목</td><td>${boarddetail.reg_date}글쓴날짜</td></tr>
-		<tr><td>${boarddetail.sort}분류</td><td>${boarddetail.counter}조회</td></tr>
 		<tr>
-			<td colspan="2">
-				${boarddetail.content}내용오
+			<td>제목</td>
+			<td colspan="5">${boarddetail.title}</td>
+		</tr>
+		<tr>
+			<td>분류</td>
+			<td>${boarddetail.sort}</td>
+			<td>글쓴날짜</td>
+			<td>${boarddetail.reg_date}</td>
+			<td>조회</td>
+			<td>${boarddetail.counter}</td>
+		</tr>
+		<tr>
+			<td colspan="6">
+				${boarddetail.content}
 			</td>
 		</tr>
 	</tbody>

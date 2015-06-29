@@ -89,7 +89,7 @@ nav{
 	background : black;
 	/* border : dashed #f0c413 2px; */
 	line-height : 40px;
-	color : black;
+	color : white;
 }
 nav>a{
 	color : white;

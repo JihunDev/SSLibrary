@@ -28,7 +28,7 @@ public class BoardControl {
 	@RequestMapping("/boardmain.do")
 	public ModelAndView boardmain(String sort) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println("sort : " + sort);
+		System.out.println("sort main : " + sort);
 		ArrayList<Object> list = new ArrayList<Object>();
 		try {
 			list = boardsearchbiz.getid(sort);
@@ -103,21 +103,31 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boardmodify.do")
-	public ModelAndView boardmodify(HttpServletRequest request) {
-
-		return null;
+	public ModelAndView boardmodify(Board board) {
+		ModelAndView mv = new ModelAndView("main");
+		System.out.println(board);
+		mv.addObject("boardupdate", board);
+		mv.addObject("center", "board/update.jsp");
+		return mv;
 	}
 
 	@RequestMapping("/boardmodifyimpl.do")
 	public ModelAndView boardmodifyimpl(HttpServletRequest request) {
-
+		
 		return null;
 	}
 
 	@RequestMapping("/boardremoveimpl.do")
-	public ModelAndView boardremoveimpl(HttpServletRequest request) {
-
-		return null;
+	public ModelAndView boardremoveimpl(Board board) {
+		String re = board.getSort();
+		System.out.println("sort re : "+re);
+		try {
+			biz.remove(board.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="+board.getSort());   
+	    
+		return mv;
 	}
-
 }

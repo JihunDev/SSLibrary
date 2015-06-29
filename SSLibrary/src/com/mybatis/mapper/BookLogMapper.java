@@ -10,6 +10,7 @@ public interface BookLogMapper {
 	public int insertlogbook(Object obj);
 	public int deletelogbook(Object obj);
 	public int updatelogbook(Object obj);
+	public int updateQtlogbook(Object obj);
 	
 	
 }

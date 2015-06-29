@@ -8,6 +8,16 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
+function removeUserbook(){
+	var c = confirm('반납 확인하시겠습니까?');
+	if (c == true) {
+		f.action = 'userbookremoveimpl.do';
+		f.method = 'POST';
+		f.submit();
+		alert("반납 확인이 완료되었습니다.");
+	};		
+	
+}
 </script>
 <style></style>
 </head>
@@ -33,7 +43,7 @@
 </c:forEach>
 </tbody>
 </table>
-<input type="button" value="반납확인" onclick="">
+<input type="button" value="반납확인" onclick="removeUserbook();">
 </div>
 </form>
 </fieldset>

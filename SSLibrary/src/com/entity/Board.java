@@ -1,7 +1,5 @@
 package com.entity;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class Board {
 	private int id;
 	private String u_id;
@@ -26,9 +24,9 @@ public class Board {
 		this.sort = sort;
 		this.file_name = file_name;
 	}
-	
-	public Board(String u_id, String title, String content,
-			String sort, String file_name, int reg_number) {
+
+	public Board(String u_id, String title, String content, String sort,
+			String file_name, int reg_number) {
 		super();
 		this.u_id = u_id;
 		this.title = title;
@@ -37,7 +35,16 @@ public class Board {
 		this.file_name = file_name;
 		this.reg_number = reg_number;
 	}
-	
+
+	public Board(int id, String title, String content, String sort,
+			String file_name) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.sort = sort;
+		this.file_name = file_name;
+	}
 
 	public Board(int id, String u_id, int counter, String title,
 			String content, String reg_date, String sort, String file_name,

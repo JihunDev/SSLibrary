@@ -615,8 +615,14 @@ public class BookControl {
 		result = suserbookbiz.getname(uid); //반납이 y인 유저들의 정보 
 		for (Object obj : result) {
 			UserBook userbook = (UserBook) obj;
-	
+			String userid = userbook.getU_id();
+			String bookid = userbook.getB_id();
+			userbook = new UserBook(userid, bookid); //리스트에서 뽑아온 유저 아이디와 책 아이디를 가져온다.
+			userbookbiz.remove(userbook); //이 객체를 userbook리스트에서 지운다.
+			System.out.println("반납확인완료");
 		}
+		mv.addObject("userbooklist",result);
+		mv.addObject("center", "admin/book/returnbook.jsp");
 		return mv;
 	}
 	

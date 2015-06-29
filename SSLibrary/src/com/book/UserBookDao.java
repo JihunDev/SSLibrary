@@ -7,9 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
 import com.frame.SearchDao;
+import com.frame.UpdateAndReturnDao;
 import com.mybatis.mapper.UserBookMapper;
 @Repository("userbookdao")
-public class UserBookDao implements Dao, SearchDao {
+public class UserBookDao implements Dao, SearchDao, UpdateAndReturnDao {
 	@Autowired
 	UserBookMapper mapper;
 	@Override
@@ -63,6 +64,17 @@ public class UserBookDao implements Dao, SearchDao {
 	public ArrayList<Object> searchid(Object obj) throws Exception {
 		return mapper.selectiduserbooks(obj);
 		
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
+		return mapper.updatereturnuserbook(obj);
 	}
 
 }

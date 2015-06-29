@@ -16,10 +16,19 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Board(int id) {
 		super();
 		this.id = id;
 	}
+
+
+	public Board(int id, String sort) {
+		super();
+		this.id = id;
+		this.sort = sort;
+	}
+
 
 	public Board(String u_id, String content, String sort, int reg_number) {
 		super();

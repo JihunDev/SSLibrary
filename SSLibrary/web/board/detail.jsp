@@ -27,7 +27,7 @@ function update(f) {
 function register(f) {
 	var c = confirm('리플을 등록 하시겠습니까?');
 		if (c == true) {
-			f.action = 'a.do';/* 추후 수정 */
+			f.action = 'boardreplyregister.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -99,15 +99,17 @@ $(document).ready(function() {
 <form>
 	<input type="hidden" name="sort" value="${boarddetail.sort}">
 	<input type="hidden" name="id" value="${boarddetail.id}">
-	<input type="button" value="삭제" onclick="del(this.form)"><!-- 추후 수정 -->
-	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
+	<input type="button" value="삭제" onclick="del(this.form)">
+	<input type="button" value="수정" onclick="update(this.form)">
 </form>		
 	<div id="repl">	</div>
 <form>
 	<div>
-	<input type="hidden" id="reg_date" value="${boarddetail.id}"><br><!-- 리플때문에 보냄 -->
-	<textarea rows="5" cols="40"></textarea>
-	<input type="button" value="등록" onclick="register(this.form)"><!-- 추후 수정 -->
+	<input type="hidden" name="reg_number" value="${boarddetail.id}"><br>
+	<input type="hidden" name="sort" value="${boarddetail.sort}"><br>
+	<input type="hidden" name="u_id" value="${id}"><br>
+	<textarea rows="5" cols="40" name="content"></textarea>
+	<input type="button" value="등록" onclick="register(this.form)">
 	</div>
 </form>	
 </body>

@@ -10,7 +10,10 @@
 	SELECT * FROM A_BOOKLOG WHERE ID = #{id}
 	</select>
 	<select id="selectnamelogbooks" parameterType="java.lang.String" resultType="booklog">
-	SElECT * FROM A_BOOKLOG WHERE * LIKE '%'||#{s}||'%'
+	SELECT * FROM A_BOOKLOG WHERE * LIKE '%'||#{s}||'%'
+	</select>
+	<select id="selectidlogbook" parameterType="booklog" resultType ="booklog">
+	SELECT * FROM A_BOOKLOG WHERE B_ID = #{b_id} AND U_ID = #{u_id} 
 	</select>
 	<insert id="insertlogbook" parameterType="booklog">
 	INSERT INTO A_BOOKLOG VALUES(BOOKLOG_SQ.NEXTVAL,#{b_id},#{u_id},SYSDATE,SYSDATE+14,null,0)
@@ -23,6 +26,6 @@
 	DELETE FROM A_BOOKLOG WHERE ID = #{id}
 	</delete>
 	<update id="updatelogbook" parameterType="booklog">
-	UPDATE A_BOOKLOG SET B_ID=#{b_id}, U_ID=#{u_id}, REAL_DATE=SYSDATE, RENEW_QT=#{renew_qt} WHERE ID=#{id}
+	UPDATE A_BOOKLOG SET B_ID=#{b_id}, U_ID=#{u_id}, START_DATE=#{start_date}, END_DATE=#{end_date}, REAL_DATE=SYSDATE, RENEW_QT=#{renew_qt} WHERE ID=#{id}
 	</update>
 </mapper>

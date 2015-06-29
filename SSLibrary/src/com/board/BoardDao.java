@@ -7,10 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.frame.Dao;
 import com.frame.SearchDao;
+import com.frame.UpdateAndReturnDao;
 import com.mybatis.mapper.BoardMapper;
 
 @Repository("boarddao")
-public class BoardDao implements Dao ,SearchDao {
+public class BoardDao implements Dao ,SearchDao, UpdateAndReturnDao {
 
 	@Autowired
 	BoardMapper mapper;
@@ -63,6 +64,17 @@ public class BoardDao implements Dao ,SearchDao {
 	@Override
 	public ArrayList<Object> searchid(Object obj) throws Exception {
 		return mapper.selectidboards(obj);
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		return mapper.updatecounterboard(obj);
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

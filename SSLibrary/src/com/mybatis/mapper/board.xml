@@ -15,8 +15,13 @@
 	<select id="selecttitleboards" parameterType="java.lang.String" resultType="board">
 		SELECT * FROM A_BOARD WHERE TITLE LIKE '%'||#{s}||'%'
 	</select>
+	
 	<select id="selectcontentboards" parameterType="java.lang.String" resultType="board">
 		SELECT * FROM A_BOARD WHERE CONTENT LIKE '%'||#{s}||'%'
+	</select>
+	
+	<select id="selectidboards" parameterType="java.lang.String" resultType="board">
+		SELECT * FROM A_BOARD WHERE SORT = #{s}
 	</select>
 
 	<insert id="insertboard" parameterType="board">

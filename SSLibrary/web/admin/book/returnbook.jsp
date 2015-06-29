@@ -11,9 +11,7 @@
 function removeUserbook(){
 	var c = confirm('반납 확인하시겠습니까?');
 	if (c == true) {
-		f.action = 'userbookremoveimpl.do';
-		f.method = 'POST';
-		f.submit();
+		location.href = "userbookremoveimpl.do";
 		alert("반납 확인이 완료되었습니다.");
 	};		
 	

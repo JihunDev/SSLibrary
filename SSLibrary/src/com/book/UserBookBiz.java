@@ -49,7 +49,7 @@ public class UserBookBiz implements Biz, SearchBiz, UpdateAndReturnBiz {
 
 	@Override
 	public ArrayList<Object> getname(Object obj) throws Exception {
-		return null;
+		return dao2.searchname(obj); //반납이 y인 유저들의 정보 
 	}
 
 	@Override

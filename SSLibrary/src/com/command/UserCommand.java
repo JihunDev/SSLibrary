@@ -15,9 +15,7 @@ public class UserCommand {
 	public UserCommand() {
 		super();
 	}
-	
-	
-	
+
 	public UserCommand(String id, String pwd, String name, String phone,
 			MultipartFile img, String email, String isadmin) {
 		super();
@@ -29,8 +27,6 @@ public class UserCommand {
 		this.email = email;
 		this.isadmin = isadmin;
 	}
-
-
 
 	public UserCommand(String id, String pwd, String name, String phone,
 			MultipartFile img, String email, String reg_date, String isadmin) {

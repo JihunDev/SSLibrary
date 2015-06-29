@@ -31,6 +31,18 @@ public class BookLog {
 		this.u_id = u_id;
 		this.renew_qt = renew_qt;
 	}
+	
+
+	public BookLog(int id, String b_id, String u_id, String start_date,
+			String end_date, int renew_qt) {
+		super();
+		this.id = id;
+		this.b_id = b_id;
+		this.u_id = u_id;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.renew_qt = renew_qt;
+	}
 
 
 	public BookLog(int id, String b_id, String u_id, String start_date,

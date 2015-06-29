@@ -607,8 +607,16 @@ public class BookControl {
 	}
 	
 	@RequestMapping("/userbookremoveimpl.do")//관리자가 반납한 도서 내역을 확인했을 때 userbook 지우는 것////
-	public ModelAndView userbookremoveimpl(HttpServletRequest request){
+	public ModelAndView userbookremoveimpl(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+		ArrayList<Object> result = new ArrayList<Object>();
+		result = suserbookbiz.getname(uid); //반납이 y인 유저들의 정보 
+		for (Object obj : result) {
+			UserBook userbook = (UserBook) obj;
+	
+		}
 		return mv;
 	}
 	

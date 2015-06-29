@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,13 +49,13 @@ public class BoardControl {
 
 	@RequestMapping("/boardwriteimpl.do")
 	public String boardwriteimpl(BoardCommand com) {
-		
+
 		System.out.println(com);
-		
+
 		Board board = new Board(com.getU_id(), com.getTitle(),
-				com.getContent(), com.getSort(), com.getFile_name().getOriginalFilename(),
-				com.getReg_number());
-		
+				com.getContent(), com.getSort(), com.getFile_name()
+						.getOriginalFilename(), com.getReg_number());
+
 		System.out.println("command : " + board);
 		try {
 			biz.register(board);
@@ -82,7 +81,7 @@ public class BoardControl {
 			}
 
 		}
-		return "boardmain.do?sort="+com.getSort();
+		return "boardmain.do?sort=" + com.getSort();
 	}
 
 	@RequestMapping("/boarddetail.do")
@@ -95,23 +94,24 @@ public class BoardControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		mv.addObject("boarddetail", board2);
 		mv.addObject("center", "board/detail.jsp");
-		
+
 		return mv;
 	}
 
 	@RequestMapping("/boardmodify.do")
 	public ModelAndView boardmodify(Board board) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println(board);
+		System.out.println("board : " + board);
 		Board board2 = null;
 		try {
-			board2 = (Board) biz.get(board);
+			board2 = (Board) biz.get(board.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("board2 : " + board2);
 		mv.addObject("boardupdate", board2);
 		mv.addObject("center", "board/update.jsp");
 		return mv;
@@ -119,12 +119,10 @@ public class BoardControl {
 
 	@RequestMapping("/boardmodifyimpl.do")
 	public String boardmodifyimpl(BoardCommand com) {
-		System.out.println("modifyimpl "+com);
-		
-		Board board = new Board(com.getU_id(), com.getTitle(),
-				com.getContent(), com.getSort(), com.getFile_name().getOriginalFilename(),
-				com.getReg_number());
-		
+		System.out.println(com);
+		Board board = new Board(com.getId(),com.getTitle(), com.getContent(),
+				com.getSort(), com.getFile_name().getOriginalFilename());
+
 		System.out.println("command : " + board);
 		try {
 			biz.modify(board);
@@ -150,20 +148,21 @@ public class BoardControl {
 			}
 
 		}
-		return "boardmain.do?sort="+com.getSort();
+		return "boardmain.do?sort=" + com.getSort();
 	}
 
 	@RequestMapping("/boardremoveimpl.do")
 	public ModelAndView boardremoveimpl(Board board) {
 		String re = board.getSort();
-		System.out.println("sort re : "+re);
+		System.out.println("sort re : " + re);
 		try {
 			biz.remove(board.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="+board.getSort());   
-	    
+		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
+				+ board.getSort());
+
 		return mv;
 	}
 }

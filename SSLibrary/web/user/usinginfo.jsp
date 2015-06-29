@@ -86,7 +86,7 @@ function returnMySeat(){
 					<td colspan="2">대여 기간</td>
 					<td><a href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userbookmodifyimpl.do?id=${book[0]}'">연장</a></td><!-- 추후수정 -->
 					<c:if test="${status.first}">
-						<td rowspan="2"><a href="booklist.do">이력</a></td><!-- 추후수정 -->
+						<td rowspan="2"><a href="bookloglist.do">이력</a></td><!-- 추후수정 -->
 					</c:if>
 				</tr>
 				<tr>

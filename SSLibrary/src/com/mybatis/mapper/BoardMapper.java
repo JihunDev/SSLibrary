@@ -18,4 +18,6 @@ public interface BoardMapper {
 	public ArrayList<Object> selectcontentboards(Object obj);
 	
 	public ArrayList<Object> selectidboards(Object obj);
+	
+	public Object updatecounterboard(Object obj);
 }

@@ -483,7 +483,7 @@ public class BookControl {
 	 for (Object obj : booklog) {
 		 BookLog logbook = (BookLog)obj;
 		 BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(), 
-				 logbook.getU_id(), usersbook.getEnd_date(), usersbook.getRenew_qt());
+				 logbook.getU_id(), usersbook.getRenew_qt());
 		 System.out.println(logbook2);
 		 logbiz.modify(logbook);
 	}

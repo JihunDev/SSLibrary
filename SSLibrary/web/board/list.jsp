@@ -35,5 +35,7 @@
 			</tbody><!-- test후 페이지 넘어가는 거 만듬 -->
 		</table>
 <a href="boardwrite.do">등록</a>
+
+
 </body>
 </html>

@@ -6,7 +6,7 @@
 <h1 id="mainname"><a href="main.do"><img width="80%"src="img/css/mainname.gif"></a></h1>
 </div>
 <div id="sub">
-<font id="text">도서 검색 :</font>
+&nbsp;&nbsp;&nbsp;&nbsp;<font id="text">도서 검색 : &nbsp;</font>
 <select id="issearch">
 <option value="">선택</option>
 <option value="name">책이름</option>

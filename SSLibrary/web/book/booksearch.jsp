@@ -136,7 +136,7 @@ $(document).ready(function(){
 	<input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 	<%if(user!=null && user.getIsadmin().equals("y")){ %>
 	<a href="bookregister.do">등록</a>
-	<a href="userbookreturn.do">도서 반납 내역</a>
+	<a href="userbookreturn.do">회원 도서 반납 내역</a>
 	<%} %>
 	<div  id="book_result">
 		<table width="700">

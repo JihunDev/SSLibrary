@@ -9,6 +9,7 @@ public interface UserBookMapper {
 	public int deleteuserbook(Object obj);
 	public int updateuserbook(Object obj);
 	public ArrayList<Object> selectiduserbooks(Object obj);
+	public int updatereturnuserbook(Object obj);
 	
 	
 }

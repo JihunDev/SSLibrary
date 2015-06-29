@@ -32,17 +32,17 @@ import com.util.Nav;
 @Controller
 public class BookControl {
 	@Resource(name="userbiz")
-	Biz ubiz;
+	Biz userbiz;
 	@Resource(name="bookbiz")
 	Biz biz;
 	@Resource(name="bookbiz")
 	SearchBiz biz2;
 	@Resource(name="userbookbiz")
-	Biz userbiz;
+	Biz userbookbiz;
 	@Resource(name="userbookbiz")
 	SearchBiz usearchbiz;
 	@Resource(name="booklogbiz")
-	Biz logbiz;
+	Biz booklogbiz;
 	@Resource(name="booklogbiz")
 	SearchBiz slogbiz;
 	@Resource(name="booklogbiz")
@@ -115,19 +115,19 @@ public class BookControl {
 		System.out.println(category);
 		System.out.println(search);
 
-		if(issearch.equals("name")){
+		if(issearch.equals("name")){ //책제목 검색할 때
 			try {
 				list = biz2.getname(search);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(issearch.equals("writer")){
+		}else if(issearch.equals("writer")){ //글쓴이 검색할 때
 				try {
 					list = biz2.getwriter(search);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}	
-		}else{
+		}else{ //책제목과 글쓴이 모두에서 검색할 때
 			try {
 				list = biz2.getname(search);
 				for (Object o : list) {
@@ -153,8 +153,8 @@ public class BookControl {
 		}
 		
 		
-		switch(category){
-		case "i":
+		switch(category){ //카테고리 분류
+		case "i": //카테고리가 IT일 경우
 			for (Object o : list) {
 				Book b = (Book) o;
 				if(b.getId().substring(0,1).equals("i")){
@@ -163,7 +163,7 @@ public class BookControl {
 				}
 			}
 			break;
-		case "n": 
+		case "n": //카테고리가 소설일 경우
 			for (Object o : list) {
 				Book b = (Book) o;
 				if(b.getId().substring(0,1).equals("n")){
@@ -171,7 +171,7 @@ public class BookControl {
 				}
 			}
 			break;
-		case "m": 
+		case "m": //카테고리가 만화책일 경우
 			for (Object o : list) {
 				Book b = (Book) o;
 				if(b.getId().substring(0,1).equals("m")){
@@ -179,14 +179,14 @@ public class BookControl {
 				}
 			}
 			break;
-		default : 
+		default :  //카테고리 전체에서 검색
 				resultlist = list;
 			break;
 		}
 		
 		
 		JSONArray ja = new JSONArray();
-		for(Object obj:resultlist){
+		for(Object obj:resultlist){ //resultlist를 jason으로 넘겨줌
 			Book book = (Book)obj;
 			JSONObject jo = new JSONObject();
 			jo.put("bid", book.getId());
@@ -208,7 +208,7 @@ public class BookControl {
 		return returnData;
 	}
 	
-	@RequestMapping("/bookdetail.do")
+	@RequestMapping("/bookdetail.do") //책 아이디 눌렀을 때 나오는 책 상세 정보
 	public ModelAndView bookdetail(String id){
 		ModelAndView mv = new ModelAndView("main");
 		Object result = null;
@@ -223,7 +223,7 @@ public class BookControl {
 		return mv; 
 	}
 	
-	@RequestMapping("/bookregister.do")
+	@RequestMapping("/bookregister.do") // 책 등록페이지
 	public ModelAndView bookregister(){
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.bookregister);
@@ -231,7 +231,7 @@ public class BookControl {
 		return mv; 
 	}
 	
-	@RequestMapping("/bookregisterimpl.do")
+	@RequestMapping("/bookregisterimpl.do") // 책 등록impl
 	public String bookregisterimpl(HttpServletRequest request, BookUploadCommand book){
 		Book b = new Book(book.getId(), book.getName(), book.getWriter(), 
 				book.getImg().getOriginalFilename(), book.getFloor(), 
@@ -265,7 +265,7 @@ public class BookControl {
 				
 		return "redirect:/bookmain.do";
 	}
-	@RequestMapping("/bookremoveimpl.do")
+	@RequestMapping("/bookremoveimpl.do") // 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)
 	public ModelAndView bookremoveimpl(String id){
 		ModelAndView mv = new ModelAndView("main");
 		Object IsDelete = null;
@@ -294,7 +294,7 @@ public class BookControl {
 		return mv;	
 	}
 	
-	@RequestMapping("/bookmodify.do")
+	@RequestMapping("/bookmodify.do") //책 수정페이지
 	public ModelAndView bookmodify(String id) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
 			Object b = biz.get(id);
@@ -304,7 +304,7 @@ public class BookControl {
 		return mv;
 	}
 	
-	@RequestMapping("/bookmodifyimpl.do")
+	@RequestMapping("/bookmodifyimpl.do") //책 수정(기존 사진과 새로운 사진으로 번갈아서 넣을 수 있음)
 	public ModelAndView bookmodifyimpl(HttpServletRequest request, BookUploadCommand book) throws Exception{
 		System.out.println(book.getId()+" "+book.getName() +" "+ book.getWriter());
 		System.out.println(book.getImg().getOriginalFilename()+" "+book.getFloor()+" "+book.getCurrent_qt());
@@ -342,7 +342,7 @@ public class BookControl {
 		return mv;
 	}
 //	--------------------------------------UserBook---------------------------------------
-	@RequestMapping("/userbookregister.do")  //대여하기
+	@RequestMapping("/userbookregister.do")  //책 대여하기
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		ModelAndView mv = new ModelAndView("main");		
 		HttpSession session = request.getSession();
@@ -358,7 +358,7 @@ public class BookControl {
 		
 		
 		try {
-			user = (User) ubiz.get(uid);  //지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
+			user = (User) userbiz.get(uid);  //지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
 			System.out.println("지금 로그인 한 user  :  "+user.getId());
 			System.out.println("빌리려는 책 아이디 : "+id); //지금 빌리려고 하는 책 id
 		} catch (Exception e) {
@@ -437,11 +437,11 @@ public class BookControl {
 							System.out.println("업데이트 한 book : "+upbooknew);	
 							biz.modify(upbooknew);
 							UserBook book = new UserBook(user.getId(), id); 
-							userbiz.register(book); //userbook에 등록
+							userbookbiz.register(book); //userbook에 등록
 							System.out.println("userbook 등록 : "+book);
 							
 							BookLog logbook = new BookLog(id, user.getId()); //booklog에 등록
-							logbiz.register(logbook);
+							booklogbiz.register(logbook);
 							System.out.println("userbook과 booklog에 등록 완료!!");		
 							borrowbook=3;
 							Book newbook = (Book) biz.get(upbooknew.getId());
@@ -459,14 +459,15 @@ public class BookControl {
 		return mv;
 	}
 	
-	@RequestMapping("/userbookmodifyimpl.do") //연장하기
+	
+	@RequestMapping("/userbookmodifyimpl.do") //책 연장하기
 	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id) throws Exception{
 	 ModelAndView mv = new ModelAndView("main");
 	 HttpSession session = request.getSession();
 	 String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
 	 int isqt = 0;
 	 UserBook book =  new UserBook(uid, id); 
-	 UserBook usersbook = (UserBook) userbiz.get(book); //회원이 빌렸던 책의 정보 userbook에서 가져오기
+	 UserBook usersbook = (UserBook) userbookbiz.get(book); //회원이 빌렸던 책의 정보 userbook에서 가져오기
 
 	 ArrayList<Object> userbooklist = new ArrayList<Object>(); 
 	 ArrayList<Object> booklist = new ArrayList<Object>();  //다시 usinginfo에 들어갈 정보
@@ -476,7 +477,7 @@ public class BookControl {
 		isqt =1;
 		
 	}else{ //연장이 2번 미만이면
-		userbiz.modify(book);//유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만 되야함...
+		userbookbiz.modify(book);//유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만 되야함...
 		
 	 //booklog  업데이트
 	 BookLog blog = new BookLog(id, uid);
@@ -484,11 +485,11 @@ public class BookControl {
 	 booklog = slogbiz.getid(blog); //Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
 	
 	 
-	 for (Object obj : booklog) {
+	 for (Object obj : booklog) {//새로 연장한 정보를 넣어준다.
 		 BookLog logbook = (BookLog)obj;
 		 BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(), 
 				 logbook.getU_id(), usersbook.getRenew_qt());
-		 uprebiz.logupdate(logbook2);
+		 uprebiz.logupdate(logbook2); //연장 정보 업데이트
 		 System.out.println(logbook2);
 		 
 	}
@@ -514,6 +515,26 @@ public class BookControl {
 	 return mv;
 	}
 
+	@RequestMapping("/userbookremove.do") //반납하기
+	public ModelAndView userbookremove(HttpServletRequest request, String id) throws Exception{
+		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
+		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+		BookLog booklog = new BookLog(id, uid); 
+		booklog = (BookLog) booklogbiz.get(booklog);//booklog의 반납할 책 정보 가져오기
+
+		
+		UserBook userbook = new UserBook(uid, id);
+		
+		userbook = (UserBook) userbookbiz.get(userbook);
+		
+
+		
+		return mv;
+	}
+	
+	
+	
 }
 
 

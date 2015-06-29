@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.UserBookMapper">
 	<select id="selectuserbooks" resultType="userbook">
-	SELECT * FROM A_USERBOOK
+	SELECT * FROM A_USERBOOK WHERE ISRETURN in (n)
 	</select>
 	<select id="selectuserbook" parameterType="userbook" resultType="userbook">
 	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id}

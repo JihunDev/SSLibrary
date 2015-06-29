@@ -12,18 +12,17 @@
 <body>
 <h1 align="center">과거 대여 정보</h1>
 <table width="700">
-<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
-<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>
+<thead><tr><th >BOOK_ID</th><th>USER_ID</th><th>START_DATE</th>
+<th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
 <tbody>
 <c:forEach items="${booklist}" var="b"> <!-- 추후수정 -->
 <tr>
-<td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
-<td>${b.name}</td>
-<td>${b.writer}</td>
-<td><img width="50px" src="img/book/${b.img}"></td>
-<td>${b.floor}</td>
-<td>${b.current_qt}</td>
-<td>${b.reg_date}</td>
+<td><a href="bookdetail.do?id=${b.b_id}">${b.b_id}</a></td>
+<td>${b.u_id}</td>
+<td>${b.start_date}</td>
+<td>${b.end_date}</td>
+<td>${b.real_date}</td>
+<td>${b.renew_qt}</td>
 </tr>
 </c:forEach>
 </tbody>

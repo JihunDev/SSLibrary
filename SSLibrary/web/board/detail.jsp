@@ -32,42 +32,6 @@ function register(f) {
 			f.submit();
 		};
 	}
-	
-	/* 리플 불러오기 */
-function repls() {
-	var reg_date = $('#reg_date').val/* 이게 맞나 잘모르겠음 */
-	$.ajax({
-		type : 'POST',
-		anync : 'false',
-		url : 'send.do',/* 추후 수정 */
-		data : {
-			'reg_date' : reg_date
-		},
-		success : function(data) {
-			display(data);
-		}
-	});
-}
-function display(data) {
-	var output = '';
-	output += "<table>";
-	output += "<tbody>";
-	$(data).each(function(index, item) {
-		with (item) {
-			output += '</tr>';
-			output += '<td>'+content+'</td>';
-			output += '<td>'+u_id+'</td>';
-			output += '</tr>';
-		}
-	});
-	output += "</tbody>";
-	output += "</table>";
-	
-	$('#repl').html(output);
-}
-$(document).ready(function() {
-		/* repls(); */
-});
 </script>
 <style></style>
 </head>
@@ -101,15 +65,30 @@ $(document).ready(function() {
 	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="button" value="삭제" onclick="del(this.form)">
 	<input type="button" value="수정" onclick="update(this.form)">
-</form>		
-	<div id="repl">	</div>
+</form>	
+<table>	
+	<c:forEach items="${boardreply}" var="reply">
+				<tr>
+					<td>id</td>
+					<td>${reply.id}</td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td>${reply.content}</td>
+				</tr>
+				<tr>
+					<td>시간</td>
+					<td>${reply.reg_date}</td>
+				</tr>
+	</c:forEach>	
+</table>
 <form>
 	<div>
-	<input type="hidden" name="reg_number" value="${boarddetail.id}"><br>
-	<input type="hidden" name="sort" value="${boarddetail.sort}"><br>
-	<input type="hidden" name="u_id" value="${id}"><br>
-	<textarea rows="5" cols="40" name="content"></textarea>
-	<input type="button" value="등록" onclick="register(this.form)">
+		<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}"><br>
+		<input type="hidden" name="sort" value="${boarddetail.sort}"><br>
+		<input type="hidden" name="u_id" value="${id}"><br>
+		<textarea rows="5" cols="40" name="content"></textarea>
+		<input type="button" value="등록" onclick="register(this.form)">
 	</div>
 </form>	
 </body>

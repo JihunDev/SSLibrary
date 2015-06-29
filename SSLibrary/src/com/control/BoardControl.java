@@ -50,7 +50,7 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boardwriteimpl.do")
-	public ModelAndView boardwriteimpl(BoardCommand com) {
+	public String boardwriteimpl(BoardCommand com) {
 		ModelAndView mv = new ModelAndView("main");
 		System.out.println(com);
 		
@@ -83,12 +83,10 @@ public class BoardControl {
 			}
 
 		}
-		mv.addObject("nav", Nav.register);
-		mv.addObject("center", "board/list.jsp");
-		return mv;
+		return "boardmain.do?sort="+com.getSort();
 	}
 
-	@RequestMapping("/boarddetail.do.do")
+	@RequestMapping("/boarddetail.do")
 	public ModelAndView boarddetail(HttpServletRequest request) {
 
 		return null;

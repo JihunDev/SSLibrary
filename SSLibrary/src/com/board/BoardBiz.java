@@ -67,8 +67,7 @@ public class BoardBiz implements Biz, SearchBiz {
 
 	@Override
 	public ArrayList<Object> getid(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchid(obj);
 	}
 
 }

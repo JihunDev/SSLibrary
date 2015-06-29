@@ -71,14 +71,15 @@ function register(f) {
 				<tr>
 					<td>id</td>
 					<td>${reply.id}</td>
+					<td>시간</td>
+					<td>${reply.reg_date}</td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td>${reply.content}</td>
+					<td	colspan="3">${reply.content}</td>
 				</tr>
 				<tr>
-					<td>시간</td>
-					<td>${reply.reg_date}</td>
+					
 				</tr>
 	</c:forEach>	
 </table>

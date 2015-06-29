@@ -4,3 +4,4 @@
 <script>
 </script>
 <h1>Center</h1>
+<a href="boardmain.do?sort=notice">공지사항</a>

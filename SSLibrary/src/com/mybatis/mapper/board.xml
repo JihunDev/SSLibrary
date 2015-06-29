@@ -27,6 +27,7 @@
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD
 		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title},#{content},SYSDATE,#{sort},#{file_name},#{reg_number})
+
 		<selectKey resultType="board">
 			SELECT * FROM A_BOARD WHERE	ID = #{id}
 		</selectKey>

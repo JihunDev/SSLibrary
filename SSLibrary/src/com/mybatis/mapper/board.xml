@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="selectidboards" parameterType="java.lang.String" resultType="board">
-		SELECT * FROM A_BOARD WHERE SORT = #{s}
+		SELECT * FROM A_BOARD WHERE SORT = #{s} ORDER BY ID ASC
 	</select>
 
 	<insert id="insertboard" parameterType="board">

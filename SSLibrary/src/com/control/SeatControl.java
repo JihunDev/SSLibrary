@@ -34,6 +34,8 @@ public class SeatControl {
 	@Resource(name = "seatlogbiz")
 	Biz lbiz;
 	@Resource(name = "seatlogbiz")
+	SearchBiz s_lbiz;
+	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz ur_lbiz;
 	
 	@Resource(name = "seatbiz")
@@ -175,7 +177,7 @@ public class SeatControl {
 				}
 				ubiz.remove(u_id);
 			}
-			result = (String) biz.modify(new Seat(sid_num, new_state));
+			biz.modify(new Seat(sid_num, new_state));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,6 +258,27 @@ public class SeatControl {
 		}
 		session.setAttribute("userseat", userseat);
 		mv.addObject("center","user/usinginfo.jsp");
+		return mv;
+	}
+	// 좌석 대여 과거 내역 출력
+	@RequestMapping("/seatloglist.do")
+	public ModelAndView seatloglist(String id) {
+		ModelAndView mv = new ModelAndView("main");
+		
+		ArrayList<Object> sl_l = null;
+		System.out.println(id);
+		try {
+			sl_l = s_lbiz.getid(new SeatLog(id));
+		}		
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(sl_l);
+		mv.addObject("nav", Nav.seat);
+		mv.addObject("seatloglist", sl_l);
+		mv.addObject("center", "seat/seatloglist.jsp");
+		
 		return mv;
 	}
 }

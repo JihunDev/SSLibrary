@@ -514,7 +514,7 @@ public class BookControl {
 		UserBook userbook = (UserBook) obj;
 		String bid = userbook.getB_id();// id 뽑아옴
 		Book book1 = (Book)bookbiz.get(bid);// 하나씩 찾음
-
+		
 		String[] info = { bid, book1.getName(),
 				userbook.getStart_date(), userbook.getEnd_date() };
 		// 현재 이용 정보에 필요한 값 String 배열에 넣음
@@ -537,12 +537,17 @@ public class BookControl {
 		BookLog booklog = new BookLog(id, uid); 
 		booklogbiz.modify(booklog); // 반납 정보 보내준다. real_date가 업데이트 됨
 		
+		int returnqt = 0; // 반납했는지 안했는지 
+		
 		//2. UserBook의 isreturn을 y로 바꾼다.
 		UserBook userbook = new UserBook(uid, id);
 		userbookbiz.get(userbook);	
-		
 		userbook = (UserBook) userbookbiz.get(userbook);
-		
+	
+		returnqt =1;
+		System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
+		mv.addObject("returnqt",returnqt);
+		mv.addObject("center","user/usinginfo.jsp");
 		return mv;
 	}
 	

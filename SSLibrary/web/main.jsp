@@ -7,6 +7,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
 <style>
 /**Global CSS**/
 *{
@@ -46,20 +47,7 @@ header{
 header>#top>#mainname{
 	position: absolute;
 	top : 25px;
-	left : 20px;
-}
-header>#sub{
-	position: absolute;
-	bottom : 0;
-	right : 0;
-	margin : 0 auto;
-	width : 40%;
-	height : 100px;
-	background : #036daa;
-	border-radius : 20px 0px 0px 20px;
-	line-height : 100px;
-	color : white;
-	float : left;
+	left : 43%;
 }
 
 header > #bottom{

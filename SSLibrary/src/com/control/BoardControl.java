@@ -90,32 +90,38 @@ public class BoardControl {
 	@RequestMapping("/boarddetail.do")
 	public ModelAndView boarddetail(int id) {
 		ModelAndView mv = new ModelAndView("main");
+		
+		ArrayList<Object> list = new ArrayList<Object>();
 		Board board = new Board(id);
 		Board board2 = null;
+		
 		try {
 			board2 = (Board) biz.get(board);
-			boardUpdateAndReturnBiz.logupdate(board);
+			boardUpdateAndReturnBiz.logupdate(board);//카운터
+			
+			list = boardsearchbiz.getname(new Board(board2.getId(),board2.getSort()));//리플불러오기
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("id : "+id);
+		System.out.println("list : "+list);
+		mv.addObject("boardreply", list);
 		mv.addObject("boarddetail", board2);
 		mv.addObject("center", "board/detail.jsp");
-
+		
+		
 		return mv;
 	}
 
 	@RequestMapping("/boardmodify.do")
 	public ModelAndView boardmodify(Board board) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println("board : " + board);
 		Board board2 = null;
 		try {
 			board2 = (Board) biz.get(board.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("board2 : " + board2);
 		mv.addObject("boardupdate", board2);
 		mv.addObject("center", "board/update.jsp");
 		return mv;
@@ -123,11 +129,9 @@ public class BoardControl {
 
 	@RequestMapping("/boardmodifyimpl.do")
 	public ModelAndView boardmodifyimpl(BoardCommand com) {
-		System.out.println(com);
 		Board board = new Board(com.getId(), com.getTitle(), com.getContent(),
 				com.getSort(), com.getFile_name().getOriginalFilename());
 
-		System.out.println("command : " + board);
 		try {
 			biz.modify(board);
 		} catch (Exception e1) {
@@ -173,10 +177,8 @@ public class BoardControl {
 
 	@RequestMapping("/boardreplyregister.do")
 	public ModelAndView boardreplyregister(Board board) {
-		System.out.println(board);
 		Board board2 = new Board(board.getU_id(), board.getContent(),
-				board.getSort(),board.getReg_number());
-		System.out.println(board2);
+				board.getSort(), board.getReg_number());
 		try {
 			biz.register(board2);
 		} catch (Exception e) {
@@ -187,9 +189,5 @@ public class BoardControl {
 		return mv;
 	}
 
-	@RequestMapping("/boardreplylist.do")
-	public ModelAndView boardreplylist(Board board) {
-		
-		return null;
-	}
+
 }

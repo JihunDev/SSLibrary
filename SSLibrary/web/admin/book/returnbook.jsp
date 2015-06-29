@@ -18,8 +18,8 @@
 <form>
 <div>
 <table width="700">
-<thead><tr><th>U_ID</th><th >B_ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
-<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>
+<thead><tr><th>U_ID</th><th >B_ID</th><th >START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
+</tr></thead>
 <tbody>
 <c:forEach items="${userbooklist}" var="b"> <!-- 추후수정 -->
 <tr>

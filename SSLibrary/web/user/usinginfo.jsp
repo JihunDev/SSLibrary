@@ -4,6 +4,17 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <% UserSeat userseat = (UserSeat) session.getAttribute("userseat"); %>
+<script>
+$(document).ready(function(){
+	var qt = $('#qt').val();
+			if(qt==1){
+				alert("2번 연장하셨으므로  더 이상 연장할 수 없습니다.(최대 2번 연장 가능)");	
+			}else if(qt==2){
+				alert("연장이 완료되었습니다.");	
+			}
+	});
+
+</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +23,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input type="hidden" id="qt" value="${qt}">
 <fieldset>
 	<legend>상세페이지</legend>
 		<table border="3" width="700">

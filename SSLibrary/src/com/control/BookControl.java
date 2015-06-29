@@ -522,8 +522,7 @@ public class BookControl {
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
 		BookLog booklog = new BookLog(id, uid); 
 		booklog = (BookLog) booklogbiz.get(booklog);//booklog의 반납할 책 정보 가져오기
-
-		
+	
 		UserBook userbook = new UserBook(uid, id);
 		
 		userbook = (UserBook) userbookbiz.get(userbook);
@@ -532,7 +531,6 @@ public class BookControl {
 		
 		return mv;
 	}
-	
 	
 	
 }

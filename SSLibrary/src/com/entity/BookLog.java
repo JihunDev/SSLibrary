@@ -23,8 +23,15 @@ public class BookLog {
 		this.b_id = b_id;
 		this.u_id = u_id;
 	}
-
 	
+
+	public BookLog(int id, String b_id, String u_id, String real_date) {
+		super();
+		this.id = id;
+		this.b_id = b_id;
+		this.u_id = u_id;
+		this.real_date = real_date;
+	}
 
 
 	public BookLog(int id, String b_id, String u_id, int renew_qt) {
@@ -33,21 +40,18 @@ public class BookLog {
 		this.u_id = u_id;
 		this.renew_qt = renew_qt;
 	}
-	
-	
 
-	public BookLog(int id, String b_id, String u_id, String real_date,
+
+	public BookLog(int id, String b_id, String u_id, String end_date,
 			int renew_qt) {
 		super();
 		this.id = id;
 		this.b_id = b_id;
 		this.u_id = u_id;
-		this.real_date = real_date;
+		this.end_date = end_date;
 		this.renew_qt = renew_qt;
 	}
 
-
-	
 
 	public BookLog(int id, String b_id, String u_id, String end_date,
 			String real_date, int renew_qt) {

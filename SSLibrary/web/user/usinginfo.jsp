@@ -16,19 +16,39 @@
 $(document).ready(function(){
 	var qt = $('#qt').val();
 			if(qt==1){
-				alert("2번 연장하셨으므로  더 이상 연장할 수 없습니다.(최대 2번 연장 가능)");	
+				alert("더 이상 연장할 수 없습니다.(최대 2번 연장 가능)");	
 			}else if(qt==2){
-				alert("연장이 완료되었습니다.");	
+				alert("도서 대여 기간 연장이 완료되었습니다.");	
 			}
+
 	});
 
+function extendMySeat(){
+	if('${userseat.renew_qt}' != 2){
+		var c = confirm("${userseat.s_id}번 좌석을 연장하시겠습니까??");
+		if(c == true){
+			location.href = "userseatmodify.do?id=${userseat.s_id}";
+			alert("좌석 등록 기간이 연장되었습니다.");
+		}
+	}else{
+		alert("2회 이후로 연장하실 수 없습니다.");
+	}
+	
+}
+function returnMySeat(){
+		var c = confirm("${userseat.s_id}번 좌석을 반납하시겠습니까??");
+		if(c == true){
+			location.href = "userseatremove.do?id=${userseat.s_id}";
+			alert("좌석을 반납하셨습니다.");
+		}
+	
+}
 </script>
 <title>Insert title here</title>
 </head>
 <body>
 <input type="hidden" id="qt" value="${qt}">
 
-<input type="hidden" id="s_renew_qt" value="s_renew_qt : ${userseat.renew_qt}">
 <fieldset>
 	<legend>상세페이지</legend>
 		<table border="3" width="700">
@@ -45,14 +65,14 @@ $(document).ready(function(){
 					<td>열람실 좌석</td>
 					<td>${userseat.s_id}번 좌석</td>
 					<td>연장회수</td>
-					<td><a href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userseatmodify.do?id=${userseat.s_id}'">연장</a></td><!-- 추후수정 -->
+					<td><a href="javascript:;" onClick="extendMySeat();">연장</a></td><!-- 추후수정 -->
 					<td rowspan="2"><a href="#">이력</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td>사용시간</td>
 					<td>${userseat.start_time}~${userseat.end_time}</td>
 					<td>${userseat.renew_qt}</td>
-					<td><a href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userseatremove.do?id=${userseat.s_id}'">반납</a></td><!-- 추후수정 -->
+					<td><a href="javascript:;" onClick="returnMySeat();">반납</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td colspan="6">현재대여 도서 정보</td>

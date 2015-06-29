@@ -193,11 +193,22 @@ public class SeatControl {
 		String u_id = user.getId();
 		Object userseat = null;
 		try {
-			ubiz.modify(new UserSeat(u_id));
-			ur_lbiz.logupdate(new SeatLog(u_id));
+			userseat = (UserSeat) ubiz.get(new UserSeat(u_id));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		UserSeat us = (UserSeat) userseat;
+		if(us.getRenew_qt() == 2){
+			System.out.println("연장 불가");
+		}else{
+			try {
+				ubiz.modify(new UserSeat(u_id));
+				ur_lbiz.logupdate(new SeatLog(u_id));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
 		}
 
 		try {
@@ -206,7 +217,6 @@ public class SeatControl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(userseat);
 		session.setAttribute("userseat", userseat);
 		mv.addObject("center","user/usinginfo.jsp");
 		return mv;
@@ -214,22 +224,38 @@ public class SeatControl {
 
 	// 반납
 	@RequestMapping("/userseatremove.do")
-	public String userseatremove(HttpServletRequest request) {
-		//ModelAndView mv = new ModelAndView();
-	//	int s_id =  (int) request.getAttribute("s_id");
+	public ModelAndView userseatremove(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		String u_id = user.getId();
-		String result = "";
+		String u_id = user.getId();		
+		Object userseat = null;
 		
 		try {
-			ubiz.remove(new UserSeat(u_id));
-			ur_lbiz.logreturn(new SeatLog(u_id));
+			userseat = (UserSeat) ubiz.get(new UserSeat(u_id));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mc.usinginfo(u_id, request);
-		return result;
+		UserSeat us = (UserSeat) userseat;
+		int s_id = us.getS_id();
+		
+		try {
+			ubiz.remove(new UserSeat(u_id));
+			ur_lbiz.logreturn(new SeatLog(u_id));
+			biz.modify(new Seat(s_id, "y"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			userseat = ubiz.get(new UserSeat(u_id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		session.setAttribute("userseat", userseat);
+		mv.addObject("center","user/usinginfo.jsp");
+		return mv;
 	}
 }

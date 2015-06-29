@@ -20,8 +20,6 @@
 		UPDATE A_SEATLOG SET END_DATE=END_DATE+2/24, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} 
  	</update>
 
-
-
 	<delete id="deleteseatlog" parameterType="seatlog">
 <!--  		DELETE FROM A_SEATLOG WHERE U_ID=#{u_id}  -->
 	</delete>

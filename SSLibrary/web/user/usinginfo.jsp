@@ -4,6 +4,10 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <% UserSeat userseat = (UserSeat) session.getAttribute("userseat"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script>
 $(document).ready(function(){
 	var qt = $('#qt').val();
@@ -15,11 +19,6 @@ $(document).ready(function(){
 	});
 
 </script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-
 <title>Insert title here</title>
 </head>
 <body>

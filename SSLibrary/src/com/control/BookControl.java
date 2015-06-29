@@ -26,6 +26,7 @@ import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
+import com.frame.UpdateAndReturnBiz;
 import com.util.Nav;
 
 @Controller
@@ -44,6 +45,9 @@ public class BookControl {
 	Biz logbiz;
 	@Resource(name="booklogbiz")
 	SearchBiz slogbiz;
+	@Resource(name="booklogbiz")
+	UpdateAndReturnBiz uprebiz;
+	
 //	-------------------------------------Book------------------------------------------
 	@RequestMapping("/bookmain.do")  //메인
 	public ModelAndView bookmain(HttpServletRequest request){
@@ -484,8 +488,9 @@ public class BookControl {
 		 BookLog logbook = (BookLog)obj;
 		 BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(), 
 				 logbook.getU_id(), usersbook.getRenew_qt());
+		 uprebiz.logupdate(logbook2);
 		 System.out.println(logbook2);
-		 logbiz.modify(logbook);
+		 
 	}
 	 
  	 System.out.println("연장 완료");
@@ -510,6 +515,8 @@ public class BookControl {
 	}
 
 }
+
+
 
 
 

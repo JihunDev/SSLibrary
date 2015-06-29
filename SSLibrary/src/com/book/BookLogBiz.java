@@ -10,13 +10,16 @@ import com.frame.Biz;
 import com.frame.Dao;
 import com.frame.SearchBiz;
 import com.frame.SearchDao;
+import com.frame.UpdateAndReturnBiz;
+import com.frame.UpdateAndReturnDao;
 @Service("booklogbiz")
-public class BookLogBiz implements Biz, SearchBiz {
+public class BookLogBiz implements Biz, SearchBiz, UpdateAndReturnBiz {
 	@Resource(name="booklogdao")
 	private Dao dao;
 	@Resource(name="booklogdao")
 	private SearchDao dao2;
-	
+	@Resource(name="booklogdao")
+	private UpdateAndReturnDao dao3;
 	@Override
 	public Object register(Object obj) throws Exception {
 		return dao.insert(obj);
@@ -67,6 +70,17 @@ public class BookLogBiz implements Biz, SearchBiz {
 
 	@Override
 	public ArrayList<Object> getwriter(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		return dao3.logupdate(obj);
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

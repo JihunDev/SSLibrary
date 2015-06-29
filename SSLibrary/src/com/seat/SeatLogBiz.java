@@ -8,13 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.frame.Biz;
 import com.frame.Dao;
+import com.frame.UpdateAndReturnBiz;
+import com.frame.UpdateAndReturnDao;
 
 @Service("seatlogbiz")
-public class SeatLogBiz implements Biz {
+public class SeatLogBiz implements Biz, UpdateAndReturnBiz {
 
 	@Resource(name="seatlogdao")
 	private Dao dao;
+	
+	@Resource(name="seatlogdao")
+	private UpdateAndReturnDao ur_dao;
 
+	
 	@Override
 	public Object register(Object obj) throws Exception {
 		Object result = dao.insert(obj);
@@ -23,8 +29,8 @@ public class SeatLogBiz implements Biz {
 
 	@Override
 	public Object modify(Object obj) throws Exception {
-		Object result = dao.update(obj);
-		return result;
+		
+		return null;
 	}
 
 	@Override
@@ -42,6 +48,18 @@ public class SeatLogBiz implements Biz {
 	@Override
 	public ArrayList<Object> get() throws Exception {
 		ArrayList<Object> result = dao.select();
+		return result;
+	}
+
+	@Override
+	public Object logupdate(Object obj) throws Exception {
+		Object result = ur_dao.logupdate(obj);
+		return result;
+	}
+
+	@Override
+	public Object logreturn(Object obj) throws Exception {
+		Object result = ur_dao.logreturn(obj);
 		return result;
 	}
 

@@ -14,7 +14,7 @@
 	<select id="selectuserseats" resultType="userseat">
 		SELECT * FROM A_USERSEAT
 	</select>
-	
+	<!--연장-->
 	<update id="updateuserseat" parameterType="userseat">
  		UPDATE A_USERSEAT SET END_TIME = END_TIME + 2/24, RENEW_QT=RENEW_QT+1  WHERE U_ID=#{u_id}
 	</update>

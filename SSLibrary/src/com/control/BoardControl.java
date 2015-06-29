@@ -15,6 +15,7 @@ import com.command.BoardCommand;
 import com.entity.Board;
 import com.frame.Biz;
 import com.frame.SearchBiz;
+import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class BoardControl {
@@ -23,6 +24,8 @@ public class BoardControl {
 	Biz biz;
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
+	@Resource(name = "boardbiz")
+	UpdateAndReturnBiz boardUpdateAndReturnBiz;
 
 	@RequestMapping("/boardmain.do")
 	public ModelAndView boardmain(String sort) {
@@ -91,6 +94,7 @@ public class BoardControl {
 		Board board2 = null;
 		try {
 			board2 = (Board) biz.get(board);
+			boardUpdateAndReturnBiz.logupdate(board);//д╚©Нем
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,7 +122,7 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boardmodifyimpl.do")
-	public String boardmodifyimpl(BoardCommand com) {
+	public ModelAndView boardmodifyimpl(BoardCommand com) {
 		System.out.println(com);
 		Board board = new Board(com.getId(),com.getTitle(), com.getContent(),
 				com.getSort(), com.getFile_name().getOriginalFilename());
@@ -148,7 +152,9 @@ public class BoardControl {
 			}
 
 		}
-		return "boardmain.do?sort=" + com.getSort();
+		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
+				+ board.getSort());
+		return mv;
 	}
 
 	@RequestMapping("/boardremoveimpl.do")

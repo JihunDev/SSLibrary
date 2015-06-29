@@ -26,7 +26,7 @@ function register(f) {
 <input type="hidden" name="reg_number" value="0">
 	<select name="sort">
 		<option value="">선택</option>
-		<option value="notie">공지사항</option>
+		<option value="notice">공지사항</option>
 		<option value="free">자유게시판</option>
 	</select>
 	<input type="text" name="title" placeholder="제목을 입력하세요."><br>

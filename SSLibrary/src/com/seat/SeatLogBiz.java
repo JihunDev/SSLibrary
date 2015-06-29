@@ -8,14 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.frame.Biz;
 import com.frame.Dao;
+import com.frame.SearchBiz;
+import com.frame.SearchDao;
 import com.frame.UpdateAndReturnBiz;
 import com.frame.UpdateAndReturnDao;
 
 @Service("seatlogbiz")
-public class SeatLogBiz implements Biz, UpdateAndReturnBiz {
+public class SeatLogBiz implements Biz, UpdateAndReturnBiz, SearchBiz {
 
 	@Resource(name="seatlogdao")
 	private Dao dao;
+	
+	@Resource(name="seatlogdao")
+	private SearchDao s_dao;
 	
 	@Resource(name="seatlogdao")
 	private UpdateAndReturnDao ur_dao;
@@ -41,8 +46,7 @@ public class SeatLogBiz implements Biz, UpdateAndReturnBiz {
 
 	@Override
 	public Object get(Object obj) throws Exception {
-		Object result = dao.select(obj);
-		return result;
+		return null;
 	}
 
 	@Override
@@ -61,6 +65,36 @@ public class SeatLogBiz implements Biz, UpdateAndReturnBiz {
 	public Object logreturn(Object obj) throws Exception {
 		Object result = ur_dao.logreturn(obj);
 		return result;
+	}
+
+	@Override
+	public ArrayList<Object> getid(Object obj) throws Exception {
+		ArrayList<Object> result = s_dao.searchid(obj);
+		return result;
+	}
+
+	@Override
+	public ArrayList<Object> gettitle(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getcontent(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getname(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getwriter(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -17,7 +17,7 @@
  	</update>
  	<!-- 연장  -->
 	<update id="updateseatlog_extend" parameterType="seatlog">
-		UPDATE A_SEATLOG SET END_DATE=END_DATE+2/24, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} 
+		UPDATE A_SEATLOG SET END_DATE=END_DATE+2/24, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND REAL_DATE IS NULL
  	</update>
 
 	<delete id="deleteseatlog" parameterType="seatlog">

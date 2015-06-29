@@ -31,25 +31,26 @@ import com.util.Nav;
 
 @Controller
 public class BookControl {
-	@Resource(name="userbiz")
+	@Resource(name="userbiz") //user정보
 	Biz userbiz;
-	@Resource(name="bookbiz")
+	@Resource(name="bookbiz") //책 정보
 	Biz bookbiz;
-	@Resource(name="bookbiz")
+	@Resource(name="bookbiz") //책 검색
 	SearchBiz sbookbiz;
-	@Resource(name="userbookbiz")
+	@Resource(name="userbookbiz") //대여시 회원의 책들 정보
 	Biz userbookbiz;
-	@Resource(name="userbookbiz")
+	@Resource(name="userbookbiz") //대여시 회원의 책들 정보에서 검색
 	SearchBiz suserbookbiz;
-	@Resource(name="booklogbiz")
+	@Resource(name="booklogbiz") //모든 대여한 회원들의 책 정보
 	Biz booklogbiz;
-	@Resource(name="booklogbiz")
+	@Resource(name="booklogbiz") //대여한 모든 회원들의 책정보에서 검색
 	SearchBiz sbooklogbiz;
-	@Resource(name="booklogbiz")
+	@Resource(name="booklogbiz") //책 연장, 반납 시 업데이트 할 때 필요
 	UpdateAndReturnBiz uprebiz;
 	
 //	-------------------------------------Book------------------------------------------
-	@RequestMapping("/bookmain.do")  //메인
+	
+	@RequestMapping("/bookmain.do")  //메인////////////////////////////////////////////
 	public ModelAndView bookmain(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("main");
@@ -98,7 +99,7 @@ public class BookControl {
 		return returnData;
 	}*/
 	
-	@ResponseBody //검색하기
+	@ResponseBody //검색하기////////////////////////////////////////////
 	@RequestMapping("/booksearch.do")
 	public ResponseEntity<String> booksearch(String issearch, String category,String search){
 		ResponseEntity<String> returnData = null;
@@ -208,7 +209,7 @@ public class BookControl {
 		return returnData;
 	}
 	
-	@RequestMapping("/bookdetail.do") //책 아이디 눌렀을 때 나오는 책 상세 정보
+	@RequestMapping("/bookdetail.do") //책 아이디 눌렀을 때 나오는 책 상세 정보//////////////////////////
 	public ModelAndView bookdetail(String id){
 		ModelAndView mv = new ModelAndView("main");
 		Object result = null;
@@ -223,7 +224,7 @@ public class BookControl {
 		return mv; 
 	}
 	
-	@RequestMapping("/bookregister.do") // 책 등록페이지
+	@RequestMapping("/bookregister.do") // 책 등록페이지////////////////////////////////////////
 	public ModelAndView bookregister(){
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("nav", Nav.bookregister);
@@ -231,7 +232,7 @@ public class BookControl {
 		return mv; 
 	}
 	
-	@RequestMapping("/bookregisterimpl.do") // 책 등록impl
+	@RequestMapping("/bookregisterimpl.do") // 책 등록impl////////////////////////////////////
 	public String bookregisterimpl(HttpServletRequest request, BookUploadCommand book){
 		Book b = new Book(book.getId(), book.getName(), book.getWriter(), 
 				book.getImg().getOriginalFilename(), book.getFloor(), 
@@ -265,7 +266,10 @@ public class BookControl {
 				
 		return "redirect:/bookmain.do";
 	}
-	@RequestMapping("/bookremoveimpl.do") // 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)
+	
+	
+	
+	@RequestMapping("/bookremoveimpl.do") // 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)//
 	public ModelAndView bookremoveimpl(String id){
 		ModelAndView mv = new ModelAndView("main");
 		Object IsDelete = null;
@@ -294,7 +298,7 @@ public class BookControl {
 		return mv;	
 	}
 	
-	@RequestMapping("/bookmodify.do") //책 수정페이지
+	@RequestMapping("/bookmodify.do") //책 수정페이지////////////////////////////////////////////
 	public ModelAndView bookmodify(String id) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
 			Object b = bookbiz.get(id);
@@ -304,7 +308,7 @@ public class BookControl {
 		return mv;
 	}
 	
-	@RequestMapping("/bookmodifyimpl.do") //책 수정(기존 사진과 새로운 사진으로 번갈아서 넣을 수 있음)
+	@RequestMapping("/bookmodifyimpl.do") //책 수정(기존 사진과 새로운 사진으로 번갈아서 넣을 수 있음)///////////
 	public ModelAndView bookmodifyimpl(HttpServletRequest request, BookUploadCommand book) throws Exception{
 		System.out.println(book.getId()+" "+book.getName() +" "+ book.getWriter());
 		System.out.println(book.getImg().getOriginalFilename()+" "+book.getFloor()+" "+book.getCurrent_qt());
@@ -341,7 +345,12 @@ public class BookControl {
 		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="+book.getId());	
 		return mv;
 	}
+	
+	
+	
 //	--------------------------------------UserBook---------------------------------------
+	
+
 	@RequestMapping("/userbookregister.do")  //책 대여하기
 	public ModelAndView userbookregister(HttpServletRequest request, String id){
 		ModelAndView mv = new ModelAndView("main");		
@@ -460,7 +469,7 @@ public class BookControl {
 	}
 	
 	
-	@RequestMapping("/userbookmodifyimpl.do") //책 연장하기
+	@RequestMapping("/userbookmodifyimpl.do") //책 연장하기//////////////////////////////////////////
 	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id) throws Exception{
 	 ModelAndView mv = new ModelAndView("main");
 	 HttpSession session = request.getSession();
@@ -514,20 +523,25 @@ public class BookControl {
 	 mv.addObject("center","user/usinginfo.jsp");
 	 return mv;
 	}
+	
 
-	@RequestMapping("/userbookremove.do") //반납하기
+	@RequestMapping("/userbookremove.do") //반납하기 : UserBook에 반납 정보 수정,Log에 반납처리///////////////////
 	public ModelAndView userbookremove(HttpServletRequest request, String id) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
+		//1.회원의 아이디와 책 아이디를 가지고 booklog 테이블에 반납정보를 업데이트 한다.
 		BookLog booklog = new BookLog(id, uid); 
-		booklog = (BookLog) booklogbiz.get(booklog);//booklog의 반납할 책 정보 가져오기
-	
+		booklogbiz.modify(booklog); // 반납 정보 보내준다. real_date가 업데이트 됨
+		
+		//2. UserBook의 isreturn을 y로 바꾼다.
 		UserBook userbook = new UserBook(uid, id);
+		userbookbiz.get(userbook);
+		
+		
+		
 		
 		userbook = (UserBook) userbookbiz.get(userbook);
-		
-
 		
 		return mv;
 	}

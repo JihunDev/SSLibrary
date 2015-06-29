@@ -274,11 +274,9 @@ public class BookControl {
 	}
 	
 	
-	
-	@RequestMapping("/bookremoveimpl.do") // 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)//
-	public ModelAndView bookremoveimpl(String id, HttpServletRequest request){
+	@RequestMapping("/bookremoveimpl.do")// 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)//
+	public ModelAndView bookremoveimpl(String id){
 		ModelAndView mv = new ModelAndView("main");
-		HttpSession session = request.getSession();
 		Object IsDelete = null;
 		ArrayList<Object> list = null;
 			try {
@@ -299,8 +297,7 @@ public class BookControl {
 			}
 			
 			mv.addObject("isdelete",IsDelete);
-			//mv.addObject("booklist",list);
-
+			mv.addObject("booklist",list);
 			mv.addObject("nav", Nav.book);
 			mv.addObject("center", "book/booksearch.jsp");
 		return mv;	
@@ -540,10 +537,19 @@ public class BookControl {
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
 		//1.회원의 아이디와 책 아이디를 가지고 booklog 테이블에 반납정보를 업데이트 한다.
-		BookLog booklog = new BookLog(id, uid);
-		booklogbiz.modify(booklog); // 반납 정보 보내준다. real_date가 업데이트 됨
-		System.out.println("booklog 업데이트 완료");
 		
+		 BookLog blog = new BookLog(id, uid);
+		 ArrayList<Object> booklog = new ArrayList<Object>(); 
+		 booklog = sbooklogbiz.getid(blog); //Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
+		
+		 
+		 for (Object obj : booklog) {//새로 연장한 정보를 넣어준다.
+			 BookLog logbook = (BookLog)obj;
+			 BookLog logbook2 = new BookLog(logbook.getId(),logbook.getB_id(),logbook.getU_id(),logbook.getReal_date());
+			 booklogbiz.modify(logbook2); // 반납 정보 보내준다. real_date가 업데이트 됨
+			 System.out.println("booklog 업데이트 완료");	 
+		}
+
 		int returnqt = 0; // 반납했는지 안했는지 
 		
 		//2. UserBook의 isreturn을 y로 바꾼다.

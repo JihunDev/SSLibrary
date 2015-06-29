@@ -56,7 +56,7 @@ public class BookControl {
 		}
 		mv.addObject("booklist",list);
 		mv.addObject("nav", Nav.book);
-		mv.addObject("center", "book/booksearch.jsp");
+		mv.addObject("center", "center.jsp");
 		return mv; 
 	}
 	

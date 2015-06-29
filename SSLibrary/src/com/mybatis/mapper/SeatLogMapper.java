@@ -7,6 +7,6 @@ public interface SeatLogMapper {
 	public int updateseatlog_return(Object obj);
 	public int updateseatlog_extend(Object obj);
 	public int deleteseatlog(Object obj);
-	public Object selectseatlog(Object obj);	
+	public ArrayList<Object> selectseatlog(Object obj);
 	public ArrayList<Object> selectseatlogs();
 }

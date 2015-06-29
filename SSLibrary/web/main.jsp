@@ -60,7 +60,7 @@ header > #bottom{
 header > #bottom > ul > li{
 	float : left;
 	background : black;
-	width : 100px;
+	width : 130px;
 	height : 45px;
 	line-height : 45px;
 	text-align : center;
@@ -68,7 +68,7 @@ header > #bottom > ul > li{
 	
 }
 header > #bottom > ul > li > a{
-	width : 200px;
+	width : 150px;
 	margin : 20px;
 	color : white;
 	font-size : 1.1em;

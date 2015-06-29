@@ -594,8 +594,8 @@ public class BookControl {
 		return mv; 
 	}
 	
-	@RequestMapping("/userbookreturn.do") //관리자가 
-	public ModelAndView userbookreturn(HttpServletRequest request) throws Exception{
+	@RequestMapping("/userbookremoveconfirm.do") //관리자가 반납한 도서 내역 확인하는 창///////////////////
+	public ModelAndView userbookremoveconfirm(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); //회원 아이디 정보 세션에서 가져오기
@@ -603,6 +603,12 @@ public class BookControl {
 		result = suserbookbiz.getname(uid); //반납이 y인 유저들의 정보 
 		mv.addObject("userbooklist",result);
 		mv.addObject("center", "admin/book/returnbook.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/userbookremoveimpl.do")//관리자가 반납한 도서 내역을 확인했을 때 userbook 지우는 것////
+	public ModelAndView userbookremoveimpl(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView("main");
 		return mv;
 	}
 	

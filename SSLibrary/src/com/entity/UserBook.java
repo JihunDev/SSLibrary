@@ -26,6 +26,15 @@ public class UserBook {
 	
 	
 
+	public UserBook(String u_id, String b_id, String isreturn) {
+		super();
+		this.u_id = u_id;
+		this.b_id = b_id;
+		this.isreturn = isreturn;
+	}
+
+
+
 	public UserBook(String u_id, String b_id, String start_date,
 			String end_date, int renew_qt) {
 		this.u_id = u_id;

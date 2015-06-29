@@ -64,8 +64,7 @@ public class BookLogBiz implements Biz, SearchBiz, UpdateAndReturnBiz {
 
 	@Override
 	public ArrayList<Object> getname(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchname(obj); //booklog에서 유저 아이디로 다 찾아오기
 	}
 
 	@Override

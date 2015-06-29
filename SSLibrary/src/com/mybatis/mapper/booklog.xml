@@ -26,6 +26,6 @@
 	DELETE FROM A_BOOKLOG WHERE ID = #{id}
 	</delete>
 	<update id="updatelogbook" parameterType="booklog">
-	UPDATE A_BOOKLOG SET B_ID=#{b_id}, U_ID=#{u_id}, START_DATE=#{start_date}, END_DATE=#{end_date}, REAL_DATE=SYSDATE, RENEW_QT=#{renew_qt} WHERE ID=#{id}
+	UPDATE A_BOOKLOG SET B_ID=#{b_id}, U_ID=#{u_id}, END_DATE=TO_DATE(#{end_date},'YYYY-MM-DD HH24:MI:SS.FF1'), REAL_DATE=SYSDATE, RENEW_QT=#{renew_qt} WHERE ID=#{id}
 	</update>
 </mapper>

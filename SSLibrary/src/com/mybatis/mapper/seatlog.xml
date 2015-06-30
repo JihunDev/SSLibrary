@@ -25,7 +25,7 @@
 	</delete>
 	
 	<insert id="insertseatlog" parameterType="seatlog">
- 		INSERT INTO A_SEATLOG VALUES(SEATLOG_SQ.NEXTVAL,#{u_id},#{s_id}, SYSDATE, SYSDATE+6/24, null, 0)
+ 		INSERT INTO A_SEATLOG VALUES(SEATLOG_SQ.NEXTVAL,#{u_id},#{s_id}, SYSDATE, SYSDATE+6/24/60/60, null, 0)
  		<selectKey resultType="seat">
  			SELECT * FROM A_SEATLOG WHERE U_ID=#{u_id}
  		</selectKey>

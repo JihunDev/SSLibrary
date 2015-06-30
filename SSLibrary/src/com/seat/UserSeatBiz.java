@@ -82,8 +82,8 @@ public class UserSeatBiz implements Biz, SearchBiz{
 
 	@Override
 	public ArrayList<Object> getexpired() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Object> result = s_dao.searchexpired();
+		return result;
 	}
 
 }

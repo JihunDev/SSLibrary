@@ -78,8 +78,8 @@ public class UserSeatDao implements Dao, SearchDao{
 
 	@Override
 	public ArrayList<Object> searchexpired() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Object> result = mapper.selectexpiredseat();
+		return result;
 	}
 
 }

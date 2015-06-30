@@ -15,7 +15,7 @@
 	<insert id="insertuserbook" parameterType="userbook">
 	INSERT INTO A_USERBOOK VALUES(#{u_id},#{b_id},SYSDATE,SYSDATE+14,0,'n')	
 	<selectKey resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERER U_ID = #{u_id}
+	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id}
 	</selectKey>
 	</insert>
 	<delete id="deleteuserbook" parameterType="userbook">

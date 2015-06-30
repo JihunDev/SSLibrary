@@ -15,5 +15,8 @@ public interface SearchBiz {
 	
 //	book
 	public ArrayList<Object> getwriter(Object obj) throws Exception;
+	
+	// userbook, userseat
+	public ArrayList<Object> getexpired() throws Exception;
 
 }

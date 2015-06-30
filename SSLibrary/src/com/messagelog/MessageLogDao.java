@@ -67,4 +67,10 @@ public class MessageLogDao implements Dao, SearchDao {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Object> searchexpired() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

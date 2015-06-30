@@ -149,6 +149,10 @@ function makeHeight(){
 }
 window.onload = function(){
 	makeHeight();
+	setInterval(function(){
+		 // alert("À¸¾Ó");
+		 location.href = "expireseat.do";
+	}, 1000);
 };
 
 </script>

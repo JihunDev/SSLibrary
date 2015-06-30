@@ -281,4 +281,12 @@ public class SeatControl {
 		
 		return mv;
 	}
+	
+	@RequestMapping("/expireseat.do")
+	public String expireseat(){
+	
+		
+		
+		return null;
+	}
 }

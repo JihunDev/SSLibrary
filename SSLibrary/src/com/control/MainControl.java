@@ -22,7 +22,6 @@ import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
-import com.util.Nav;
 
 @Controller
 public class MainControl {
@@ -45,8 +44,8 @@ public class MainControl {
 		mv.setViewName("main");
 		HttpSession session = request.getSession();
 		session.setAttribute("top", "top.jsp");
-		session.setAttribute("nav","nav.jsp");
-		session.setAttribute("left", "user/login.jsp");
+		session.setAttribute("nav", "nav.jsp");
+		session.setAttribute("left", "left.jsp");
 		mv.addObject("center", "center.jsp");
 
 		String ls_name = "";
@@ -118,7 +117,6 @@ public class MainControl {
 		}
 
 		if (result != null && (result.getPwd()).equals(pwd)) {
-			mv.addObject("nav", Nav.register);
 			mv.addObject("center", "center.jsp");
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
@@ -184,7 +182,6 @@ public class MainControl {
 		}
 
 		mv.addObject("user", user);
-		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/detail.jsp");
 		return mv;
 	}
@@ -252,9 +249,9 @@ public class MainControl {
 			for (Object ob : ml) {
 				MessageLog msg = (MessageLog) ob;
 				String text = msg.getText();
-				if(text.length() > 10){
+				if (text.length() > 10) {
 					text = text.substring(0, 10);
-					text = text + "...";					
+					text = text + "...";
 				}
 				MessageLog msgre = new MessageLog(msg.getId(), msg.getU_id(),
 						msg.getS_id(), msg.getSender_id(), text, msg.getRead(),
@@ -313,9 +310,9 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		session.setAttribute("userseat", userseat);		
-		session.setAttribute("booklist",booklist);
+
+		session.setAttribute("userseat", userseat);
+		session.setAttribute("booklist", booklist);
 		mv.addObject("center", "user/usinginfo.jsp");
 
 		return mv;

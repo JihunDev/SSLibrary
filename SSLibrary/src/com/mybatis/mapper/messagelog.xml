@@ -32,6 +32,6 @@
 	</delete>
 
 	<update id="updatemessagelog" parameterType="messagelog">
-		UPDATE A_MESSAGELOG SET READ = 'n', READ_DATE = SYSDATE WHERE ID = #{id}
+		UPDATE A_MESSAGELOG SET READ = 'y', READ_DATE = SYSDATE WHERE ID = #{id}
 	</update>
 </mapper>

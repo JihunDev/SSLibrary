@@ -70,10 +70,10 @@ public class SeatControl {
 
 		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
-
+		System.out.println(seatlist);
 		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
 		mv.addObject("myseat", myseat);
-
+		
 		mv.addObject("modifypage", "seatmodify.jsp");
 		mv.addObject("registermsg", "register.jsp");
 

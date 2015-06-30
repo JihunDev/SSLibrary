@@ -19,7 +19,6 @@ import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.frame.UpdateAndReturnBiz;
-import com.util.Nav;
 
 @Controller
 public class SeatControl {
@@ -78,7 +77,6 @@ public class SeatControl {
 		mv.addObject("modifypage", "seatmodify.jsp");
 		mv.addObject("registermsg", "register.jsp");
 
-		mv.addObject("nav", Nav.seat);
 		mv.addObject("center", "seat/seatstate.jsp");
 		return mv;
 	}
@@ -276,7 +274,6 @@ public class SeatControl {
 			e.printStackTrace();
 		}
 		System.out.println(sl_l);
-		mv.addObject("nav", Nav.seat);
 		mv.addObject("seatloglist", sl_l);
 		mv.addObject("center", "seat/seatloglist.jsp");
 		

@@ -109,9 +109,11 @@ public class MainControl {
 		User result = null;
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-
+		ArrayList<Object> list = new ArrayList<Object>();
+		int msgchecknumber = 0;
 		try {
 			result = (User) biz.get(new User(id));
+			list = messagelogsearchbiz.getid(new MessageLog(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,6 +123,16 @@ public class MainControl {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", result);
 			session.setAttribute("id", id);
+			
+			for (Object obj : list) {
+				MessageLog log = (MessageLog) obj;
+				String read = log.getRead();
+				if(read.equals("n")){
+					msgchecknumber += 1;
+					System.out.println(msgchecknumber);
+				}
+			}
+			session.setAttribute("msgcheck", msgchecknumber);//메세지 체크
 		} else {
 			mv.addObject("check", "fail");
 			mv.addObject("center", "center.jsp");
@@ -267,16 +279,20 @@ public class MainControl {
 	}
 
 	@RequestMapping("/msgdetail.do")
-	public ModelAndView msglogdetail(String id) {
+	public ModelAndView msglogdetail(String id,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-
+		HttpSession session = request.getSession();
+		int number = (int) session.getAttribute("msgcheck");
+		
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
+			number -= 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("msgcheck", number);//메세지 체크
 
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");

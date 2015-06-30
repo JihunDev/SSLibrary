@@ -8,17 +8,17 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
+	
 </script>
 <style>
 </style>
 </head>
 <body>
-<h1 align="center">Message List Page</h1>
+	<h1 align="center">Message List Page</h1>
 	<table width="700">
-		
 		<thead>
 			<tr>
-				<th >번호</th>
+				<th>번호</th>
 				<th>보낸사람 ID</th>
 				<th>text</th>
 				<th>보낸시간</th>
@@ -26,7 +26,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${messagelog}" var="m"> <!-- 추후수정 -->
+			<c:forEach items="${messagelog}" var="m">
+				<!-- 추후수정 -->
 				<tr>
 					<td>${m.id}</td>
 					<td>${m.sender_id}</td>

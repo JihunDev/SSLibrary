@@ -147,11 +147,20 @@ function makeHeight(){
 	section.style.height = mHeight + 'px';
 	left.style.height = mHeight + 'px';
 }
+
 window.onload = function(){
 	makeHeight();
 	setInterval(function(){
-		 // alert("À¸¾Ó");
-		 location.href = "expireseat.do";
+		$.ajax({
+			async : 'false',
+			url : 'expireseat.do',
+			success : function(data) {
+			//	alert(data);
+			},
+			error : function() {
+			//	alert("À¸¾Ó ¿¡·¯ ¤Ð¤Ð")
+			}
+		});
 	}, 1000);
 };
 

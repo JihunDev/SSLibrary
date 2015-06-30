@@ -35,6 +35,7 @@ public class SeatControl {
 	Biz lbiz;
 	@Resource(name = "seatlogbiz")
 	SearchBiz s_lbiz;
+	
 	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz ur_lbiz;
 	
@@ -281,12 +282,29 @@ public class SeatControl {
 		
 		return mv;
 	}
-	
+
+	@ResponseBody
 	@RequestMapping("/expireseat.do")
 	public String expireseat(){
-	
-		
-		
-		return null;
+		ArrayList<Object> expired_list = null;
+		int s_id = 0;
+		String u_id = "";
+		try {
+			expired_list = s_ubiz.getexpired();
+			for (Object obj : expired_list) {
+				UserSeat us = (UserSeat) obj;
+				s_id = us.getS_id();	// 예약시간이 지난 Seat의 ID
+				u_id = us.getU_id(); // 그 Seat의 User ID
+				
+				ubiz.remove(new UserSeat(u_id));		// 해당 현재 이용정보 삭제
+				ur_lbiz.logreturn(new SeatLog(u_id));	// 강제 반납된 좌석 정보를 기록에 갱신
+				biz.modify(new Seat(s_id, "y"));			// 좌석 상태를 예약가능 상태로 변경
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		//System.out.println(getClass() + ".expireseat():  사용자 좌석 이용정보 정보 갱신");
+		return "ok";
 	}
 }

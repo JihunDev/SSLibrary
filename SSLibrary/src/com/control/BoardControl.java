@@ -32,13 +32,20 @@ public class BoardControl {
 		ModelAndView mv = new ModelAndView("main");
 		System.out.println("sort main : " + sort);
 		ArrayList<Object> list = new ArrayList<Object>();
+		int count = 0;
 		try {
 			list = boardsearchbiz.getid(sort);
+			for (Object obj : list) {
+				count++;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.addObject("sortname", sort);
 		mv.addObject("boardlist", list);
+		String list_count =  String.valueOf(count);
+		System.out.println("list_count:"+list_count);
+		mv.addObject("boardlist_length",	 list_count);
 		mv.addObject("center", "board/list.jsp");
 		return mv;
 	}

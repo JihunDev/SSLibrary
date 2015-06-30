@@ -8,8 +8,7 @@
 	</select>
 	
 	<!--주기적으로 좌석 제거 -->
-	<select id="
-" resultType="userseat">
+	<select id="selectexpiredseat" resultType="userseat">
  		SELECT *  FROM A_USERSEAT WHERE  <![CDATA[END_TIME < SYSDATE]]>
 	</select>
 	
@@ -32,7 +31,7 @@
 
 	
 	<insert id="insertuserseat" parameterType="userseat">
- 		INSERT INTO A_USERSEAT VALUES(#{u_id},#{s_id}, SYSDATE, SYSDATE + 6/24, 0)
+ 		INSERT INTO A_USERSEAT VALUES(#{u_id},#{s_id}, SYSDATE, SYSDATE + 6/24/60/60, 0)
  		<selectKey resultType="userseat"> -->
  			SELECT * FROM A_USERSEAT WHERE U_ID=#{u_id}
  		</selectKey> -->

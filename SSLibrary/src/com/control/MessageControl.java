@@ -52,7 +52,6 @@ public class MessageControl {
 		try {
 			messagelogbiz.register(new MessageLog(u_id, s_id, sender_id, text));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

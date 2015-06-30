@@ -97,4 +97,10 @@ public class SeatLogBiz implements Biz, UpdateAndReturnBiz, SearchBiz {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Object> getexpired() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

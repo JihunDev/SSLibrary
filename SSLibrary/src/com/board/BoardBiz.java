@@ -84,4 +84,10 @@ public class BoardBiz implements Biz, SearchBiz,UpdateAndReturnBiz {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Object> getexpired() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

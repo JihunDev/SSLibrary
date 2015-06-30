@@ -17,4 +17,7 @@ public interface SearchDao {
 //	book
 	public ArrayList<Object> searchwriter(Object obj) throws Exception;
 
+	// userbook, userseat
+	public ArrayList<Object> searchexpired() throws Exception;
+
 }

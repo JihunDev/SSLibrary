@@ -86,4 +86,10 @@ public class UserSeatBiz implements Biz, SearchBiz{
 		return result;
 	}
 
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

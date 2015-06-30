@@ -83,4 +83,10 @@ public class BoardDao implements Dao ,SearchDao, UpdateAndReturnDao {
 		return null;
 	}
 
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		int result = mapper.selectreplynums(obj);
+		return result;
+	}
+
 }

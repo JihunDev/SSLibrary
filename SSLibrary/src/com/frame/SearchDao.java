@@ -20,4 +20,8 @@ public interface SearchDao {
 	// userbook, userseat
 	public ArrayList<Object> searchexpired() throws Exception;
 
+	// ´ñ±Û °¹¼ö ¹ÝÈ¯
+	public int getnum_reply(Object obj) throws Exception;
+
+	
 }

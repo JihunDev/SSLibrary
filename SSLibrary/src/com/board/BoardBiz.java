@@ -62,7 +62,7 @@ public class BoardBiz implements Biz, SearchBiz,UpdateAndReturnBiz {
 		// TODO Auto-generated method stub
 		return null;
 	}
-		//리플 받아오는 용으로 사용
+	//리플 받아오는 용으로 사용
 	@Override
 	public ArrayList<Object> getname(Object obj) throws Exception {
 		return dao2.searchname(obj);
@@ -89,5 +89,13 @@ public class BoardBiz implements Biz, SearchBiz,UpdateAndReturnBiz {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		int result = dao2.getnum_reply(obj);
+		return result;
+	}
+
+
 
 }

@@ -73,4 +73,11 @@ public class MessageLogDao implements Dao, SearchDao {
 		return null;
 	}
 
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }

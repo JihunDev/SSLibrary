@@ -27,10 +27,13 @@
 		SELECT * FROM A_BOARD WHERE SORT = #{s} AND REG_NUMBER IN(0) ORDER BY 1 DESC 
 	</select>
 	
-	<select id="selectreplyboards" parameterType="board"
-		resultType="board">
+	<select id="selectreplyboards" parameterType="board"	resultType="board">
 		SELECT * FROM A_BOARD WHERE REG_NUMBER = #{id} AND SORT = #{sort} ORDER BY 1 ASC 
 	</select>
+
+	<select id="selectreplynums" parameterType="board" resultType="java.lang.Integer">
+	      SELECT COUNT(*) FROM A_BOARD WHERE SORT = #{sort} AND REG_NUMBER=#{id}
+	</select> 
 
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD

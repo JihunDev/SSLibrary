@@ -5,17 +5,42 @@
 <%User user = (User)session.getAttribute("user");%> 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <div id="top">
-<h1 id="mainname"><a href="main.do"><img width="80%"src="img/css/mainname.gif"></a></h1>
-</div>
-<div id="bottom">
-<ul>
-<%if(user!=null && user.getIsadmin().equals("y")){ %>
-<li><a href="seatmain.do"><b>열람실관리</b></a></li>
-<li><a href="bookmain.do"><b>자료실관리</b></a></li>
-<li><a href="#"><b>회원관리</b></a></li>
-<%}else{%>
-<li><a href="seatmain.do"><b>열람실</b></a></li>
-<li><a href="bookmain.do"><b>자료실</b></a></li>	
+<%if(user == null){  %>
+	<fieldset>
+			<form class="form-inline" role="form" action="loginimpl.do" method="POST" enctype="multipart/form-data">
+			<table>
+			<tr><td width="180px">
+			<div class="form-group">
+     	 <label class="sr-only" for="id">ID :</label>
+      		<input type="text" class="form-control input-sm"  name="id" id="id" placeholder="Enter ID">      	
+   			 </div></td><td width="180px">
+    		<div class="form-group">
+     	 <label class="sr-only" for="pwd">PASSWORD :</label>
+      		<input type="password" class="form-control input-sm" name="pwd" id="pwd" placeholder="Enter password">
+   			 </div>
+   			 </td><td width="60px">
+    <input type="submit" value ="login" class="btn btn-primary btn-sm""></td>
+    	<td width="60px"><a class="btn btn-primary btn-sm" href="register.do" role="button">register</a></td></tr>
+    		</table>
+			</form>
+	</fieldset>	
+	
+<%}else{ %>
+	<fieldset>
+			<table>
+				<tbody>
+					<tr>
+						<td width="70px"><a href="msglogcheck.do"><b>message</b><span class="badge">5</span></a><br></td>
+						<td width="70px">  <img src="img/user/${user.img}" class="img-circle" alt="Cinque Terre" width="45" height="45"></td>
+						<td width="140px"><a href="detail.do?id='${user.id}'"><b>${user.id}님 환영합니다.</b></a></td>
+						<td width="80px"><a class="btn btn-primary btn-sm" href="logout.do" role="button"><b>로그아웃</b></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</fieldset>
 <%} %>
-</ul>
+
+</div>
+<div id="logo">
+<h1 id="mainname"><a href="main.do"><img width="70%"src="img/css/mainname.gif"></a></h1>
 </div>

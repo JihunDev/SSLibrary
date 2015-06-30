@@ -23,7 +23,7 @@ var borrowbook = $('#borrowbook').val();
 <h1 align="center">Book Detail Page</h1>
 <fieldset>
 <legend>Book Detail</legend>
-<table width="700"> <!-- 추후수정 -->
+<table width="700" class="table table-condensed"> 
 <tr><td rowspan="7"><img width="200px" src="img/book/${bookdetail.img}"></td><th>ID</th><td>${bookdetail.id}</td></tr>
 <tr><th>책제목</th><td>${bookdetail.name}</td></tr>
 <tr><th>저자</th><td>${bookdetail.writer}</td></tr>

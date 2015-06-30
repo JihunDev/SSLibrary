@@ -46,7 +46,6 @@ public class MainControl {
 		HttpSession session = request.getSession();
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("left", "user/login.jsp");
-		mv.addObject("nav", Nav.home);
 		mv.addObject("center", "center.jsp");
 
 		String ls_name = "";
@@ -64,7 +63,6 @@ public class MainControl {
 	@RequestMapping("/register.do")
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView("main");
-		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/register.jsp");
 		return mv;
 	}
@@ -101,7 +99,6 @@ public class MainControl {
 			}
 
 		}
-		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -142,7 +139,6 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("nav", Nav.register);// 추후수정
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -202,7 +198,6 @@ public class MainControl {
 		}
 
 		ModelAndView mv = new ModelAndView("main");
-		mv.addObject("nav", Nav.register);
 		mv.addObject("userupdate", user);
 		mv.addObject("center", "user/update.jsp");
 		return mv;
@@ -242,8 +237,6 @@ public class MainControl {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-
-		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -270,7 +263,6 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("nav", Nav.register);
 		mv.addObject("messagelog", mlre);
 		mv.addObject("center", "messagelog/messagelist.jsp");
 		return mv;
@@ -288,7 +280,6 @@ public class MainControl {
 			e.printStackTrace();
 		}
 
-		mv.addObject("nav", Nav.register);
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
 
@@ -324,7 +315,6 @@ public class MainControl {
 		
 		session.setAttribute("userseat", userseat);		
 		session.setAttribute("booklist",booklist);
-		mv.addObject("nav", Nav.register);
 		mv.addObject("center", "user/usinginfo.jsp");
 
 		return mv;

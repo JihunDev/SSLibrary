@@ -19,11 +19,15 @@ public class MessageLog {
 		this.id = id;
 	}
 
+	public MessageLog(String u_id) {
+		super();
+		this.u_id = u_id;
+	}
+
 	public MessageLog(int id, String read) {
 		this.id = id;
 		this.read = read;
 	}
-	
 
 	public MessageLog(String u_id, int s_id, String sender_id, String text) {
 		this.u_id = u_id;

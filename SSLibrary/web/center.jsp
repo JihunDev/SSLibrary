@@ -47,8 +47,7 @@
 <div id="free">
 <font size="5px">자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</font><b><a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=free">더보기</a></b>
 </div>
-<div ID="lastbook">
+<!-- <div id="lastbook">
 <font size="5px">최신 도서 TOP10</font>
-
-</div>
+</div> -->
 

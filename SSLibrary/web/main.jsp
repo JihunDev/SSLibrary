@@ -171,7 +171,10 @@ section {
 
 }
 #lastbook{
-
+	width : 640px;
+	height : 200px;
+	padding : 10px;
+	border : solid black 1px;
 
 }
 /** Footer CSS**/

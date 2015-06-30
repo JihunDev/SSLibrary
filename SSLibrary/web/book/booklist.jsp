@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1 align="center">과거 대여 정보</h1>
-<table width="700">
+<table width="700" class="table table-hover">
 <thead><tr><th >BOOK_ID</th><th>USER_ID</th><th>START_DATE</th>
 <th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
 <tbody>

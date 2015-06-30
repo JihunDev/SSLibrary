@@ -29,7 +29,7 @@ function makeHeight() {
 function displaybook(data) {
 	$('#book_result').empty();
 	var output = '';
-	output+='<table>'
+	output+='<table class="table table-hover">'
 	output+='<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
 	$(data).each(function(index, item) {
 		with (item) {
@@ -135,11 +135,11 @@ $(document).ready(function(){
 	<select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
 	<input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 	<%if(user!=null && user.getIsadmin().equals("y")){ %>
-	<a href="bookregister.do">등록</a>
-	<a href="userbookremoveconfirm.do">회원 도서 반납 내역</a>
+	<a class="btn btn-default btn-xs" href="bookregister.do" role="button">등록</a>
+	<a class="btn btn-default btn-xs" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
 	<%} %>
-	<div  id="book_result">
-		<table width="700">
+	<div id="book_result">
+		<table width="700" class="table table-hover">
 		<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
 		<th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>
 		<tbody>

@@ -19,4 +19,6 @@ public interface SearchBiz {
 	// userbook, userseat
 	public ArrayList<Object> getexpired() throws Exception;
 
+	public int getnum_reply(Object obj) throws Exception;
+
 }

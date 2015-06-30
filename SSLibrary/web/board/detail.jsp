@@ -27,7 +27,7 @@ function update(f) {
 function register(f) {
 	var c = confirm('리플을 등록 하시겠습니까?');
 		if (c == true) {
-			f.action = 'boardreplyregister.do';/* 추후 수정 */
+			f.action = 'boardwriteimpl.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
 		};
@@ -42,7 +42,9 @@ function register(f) {
 	<tbody>
 		<tr>
 			<td>제목</td>
-			<td colspan="5">${boarddetail.title}</td>
+			<td colspan="3">${boarddetail.title}</td>
+			<td>글쓴이</td>
+			<td>${boarddetail.u_id}</td>
 		</tr>
 		<tr>
 			<td>분류</td>
@@ -65,25 +67,28 @@ function register(f) {
 	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="button" value="삭제" onclick="del(this.form)">
 	<input type="button" value="수정" onclick="update(this.form)">
-</form>	
-<table>	
-	<c:forEach items="${boardreply}" var="reply">
-				<tr>
-					<td>id</td>
-					<td>${reply.id}</td>
-					<td>시간</td>
-					<td>${reply.reg_date}</td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td	colspan="3">${reply.content}</td>
-				</tr>
-				<tr>
-					
-				</tr>
-	</c:forEach>	
-</table>
-<form>
+</form>
+	<table border=1>
+		<c:forEach items="${boardreply}" var="reply">
+		<form>
+			<input type="hidden" name="sort" value="${boarddetail.sort}">
+			<input type="hidden" name="id" value="${boarddetail.id}">
+	
+			<tr>
+				<td>등록번호</td><td>${reply.id}</td>
+				<td>시간</td><td>${reply.reg_date}</td>
+				<td><input type="button" value="삭제" onclick="del(this.form)"></td>
+			</tr>
+			<tr>			
+				<td>글쓴이</td><td>${reply.u_id}</td>
+				<td>내용</td>
+				<td>${reply.content}</td>
+				<td><input type="button" value="수정" onclick="update(this.form)"></td>
+			</tr>
+		</form>
+		</c:forEach>
+	</table>
+	<form>
 	<div>
 		<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}"><br>
 		<input type="hidden" name="sort" value="${boarddetail.sort}"><br>

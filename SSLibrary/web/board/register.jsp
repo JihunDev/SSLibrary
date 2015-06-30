@@ -8,13 +8,20 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
-function register(f) {
-	var c = confirm('등록 하시겠습니까?');
-		if (c == true) {
-			f.action = 'boardwriteimpl.do';
-			f.method = 'POST';
-			f.submit();
-		};
+
+	function register(f) {
+		if (f.sort.value == null || f.sort.value == "") {
+			alert("카테고리를 선택하세요");
+			f.sort.focus();
+
+		} else {
+			var c = confirm('등록 하시겠습니까?');
+			if (c == true) {
+				f.action = 'boardwriteimpl.do';
+				f.method = 'POST';
+				f.submit();
+			};
+		}
 	}
 </script>
 <style></style>

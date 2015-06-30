@@ -77,4 +77,10 @@ public class MessageLogBiz implements Biz,SearchBiz {
 		return null;
 	}
 
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

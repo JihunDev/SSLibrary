@@ -9,14 +9,16 @@
 		}
 		return a;
 	}%>
-
+<c:set var="list_length" value="${boardlist_length}" />
 <%
+	int list_length = toInt((String) pageContext.getAttribute("list_length"));
+	String sort = request.getParameter("sort");
 	int pageno = toInt(request.getParameter("pageno"));
 
    if(pageno<1){//현재 페이지
       pageno = 1;
    }
-   int total_record = 700;      //총 레코드 수
+   int total_record = list_length;      //총 레코드 수
    int page_per_record_cnt = 10;  //페이지 당 레코드 수
    int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]
 //                                              [6],[7],[8],[9],[10]                                 
@@ -113,12 +115,44 @@ a {
 <%=next_pageno%><br />
 <hr />
 
-<a href="boardmain.do?sort=notice&pageno=1">[맨앞으로]</a>
-<a href="boardmain.do?sort=notice&pageno=<%=prev_pageno%>">[이전]</a>
+<h1>board list</h1>
+<table>
+	<thead>
+		<tr>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
+			<c:set var="foreach_count" value="${board_status.count}" />
+			<%
+				int count = (int) pageContext.getAttribute("foreach_count");
+				if(count >= record_start_no &&  count <= record_end_no){
+			%>
+			<tr>
+				<td>${b.id}</td>
+				<td><a href="boarddetail.do?id=${b.id}">${b.title}(${b.reply_num})</a></td>
+				<td>${b.u_id}</td>
+				<td>${b.reg_date}</td>
+				<td>${b.counter}</td>
+			</tr>
+			<%}%>
+		</c:forEach>
+	</tbody>
+	<!-- test후 페이지 넘어가는 거 만듬 -->
+</table>
+
+<hr>
+<a href="boardmain.do?sort=<%=sort%>&pageno=1">[맨앞으로]</a>
+<a href="boardmain.do?sort=<%=sort%>&pageno=<%=prev_pageno%>">[이전]</a>
 <%
 	for(int i =page_sno;i<=page_eno;i++){
 %>
-<a href="boardmain.do?sort=notice&pageno=<%=i%>"> <%
+<a href="boardmain.do?sort=<%=sort%>&pageno=<%=i%>"> <%
  	if(pageno == i){
  %>
 	<b>[<%=i%>]
@@ -139,41 +173,8 @@ a {
 <%
 	}
 %>
-<a href="boardmain.do?sort=notice&pageno=<%=next_pageno%>">[다음]</a>
-<a href="boardmain.do?sort=notice&pageno=<%=total_page%>">[맨뒤로]</a>
-<hr>
-<h1>board list</h1>
-<table>
-	<thead>
-		<tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>글쓴이</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</tr>
-	</thead>
-	<tbody>
 
-
-
-		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
-			<c:set var="foreach_count" value="${board_status.count}" />
-			<%
-				int count = (int) pageContext.getAttribute("foreach_count");
-				if(count >= record_start_no &&  count <= record_end_no){
-			%>
-			<tr>
-				<td>${b.id}</td>
-				<td><a href="boarddetail.do?id=${b.id}">${b.title}</a></td>
-				<td>${b.u_id}</td>
-				<td>${b.reg_date}</td>
-				<td>${b.counter}</td>
-			</tr>
-			<%}%>
-		</c:forEach>
-	</tbody>
-	<!-- test후 페이지 넘어가는 거 만듬 -->
-</table>
+<a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
+<a href="boardmain.do?sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
 <a href="boardwrite.do">등록</a>
 

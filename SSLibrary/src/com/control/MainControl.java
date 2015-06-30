@@ -45,6 +45,7 @@ public class MainControl {
 		mv.setViewName("main");
 		HttpSession session = request.getSession();
 		session.setAttribute("top", "top.jsp");
+		session.setAttribute("nav","nav.jsp");
 		session.setAttribute("left", "user/login.jsp");
 		mv.addObject("center", "center.jsp");
 

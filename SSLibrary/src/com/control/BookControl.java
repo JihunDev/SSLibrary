@@ -67,7 +67,6 @@ public class BookControl {
 			e.printStackTrace();
 		}
 		mv.addObject("booklist",list);
-		mv.addObject("nav", Nav.book);
 		mv.addObject("center", "book/booksearch.jsp");
 		return mv; 
 	}
@@ -225,7 +224,6 @@ public class BookControl {
 			e.printStackTrace();
 		}
 		mv.addObject("bookdetail",result);
-		mv.addObject("nav", Nav.bookdetail);
 		mv.addObject("center", "book/bookdetail.jsp");
 		return mv; 
 	}
@@ -233,7 +231,6 @@ public class BookControl {
 	@RequestMapping("/bookregister.do") // 책 등록페이지////////////////////////////////////////
 	public ModelAndView bookregister(){
 		ModelAndView mv = new ModelAndView("main");
-		mv.addObject("nav", Nav.bookregister);
 		mv.addObject("center", "admin/book/register.jsp");
 		return mv; 
 	}
@@ -298,7 +295,6 @@ public class BookControl {
 	         
 	         mv.addObject("isdelete",IsDelete);
 	        mv.addObject("booklist",list);
-	         mv.addObject("nav", Nav.book);
 	         mv.addObject("center", "book/booksearch.jsp");
 	      return mv;   
 	   }
@@ -308,7 +304,6 @@ public class BookControl {
 		ModelAndView mv = new ModelAndView("main");
 			Object b = bookbiz.get(id);
 		mv.addObject("bookinfo",b);
-		mv.addObject("nav", Nav.bookupdate);
 		mv.addObject("center", "admin/book/update.jsp");
 		return mv;
 	}
@@ -468,7 +463,6 @@ public class BookControl {
 		}			
 		
 		mv.addObject("borrowbook",borrowbook);
-		mv.addObject("nav", Nav.bookdetail);
 		mv.addObject("center", "book/bookdetail.jsp");
 		return mv;
 	}

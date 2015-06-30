@@ -170,7 +170,7 @@ window.onload = function(){
 <header>
 <jsp:include page="${top}"/>
 </header>
-<nav>${nav}</nav>
+<nav></nav>
 <section id="section">
 <aside id="left">
 <jsp:include page="${left}"/>

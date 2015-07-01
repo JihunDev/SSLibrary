@@ -31,4 +31,8 @@
 	<!-- 반납이 y인 유저들의 정보 -->
 	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('y')
 	</select>
+	<!--주기적으로 연체자 정지회원으로 만들기 -->
+	<select id="selectoverduebooks" resultType="userbook">
+ 		SELECT *  FROM A_USERBOOK WHERE <![CDATA[END_DATE < SYSDATE]]>
+	</select>
 </mapper>

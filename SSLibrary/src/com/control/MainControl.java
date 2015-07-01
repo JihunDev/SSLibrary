@@ -117,25 +117,29 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		if (result != null && (result.getPwd()).equals(pwd)) {
-			mv.addObject("center", "center.jsp");
-			HttpSession session = request.getSession();
-			session.setAttribute("user", result);
-			session.setAttribute("id", id);
-			
-			for (Object obj : list) {
-				MessageLog log = (MessageLog) obj;
-				String read = log.getRead();
-				if(read.equals("n")){
-					msgchecknumber += 1;
-					System.out.println(msgchecknumber);
+		if(result.getIsadmin().equals("d")){
+			//삭제 회원 로그인 불가능
+		}else {
+			if (result != null && (result.getPwd()).equals(pwd)) {
+				mv.addObject("center", "center.jsp");
+				HttpSession session = request.getSession();
+				session.setAttribute("user", result);
+				session.setAttribute("id", id);
+	
+				for (Object obj : list) {
+					MessageLog log = (MessageLog) obj;
+					String read = log.getRead();
+					if (read.equals("n")) {
+						msgchecknumber += 1;
+						System.out.println(msgchecknumber);
+					}//새로운 메세지 수 카운트
 				}
+				session.setAttribute("msgcheck", msgchecknumber);
+				// 새로운 메세지의 수만큼 세션에 넣음
+			} else {
+				mv.addObject("check", "fail");
+				mv.addObject("center", "center.jsp");
 			}
-			session.setAttribute("msgcheck", msgchecknumber);//메세지 체크
-		} else {
-			mv.addObject("check", "fail");
-			mv.addObject("center", "center.jsp");
 		}
 		return mv;
 	}
@@ -231,7 +235,7 @@ public class MainControl {
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
-			
+
 		} else {
 			byte[] data;
 			try {
@@ -279,12 +283,12 @@ public class MainControl {
 	}
 
 	@RequestMapping("/msgdetail.do")
-	public ModelAndView msglogdetail(String id,HttpServletRequest request) {
+	public ModelAndView msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
 		HttpSession session = request.getSession();
 		int number = (int) session.getAttribute("msgcheck");
-		
+
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
@@ -292,7 +296,7 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("msgcheck", number);//메세지 체크
+		session.setAttribute("msgcheck", number);// 메세지 체크
 
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");

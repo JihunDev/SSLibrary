@@ -12,4 +12,6 @@ public interface UserMapper {
 	public Object selectuser(Object obj);
 
 	public ArrayList<Object> selectusers();
+	
+	public ArrayList<Object> selectnameuser(Object obj);
 }

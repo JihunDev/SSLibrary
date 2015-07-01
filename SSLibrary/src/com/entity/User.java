@@ -8,10 +8,8 @@ public class User {
 	private String img;
 	private String email;
 	private String reg_date;
+	private String stop_date;
 	private String isadmin;
-
-	// private ArrayList<Book> books;
-	// private Seat seat;
 
 	public User() {
 		super();
@@ -21,13 +19,13 @@ public class User {
 	public User(String id) {
 		this.id = id;
 	}
-		
+
 	public User(String id, String isadmin) {
 		super();
 		this.id = id;
 		this.isadmin = isadmin;
 	}
-			
+
 	public User(String id, String name, String isadmin) {
 		super();
 		this.id = id;
@@ -56,6 +54,20 @@ public class User {
 		this.img = img;
 		this.email = email;
 		this.reg_date = reg_date;
+		this.isadmin = isadmin;
+	}
+
+	public User(String id, String pwd, String name, String phone, String img,
+			String email, String reg_date, String stop_date, String isadmin) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.phone = phone;
+		this.img = img;
+		this.email = email;
+		this.reg_date = reg_date;
+		this.stop_date = stop_date;
 		this.isadmin = isadmin;
 	}
 
@@ -123,11 +135,20 @@ public class User {
 		this.isadmin = isadmin;
 	}
 
+	public String getStop_date() {
+		return stop_date;
+	}
+
+	public void setStop_date(String stop_date) {
+		this.stop_date = stop_date;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name
 				+ ", phone=" + phone + ", img=" + img + ", email=" + email
-				+ ", reg_date=" + reg_date + ", isadmin=" + isadmin + "]";
+				+ ", reg_date=" + reg_date + ", stop_date=" + stop_date
+				+ ", isadmin=" + isadmin + "]";
 	}
 
 }

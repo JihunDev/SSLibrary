@@ -31,7 +31,7 @@
             <tbody>
                <tr>
                   <td width="70px"><a href="msglogcheck.do"><b>message</b><span class="badge">${msgcheck}</span></a><br></td>
-                  <td width="70px">  <img src="img/user/${user.img}" class="img-circle" alt="Cinque Terre" width="45" height="45"></td>
+                  <td width="70px">  <img src="img/user/${user.img}" class="img-circle" alt="Cinque Terre" width="40" height="40"></td>
                   <td width="140px"><a href="detail.do?id='${user.id}'"><b>${user.id}´Ô È¯¿µÇÕ´Ï´Ù.</b></a></td>
                   <td width="80px"><a class="btn btn-primary btn-sm" href="logout.do" role="button"><b>·Î±×¾Æ¿ô</b></a></td>
                </tr>

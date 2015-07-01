@@ -90,10 +90,7 @@ function register(f){
                     		  </div>
                 </div>
             </div>                
-<!--                     
-                    
-                    
-                    <fieldset>
+<!--<fieldset>
 <legend>책 등록 양식</legend>
 <form enctype="multipart/form-data">
 <table>

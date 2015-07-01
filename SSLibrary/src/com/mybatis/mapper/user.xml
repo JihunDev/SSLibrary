@@ -12,7 +12,11 @@
 		SELECT *
 		FROM A_USER WHERE ID = #{id}
 	</select>
-
+	<!-- 회원 검색 -->
+	<select id="selectnameuser" parameterType="java.lang.String" resultType="user">
+		SELECT * FROM A_USER WHERE ISADMIN = #{isadmin} AND NAME = #{name}
+	</select>
+	
 	<insert id="insertuser" parameterType="user">
 		INSERT INTO A_USER
 		VALUES(#{id},#{pwd},#{name},#{phone},#{img},#{email},SYSDATE,#{isadmin})

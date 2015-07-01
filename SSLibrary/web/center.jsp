@@ -42,11 +42,13 @@
     </a>
   </div>
   <div id="notice">
-<font size="5px">공지사항&nbsp;&nbsp;&nbsp;&nbsp;</font><b><a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=notice">더보기</a></b>
-</div>  
-<div id="free">
-<font size="5px">자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</font><b><a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=free">더보기</a></b>
-</div>
+	<font size="5px">공지사항&nbsp;&nbsp;&nbsp;&nbsp;</font><b>
+	<a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=notice">더보기</a></b>
+	
+	</div>  
+	<div id="free">
+	<font size="5px">자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</font><b><a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=free">더보기</a></b>
+	</div>
 <!-- <div id="lastbook">
 <font size="5px">최신 도서 TOP10</font>
 </div> -->

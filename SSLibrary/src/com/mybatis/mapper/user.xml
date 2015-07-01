@@ -27,7 +27,7 @@
 	
 	<insert id="insertuser" parameterType="user">
 		INSERT INTO A_USER
-		VALUES(#{id},#{pwd},#{name},#{phone},#{img},#{email},SYSDATE,#{isadmin})
+		VALUES(#{id},#{pwd},#{name},#{phone},#{img},#{email},SYSDATE,NULL,#{isadmin})
 		<selectKey resultType="user">
 			SELECT * FROM A_USER WHERE ID = #{id}
 		</selectKey>

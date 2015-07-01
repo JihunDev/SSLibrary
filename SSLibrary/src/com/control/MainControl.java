@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
+import com.entity.Board;
 import com.entity.Book;
 import com.entity.MessageLog;
 import com.entity.User;
@@ -37,19 +38,21 @@ public class MainControl {
 	Biz userseatbiz;
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
+	@Resource(name = "boardbiz")
+	SearchBiz boardsearchbiz;
 
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("main");
+		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
-		session.setAttribute("top", "top.jsp");
-		session.setAttribute("nav", "nav.jsp");
-		session.setAttribute("left", "left.jsp");
-		mv.addObject("center", "center.jsp");
-
 		String ls_name = "";
 		String ls_value = "";
+		String[] board = { "notice", "free" };
+		ArrayList<Object> list = new ArrayList<Object>();
+		ArrayList<Object> notice_list = new ArrayList<Object>();
+		ArrayList<Object> free_list = new ArrayList<Object>();
+
+		// 세션 정보 확인
 		Enumeration<String> enum_app = session.getAttributeNames();
 		while (enum_app.hasMoreElements()) {
 			ls_name = enum_app.nextElement().toString();
@@ -57,6 +60,42 @@ public class MainControl {
 			System.out.println("얻어온 세션 이름 :" + ls_name);
 			System.out.println("얻어온 세션 값 :" + ls_value);
 		}
+		// 메인 공지사항 게시판
+		try {
+			list = boardsearchbiz.getid(board[0]);
+			for (Object obj : list) {
+				Board one_board = (Board) obj;
+				for (int i = 0; i < 5; i++) {
+					notice_list.add(one_board);
+					System.out.println(one_board);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 메인 자유 게시판
+		try {
+			list = boardsearchbiz.getid(board[1]);
+			for (Object obj : list) {
+				Board one_board = (Board) obj;
+				for (int i = 0; i < 5; i++) {
+					free_list.add(one_board);
+					System.out.println(one_board);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		session.setAttribute("top", "top.jsp");
+		session.setAttribute("nav", "nav.jsp");
+		session.setAttribute("left", "left.jsp");
+		
+		mv.addObject("free", free_list);
+		mv.addObject("notice", notice_list);
+		mv.addObject("center", "center.jsp");
+
 		return mv;
 	}
 
@@ -70,24 +109,21 @@ public class MainControl {
 	@RequestMapping("/registerimpl.do")
 	public ModelAndView registerimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
-
-		User user = new User(com.getId(), com.getPwd(), com.getName(),
-				com.getPhone(), com.getImg().getOriginalFilename(),
-				com.getEmail(), com.getIsadmin());
-
-		try {
-			biz.register(user);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
-		MultipartFile file = com.getImg();
-		String dir = "C:/lib/SSLibrary/web/img/user/";
-		String img = file.getOriginalFilename();
-		if (img == null || img.equals("")) {
-
+		User user = null;
+		String fistimg = "index.jpg";
+		if (com.getImg().getOriginalFilename().equals("")) {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), fistimg, com.getEmail(), com.getIsadmin());
 		} else {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), com.getImg().getOriginalFilename(),
+					com.getEmail(), com.getIsadmin());
+
+			// 이미지 저장
+			MultipartFile file = com.getImg();
+			String dir = "C:/lib/SSLibrary/web/img/user/";
 			byte[] data;
+
 			try {
 				data = file.getBytes();
 				FileOutputStream out = new FileOutputStream(dir
@@ -97,8 +133,14 @@ public class MainControl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
+
+		try {
+			biz.register(user);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -111,28 +153,30 @@ public class MainControl {
 		String pwd = request.getParameter("pwd");
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
+
 		try {
 			result = (User) biz.get(new User(id));
 			list = messagelogsearchbiz.getid(new MessageLog(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(result.getIsadmin().equals("d")){
-			//삭제 회원 로그인 불가능
-		}else {
+
+		if (result.getIsadmin().equals("d")) {
+			// 삭제 회원 로그인 불가능
+		} else {
 			if (result != null && (result.getPwd()).equals(pwd)) {
 				mv.addObject("center", "center.jsp");
 				HttpSession session = request.getSession();
 				session.setAttribute("user", result);
 				session.setAttribute("id", id);
-	
+
 				for (Object obj : list) {
 					MessageLog log = (MessageLog) obj;
 					String read = log.getRead();
 					if (read.equals("n")) {
 						msgchecknumber += 1;
 						System.out.println(msgchecknumber);
-					}//새로운 메세지 수 카운트
+					}// 새로운 메세지 수 카운트
 				}
 				session.setAttribute("msgcheck", msgchecknumber);
 				// 새로운 메세지의 수만큼 세션에 넣음

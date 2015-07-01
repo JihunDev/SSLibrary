@@ -620,6 +620,23 @@ public class BookControl {
 		return mv;
 	}
 	
+	@ResponseBody //연체자들 정지되게 만들기 ////////////////////////////////////////////////
+	@RequestMapping("/stopborrowbook.do")
+	public String notreturnbook() throws Exception{
+		ArrayList<Object> overduelist = null;
+		int s_id = 0;
+		String u_id = "";
+		overduelist = suserbookbiz.getexpired(); //현재시간을 기준으로 책 연체자들 가져오기
+		for (Object obj : overduelist) {
+			UserBook ub = (UserBook) obj;
+			String uid = ub.getU_id();
+		
+			User userinfo = new User(uid, "s"); //user의 상태를 정지로 바꿔줌
+			userbiz.remove(userinfo);
+		}
+		return "ok";
+	}
+	
 }
 
 

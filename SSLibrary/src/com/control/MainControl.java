@@ -19,11 +19,8 @@ import com.command.UserCommand;
 import com.entity.Board;
 import com.entity.Book;
 import com.entity.MessageLog;
-import com.entity.Seat;
-import com.entity.SeatLog;
 import com.entity.User;
 import com.entity.UserBook;
-import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.frame.UpdateAndReturnBiz;
@@ -291,20 +288,9 @@ public class MainControl {
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
+
 		try {
 			biz.modify(user);
-
-			User user_ch = (User) biz.get(com.getId());
-			System.out.println("user : " + user_ch);
-			if (user_ch.getIsadmin().equals("s")) {
-				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(
-						user_ch.getId()));
-				System.out.println("userseat : " + userseat);
-				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
-				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
-				seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É º¯°æ
-			}
-
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

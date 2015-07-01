@@ -10,6 +10,15 @@
 <script></script>
 <style></style>
 </head>
+<form action="usersearchname.do" method="POST">
+	<select name="isadmin">
+		<option value="">전체</option>
+		<option value="n">회원</option>
+		<option value="s">정지</option>
+	</select>
+	<input type="text" name="name" >
+	<input type="submit" value="검색">
+</form>
 <body>
 	<h1>User list</h1>
 	<div>

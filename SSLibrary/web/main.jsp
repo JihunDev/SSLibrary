@@ -4,13 +4,19 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>Insert title here</title>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Insert title here</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <style>
 /**Global CSS**/
@@ -224,6 +230,18 @@ function makeHeight(){
 }
 window.onload = function(){
 	makeHeight();
+	setInterval(function(){
+		$.ajax({
+			async : 'false',
+			url : 'stopborrowbook.do',
+			success : function(data) {
+				//alert(data);
+			},
+			error : function() {
+			//	alert("À¸¾Ó ¿¡·¯ ¤Ð¤Ð")
+			}
+		});
+	}, 5000);	
 };
 
 </script>

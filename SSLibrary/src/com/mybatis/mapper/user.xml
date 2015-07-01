@@ -14,7 +14,16 @@
 	</select>
 	<!-- 회원 검색 -->
 	<select id="selectnameuser" parameterType="java.lang.String" resultType="user">
-		SELECT * FROM A_USER WHERE ISADMIN = #{isadmin} AND NAME = #{name}
+		SELECT * FROM A_USER 
+		<where>
+			<if test="name != null">
+				NAME LIKE '%'||#{name}||'%'
+			</if>
+			<if test="isadmin != null">
+				AND ISADMIN = #{isadmin}
+			</if>
+		</where>
+		
 	</select>
 	
 	<insert id="insertuser" parameterType="user">

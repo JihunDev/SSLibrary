@@ -15,7 +15,7 @@
 <fieldset>
 	<legend>회원정보</legend>
 	<h4>${user.id} 정보</h4>
-	<table width="700"> <!-- 추후수정 -->
+	<table class="table table-bordered" width="700"> <!-- 추후수정 -->
 		<tr><td rowspan="6"><img width="200px" src="img/${user.img}"></td>
 		<tr><th>ID</th><td>${user.id}</td></tr>
 		<tr><th>PWD</th><td>${user.pwd}</td></tr>
@@ -23,10 +23,10 @@
 		<tr><th>TEL</th><td>${user.phone}</td></tr>
 		<tr><th>e-Mail</th><td>${user.email}</td></tr>
 	</table>
-	<div>
-	<div><a href="usinginfo.do?id=${user.id}">현재이용정보</a></div> <!-- 추후수정 -->
-	<div><a href="modify.do?id=${user.id}">개인정보수정</a></div> <!-- 추후수정 -->
-	<div><a href="msgloglist.do?id=${user.id}">메세지 내역</a></div> <!-- 추후수정 -->
+	<div class="btn-group">
+		<a class="btn btn-default" href="usinginfo.do?id=${user.id}">현재이용정보</a>
+		<a class="btn btn-default" href="modify.do?id=${user.id}">개인정보수정</a>
+		<a class="btn btn-default" href="msgloglist.do?id=${user.id}">메세지 내역</a>
 	</div>
 </fieldset>
 </body>

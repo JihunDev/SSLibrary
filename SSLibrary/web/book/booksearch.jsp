@@ -135,8 +135,10 @@ $(document).ready(function(){
    <select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
    <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
    <%if(user!=null && user.getIsadmin().equals("y")){ %>
-   <a class="btn btn-default btn-xs" href="bookregister.do" role="button">등록</a>
-   <a class="btn btn-default btn-xs" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
+   <div class="btn-group">
+   <a class="btn btn-default btn-sm" href="bookregister.do" role="button">등록</a>
+   <a class="btn btn-default btn-sm" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
+   </div>
    <%} %>
    <div id="book_result">
       <table width="700" class="table table-hover">

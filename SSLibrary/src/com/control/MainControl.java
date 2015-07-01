@@ -3,7 +3,11 @@ package com.control;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +32,14 @@ import com.frame.SearchBiz;
 public class MainControl {
 	@Resource(name = "userbiz")
 	Biz biz;
-	@Resource(name = "messagelogbiz")
-	Biz messagelogbiz;
-	@Resource(name = "messagelogbiz")
-	SearchBiz messagelogsearchbiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
 	@Resource(name = "userseatbiz")
 	Biz userseatbiz;
+	@Resource(name = "messagelogbiz")
+	Biz messagelogbiz;
+	@Resource(name = "messagelogbiz")
+	SearchBiz messagelogsearchbiz;
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
 	@Resource(name = "boardbiz")
@@ -48,9 +52,10 @@ public class MainControl {
 		String ls_name = "";
 		String ls_value = "";
 		String[] board = { "notice", "free" };
-		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> notice_list = new ArrayList<Object>();
 		ArrayList<Object> free_list = new ArrayList<Object>();
+		ArrayList<Object> book_list = new ArrayList<Object>();
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 
 		// 세션 정보 확인
 		Enumeration<String> enum_app = session.getAttributeNames();
@@ -60,38 +65,59 @@ public class MainControl {
 			System.out.println("얻어온 세션 이름 :" + ls_name);
 			System.out.println("얻어온 세션 값 :" + ls_value);
 		}
+
 		// 메인 공지사항 게시판
 		try {
+			ArrayList<Object> list = new ArrayList<Object>();
 			list = boardsearchbiz.getid(board[0]);
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
 				for (int i = 0; i < 5; i++) {
 					notice_list.add(one_board);
-					System.out.println(one_board);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		// 메인 자유 게시판
 		try {
+			ArrayList<Object> list = new ArrayList<Object>();
 			list = boardsearchbiz.getid(board[1]);
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
 				for (int i = 0; i < 5; i++) {
 					free_list.add(one_board);
-					System.out.println(one_board);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-				
+
+		// 책 정보 화면
+
+		try {
+			ArrayList<Object> list = new ArrayList<Object>();
+			list = bookbiz.get();
+			for (Object obj : list) {
+				Book book = (Book) obj;
+				String id = book.getId().substring(1);
+				hashmap.put(id, book);
+			}
+			System.out.println(hashmap);
+
+			TreeMap<String, Object> treemap = new TreeMap<String, Object>();
+			treemap.putAll(hashmap);
+			System.out.println(treemap.toString());
+			
+			} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
-		
+
 		mv.addObject("free", free_list);
 		mv.addObject("notice", notice_list);
 		mv.addObject("center", "center.jsp");

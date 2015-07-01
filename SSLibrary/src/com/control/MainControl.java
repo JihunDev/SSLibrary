@@ -72,9 +72,12 @@ public class MainControl {
 			list = boardsearchbiz.getid(board[0]);
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
-				for (int i = 0; i < 5; i++) {
+				int i = 0;
+				for (i = 0; i < 5;) {
 					notice_list.add(one_board);
+					break;
 				}
+				i++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,9 +89,12 @@ public class MainControl {
 			list = boardsearchbiz.getid(board[1]);
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
-				for (int i = 0; i < 5; i++) {
+				int i = 0;
+				for (i = 0; i < 5;) {
 					free_list.add(one_board);
+					break;
 				}
+				i++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,14 +106,17 @@ public class MainControl {
 			list = bookbiz.get();
 			for (Object obj : list) {
 				Book book = (Book) obj;
-				for (int i = 0; i < 5; i++) {
+				int i = 0;
+				for (i = 0; i < 5;) {
 					book_list.add(book);
+					break;
 				}
+				i++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println(book_list);
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");

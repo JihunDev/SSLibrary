@@ -13,17 +13,16 @@
 		FROM A_USER WHERE ID = #{id}
 	</select>
 	<!-- 회원 검색 -->
-	<select id="selectnameuser" parameterType="java.lang.String" resultType="user">
-		SELECT * FROM A_USER 
-		<where>
-			<if test="name != null">
-				NAME LIKE '%'||#{name}||'%'
-			</if>
-			<if test="isadmin != null">
-				AND ISADMIN = #{isadmin}
-			</if>
-		</where>
-		
+	<select id="selectnameuser" parameterType="user" resultType="user">
+		SELECT * FROM A_USER
+		<trim prefix="WHERE" prefixOverrides="AND">
+  				<if test="name != null">
+					NAME LIKE '%'||#{name}||'%'
+				</if>
+				<if test="isadmin != null">
+					AND ISADMIN = #{isadmin}
+				</if>
+		</trim>
 	</select>
 	
 	<insert id="insertuser" parameterType="user">

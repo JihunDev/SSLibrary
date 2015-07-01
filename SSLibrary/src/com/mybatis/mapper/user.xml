@@ -34,7 +34,7 @@
 	</insert>
 
 	<update id="deleteuser" parameterType="user" >
-		UPDATE A_USER SET ISADMIN = #{isadmin} WHERE ID = #{id}
+		UPDATE A_USER SET ISADMIN = #{isadmin}, STOP_DATE = SYSDATE+7 WHERE ID = #{id}
 	</update>
 
 	<update id="updateuser" parameterType="user">

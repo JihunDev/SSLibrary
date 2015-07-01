@@ -21,11 +21,17 @@ public class User {
 	public User(String id) {
 		this.id = id;
 	}
-	
-	
+		
 	public User(String id, String isadmin) {
 		super();
 		this.id = id;
+		this.isadmin = isadmin;
+	}
+			
+	public User(String id, String name, String isadmin) {
+		super();
+		this.id = id;
+		this.name = name;
 		this.isadmin = isadmin;
 	}
 

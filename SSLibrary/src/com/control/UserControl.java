@@ -14,11 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.command.UserCommand;
 import com.entity.User;
 import com.frame.Biz;
+import com.frame.SearchBiz;
 
 @Controller
 public class UserControl {
 	@Resource(name = "userbiz")
 	Biz biz;
+	@Resource(name = "userbiz")
+	SearchBiz searchbiz;
 
 	@RequestMapping("/usersearch.do")
 	public ModelAndView usersearch() {
@@ -114,6 +117,42 @@ public class UserControl {
 				e.printStackTrace();
 			}
 		}		
+		return mv;
+	}
+	
+	@RequestMapping("/usersearchname.do")
+	public ModelAndView usersearchname(User user1) {
+		ModelAndView mv = new ModelAndView("main");
+		ArrayList<Object> list = new ArrayList<Object>();
+		ArrayList<Object> list_check = new ArrayList<Object>();
+		System.out.println(user1);
+		String name = user1.getName();
+		String isadmin = user1.getIsadmin();
+		
+		if(isadmin.equals("")){
+			isadmin = null;
+		}
+		if(name.equals("")){
+			name = null;
+		}
+				
+		try {
+			list = searchbiz.getname(new User(name,isadmin));
+			System.out.println(list);
+			for (Object obj : list) {
+				User user = (User) obj;
+				String check = user.getIsadmin();
+				if (check.equals("d")) {
+
+				} else {
+					list_check.add(user);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("userlist", list_check);
+		mv.addObject("center", "admin/user/list.jsp");
 		return mv;
 	}
 }

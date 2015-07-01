@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.frame.Biz;
 import com.frame.Dao;
+import com.frame.SearchBiz;
+import com.frame.SearchDao;
 @Service("userbiz")
-public class UserBiz implements Biz {
+public class UserBiz implements Biz,SearchBiz {
 	@Resource(name="userdao")
 	private Dao dao;
-	
+	@Resource(name="userdao")
+	private SearchDao dao2;
 	@Override
 	public Object register(Object obj) throws Exception {
 		return dao.insert(obj);
@@ -37,5 +40,47 @@ public class UserBiz implements Biz {
 	public ArrayList<Object> get() throws Exception {
 		return dao.select();
 	}
+
+	@Override
+	public ArrayList<Object> getid(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> gettitle(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getcontent(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getname(Object obj) throws Exception {
+		return dao2.searchname(obj);
+	}
+
+	@Override
+	public ArrayList<Object> getwriter(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> getexpired() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getnum_reply(Object obj) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

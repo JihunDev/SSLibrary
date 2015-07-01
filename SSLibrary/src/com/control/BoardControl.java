@@ -77,8 +77,7 @@ public class BoardControl {
 
 		System.out.println(com);
 		Board board = null;
-		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
-				+ com.getSort());
+		ModelAndView mv = new ModelAndView();
 
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getU_id(), com.getTitle(), com.getContent(),
@@ -162,44 +161,53 @@ public class BoardControl {
 	public ModelAndView boardmodify(Board board) {
 		ModelAndView mv = new ModelAndView("main");
 		Board board2 = null;
-		try {
-			board2 = (Board) biz.get(board.getId());
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+
+		if(board.getReg_number() == 0){ //°Ô½Ã±Û
+			try {
+				board2 = (Board) biz.get(board.getId());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mv.addObject("boardupdate", board2);
+			mv.addObject("center", "board/update.jsp");	
+		}else{									//´ñ±Û
+			mv.setViewName("redirect://boarddetail.do?id=" + board.getReg_number());			
 		}
-		mv.addObject("boardupdate", board2);
-		mv.addObject("center", "board/update.jsp");
+		
 		return mv;
 	}
 
 	@RequestMapping("/boardmodifyimpl.do")
 	public ModelAndView boardmodifyimpl(BoardUploadCommand com) {
-		Board board = new Board(com.getId(), com.getTitle(), com.getContent(),
-				com.getSort(), com.getFile_name().getOriginalFilename());
+		Board board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
 
 		try {
 			biz.modify(board);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		if (com.getFile_name() != null) {
 
-		MultipartFile file = com.getFile_name();
-		String dir = "C:/lib/SSLibrary/web/img/board/";
-		String img = file.getOriginalFilename();
-		if (img == null || img.equals("")) {
+			MultipartFile file = com.getFile_name();
+			String dir = "C:/lib/SSLibrary/web/img/board/";
+			String img = file.getOriginalFilename();
+			if (img == null || img.equals("")) {
 
-		} else {
-			byte[] data;
-			try {
-				data = file.getBytes();
-				FileOutputStream out = new FileOutputStream(dir
-						+ file.getOriginalFilename());
-				out.write(data);
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} else {
+				byte[] data;
+				try {
+					data = file.getBytes();
+					FileOutputStream out = new FileOutputStream(dir
+							+ file.getOriginalFilename());
+					out.write(data);
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 			}
-
 		}
 		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
 				+ board.getSort());
@@ -209,14 +217,19 @@ public class BoardControl {
 	@RequestMapping("/boardremoveimpl.do")
 	public ModelAndView boardremoveimpl(Board board) {
 		String re = board.getSort();
+		ModelAndView mv = new ModelAndView();
+
+		if(board.getReg_number() == 0){ //°Ô½Ã±Û
+			mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());			
+		}else{									//´ñ±Û
+			mv.setViewName("redirect://boarddetail.do?id=" + board.getReg_number());			
+		}
 		System.out.println("sort re : " + re);
 		try {
 			biz.remove(board.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
-				+ board.getSort());
 		return mv;
 	}
 

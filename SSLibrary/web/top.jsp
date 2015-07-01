@@ -19,12 +19,12 @@
             <input type="password" class="form-control input-sm" name="pwd" id="pwd" placeholder="Enter password">
              </div>
              </td><td width="60px">
-    <input type="submit" value ="login" class="btn btn-primary btn-sm""></td>
+    <input type="submit" value ="login" class="btn btn-primary btn-sm"></td>
        <td width="60px"><a class="btn btn-primary btn-sm" href="register.do" role="button">register</a></td></tr>
           </table>
          </form>
    </fieldset>   
-   
+
 <%}else{ %>
    <fieldset>
          <table>

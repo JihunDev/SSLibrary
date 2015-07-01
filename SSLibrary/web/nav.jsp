@@ -8,7 +8,7 @@
 <%if(user!=null && user.getIsadmin().equals("y")){ %>
 <li class="active"><a href="seatmain.do"><b>열람실관리</b></a></li>
 <li class="active"><a href="bookmain.do"><b>자료실관리</b></a></li>
-<li class="active"><a href="#"><b>회원관리</b></a></li>
+<li class="active"><a href="usersearch.do"><b>회원관리</b></a></li>
 <%}else{%>
 <li class="active"><a href="seatmain.do"><b>열람실</b></a></li>
 <li class="active"><a href="bookmain.do"><b>자료실</b></a></li>	

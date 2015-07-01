@@ -95,8 +95,12 @@ public class UserControl {
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
+		User user_modify = null;
 		try {
 			biz.modify(user);
+			user_modify = (User) biz.get(user.getId());
+			System.out.println("modify : "+user_modify);
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -116,7 +120,10 @@ public class UserControl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}		
+		}
+		
+		
+		
 		return mv;
 	}
 	

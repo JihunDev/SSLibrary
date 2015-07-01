@@ -3,11 +3,7 @@ package com.control;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +19,14 @@ import com.command.UserCommand;
 import com.entity.Board;
 import com.entity.Book;
 import com.entity.MessageLog;
+import com.entity.Seat;
+import com.entity.SeatLog;
 import com.entity.User;
 import com.entity.UserBook;
+import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.SearchBiz;
+import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class MainControl {
@@ -44,6 +44,10 @@ public class MainControl {
 	Biz bookbiz;
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
+	@Resource(name = "seatbiz")
+	Biz seatbiz;
+	@Resource(name = "seatlogbiz")
+	UpdateAndReturnBiz seatlogbiz;
 
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
@@ -55,7 +59,6 @@ public class MainControl {
 		ArrayList<Object> notice_list = new ArrayList<Object>();
 		ArrayList<Object> free_list = new ArrayList<Object>();
 		ArrayList<Object> book_list = new ArrayList<Object>();
-		HashMap<String, Object> hashmap = new HashMap<String, Object>();
 
 		// 세션 정보 확인
 		Enumeration<String> enum_app = session.getAttributeNames();
@@ -95,22 +98,16 @@ public class MainControl {
 		}
 
 		// 책 정보 화면
-
 		try {
 			ArrayList<Object> list = new ArrayList<Object>();
 			list = bookbiz.get();
 			for (Object obj : list) {
 				Book book = (Book) obj;
-				String id = book.getId().substring(1);
-				hashmap.put(id, book);
+				for (int i = 0; i < 5; i++) {
+					book_list.add(book);
+				}
 			}
-			System.out.println(hashmap);
-
-			TreeMap<String, Object> treemap = new TreeMap<String, Object>();
-			treemap.putAll(hashmap);
-			System.out.println(treemap.toString());
-			
-			} catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -118,6 +115,7 @@ public class MainControl {
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
 
+		mv.addObject("book", book_list);
 		mv.addObject("free", free_list);
 		mv.addObject("notice", notice_list);
 		mv.addObject("center", "center.jsp");
@@ -201,8 +199,7 @@ public class MainControl {
 					String read = log.getRead();
 					if (read.equals("n")) {
 						msgchecknumber += 1;
-						System.out.println(msgchecknumber);
-					}// 새로운 메세지 수 카운트
+					}
 				}
 				session.setAttribute("msgcheck", msgchecknumber);
 				// 새로운 메세지의 수만큼 세션에 넣음
@@ -290,13 +287,24 @@ public class MainControl {
 	@RequestMapping("/modifyimpl.do")
 	public ModelAndView modifyimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
-
+		HttpSession session = request.getSession();
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-
 		try {
 			biz.modify(user);
+
+			User user_ch = (User) biz.get(com.getId());
+			System.out.println("user : " + user_ch);
+			if (user_ch.getIsadmin().equals("s")) {
+				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(
+						user_ch.getId()));
+				System.out.println("userseat : " + userseat);
+				userseatbiz.remove(new UserSeat(user_ch.getId()));// 좌석 반납
+				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// 로그에 남김
+				seatbiz.modify(new Seat(userseat.getS_id(), "y"));// 좌석 사용가능 변경
+			}
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -319,7 +327,6 @@ public class MainControl {
 			}
 
 		}
-		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");
 		return mv;

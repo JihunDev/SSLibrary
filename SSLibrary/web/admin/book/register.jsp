@@ -51,11 +51,49 @@ function register(f){
 	} 
 };
 </script>
-<style></style>
+<style>
+</style>
 </head>
 <body>
-<h1 align="center">Book Register</h1>
-<fieldset>
+<div class="row centered-form">
+ <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Book Register</h3>
+                    </div>
+                        <div class="panel-body">
+                     <form role="form" enctype="multipart/form-data">
+                     <div class="col-md-12">
+                            <div class="form-group">
+                            <label class="control-label for="id">CATEGORY</label>
+                            <select class="form-control " name="id"><option value="">¼±ÅÃ</option><option value="i">IT</option><option value="n">¼Ò¼³</option><option value="m">¸¸È­Ã¥</option></select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="NAME">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="writer" id="writer" class="form-control" placeholder="WRITER">
+                            </div> 
+                            <div class="form-group">
+                             <label class="control-label" for="img">IMG</label><input type="file" id="img" name="img"  class="file">
+                            </div>
+                            <div class="form-group">
+                           <label class="control-label" for="floor">FLOOR</label><select class="form-control" name="floor"><option>¼±ÅÃ</option><option>1Ãþ</option><option>2Ãþ</option><option>3Ãþ</option><option>4Ãþ</option></select>
+                            </div>
+                             <div class="form-group">
+                                <input type="text" name="total_qt" id="total_qt" class="form-control" placeholder="TOTAL_QT">
+                            </div>
+                            <input type="button" class="btn btn-primary btn-block" value="register" onclick="register(this.form);">
+                        	</div>
+                        	</form>
+                    		</div>
+                    		  </div>
+                </div>
+            </div>                
+<!--                     
+                    
+                    
+                    <fieldset>
 <legend>Ã¥ µî·Ï ¾ç½Ä</legend>
 <form enctype="multipart/form-data">
 <table>
@@ -69,5 +107,6 @@ function register(f){
 </table>
 </form>
 </fieldset>
+</div> -->
 </body>
 </html>

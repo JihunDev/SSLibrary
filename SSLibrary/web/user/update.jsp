@@ -45,22 +45,56 @@ function del(f) {
 <style></style>
 </head>
 <body>
-	<h1>회원수정</h1>
-	<form enctype="multipart/form-data">
-		<input type="hidden" name="oldimg" value="${userupdate.img}"><br><!-- 원래 등록이미지 -->
-		<input type="hidden" name="isadmin" value="${userupdate.isadmin}"><br>
-		<input type="hidden" name="id" value="${userupdate.id}"><br>
-		<input type="text" name="id" id="id" value="${userupdate.id}" disabled="disabled"><br>
-		<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
-		<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
-		<input type="text" name="name" value="${userupdate.name}"><br>
-		<input type="text" name="phone" value="${userupdate.phone}"><br>
-		<input type="text" name="email" value="${userupdate.email}"><br>
-		<h5>원래 사진 ${userupdate.img}</h5>
-		<input type="file" name="img"><br><!-- 새로운 등록이미지 -->
-		<input type="button" value="update" onclick="update(this.form);">
-		<input type="button" value="delete" onclick="del(this.form);">
-		<!-- delete가 예약어라 del로 줄임 -->
-	</form>
+<div class="row centered-form">
+ <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">회원수정</h3>
+        </div>
+            <div class="panel-body">
+         <form class="form-horiziontal" role="form" enctype="multipart/form-data">
+        <div class="col-md-12">
+        <input type="hidden" name="oldimg" value="${userupdate.img}"><!-- 원래 등록이미지 -->
+		<input type="hidden" name="isadmin" value="${userupdate.isadmin}">
+		<input type="hidden" name="id" value="${userupdate.id}">
+                <div class="form-group">
+                <input type="hidden" name="isadmin" value="n"><br> 
+                  <input type="text" name="id" id="id" class="form-control" placeholder="ID"  value="${userupdate.id}" disabled="disabled">
+                </div>
+                <div class="form-group">
+                <input type="text" name="pwd" id="pwd" class="form-control" placeholder="PWD">
+                </div>
+                <div class="form-group">
+                <input type="text" name="pwdcheck" id="pwdcheck" class="form-control" placeholder="PWD CHECK">
+                </div> 
+                <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="NAME" value="${userupdate.name}">
+                </div>
+                <div class="form-group">
+                <input type="text" name="phone" class="form-control" placeholder="PHONE"  value="${userupdate.phone}">
+                </div>
+                 <div class="form-group">
+                 <input type="text" name="email" class="form-control" placeholder="EMAIL" value="${userupdate.email}">           
+                </div>
+                <div class="form-group">
+                <label class="control-label" for="oldimg">원래 사진 : <img class="img-circle" alt="Cinque Terre" width="30" height="30" src="img/user/${userupdate.img}"></label>
+                </div>
+                <div class="form-group">
+                 <label class="control-label" for="img">IMG</label><input type="file" id="img" name="img"  class="file">
+                </div>
+                <div class="btn-group btn-group-justified">
+				  <div class="btn-group">
+				   <input type="button"  class="btn btn-primary" value="update" onclick="update(this.form);">
+				  </div>
+				  <div class="btn-group">
+				  <input type="button"  class="btn btn-primary" value="delete" onclick="del(this.form);">
+				  </div>
+				</div>
+				</div>
+            	</form>
+        		</div>
+   		  </div>
+    </div>
+</div>                
 </body>
 </html>

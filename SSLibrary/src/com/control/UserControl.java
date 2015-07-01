@@ -89,23 +89,19 @@ public class UserControl {
 	@RequestMapping("/usermodifyimpl.do")
 	public ModelAndView usermodifyimpl(UserCommand com) {
 		ModelAndView mv = new ModelAndView("redirect:/usersearch.do");
-		System.out.println("usermodifyimpl.do : " + com);
-		
 		User user = new User(com.getId(), com.getPwd(), com.getName(),
 				com.getPhone(), com.getImg().getOriginalFilename(),
 				com.getEmail(), com.getIsadmin());
-
 		try {
 			biz.modify(user);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
-
+		
 		} else {
 			byte[] data;
 			try {
@@ -117,9 +113,7 @@ public class UserControl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}		
 		return mv;
 	}
-
 }

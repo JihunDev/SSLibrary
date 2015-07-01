@@ -2,7 +2,9 @@ package com.control;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Enumeration;
 
 import javax.annotation.Resource;
@@ -116,7 +118,42 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(book_list);
+
+		// 회원 정지 풀기
+		User admin = (User) session.getAttribute("user");
+		System.out.println(admin);
+		if (admin != null && admin.getIsadmin().equals("y")) {
+			Calendar calendar = Calendar.getInstance();
+			SimpleDateFormat dateFormat = new SimpleDateFormat(
+					"yyyyMMddHHmmssSSS");
+			System.out.println("현재 시간 : "
+					+ dateFormat.format(calendar.getTime()));
+			String time = dateFormat.format(calendar.getTime());
+			String id = (String) session.getAttribute("id");
+			try {
+				ArrayList<Object> list = new ArrayList<Object>();
+				list = biz.get();
+				for (Object obj : list) {
+					User user = (User) obj;
+					int stoptime = 0;
+					int nowtime = 0;
+					if (user.getStop_date() == null) {
+
+					} else {
+						stoptime = Integer.parseInt(user.getStop_date());
+					}
+					nowtime = Integer.parseInt(time);
+					if (stoptime > nowtime) {
+						User user1 = new User(id, "n");
+						biz.remove(user1);
+						System.out.println("정지 풀기");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		// 세션&mv
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
@@ -295,22 +332,19 @@ public class MainControl {
 	public ModelAndView modifyimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
-		User user = new User(com.getId(), com.getPwd(), com.getName(),
-				com.getPhone(), com.getImg().getOriginalFilename(),
-				com.getEmail(), com.getIsadmin());
-
-		try {
-			biz.modify(user);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-
+		String old_img = request.getParameter("oldimg");
+		User user = null;
+		System.out.println(old_img);
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
-
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
 		} else {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), com.getImg().getOriginalFilename(),
+					com.getEmail(), com.getIsadmin());
 			byte[] data;
 			try {
 				data = file.getBytes();
@@ -321,7 +355,12 @@ public class MainControl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
 
+		try {
+			biz.modify(user);
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");

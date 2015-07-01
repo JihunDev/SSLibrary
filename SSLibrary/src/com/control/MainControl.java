@@ -231,7 +231,7 @@ public class MainControl {
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		if (img == null || img.equals("")) {
-
+			
 		} else {
 			byte[] data;
 			try {

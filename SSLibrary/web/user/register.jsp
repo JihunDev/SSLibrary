@@ -63,20 +63,46 @@ function idcheck(g) {
 <style></style>
 </head>
 <body>
-	<div>
-		<h1>회원가입</h1>
-		<form enctype="multipart/form-data" >
-			<input type="hidden" name="isadmin" value="n"><br> 
-			<input type="text" name="id" id="id" placeholder="ID">
-			<input type="button" value="중복체크" onclick="idcheck(this.form);"><br>
-			<input type="text" name="pwd" id="pwd" placeholder="PWD"><br>
-			<input type="text" name="pwdcheck" id="pwdcheck" placeholder="PWD"><br>
-			<input type="text" name="name" placeholder="NAME"><br> 
-			<input type="text" name="phone" placeholder="PHONE"><br> 
-			<input type="text" name="email" placeholder="EMail"><br> 
-			<input type="file" name="img"><br> 
-			<input type="button" value="register" onclick="register(this.form);">
-		</form>
-	</div>
+<div class="row centered-form">
+ <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">회원가입</h3>
+        </div>
+            <div class="panel-body">
+         <form class="form-horiziontal" role="form" enctype="multipart/form-data">
+        <div class="col-md-12">
+                <div class="form-group">
+                <input type="hidden" name="isadmin" value="n"><br> 
+                  <div class="input-group">
+                  <input type="text" name="id" id="id" class="form-control" placeholder="ID"><span class="input-group-btn"><input type="button" class="btn btn-primary" value="중복체크" onclick="idcheck(this.form);"></span>
+                  </div>
+                </div>
+                <div class="form-group">
+                <input type="text" name="pwd" id="pwd" class="form-control" placeholder="PWD">
+                </div>
+                <div class="form-group">
+                <input type="text" name="pwdcheck" id="pwdcheck" class="form-control" placeholder="PWD CHECK">
+                </div> 
+                <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="NAME">
+                </div>
+                <div class="form-group">
+                <input type="text" name="phone" class="form-control" placeholder="PHONE">
+                </div>
+                 <div class="form-group">
+                 <input type="text" name="email" class="form-control" placeholder="EMAIL">           
+                </div>
+                <div class="form-group">
+                 <label class="control-label" for="img">IMG</label><input type="file" id="img" name="img"  class="file">
+                </div>
+               	<input type="button" class="btn btn-primary btn-block" value="register" onclick="register(this.form);">
+            	</div>
+            	</form>
+        		</div>
+   		  </div>
+    </div>
+</div>                
+
 </body>
 </html>

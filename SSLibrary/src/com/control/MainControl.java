@@ -139,6 +139,7 @@ public class MainControl {
 	@RequestMapping("/registerimpl.do")
 	public ModelAndView registerimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("main");
+		HttpSession session = request.getSession();
 		User user = null;
 		String fistimg = "index.jpg";
 		if (com.getImg().getOriginalFilename().equals("")) {
@@ -170,7 +171,7 @@ public class MainControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}

@@ -101,6 +101,8 @@ public class UserControl {
 			user_modify = (User) biz.get(user.getId());
 			System.out.println("modify : "+user_modify);
 			
+			
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -135,6 +137,7 @@ public class UserControl {
 		System.out.println(user1);
 		String name = user1.getName();
 		String isadmin = user1.getIsadmin();
+		String id = "";
 		
 		if(isadmin.equals("")){
 			isadmin = null;
@@ -142,9 +145,11 @@ public class UserControl {
 		if(name.equals("")){
 			name = null;
 		}
-				
+		
+		System.out.println("name : "+name);
+		System.out.println("isadmin : "+isadmin);
 		try {
-			list = searchbiz.getname(new User(name,isadmin));
+			list = searchbiz.getname(new User(id,name,isadmin));
 			System.out.println(list);
 			for (Object obj : list) {
 				User user = (User) obj;

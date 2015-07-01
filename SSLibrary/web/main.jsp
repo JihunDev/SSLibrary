@@ -18,6 +18,7 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+
 <style>
 /**Global CSS**/
 *{
@@ -34,9 +35,25 @@ li{
 a{
 	text-decoration: none;
 }
+a:hover{
+	text-decoration: none;
+}
 table {
 	margin : 0 auto;
 	text-align : center;
+}
+
+
+.centered-form {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left : -550px;
+    width : 1800px;
+}
+
+.centered-form .panel {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
 /* fieldset {
@@ -68,6 +85,9 @@ header>#top{
 	background: rgba(137, 73, 35, 0.6);
 	border-radius: 0px 0px 10px 10px;
 	float : right;
+}
+header>#top>fieldset>table>tbody>tr>td>a>b{
+ 	color : white;
 }
 heaer>#top>fieldset>form>.form-group{
 	align : center;
@@ -242,6 +262,7 @@ window.onload = function(){
 			}
 		});
 	}, 5000);	
+	
 };
 
 </script>

@@ -58,7 +58,7 @@ function getBook() {
 <div id="home_center">
 <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 <h1 align="center">도서 과거 대여 내역</h1>
-<table width="700">
+<table width="700" class="table table-hover">
 <thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
 <tbody>
 <c:forEach items="${pastbooklist}" var="b"> <!-- 추후수정 -->

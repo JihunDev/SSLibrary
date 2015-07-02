@@ -85,6 +85,14 @@ tr th:last-child {
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
+.fieldsetform{
+	background: rgba(255, 255, 255, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+    margin-top : 40px;
+    padding : 20px;
+	border-radius: 10px 10px 10px 10px;
+}
+
 /* fieldset {
     border: 5px solid #f0c413;
     background: white;

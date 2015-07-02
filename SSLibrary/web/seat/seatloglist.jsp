@@ -2,8 +2,10 @@
     pageEncoding="EUC-KR"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<h1 align="center">Seat Log List Page</h1>
-	<table width="700">		
+<div class="fieldsetform">
+<fieldset>
+<legend align="center">Seat Log List Page</legend>
+	<table width="700" class="table table-hover">		
 		<thead>
 			<tr>
 				<th>¿¹¾àÀÚ ID</th>
@@ -27,4 +29,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</body>
+	</fieldset>
+	
+</div>

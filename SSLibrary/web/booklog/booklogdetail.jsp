@@ -21,7 +21,7 @@ function makeHeight() {
 function displaybook(data) {
 	$('#book_result').empty();
 	var output = '';
-	output+='<table>'
+	output+='<table  class="table table-hover">'
 	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
 	$(data).each(function(index, item) {
 		with (item) {

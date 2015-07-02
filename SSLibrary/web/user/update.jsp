@@ -2,12 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 function update(f) {
 	var id = f.id.value;
@@ -42,9 +36,6 @@ function del(f) {
 	};		
 }
 </script>
-<style></style>
-</head>
-<body>
 <div class="row centered-form">
  <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
     <div class="panel panel-default">
@@ -96,5 +87,3 @@ function del(f) {
    		  </div>
     </div>
 </div>                
-</body>
-</html>

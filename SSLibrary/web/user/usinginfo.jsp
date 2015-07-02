@@ -8,10 +8,6 @@
 	UserSeat userseat = (UserSeat) session.getAttribute("userseat"); 
 	ArrayList<UserBook> booklist = (ArrayList<UserBook>) session.getAttribute("booklist"); 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script>
 $(document).ready(function(){
 	if("${returnqt}"==1){
@@ -47,11 +43,7 @@ function returnMySeat(){
 	
 }
 </script>
-<title>Insert title here</title>
-</head>
-<body>
 <input type="hidden" id="qt" value="${qt}">
-
 <fieldset>
 	<legend>상세페이지</legend>
 		<table border="3" width="700">
@@ -98,5 +90,3 @@ function returnMySeat(){
 			</tbody>
 		</table>
 </fieldset>
-</body>
-</html>

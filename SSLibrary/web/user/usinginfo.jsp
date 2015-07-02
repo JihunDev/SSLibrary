@@ -62,7 +62,7 @@ function returnMySeat(){
 					<td>${userseat.s_id}번 좌석</td>
 					<td>연장회수</td>
 					<td><a class="btn btn-primary" href="javascript:;" onClick="extendMySeat();">연장</a></td><!-- 추후수정 -->
-					<td rowspan="2"><a class="btn btn-primary option-button"" href="seatloglist.do?id=${user.id}">이력</a></td><!-- 추후수정 -->
+					<td rowspan="2"><a class="btn btn-primary option-button" href="seatloglist.do?id=${user.id}">이력</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td>사용시간</td>
@@ -79,7 +79,7 @@ function returnMySeat(){
 					<td colspan="2">대여 기간</td>
 					<td><a class="btn btn-primary" href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userbookmodifyimpl.do?id=${book[0]}'">연장</a></td><!-- 추후수정 -->
 					<c:if test="${status.first}">
-						<td rowspan="2"><a class="btn btn-primary option-button"" href="bookloglist.do">이력</a></td><!-- 추후수정 -->
+						<td rowspan="2"><a class="btn btn-primary option-button" href="bookloglist.do">이력</a></td><!-- 추후수정 -->
 					</c:if>
 				</tr>
 				<tr>

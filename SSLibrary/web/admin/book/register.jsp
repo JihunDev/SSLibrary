@@ -3,46 +3,46 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 function register(f){
-	var id = f.id.value;
-	var name = f.name.value;
- 	var writer = f.writer.value;
- 	var img = f.img.value;
- 	var total_qt = f.total_qt.value;
- 	var floor = f.floor.value;
-	if(id==""){
-		alert('책 종류를 선택해주세요');
-		return;
-	};
-	if(name == null || name == ''){
-		alert('NAME를 입력하세요');
-		f.name.focus();
-		return;
-	};
-	if(writer == null || writer == ''){
-		alert('WRITER를 입력하세요');
-		f.writer.focus();
-		return;
-	};
-	if(img == null || img == ''){
-		alert('IMG를 넣어주세요');
-		return;
-	};
-	if(floor == '선택'){
-		alert('층수를 선택해주세요');
-		return;
-	};
- 	if(total_qt== null || total_qt == ''){
-		alert('수량을 입력하세요');
-		f.total_qt.focus();
-		return;
-	};
-	
-	var c = confirm('등록하시겠습니까?');
-	if(c==true){
-		f.action='bookregisterimpl.do';
-		f.method = 'POST';
-		f.submit();
-	} 
+   var id = f.id.value;
+   var name = f.name.value;
+    var writer = f.writer.value;
+    var img = f.img.value;
+    var total_qt = f.total_qt.value;
+    var floor = f.floor.value;
+   if(id==""){
+      alert('책 종류를 선택해주세요');
+      return;
+   };
+   if(name == null || name == ''){
+      alert('NAME를 입력하세요');
+      f.name.focus();
+      return;
+   };
+   if(writer == null || writer == ''){
+      alert('WRITER를 입력하세요');
+      f.writer.focus();
+      return;
+   };
+   if(img == null || img == ''){
+      alert('IMG를 넣어주세요');
+      return;
+   };
+   if(floor == '선택'){
+      alert('층수를 선택해주세요');
+      return;
+   };
+    if(total_qt== null || total_qt == ''){
+      alert('수량을 입력하세요');
+      f.total_qt.focus();
+      return;
+   };
+   
+   var c = confirm('등록하시겠습니까?');
+   if(c==true){
+      f.action='bookregisterimpl.do';
+      f.method = 'POST';
+      f.submit();
+   } 
 };
 </script>
 <div class="row centered-form">
@@ -55,7 +55,7 @@ function register(f){
                      <form role="form" enctype="multipart/form-data">
                      <div class="col-md-12">
                             <div class="form-group">
-                            <label class="control-label for="id">CATEGORY</label>
+                            <label class="control-label" for="id">CATEGORY</label>
                             <select class="form-control " name="id"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
                             </div>
                             <div class="form-group">
@@ -74,9 +74,9 @@ function register(f){
                                 <input type="text" name="total_qt" id="total_qt" class="form-control" placeholder="TOTAL_QT">
                             </div>
                             <input type="button" class="btn btn-primary btn-block" value="register" onclick="register(this.form);">
-                        	</div>
-                        	</form>
-                    		</div>
-                    		  </div>
+                           </div>
+                           </form>
+                          </div>
+                            </div>
                 </div>
             </div>                

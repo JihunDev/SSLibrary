@@ -322,7 +322,7 @@ function makeHeight(){
 }
 window.onload = function(){
 	makeHeight();
-	setInterval(function(){
+	/* setInterval(function(){
 		$.ajax({
 			async : 'false',
 			url : 'stopborrowbook.do',
@@ -344,7 +344,7 @@ window.onload = function(){
 	         error : function() {
 	         }
 	      });
-	   }, 5000);
+	   }, 5000); */
 };
 
 </script>

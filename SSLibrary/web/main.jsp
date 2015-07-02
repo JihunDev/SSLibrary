@@ -43,6 +43,11 @@ table {
   border-collapse: separate;
   border-spacing: 0 5px;
 }
+th{
+ background-color: #337ab7;
+  color: white;
+  text-align : center;
+}
 
 thead th {
   background-color: #337ab7;

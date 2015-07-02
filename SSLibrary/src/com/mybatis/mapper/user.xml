@@ -12,6 +12,11 @@
 		SELECT *
 		FROM A_USER WHERE ID = #{id}
 	</select>
+	
+	<select id="selecttimeuser" parameterType="user" resultType="user">
+		SELECT * FROM A_USER WHERE (SYSDATE >= STOP_DATE)
+	</select>
+	
 	<!-- 회원 검색 -->
 	<select id="selectnameuser" parameterType="user" resultType="user">
 		SELECT * FROM A_USER
@@ -37,6 +42,7 @@
 		UPDATE A_USER
 		<trim prefix="SET" suffixOverrides=",">
 			<if test="isadmin != null">ISADMIN = #{isadmin}</if>
+			<if test='isadmin != "s"'>,STOP_DATE = NULL</if>
 			<if test='isadmin == "s"'>,STOP_DATE = SYSDATE+7</if>
 		</trim>
 		WHERE ID = #{id}
@@ -45,6 +51,6 @@
 	<update id="updateuser" parameterType="user">
 		UPDATE A_USER SET PWD =
 		#{pwd}, NAME = #{name}, PHONE = #{phone}, IMG = #{img}, EMAIL =
-		#{email}, ISADMIN = #{isadmin} WHERE ID = #{id}
+		#{email} WHERE ID = #{id}
 	</update>
 </mapper>

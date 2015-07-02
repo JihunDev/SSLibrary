@@ -3,15 +3,6 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% User user = (User) session.getAttribute("user"); %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<style></style>
-</head>
-<body>
 <fieldset>
 	<legend>회원정보</legend>
 	<h4>${user.id} 정보</h4>
@@ -29,5 +20,3 @@
 		<a class="btn btn-default" href="msgloglist.do?id=${user.id}">메세지 내역</a>
 	</div>
 </fieldset>
-</body>
-</html>

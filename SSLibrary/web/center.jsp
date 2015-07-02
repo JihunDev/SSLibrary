@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<script>
-</script>
 	<!-- 움직이는 광고-->
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -40,10 +38,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div id="notice">
-	<font size="5px">공지사항&nbsp;&nbsp;&nbsp;&nbsp;</font><b>
-	<a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=notice">더보기</a></b>
-		<table border="1">
+  <div id="notice" class="board">
+	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
+	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=notice">더보기</a></b>
+		<table class="table">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -65,9 +63,9 @@
 		</tbody>
 		</table>
 	</div>  
-	<div id="free">
-	<font size="5px">자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</font><b><a class="btn btn-default btn-xs" role="button" href="boardmain.do?sort=free">더보기</a></b>
-	<table border="1">
+	<div id="free" class="board">
+	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=free">더보기</a></b>
+	<table class="table">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -88,12 +86,14 @@
 		</tbody>
 		</table>
 	</div>
-<div id="lastbook">
+
+<%-- <div id="lastbook" class="board">
 <font size="5px">최신 도서 TOP10</font>
 <table border="1">
 	<c:forEach items="${book}" var="b">
 				<td>${b.img}</td>
 	</c:forEach>
 </table>
-</div>
+</div> --%>
+
 

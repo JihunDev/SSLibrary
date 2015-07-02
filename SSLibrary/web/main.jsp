@@ -103,6 +103,11 @@ tr th:last-child {
 	border-radius: 10px 10px 10px 10px;
 }
 
+.board{
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 10px 10px 10px 10px;
+}
+
 /* fieldset {
     border: 5px solid #f0c413;
     background: white;
@@ -252,18 +257,16 @@ section {
 	background: rgba(255,255,255,0.4);
 }
 #notice{
-	width : 320px;
+	width : 325px;
 	height : 220px;
-	border : solid black 1px;
 	float : left;
 	padding : 10px;
-	margin : 0px 23px;
+	margin : 0px 23px 0px 20px;
 
 }
 #free{
-	width : 320px;
+	width : 325px;
 	height : 220px;
-	border : solid black 1px;
 	float : left;
 	padding : 10px;
 
@@ -272,7 +275,6 @@ section {
 	width : 640px;
 	height : 200px;
 	padding : 10px;
-	border : solid black 1px;
 
 }
 /** Footer CSS**/

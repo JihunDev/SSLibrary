@@ -12,62 +12,85 @@ function update(f){
 	} 
 };
 </script>
-<h1 align="center">Book Update</h1>
-<fieldset>
-<legend>疇 熱薑 曄衝</legend>
-<form name="updatebook" enctype="multipart/form-data">
-<input type ="hidden" name="id" value="${bookinfo.id}">
-<input type ="hidden" name="oldimg" value="${bookinfo.img}">
-<input type ="hidden" name="current_qt" value="${bookinfo.current_qt}">
-<table>
-<tr><th>ID</th><td align="right"><input type="text" name="id" placeholder="ID" value="${bookinfo.id}" disabled></td></tr>
-<tr><th>NAME</th><td align="right"><input type="text" name="name" placeholder="NAME" value="${bookinfo.name}" ></td></tr>
-<tr><th>WRITER</th><td align="right"><input type="text" name="writer" placeholder="WRITER" value="${bookinfo.writer}"></td></tr>
-<tr><th>IMG</th><td align="right"><img width="30" src="img/book/${bookinfo.img}">${bookinfo.img}</td></tr>
-<tr><th>NEW IMG</th><td><input type="file" name="img"></td></tr>
-<tr><th>FLOOR</th>
-<td align="right">
-<c:choose>
-<c:when test="${bookinfo.floor=='1類'}"> 
-<select name="floor">
-<option>摹鷗</option>
-<option value="1類" selected>1類</option>
-<option value="2類">2類</option>
-<option value="3類">3類</option>
-<option value="4類">4類</option>
-</select> 
-</c:when> 
-<c:when test="${bookinfo.floor=='2類'}">
-<select name="floor">
-<option>摹鷗</option>
-<option value="1類" >1類</option>
-<option value="2類" selected>2類</option>
-<option value="3類">3類</option>
-<option value="4類">4類</option>
-</select> 
-</c:when>
-<c:when test="${bookinfo.floor=='3類'}">
-<select name="floor">
-<option>摹鷗</option>
-<option value="1類" >1類</option>
-<option value="2類">2類</option>
-<option value="3類" selected>3類</option>
-<option value="4類">4類</option>
-</select> 
-</c:when>
-<c:otherwise>
-<select name="floor">
-<option>摹鷗</option>
-<option value="1類" >1類</option>
-<option value="2類">2類</option>
-<option value="3類" >3類</option>
-<option value="4類" selected>4類</option>
-</select> 
-</c:otherwise>
-</c:choose> 
-</td></tr>
-<tr><th>TOTAL_QT</th><td align="right"><input type="text" name="total_qt" placeholder="TOTAL_QT"  value="${bookinfo.total_qt}"></td></tr>
-<tr><th></th><td align="right"><input type="button" value="熱薑" onclick="update(this.form);"></td></tr>
-</table>
-</form>
-</fieldset>
+<div class="row centered-form">
+ <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Book Update</h3>
+                    </div>
+                        <div class="panel-body">
+                     <form name="updatebook" role="form" enctype="multipart/form-data">
+                     <div class="col-md-12">
+                            <div class="form-group">
+                            <input type ="hidden" name="id" value="${bookinfo.id}">
+							<input type ="hidden" name="oldimg" value="${bookinfo.img}">
+							<input type ="hidden" name="current_qt" value="${bookinfo.current_qt}">
+                           
+                            <label class="control-label for="id">ID</label>
+                            <input type="text" name="id" class="form-control" placeholder="ID" value="${bookinfo.id}" disabled>
+                            </div>
+                            <div class="form-group">
+                             <label class="control-label for="name">NAME</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="NAME" value="${bookinfo.name}">
+                            </div>
+                            <div class="form-group">
+                            <label class="control-label for="name">WRITER</label>
+                                <input type="text" name="writer" id="writer" class="form-control" placeholder="WRITER" value="${bookinfo.writer}">
+                            </div> 
+                            <div class="form-group">
+                             <label class="control-label" for="oldimg">錳楚餌霞 : <img height="30" src="img/book/${bookinfo.img}"></label>
+                            </div>
+                            <div class="form-group">
+                             <label class="control-label" for="img">IMG</label><input type="file" id="img" name="img"  class="file">
+                            </div>
+                            <div class="form-group">
+                           <label class="control-label" for="floor">FLOOR</label>
+                           <c:choose>
+								<c:when test="${bookinfo.floor=='1類'}"> 
+								<select name="floor" class="form-control">
+								<option>摹鷗</option>
+								<option value="1類" selected>1類</option>
+								<option value="2類">2類</option>
+								<option value="3類">3類</option>
+								<option value="4類">4類</option>
+								</select> 
+								</c:when> 
+								<c:when test="${bookinfo.floor=='2類'}">
+								<select name="floor" class="form-control">
+								<option>摹鷗</option>
+								<option value="1類" >1類</option>
+								<option value="2類" selected>2類</option>
+								<option value="3類">3類</option>
+								<option value="4類">4類</option>
+								</select> 
+								</c:when>
+								<c:when test="${bookinfo.floor=='3類'}">
+								<select name="floor" class="form-control">
+								<option>摹鷗</option>
+								<option value="1類" >1類</option>
+								<option value="2類">2類</option>
+								<option value="3類" selected>3類</option>
+								<option value="4類">4類</option>
+								</select> 
+								</c:when>
+								<c:otherwise>
+								<select name="floor" class="form-control">
+								<option>摹鷗</option>
+								<option value="1類" >1類</option>
+								<option value="2類">2類</option>
+								<option value="3類" >3類</option>
+								<option value="4類" selected>4類</option>
+								</select> 
+								</c:otherwise>
+								</c:choose>  
+                            </div>
+                             <div class="form-group">
+                                <input type="text" name="total_qt" id="total_qt" class="form-control" placeholder="TOTAL_QT" value="${bookinfo.total_qt}">
+                            </div>
+                            <input type="button" class="btn btn-primary btn-block" value="熱薑" onclick="update(this.form);">
+                        	</div>
+                        	</form>
+                    		</div>
+                    		  </div>
+                </div>
+            </div>                

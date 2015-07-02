@@ -36,31 +36,31 @@ function update(f) {
 				<input type="hidden" name="oldimg" value="${userupdate.img}"><!-- 원래 등록이미지 -->
 				<input type="hidden" name="id" value="${userupdate.id}">
                 <div class="form-group">
-                 <div class="col-sm-4">
 			         	<c:choose>
 					<c:when test="${userupdate.isadmin=='y'}"> 
-						<select class="form-control input-sm" name="isadmin">
+						<select class="form-control" name="isadmin">
 							<option value="y" selected>관리자</option>
 							<option value="n">회원</option>
 							<option value="s">정지 회원</option>
 						</select>
 					</c:when>
 					<c:when test="${userupdate.isadmin=='n'}"> 
-						<select class="form-control input-sm" name="isadmin">
+						<select class="form-control" name="isadmin">
 							<option value="y">관리자</option>
 							<option value="n" selected>회원</option>
 							<option value="s">정지 회원</option>
 						</select>
 					</c:when>
 					<c:when test="${userupdate.isadmin=='s'}"> 
-						<select class="form-control input-sm" name="isadmin">
+						<select class="form-control" name="isadmin">
 							<option value="y">관리자</option>
 							<option value="n">회원</option>
 							<option value="s" selected>정지 회원</option>
 						</select>
 					</c:when>
-				</c:choose>
-				</div>     
+				</c:choose>  
+				</div>
+				<div class="form-group">
                 <input type="text" name="id" id="id" class="form-control" placeholder="ID"  value="${userupdate.id}" disabled="disabled">
                 </div>
                 <div class="form-group">

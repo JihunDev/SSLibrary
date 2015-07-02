@@ -10,10 +10,10 @@ function makeHeight() {
    var center = document.querySelector("#center");
    var center_area = document.querySelector('#book_center');
    
-   var mHeight = center_area.clientHeight+50;
+   var mHeight = center_area.clientHeight+120;
    /* ClientHeight를 써서 표 높이만큼 늘리게 함. */
-   if (mHeight < 400) {
-      mHeight = 400;
+   if (mHeight < 700) {
+      mHeight = 700;
    }
    center.style.height = mHeight + 'px';
    section.style.height = mHeight + 'px';
@@ -120,6 +120,7 @@ $(document).ready(function(){
    makeHeight();
 }); */
 </script>
+<div class="fieldsetform">
 <input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
 <form class="form-inline">
@@ -138,6 +139,7 @@ $(document).ready(function(){
    <a class="btn btn-default btn-sm" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
    </div>
    <%} %>
+   <legend align="center">Book list</legend>
    <div id="book_result">
       <table width="700" class="table table-hover">
       <thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th>
@@ -159,4 +161,5 @@ $(document).ready(function(){
       </table>
    </div>
      </form>
+</div>
 </div>

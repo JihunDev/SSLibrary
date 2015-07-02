@@ -72,8 +72,7 @@ public class UserBiz implements Biz,SearchBiz {
 
 	@Override
 	public ArrayList<Object> getexpired() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchexpired();
 	}
 
 	@Override

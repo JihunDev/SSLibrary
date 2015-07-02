@@ -325,7 +325,17 @@ window.onload = function(){
 			}
 		});
 	}, 5000);	
-	
+	  //유저 초기화
+	   setInterval(function(){
+	      $.ajax({
+	         async : 'false',
+	         url : 'resetuser.do',
+	         success : function(data) {
+	         },
+	         error : function() {
+	         }
+	      });
+	   }, 5000);
 };
 
 </script>

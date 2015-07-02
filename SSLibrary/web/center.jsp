@@ -41,7 +41,7 @@
   <div id="notice" class="board">
 	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
 	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=notice">더보기</a></b>
-		<table class="table">
+		<table class="table table-condensed">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -65,7 +65,7 @@
 	</div>  
 	<div id="free" class="board">
 	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=free">더보기</a></b>
-	<table class="table">
+	<table class="table table-condensed">
 		<thead>
 		<tr>
 			<th>번호</th>

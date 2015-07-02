@@ -6,6 +6,7 @@
 		<option value="">전체</option>
 		<option value="n">회원</option>
 		<option value="s">정지</option>
+		<option value="d">탈퇴</option>
 	</select>
 	<input type="text" name="name" >
 	<input type="submit" value="검색">

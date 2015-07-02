@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
-import com.entity.Seat;
 import com.entity.SeatLog;
 import com.entity.User;
 import com.entity.UserSeat;
@@ -63,7 +64,6 @@ public class UserControl {
 		User user = null;
 		try {
 			user = (User) biz.get(new User(id));
-			System.out.println(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,7 +75,6 @@ public class UserControl {
 	@RequestMapping("/userremoveimpl.do")
 	public ModelAndView userremoveimpl(String id) {
 		ModelAndView mv = new ModelAndView("redirect:/usersearch.do");
-		System.out.println(id);
 		User user = new User(id, "d");
 		try {
 			biz.remove(user);
@@ -100,31 +99,23 @@ public class UserControl {
 	}
 
 	@RequestMapping("/usermodifyimpl.do")
-	public ModelAndView usermodifyimpl(UserCommand com) {
+	public ModelAndView usermodifyimpl(HttpServletRequest request,
+			UserCommand com) {
 		ModelAndView mv = new ModelAndView("redirect:/usersearch.do");
-		User user = new User(com.getId(), com.getPwd(), com.getName(),
-				com.getPhone(), com.getImg().getOriginalFilename(),
-				com.getEmail(), com.getIsadmin());
-		try {
-			biz.modify(user);
-			User user_ch = (User) biz.get(com.getId());
-			if (user_ch.getIsadmin().equals("s")) {
-				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(
-						user_ch.getId()));
-				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
-				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
-				seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É º¯°æ
-			}
-
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		HttpSession session = request.getSession();
+		String old_img = request.getParameter("oldimg");
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
-		if (img == null || img.equals("")) {
+		User user = null;
 
+		if (img == null || img.equals("")) {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
 		} else {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), com.getImg().getOriginalFilename(),
+					com.getEmail(), com.getIsadmin());
 			byte[] data;
 			try {
 				data = file.getBytes();
@@ -136,6 +127,22 @@ public class UserControl {
 				e.printStackTrace();
 			}
 		}
+
+		try {
+			biz.remove(user);
+			User user_ch = (User) biz.get(com.getId());
+			if (user_ch.getIsadmin().equals("s")) {
+				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(
+						user_ch.getId()));
+				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
+				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
+				// seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		session.setAttribute("user", user);
 		return mv;
 	}
 
@@ -144,7 +151,6 @@ public class UserControl {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
-		System.out.println(user1);
 		String name = user1.getName();
 		String isadmin = user1.getIsadmin();
 		String id = "";
@@ -156,8 +162,6 @@ public class UserControl {
 			name = null;
 		}
 
-		System.out.println("name : " + name);
-		System.out.println("isadmin : " + isadmin);
 		try {
 			list = searchbiz.getname(new User(id, name, isadmin));
 			System.out.println(list);

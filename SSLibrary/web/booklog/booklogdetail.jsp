@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 function makeHeight() {
 	var section = document.querySelector("#section");
@@ -61,9 +55,6 @@ function getBook() {
 	});
 };
 </script>
-<style></style>
-</head>
-<body>
 <div id="home_center">
 <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
 <h1 align="center">도서 과거 대여 내역</h1>
@@ -84,5 +75,3 @@ function getBook() {
 </tbody>
 </table>
 </div>
-</body>
-</html>

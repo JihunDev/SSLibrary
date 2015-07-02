@@ -5,8 +5,7 @@
 <%
 	User user = (User) session.getAttribute("user");
 %>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
@@ -99,19 +98,19 @@
 </script>
 <style>
 .y_btn {
-	background: yellow;
+	background: #CC723D;
 	width: 100px;
 	height: 100px;
 }
 
 .n_btn {
-	background: red;
+	background: #300000;
 	width: 100px;
 	height: 100px;
 }
 
 .f_btn {
-	background: green;
+	background: #002266;
 	width: 100px;
 	height: 100px;
 }
@@ -201,7 +200,7 @@
 				</c:choose>
 			</c:when>
 
-			<c:when test="${user == null}">
+			<c:when test="${user == null || user.isadmin == 's'}">
 				<c:choose>
 					<c:when test="${s.state == 'y'}">
 							<td>

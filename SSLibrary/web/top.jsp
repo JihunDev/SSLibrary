@@ -3,7 +3,6 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%User user = (User)session.getAttribute("user");%> 
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <%if(user == null){  %>
 <div id="top">
    <fieldset>

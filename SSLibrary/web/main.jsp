@@ -38,9 +38,33 @@ a{
 a:hover{
 	text-decoration: none;
 }
+
 table {
-	margin : 0 auto;
-	text-align : center;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+thead th {
+  background-color: #337ab7;
+  color: white;
+  text-align : center;
+}
+
+tbody td {
+  background-color: #EEEEEE;
+  text-align : center;
+}
+
+tr td:first-child,
+tr th:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+tr td:last-child,
+tr th:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 
@@ -78,7 +102,21 @@ header>#top{
 	position: absolute;
 	top : 0;
 	right : 50px;
-	width : 500px;
+	width : 480px;
+	height : 55px;
+	line-height : 55px;
+	background : #8a4c25;
+	background: rgba(137, 73, 35, 0.6);
+	border-radius: 0px 0px 10px 10px;
+	float : right;
+	padding : 0px 10px;
+}
+
+header>#afterlogin{
+	position: absolute;
+	top : 0;
+	right : 50px;
+	width : 400px;
 	height : 55px;
 	line-height : 55px;
 	background : #8a4c25;
@@ -86,8 +124,16 @@ header>#top{
 	border-radius: 0px 0px 10px 10px;
 	float : right;
 }
-header>#top>fieldset>table>tbody>tr>td>a>b{
+
+header>#afterlogin{
+	padding : 0px 10px;
+}
+header>#afterlogin>fieldset>div>a>b{
  	color : white;
+}
+header>#afterlogin>fieldset>div{
+ 	padding : 0px 9px;
+ 	float : left;
 }
 heaer>#top>fieldset>form>.form-group{
 	align : center;
@@ -155,6 +201,9 @@ nav>#bottom>ul>li>a{
 	margin : 20px 20px;
 	font-size : 1.0em;
 	color : black;
+}
+nav>#bottom>ul>li>a:hover{
+	color : red;
 }
 
 /** Section CSS**/

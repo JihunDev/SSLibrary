@@ -3,12 +3,6 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%User user = (User)session.getAttribute("user");%> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 function makeHeight() {
    var section = document.querySelector("#section");
@@ -126,9 +120,6 @@ $(document).ready(function(){
    makeHeight();
 }); */
 </script>
-<style></style>
-</head>
-<body>
 <input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
    <select id="issearch"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
@@ -161,5 +152,3 @@ $(document).ready(function(){
       </table>
    </div>
 </div>
-</body>
-</html>

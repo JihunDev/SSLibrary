@@ -3,7 +3,6 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%User user = (User)session.getAttribute("user");%>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 $(document).ready(function(){
 	makeHeight();
@@ -32,8 +31,6 @@ function deletebook(){
 	};		
 }
 </script>
-<style></style>
-
 <h1 align="center">Book Detail Page</h1>
 <fieldset>
 <legend>Book Detail</legend>

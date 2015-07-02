@@ -5,9 +5,7 @@
 <%
 	User user = (User) session.getAttribute("user");
 %>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script>
 
 	// 좌석 등록 함수	
@@ -53,9 +51,14 @@
 		$(".seatstate").val(data);
 		$(".seatid").val(s_id);
 		if (state == 'y') {
-			$("#modifyY").dialog({
+			/* $("#modifyY").dialog({
 				'modal' : true,
 				'width' : 300,
+				'height' : 200
+			}); */
+
+	        $('#modifyY').modal({
+	        	'width' : 300,
 				'height' : 200
 			});
 		}
@@ -69,9 +72,8 @@
 
 		}
 		if (state == 'f') {
-			$("#modifyG").dialog({
-				'modal' : true,
-				'width' : 300,
+	        $('#modifyG').modal({
+	        	'width' : 300,
 				'height' : 200
 			});
 		}
@@ -95,6 +97,12 @@
 			}
 		});
 	};
+	
+	$(function(){
+	    $("#popbutton").click(function(){
+	        $('#modifyY').modal();
+	    })
+	})
 </script>
 <style>
 .y_btn {

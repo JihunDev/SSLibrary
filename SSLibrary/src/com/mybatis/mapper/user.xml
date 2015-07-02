@@ -40,7 +40,6 @@
 			<if test='isadmin == "s"'>,STOP_DATE = SYSDATE+7</if>
 		</trim>
 		WHERE ID = #{id}
-		
 	</update>
 
 	<update id="updateuser" parameterType="user">

@@ -26,15 +26,15 @@ function update(f){
 							<input type ="hidden" name="oldimg" value="${bookinfo.img}">
 							<input type ="hidden" name="current_qt" value="${bookinfo.current_qt}">
                            
-                            <label class="control-label for="id">ID</label>
+                            <label class="control-label" for="id">ID</label>
                             <input type="text" name="id" class="form-control" placeholder="ID" value="${bookinfo.id}" disabled>
                             </div>
                             <div class="form-group">
-                             <label class="control-label for="name">NAME</label>
+                             <label class="control-label" for="name">NAME</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="NAME" value="${bookinfo.name}">
                             </div>
                             <div class="form-group">
-                            <label class="control-label for="name">WRITER</label>
+                            <label class="control-label" for="writer">WRITER</label>
                                 <input type="text" name="writer" id="writer" class="form-control" placeholder="WRITER" value="${bookinfo.writer}">
                             </div> 
                             <div class="form-group">

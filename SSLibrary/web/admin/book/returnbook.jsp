@@ -16,7 +16,7 @@ function removeUserbook(){
 <legend>¹Ý³³ Á¤º¸</legend>
 <form>
 <div>
-<table width="700">
+<table width="700" class="table table-hover">
 <thead><tr><th>U_ID</th><th >B_ID</th><th >START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
 <th>ISRETURN</th></tr></thead>
 <tbody>

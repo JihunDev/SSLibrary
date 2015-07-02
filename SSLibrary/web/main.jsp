@@ -48,17 +48,23 @@ th{
  background-color: #337ab7;
   color: white;
   text-align : center;
+  vertical-align: middle;
+}
+td{
+ vertical-align: middle;
 }
 
 thead th {
   background-color: #337ab7;
   color: white;
   text-align : center;
+  vertical-align: middle;
 }
 
 tbody td {
   background-color: #EEEEEE;
   text-align : center;
+  vertical-align: middle;
 }
 
 tr td:first-child,
@@ -72,7 +78,10 @@ tr th:last-child {
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-
+.option-button {
+    height: 90px;
+    line-height : 70px;
+}
 
 .centered-form {
     margin-top: 40px;

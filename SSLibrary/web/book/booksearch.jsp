@@ -122,9 +122,16 @@ $(document).ready(function(){
 </script>
 <input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
-   <select id="issearch"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
-   <select id="category"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
-   <input type="text" id="search"><input type="button" value="검색" onclick="getBook();">
+<form class="form-inline">
+ <select id="issearch" class="form-control input-sm"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
+ <select id="category" class="form-control input-sm"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
+    <div class="input-group">
+     <input type="text" id="search" class="form-control input-sm" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-sm" type="button" onclick="getBook();" >검색</button>
+      </span>
+    </div><!-- /input-group -->
+
    <%if(user!=null && user.getIsadmin().equals("y")){ %>
    <div class="btn-group">
    <a class="btn btn-default btn-sm" href="bookregister.do" role="button">등록</a>
@@ -151,4 +158,5 @@ $(document).ready(function(){
       </tbody>
       </table>
    </div>
+     </form>
 </div>

@@ -316,7 +316,7 @@ public class MainControl {
 		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
 		User user = null;
-
+		System.out.println(com.getIsadmin());
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
@@ -344,7 +344,7 @@ public class MainControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+		System.out.println(user);
 		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");
 		return mv;

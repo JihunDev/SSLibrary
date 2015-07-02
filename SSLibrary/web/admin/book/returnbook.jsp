@@ -11,9 +11,9 @@ function removeUserbook(){
 	
 }
 </script>
-<h1 align="center">실시간 반납 도서 정보</h1>
+<div class="fieldsetform">
 <fieldset>
-<legend>반납 정보</legend>
+<legend align="center">실시간 반납 도서 정보</legend>
 <form>
 <div>
 <table width="700" class="table table-hover">
@@ -32,7 +32,8 @@ function removeUserbook(){
 </c:forEach>
 </tbody>
 </table>
-<input type="button" value="반납확인" onclick="removeUserbook();">
+<input type="button" class="btn btn-default" value="반납확인" onclick="removeUserbook();">
 </div>
 </form>
 </fieldset>
+</div>

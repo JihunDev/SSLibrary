@@ -120,7 +120,7 @@ public class MainControl {
 		}
 
 		// 회원 정지 풀기
-		User admin = (User) session.getAttribute("user");
+/*		User admin = (User) session.getAttribute("user");
 		System.out.println(admin);
 		if (admin != null && admin.getIsadmin().equals("y")) {
 			Calendar calendar = Calendar.getInstance();
@@ -129,6 +129,7 @@ public class MainControl {
 			System.out.println("현재 시간 : "
 					+ dateFormat.format(calendar.getTime()));
 			String time = dateFormat.format(calendar.getTime());
+			System.out.println("회원 시간 : " + time);
 			String id = (String) session.getAttribute("id");
 			try {
 				ArrayList<Object> list = new ArrayList<Object>();
@@ -137,27 +138,26 @@ public class MainControl {
 					User user = (User) obj;
 					int stoptime = 0;
 					int nowtime = 0;
-					if (user.getStop_date() == null) {
-
-					} else {
+					
+					if (user.getStop_date() != null) {
 						stoptime = Integer.parseInt(user.getStop_date());
 					}
+					
 					nowtime = Integer.parseInt(time);
 					if (stoptime > nowtime) {
-						User user1 = new User(id, "n");
-						biz.remove(user1);
+						biz.remove(new User(id, "n"));
 						System.out.println("정지 풀기");
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		// 세션&mv
+		}*/
+	
+		
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
-
 		mv.addObject("book", book_list);
 		mv.addObject("free", free_list);
 		mv.addObject("notice", notice_list);
@@ -187,7 +187,6 @@ public class MainControl {
 					com.getPhone(), com.getImg().getOriginalFilename(),
 					com.getEmail(), com.getIsadmin());
 
-			// 이미지 저장
 			MultipartFile file = com.getImg();
 			String dir = "C:/lib/SSLibrary/web/img/user/";
 			byte[] data;
@@ -208,6 +207,7 @@ public class MainControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		session.setAttribute("id", user.getId());
 		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");
 		return mv;
@@ -246,12 +246,12 @@ public class MainControl {
 					}
 				}
 				session.setAttribute("msgcheck", msgchecknumber);
-				// 새로운 메세지의 수만큼 세션에 넣음
 			} else {
 				mv.addObject("check", "fail");
 				mv.addObject("center", "center.jsp");
 			}
 		}
+
 		return mv;
 	}
 
@@ -260,11 +260,13 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView("main");
 		String id = request.getParameter("id");
 		String is = "d";
+
 		try {
 			biz.remove(new User(id, is));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
@@ -315,6 +317,7 @@ public class MainControl {
 
 	@RequestMapping("/modify.do")
 	public ModelAndView modify(String id) {
+		ModelAndView mv = new ModelAndView("main");
 		User user = null;
 		try {
 			user = (User) biz.get(id);
@@ -322,7 +325,6 @@ public class MainControl {
 			e.printStackTrace();
 		}
 
-		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("userupdate", user);
 		mv.addObject("center", "user/update.jsp");
 		return mv;
@@ -334,7 +336,7 @@ public class MainControl {
 		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
 		User user = null;
-		System.out.println(old_img);
+
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
@@ -358,10 +360,11 @@ public class MainControl {
 		}
 
 		try {
-			biz.modify(user);
+			biz.remove(user);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+
 		session.setAttribute("user", user);
 		mv.addObject("center", "center.jsp");
 		return mv;
@@ -389,6 +392,7 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		mv.addObject("messagelog", mlre);
 		mv.addObject("center", "messagelog/messagelist.jsp");
 		return mv;
@@ -408,8 +412,8 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("msgcheck", number);// 메세지 체크
 
+		session.setAttribute("msgcheck", number);// 메세지 체크
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
 
@@ -430,12 +434,9 @@ public class MainControl {
 			for (Object obj : userbooklist) {
 				UserBook userbook = (UserBook) obj;
 				String bid = userbook.getB_id();// id 뽑아옴
-
 				Book book = (Book) bookbiz.get(bid);// 하나씩 찾음
-
 				String[] info = { bid, book.getName(),
 						userbook.getStart_date(), userbook.getEnd_date() };
-				// 현재 이용 정보에 필요한 값 String 배열에 넣음
 				booklist.add(info);// array에 담음
 			}
 			userseat = userseatbiz.get(id);

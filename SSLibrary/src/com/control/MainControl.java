@@ -75,7 +75,7 @@ public class MainControl {
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
 				int i = 0;
-				for (i = 0; i < 5;) {
+				for (i = 0; i < 4;) {
 					notice_list.add(one_board);
 					break;
 				}
@@ -92,7 +92,7 @@ public class MainControl {
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
 				int i = 0;
-				for (i = 0; i < 5;) {
+				for (i = 0; i < 4;) {
 					free_list.add(one_board);
 					break;
 				}

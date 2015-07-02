@@ -7,7 +7,10 @@
 %>
 
 <script>
-
+	window.onload = function(){	
+		
+		
+	};
 	// 좌석 등록 함수	
 	function register(f) {
 		var s_id = f.s_id.value;
@@ -25,8 +28,7 @@
 		// 좌석의 id 값 대입
 		$(".seatid").val(s_id);
 		//메세지 전송 다이얼로그 출력
-		$("#sendMsg").dialog({
-			'modal' : true,
+		$("#sendMsg").modal({
 			'width' : 500,
 			'height' : 400
 		});		
@@ -63,9 +65,8 @@
 			});
 		}
 		if (state == 'n') {
-			$("#modifytabs").tabs();
-			$("#modifyR").dialog({
-				'modal' : true,
+			$("#adminTab").tab('show');
+			$("#modifyR").modal({
 				'width' : 500,
 				'height' : 400
 			});
@@ -97,30 +98,24 @@
 			}
 		});
 	};
-	
-	$(function(){
-	    $("#popbutton").click(function(){
-	        $('#modifyY').modal();
-	    })
-	})
+
 </script>
 <style>
+#seattable>tbody>tr>td>form>input{
+	width: 50px;
+	height: 50px;
+
+}
 .y_btn {
 	background: #CC723D;
-	width: 100px;
-	height: 100px;
 }
 
 .n_btn {
 	background: #300000;
-	width: 100px;
-	height: 100px;
 }
 
 .f_btn {
 	background: #002266;
-	width: 100px;
-	height: 100px;
 }
 
 .modify {
@@ -129,7 +124,7 @@
 </style>
 
 <h1>Seat State(현재 좌석 정보) (login: ${user.id}, Admin: ${user.isadmin}</h1>
-<table>
+<table id = "seattable">
 	<tr>
 		<c:forEach items="${seatlist}" var="s" varStatus="i">
 		<c:if test="${i.index % 8 == 0}">

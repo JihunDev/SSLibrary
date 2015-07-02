@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface BoardMapper {
 	public int insertboard(Object obj);
 
-	public int delectboard(Object obj);
+	public int deleteboard(Object obj);
 
 	public int updateboard(Object obj);
 

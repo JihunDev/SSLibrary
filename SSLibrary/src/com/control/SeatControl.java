@@ -49,16 +49,13 @@ public class SeatControl {
 		User user = (User) session.getAttribute("user");
 
 		Object myseat = null;
-//		if (user == null) {
-//			mv.addObject("left", "user/login.jsp");
-//		} else {
-			try {
-				myseat = ubiz.get(user.getId());
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-//		}
+		try {
+			myseat = ubiz.get(user.getId());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		try {
 			seatlist = biz.get();
 		} catch (Exception e) {
@@ -71,6 +68,7 @@ public class SeatControl {
 		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
 		System.out.println(seatlist);
+		
 		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
 		mv.addObject("myseat", myseat);
 		

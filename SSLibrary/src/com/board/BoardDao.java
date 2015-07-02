@@ -22,7 +22,7 @@ public class BoardDao implements Dao ,SearchDao, UpdateAndReturnDao {
 
 	@Override
 	public Object delete(Object obj) throws Exception {
-		return mapper.delectboard(obj);
+		return mapper.deleteboard(obj);
 	}
 
 	@Override

@@ -568,6 +568,10 @@ public class BookControl {
 			booklist.add(info);// array에 담음
 		}
 		
+		//그 책의 qt를 1다시 증가시켜준다.
+		Book b = new Book(id);
+		sbookbiz.getnum_reply(b);
+		
 		System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
 		mv.addObject("returnqt",returnqt);
 		session.setAttribute("booklist",booklist);

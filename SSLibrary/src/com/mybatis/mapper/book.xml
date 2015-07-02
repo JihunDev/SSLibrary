@@ -27,4 +27,7 @@
 	<update id="updatebook" parameterType="book">
 	UPDATE A_BOOK SET NAME=#{name}, WRITER=#{writer}, IMG=#{img}, FLOOR=#{floor}, TOTAL_QT=#{total_qt}, CURRENT_QT=#{current_qt} WHERE ID=#{id}
 	</update>
+	<update id="returnbook" parameterType="book">
+	UPDATE A_BOOK SET CURRENT_QT=CURRENT_QT+1 WHERE ID=#{id}
+	</update>	
 </mapper>

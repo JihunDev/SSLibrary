@@ -16,9 +16,11 @@ public interface BookLogMapper {
 	public int deletelogbook(Object obj);
 
 	public int updatelogbook(Object obj);
-
+	
 	public int updateQtlogbook(Object obj);
 
 	public ArrayList<Object> selectuseridlogbooks(Object obj);
+	
+	
 
 }

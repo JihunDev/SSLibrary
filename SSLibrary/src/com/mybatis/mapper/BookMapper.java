@@ -10,6 +10,7 @@ public interface BookMapper {
 	public int insertbook(Object obj);
 	public int deletebook(Object obj);
 	public int updatebook(Object obj);
+	public int returnbook(Object obj);
 	
 	
 }

@@ -19,6 +19,14 @@ public class Book {
 		this.id = id;
 	}
 	
+	
+	
+
+	public Book(String id, int current_qt) {
+		super();
+		this.id = id;
+		this.current_qt = current_qt;
+	}
 
 	public Book(String id, String name, String writer, String img,
 			String floor, int total_qt) {

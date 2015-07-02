@@ -11,6 +11,13 @@ function del(f) {/* delete가 예약어라 del씀 */
 		};
 	}
 function update(f) {
+	var reg_number = f.reg_number.value;
+	var id = f.id.value;
+	var content = f.content.value;
+	//alert(reg_number);
+	if(reg_number != 0 ){// 댓글
+		$('#'+id+'_content').html("<input type='text' name='update_content' value='"+content+"'>");
+	}
 	var c = confirm('수정 하시겠습니까?');
 		if (c == true) {
 			f.action = 'boardmodify.do';/* 추후 수정 */
@@ -19,7 +26,7 @@ function update(f) {
 		};
 	}
 function register(f) {
-	var c = confirm('리플을 등록 하시겠습니까?');
+	var c = confirm('댓글을 등록 하시겠습니까?');
 		if (c == true) {
 			f.action = 'boardwriteimpl.do';/* 추후 수정 */
 			f.method = 'POST';
@@ -32,17 +39,17 @@ function register(f) {
 	<table border="1">
 	<tbody>
 		<tr>
-			<td>제목</td>
+			<th>제목</th>
 			<td colspan="3">${boarddetail.title}</td>
-			<td>글쓴이</td>
+			<th>글쓴이</th>
 			<td>${boarddetail.u_id}</td>
 		</tr>
 		<tr>
-			<td>분류</td>
+			<th>분류</th>
 			<td>${boarddetail.sort}</td>
-			<td>글쓴날짜</td>
+			<th>글쓴날짜</th>
 			<td>${boarddetail.reg_date}</td>
-			<td>조회</td>
+			<th>조회</th>
 			<td>${boarddetail.counter}</td>
 		</tr>
 		<tr>	
@@ -56,24 +63,26 @@ function register(f) {
 <form>
 	<input type="hidden" name="sort" value="${boarddetail.sort}">
 	<input type="hidden" name="id" value="${boarddetail.id}">
+	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">	
 	<input type="button" value="삭제" onclick="del(this.form)">
 	<input type="button" value="수정" onclick="update(this.form)">
 </form>
 	<table border=1>
 		<c:forEach items="${boardreply}" var="reply">
 		<form>
-			<input type="hidden" name="sort" value="${boarddetail.sort}">
-			<input type="hidden" name="id" value="${boarddetail.id}">
-	
+			<input type="hidden" name="sort" value="${reply.sort}">
+			<input type="hidden" name="id" value="${reply.id}">	
+			<input type="hidden" name="reg_number" value="${reply.reg_number}">	
+			<input type="hidden" name="content" value="${reply.content}">	
 			<tr>
-				<td>등록번호</td><td>${reply.id}</td>
-				<td>시간</td><td>${reply.reg_date}</td>
+				<th>등록번호</th><td>${reply.id}</td>
+				<th>시간</th><td>${reply.reg_date}</td>
 				<td><input type="button" value="삭제" onclick="del(this.form)"></td>
 			</tr>
 			<tr>			
-				<td>글쓴이</td><td>${reply.u_id}</td>
-				<td>내용</td>
-				<td>${reply.content}</td>
+				<th>글쓴이</th><td>${reply.u_id}</td>
+				<th>내용</th>
+				<td id = "${reply.id}_content">${reply.content}</td>
 				<td><input type="button" value="수정" onclick="update(this.form)"></td>
 			</tr>
 		</form>

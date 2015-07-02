@@ -167,12 +167,7 @@ public class UserControl {
 			System.out.println(list);
 			for (Object obj : list) {
 				User user = (User) obj;
-				String check = user.getIsadmin();
-				if (check.equals("d")) {
-
-				} else {
-					list_check.add(user);
-				}
+				list_check.add(user);				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

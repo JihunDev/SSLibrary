@@ -122,9 +122,9 @@ public class MainControl {
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
-		mv.addObject("book", book_list);
-		mv.addObject("free", free_list);
-		mv.addObject("notice", notice_list);
+		session.setAttribute("book", book_list);
+		session.setAttribute("free", free_list);
+		session.setAttribute("notice", notice_list);
 		mv.addObject("center", "center.jsp");
 
 		return mv;

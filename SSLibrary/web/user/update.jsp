@@ -49,8 +49,7 @@ function del(f) {
 		<input type="hidden" name="isadmin" value="${userupdate.isadmin}">
 		<input type="hidden" name="id" value="${userupdate.id}">
                 <div class="form-group">
-                <input type="hidden" name="isadmin" value="n"><br> 
-                  <input type="text" name="id" id="id" class="form-control" placeholder="ID"  value="${userupdate.id}" disabled="disabled">
+                <input type="text" name="id" id="id" class="form-control" placeholder="ID"  value="${userupdate.id}" disabled="disabled">
                 </div>
                 <div class="form-group">
                 <input type="text" name="pwd" id="pwd" class="form-control" placeholder="PWD">

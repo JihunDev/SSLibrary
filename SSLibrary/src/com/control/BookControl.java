@@ -396,6 +396,7 @@ public class BookControl {
 			for (Object obj : userbooklist) { //회원이 빌린 책id들과 지금 대여하려는 책 id 비교함
 				UserBook userbook = (UserBook) obj; 
 				bid = userbook.getB_id();// id 뽑아와서 넣기
+				System.out.println("책 id : "+bid);
 			
 				if(bid.equals(id) || bid==id){// 대여할려는 책이 중복일 경우
 					System.out.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");

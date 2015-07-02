@@ -422,13 +422,10 @@ public class MainControl {
 		ArrayList<Object> time_list = new ArrayList<Object>();
 		try {
 			time_list = SearchBiz.getexpired();
-			System.out.println(time_list);
 			for (Object obj : time_list) {
 				User user = (User) obj;
 				String userid = user.getId();
-				System.out.println(userid);
 				biz.remove(new User(userid, "n"));
-				System.out.println("회원 정지 풀기");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

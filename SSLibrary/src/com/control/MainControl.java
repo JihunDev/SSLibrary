@@ -31,6 +31,8 @@ import com.frame.UpdateAndReturnBiz;
 public class MainControl {
 	@Resource(name = "userbiz")
 	Biz biz;
+	@Resource(name = "userbiz")
+	SearchBiz SearchBiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
 	@Resource(name = "userseatbiz")
@@ -58,6 +60,7 @@ public class MainControl {
 		ArrayList<Object> notice_list = new ArrayList<Object>();
 		ArrayList<Object> free_list = new ArrayList<Object>();
 		ArrayList<Object> book_list = new ArrayList<Object>();
+		ArrayList<Object> time_list = new ArrayList<Object>();
 
 		// 세션 정보 확인
 		Enumeration<String> enum_app = session.getAttributeNames();
@@ -120,41 +123,20 @@ public class MainControl {
 		}
 
 		// 회원 정지 풀기
-/*		User admin = (User) session.getAttribute("user");
-		System.out.println(admin);
-		if (admin != null && admin.getIsadmin().equals("y")) {
-			Calendar calendar = Calendar.getInstance();
-			SimpleDateFormat dateFormat = new SimpleDateFormat(
-					"yyyyMMddHHmmssSSS");
-			System.out.println("현재 시간 : "
-					+ dateFormat.format(calendar.getTime()));
-			String time = dateFormat.format(calendar.getTime());
-			System.out.println("회원 시간 : " + time);
-			String id = (String) session.getAttribute("id");
-			try {
-				ArrayList<Object> list = new ArrayList<Object>();
-				list = biz.get();
-				for (Object obj : list) {
-					User user = (User) obj;
-					int stoptime = 0;
-					int nowtime = 0;
-					
-					if (user.getStop_date() != null) {
-						stoptime = Integer.parseInt(user.getStop_date());
-					}
-					
-					nowtime = Integer.parseInt(time);
-					if (stoptime > nowtime) {
-						biz.remove(new User(id, "n"));
-						System.out.println("정지 풀기");
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			time_list = SearchBiz.getexpired();
+			System.out.println(time_list);
+			for (Object obj : time_list) {
+				User user = (User) obj;
+				String userid = user.getId();
+				System.out.println(userid);
+				biz.remove(new User(userid, "n"));
+				System.out.println("회원 정지 풀기");
 			}
-		}*/
-	
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		session.setAttribute("top", "top.jsp");
 		session.setAttribute("nav", "nav.jsp");
 		session.setAttribute("left", "left.jsp");
@@ -360,7 +342,7 @@ public class MainControl {
 		}
 
 		try {
-			biz.remove(user);
+			biz.modify(user);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

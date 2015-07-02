@@ -43,10 +43,11 @@ function returnMySeat(){
 	
 }
 </script>
+<div class="fieldsetform">
 <input type="hidden" id="qt" value="${qt}">
 <fieldset>
 	<legend>상세페이지</legend>
-		<table border="3" width="700">
+		<table width="670" class="table table-hover">
 			<thead>
 				<tr>
 					<th colspan="6">현재이용정보</th>
@@ -90,3 +91,4 @@ function returnMySeat(){
 			</tbody>
 		</table>
 </fieldset>
+</div>

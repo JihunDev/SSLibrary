@@ -3,10 +3,11 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% User user = (User) session.getAttribute("user"); %>
+<div class="fieldsetform">
 <fieldset>
 	<legend>회원정보</legend>
 	<h4>${user.id} 정보</h4>
-	<table class="table table-bordered" width="700"> <!-- 추후수정 -->
+	<table class="table table-hover" width="700"> <!-- 추후수정 -->
 		<tr><td rowspan="6"><img width="200px" src="img/${user.img}"></td>
 		<tr><th>ID</th><td>${user.id}</td></tr>
 		<tr><th>PWD</th><td>${user.pwd}</td></tr>
@@ -20,3 +21,4 @@
 		<a class="btn btn-default" href="msgloglist.do?id=${user.id}">메세지 내역</a>
 	</div>
 </fieldset>
+</div>

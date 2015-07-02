@@ -49,16 +49,16 @@ public class SeatControl {
 		User user = (User) session.getAttribute("user");
 
 		Object myseat = null;
-		if (user == null) {
-			mv.addObject("left", "user/login.jsp");
-		} else {
+//		if (user == null) {
+//			mv.addObject("left", "user/login.jsp");
+//		} else {
 			try {
 				myseat = ubiz.get(user.getId());
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
+//		}
 		try {
 			seatlist = biz.get();
 		} catch (Exception e) {

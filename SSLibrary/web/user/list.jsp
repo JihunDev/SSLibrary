@@ -16,7 +16,7 @@ function u_list(){
 
 function display(data) {
 	var output = '';
-	output += "<table>";
+	output += "<table class='table table-hover'>";
 	output += "<thead>";
 	output += "<tr><th>ID</th><th>PWD</th><th>NAME</th><th>TEL</th><th>E-MAIL</th></tr>";
 	output += "</thead>";

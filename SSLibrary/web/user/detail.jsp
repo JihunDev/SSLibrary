@@ -8,7 +8,7 @@
 	<legend>회원정보</legend>
 	<h4>${user.id} 정보</h4>
 	<table class="table table-hover" width="700"> <!-- 추후수정 -->
-		<tr><td rowspan="6"><img width="200px" src="img/${user.img}"></td>
+		<tr><td rowspan="6"><img width="300px" src="img/user/${user.img}"></td>
 		<tr><th>ID</th><td>${user.id}</td></tr>
 		<tr><th>PWD</th><td>${user.pwd}</td></tr>
 		<tr><th>NAME</th><td>${user.name}</td></tr>

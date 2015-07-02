@@ -126,7 +126,7 @@ public class MainControl {
 		session.setAttribute("free", free_list);
 		session.setAttribute("notice", notice_list);
 		mv.addObject("center", "center.jsp");
-
+		
 		return mv;
 	}
 

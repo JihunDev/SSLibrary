@@ -58,7 +58,6 @@ public class MainControl {
 		ArrayList<Object> notice_list = new ArrayList<Object>();
 		ArrayList<Object> free_list = new ArrayList<Object>();
 		ArrayList<Object> book_list = new ArrayList<Object>();
-		ArrayList<Object> time_list = new ArrayList<Object>();
 
 		// 세션 정보 확인
 		Enumeration<String> enum_app = session.getAttributeNames();
@@ -115,21 +114,6 @@ public class MainControl {
 					break;
 				}
 				i++;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// 회원 정지 풀기
-		try {
-			time_list = SearchBiz.getexpired();
-			System.out.println(time_list);
-			for (Object obj : time_list) {
-				User user = (User) obj;
-				String userid = user.getId();
-				System.out.println(userid);
-				biz.remove(new User(userid, "n"));
-				System.out.println("회원 정지 풀기");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -430,5 +414,25 @@ public class MainControl {
 
 		return mv;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("/resetuser.do")
+	public String resetuser() {
+		// 회원 정지 풀기
+		ArrayList<Object> time_list = new ArrayList<Object>();
+		try {
+			time_list = SearchBiz.getexpired();
+			System.out.println(time_list);
+			for (Object obj : time_list) {
+				User user = (User) obj;
+				String userid = user.getId();
+				System.out.println(userid);
+				biz.remove(new User(userid, "n"));
+				System.out.println("회원 정지 풀기");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "1";
+	}
 }

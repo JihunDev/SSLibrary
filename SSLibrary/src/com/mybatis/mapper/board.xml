@@ -44,18 +44,15 @@
 		</selectKey>
 	</insert>
 
-	<delete id="delectboard" parameterType="board">
-		DELETE FROM A_BOARD WHERE
-		ID = #{id}
+	<delete id="deleteboard" parameterType="board">
+		DELETE FROM A_BOARD WHERE ID = #{id}
+		<if test="reg_number == 0">OR REG_NUMBER = #{id}</if>
 	</delete>
 
 	<update id="updateboard" parameterType="board">
-		UPDATE A_BOARD		
-		<trim prefix="SET" suffixOverrides=",">
+		UPDATE A_BOARD	SET
 			<if test = "reg_number == '0'"> TITLE = #{title}, FILE_NAME=#{file_name},</if>
-				CONTENT = #{content}, SORT = #{sort}
-		</trim>
-		WHERE ID = #{id}
+				CONTENT = #{content}, SORT = #{sort} WHERE ID = #{id}
 	</update>
 	
 	<update id="updatecounterboard" parameterType="board">

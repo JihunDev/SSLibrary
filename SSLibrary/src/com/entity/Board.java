@@ -16,10 +16,17 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	
 	public Board(int id) {
 		super();
 		this.id = id;
+	}
+	
+	// 제거할 때 게시글, 댓글 구분 
+	public Board(int id, int reg_number) {
+		super();
+		this.id = id;
+		this.reg_number =  reg_number;
 	}
 
 
@@ -29,7 +36,7 @@ public class Board {
 		this.sort = sort;
 	}
 
-
+	// 댓글 수정
 	public Board(String u_id, String content, String sort, int reg_number) {
 		super();
 		this.u_id = u_id;
@@ -37,9 +44,8 @@ public class Board {
 		this.sort = sort;
 		this.reg_number = reg_number;
 	}
-
-	public Board(String u_id, String title, String content, String sort,
-			String file_name) {
+	// 게시글 수정
+	public Board(String u_id, String title, String content, String sort, 	String file_name) {
 		this.u_id = u_id;
 		this.title = title;
 		this.content = content;
@@ -47,8 +53,7 @@ public class Board {
 		this.file_name = file_name;
 	}
 
-	public Board(String u_id, String title, String content, String sort,
-			String file_name, int reg_number) {
+	public Board(String u_id, String title, String content, String sort, String file_name, int reg_number) {
 		super();
 		this.u_id = u_id;
 		this.title = title;
@@ -58,8 +63,7 @@ public class Board {
 		this.reg_number = reg_number;
 	}
 
-	public Board(int id, String title, String content, String sort,
-			String file_name) {
+	public Board(int id, String title, String content, String sort, String file_name) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -76,8 +80,7 @@ public class Board {
 	}
 
 
-	public Board(int id, String u_id, int counter, String title,
-			String content, String reg_date, String sort, String file_name,
+	public Board(int id, String u_id, int counter, String title, String content, String reg_date, String sort, String file_name,
 			int reg_number) {
 		this.id = id;
 		this.u_id = u_id;

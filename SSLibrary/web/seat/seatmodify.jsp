@@ -64,26 +64,29 @@ function modifystate(f, i) {
         <h4 class="modal-title">좌석 상태</h4>
       </div>
       <!-- body -->
+      <form>
       <div class="modal-body">
 				<form>
 					<input type="hidden" class="seatstate" name="seatstate">
 					 <input type="hidden" class="seatid" name="seatid">
 					 <input type="radio" class="stateclass" name="seatY" id="ableseatY" value="y" checked>예약 가능<br>
 					 <input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br> 
-					 <input type="button" name="Ybtn" id="Ybtn" value="확인"	onclick="modifystate(this.form, 'seatY');">
-				</form>
+<!-- 					 <input type="button" name="Ybtn" id="Ybtn" value="확인"	onclick="modifystate(this.form, 'seatY');"> -->
 			</div>
       <!-- Footer -->
       <div class="modal-footer">
         Footer
+        <button type="button" class="btn btn-default" data-dismiss="modal" name="Ybtn" id="Ybtn" value="확인"	onclick="modifystate(this.form, 'seatY');">확인</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-      </div>
+        </div>
+    		</form>
+		
     </div>
   </div>
 </div>
 
 
-<div class="modal in"  id="modifyG" >
+<div class="modal fade"  id="modifyG" >
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- header -->
@@ -113,26 +116,69 @@ function modifystate(f, i) {
 </div>
 
 
-<div class="modify" id="modifyR" title="관리자 페이지">
-	<div id="modifytabs">
-		<ul id="tabs">
-			<li><a href="#modifyradio">좌석 상태</a></li>
-			<li><a href="#sendMsg">메세지 전송</a></li>
-		</ul>
-		<div id="modifycontent">
-			<div class="modify" id="modifyradio" title="좌석 상태">
-				<form>
-					<input type="hidden" class="seatstate" name="seatstate">
-					 <input type="hidden" class="seatid" name="seatid">
-					 <input type="radio" class="stateclass" name="seatR" id="ableseatR" value="y">예약 가능<br>
-					 <input type="radio" class="stateclass" name="seatR" id="unableseatR" value="n" checked>예약 불가<br>
-					 <input type="radio" class="stateclass" name="seatR" id="fixseatR" value="f">수리 중<br>
-					 <input type="button" name="Rbtn" id="Rbtn" value="확인" onclick="modifystate(this.form, 'seatR');">
-				</form>
+<div class="modal fade" id="modifyR">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- header -->
+			<div class="modal-header">
+				<!-- 닫기(x) 버튼 -->
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<!-- header title -->
+				<h4 class="modal-title">좌석 r관리</h4>
 			</div>
-			<div class="modify" id="sendMsg">
-				<jsp:include page="${registermsg}" />
+			<!-- body -->
+			<div class="modal-body">
+				<ul class="nav nav-tabs" role="tablist" id="adminTab">
+					<li role="presentation" class="active">
+						<a href="#modifyradio"	aria-controls="home" role="tab" data-toggle="tab">좌석 상태</a></li>
+					<li role="presentation">
+						<a href="#sendMsgByAdmin"	aria-controls="profile" role="tab" data-toggle="tab">메세지 전송</a></li>
+				</ul>
+					
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane fade in active" id="modifyradio">
+						<form>
+							<input type="hidden" class="seatstate" name="seatstate">
+							<input type="hidden" class="seatid" name="seatid">
+							<input type="radio" class="stateclass" name="seatR" id="ableseatR" value="y">예약 가능<br>
+							<input type="radio" class="stateclass" name="seatR" id="unableseatR" value="n" checked>예약 불가<br>
+							<input type="radio" class="stateclass" name="seatR" id="fixseatR" value="f">수리 중<br>
+							<input type="button" name="Rbtn" id="Rbtn" value="확인" onclick="modifystate(this.form, 'seatR');">
+						</form>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="sendMsgByAdmin">
+						<jsp:include page="${registermsg}" />
+					</div>
+				</div>
+			</div>
+			<!-- Footer -->
+			<div class="modal-footer">
+				Footer
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="modal fade"  id="sendMsg" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">좌석 상태</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+			<jsp:include page="${registermsg}" />
+			</div>
+      <!-- Footer -->
+      <div class="modal-footer">
+        Footer
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
 </div>

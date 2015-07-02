@@ -185,7 +185,8 @@ public class BoardControl {
 		if(com.getReg_number() == 0){
 		// °Ô½Ã±Û
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
-			mv.setViewName("redirect:/boardmain.do?sort="	+ board.getSort());
+//			mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());
+			mv.setViewName("redirect:/boarddetail.do?id=" + com.getId());
 		}else{
 		//´ñ±Û
 			board = new Board(com.getId(), com.getContent(), com.getSort());	
@@ -224,17 +225,20 @@ public class BoardControl {
 
 	@RequestMapping("/boardremoveimpl.do")
 	public ModelAndView boardremoveimpl(Board board) {
-		String re = board.getSort();
 		ModelAndView mv = new ModelAndView();
-
-		if(board.getReg_number() == 0){ //°Ô½Ã±Û
-			mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());			
-		}else{									//´ñ±Û
-			mv.setViewName("redirect:/boarddetail.do?id=" + board.getReg_number());			
-		}
-		System.out.println("sort re : " + re);
+		Board delete_board = null;
+		
 		try {
-			biz.remove(board.getId());
+			delete_board = new Board(board.getId(), board.getReg_number());
+			System.out.println(delete_board);
+			biz.remove(delete_board);
+			if(board.getReg_number() == 0){ 
+			//°Ô½Ã±Û
+				mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());			
+			}else{
+			//´ñ±Û
+				mv.setViewName("redirect:/boarddetail.do?id=" + board.getReg_number());			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

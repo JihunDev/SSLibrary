@@ -139,6 +139,7 @@ $(document).ready(function(){
    <a class="btn btn-default btn-sm" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
    </div>
    <%} %>
+   <fieldset>
    <legend align="center">Book list</legend>
    <div id="book_result">
       <table width="700" class="table table-hover">
@@ -160,6 +161,7 @@ $(document).ready(function(){
       </tbody>
       </table>
    </div>
+   </fieldset>
      </form>
 </div>
 </div>

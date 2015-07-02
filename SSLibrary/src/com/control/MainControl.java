@@ -185,14 +185,14 @@ public class MainControl {
 		String pwd = request.getParameter("pwd");
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-
+		System.out.println(id+"   "+pwd);
 		try {
 			result = (User) biz.get(new User(id));
 			list = messagelogsearchbiz.getid(new MessageLog(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		if (result.getIsadmin().equals("d")) {
 			// 삭제 회원 로그인 불가능
 		} else {

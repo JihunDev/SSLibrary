@@ -46,6 +46,72 @@ function modifystate(f, i) {
 	
 }
 </script>
+<style>
+.seat-dialog{
+	height:200px;
+	width:300px;
+	
+}
+</style>
+<div class="modal fade"  id="modifyY" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">좌석 상태</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+				<form>
+					<input type="hidden" class="seatstate" name="seatstate">
+					 <input type="hidden" class="seatid" name="seatid">
+					 <input type="radio" class="stateclass" name="seatY" id="ableseatY" value="y" checked>예약 가능<br>
+					 <input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br> 
+					 <input type="button" name="Ybtn" id="Ybtn" value="확인"	onclick="modifystate(this.form, 'seatY');">
+				</form>
+			</div>
+      <!-- Footer -->
+      <div class="modal-footer">
+        Footer
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal in"  id="modifyG" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">좌석 상태</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+			<form>
+				<input type="hidden" class="seatstate" name="seatstate">
+				<input type="hidden" class="seatid" name="seatid">
+				<input type="radio" class="stateclass" name="seatG" id="ableseatG" value="y">예약 가능<br>
+				<input type="radio" class="stateclass" name="seatG" id="fixseatG" value="f" checked>수리 중<br>
+				<input type="button" name="Gbtn" id="Gbtn" value="확인" onclick="modifystate(this.form, 'seatG');">
+			</form>
+			</div>
+      <!-- Footer -->
+      <div class="modal-footer">
+        Footer
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modify" id="modifyR" title="관리자 페이지">
 	<div id="modifytabs">
@@ -69,24 +135,4 @@ function modifystate(f, i) {
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modify" id="modifyY" title="좌석 상태">
-	<form>
-		<input type="hidden" class="seatstate" name="seatstate">
-		<input type="hidden" class="seatid" name="seatid">
-		<input type="radio" class="stateclass" name="seatY" id="ableseatY" value="y" checked>예약 가능<br>
-		<input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br>
-		<input type="button" name="Ybtn" id="Ybtn" value="확인" onclick="modifystate(this.form, 'seatY');">
-	</form>
-</div>
-
-<div class="modify" id="modifyG" title="좌석 상태">
-	<form>
-		<input type="hidden" class="seatstate" name="seatstate">
-		<input type="hidden" class="seatid" name="seatid">
-		<input type="radio" class="stateclass" name="seatG" id="ableseatG" value="y">예약 가능<br>
-		<input type="radio" class="stateclass" name="seatG" id="fixseatG" value="f" checked>수리 중<br>
-		<input type="button" name="Gbtn" id="Gbtn" value="확인" onclick="modifystate(this.form, 'seatG');">
-	</form>
 </div>

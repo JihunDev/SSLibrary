@@ -24,7 +24,7 @@ function update(f) {
 	<input type="text" name="title" value="${boardupdate.title}"><br>
 	<textarea rows="20" cols="40" name="content">${boardupdate.content}</textarea><br>
 	<input type="file" name="file_name"><br> 
-	<input type="hidden" name="u_id" value="${id}">
+	<input type="text" name="u_id" value="${id}">
 	<input type="hidden" name="id" value="${boardupdate.id}">
 	
 	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->

@@ -31,11 +31,9 @@ public class BoardControl {
 	@RequestMapping("/boardmain.do")
 	public ModelAndView boardmain(BoardGetReplyNumCommand com) {
 		ModelAndView mv = new ModelAndView("main");
-		System.out.println("sort main : " + com.getSort());
+
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> return_list = new ArrayList<Object>();
-
-		String u_id = "";
 
 		int count = 0;
 		int reply_count = 0;
@@ -59,7 +57,6 @@ public class BoardControl {
 		mv.addObject("sortname", com.getSort());
 		mv.addObject("boardlist", return_list);
 		String list_count = String.valueOf(count);
-		System.out.println("list_count:" + list_count);
 		mv.addObject("boardlist_length", list_count);
 		mv.addObject("center", "board/list.jsp");
 		return mv;
@@ -181,8 +178,21 @@ public class BoardControl {
 
 	@RequestMapping("/boardmodifyimpl.do")
 	public ModelAndView boardmodifyimpl(BoardUploadCommand com) {
-		Board board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
-
+		Board board =  null;
+		ModelAndView mv = new ModelAndView();
+		System.out.println(" com.getReg_number() : " + com.getReg_number());
+		System.out.println("com.getU_id: " + com.getU_id());
+		if(com.getReg_number() == 0){
+		// °Ô½Ã±Û
+			board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
+			mv.setViewName("redirect:/boardmain.do?sort="	+ board.getSort());
+		}else{
+		//´ñ±Û
+			board = new Board(com.getId(), com.getContent(), com.getSort());	
+			System.out.println("´ñ±Û board: " + board);
+			mv.setViewName("redirect:/boarddetail.do?id=" + com.getReg_number());				
+		}
+		
 		try {
 			biz.modify(board);
 		} catch (Exception e1) {
@@ -209,8 +219,6 @@ public class BoardControl {
 
 			}
 		}
-		ModelAndView mv = new ModelAndView("redirect:/boardmain.do?sort="
-				+ board.getSort());
 		return mv;
 	}
 
@@ -222,7 +230,7 @@ public class BoardControl {
 		if(board.getReg_number() == 0){ //°Ô½Ã±Û
 			mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());			
 		}else{									//´ñ±Û
-			mv.setViewName("redirect://boarddetail.do?id=" + board.getReg_number());			
+			mv.setViewName("redirect:/boarddetail.do?id=" + board.getReg_number());			
 		}
 		System.out.println("sort re : " + re);
 		try {

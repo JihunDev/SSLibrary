@@ -50,10 +50,14 @@
 	</delete>
 
 	<update id="updateboard" parameterType="board">
-		UPDATE A_BOARD SET TITLE = #{title}, CONTENT = #{content}, SORT = #{sort},
-		FILE_NAME=#{file_name} WHERE ID = #{id}
+		UPDATE A_BOARD		
+		<trim prefix="SET" suffixOverrides=",">
+			<if test = "reg_number == '0'"> TITLE = #{title}, FILE_NAME=#{file_name},</if>
+				CONTENT = #{content}, SORT = #{sort}
+		</trim>
+		WHERE ID = #{id}
 	</update>
-
+	
 	<update id="updatecounterboard" parameterType="board">
 		UPDATE A_BOARD SET
 		COUNTER = COUNTER+1 WHERE ID = #{id}

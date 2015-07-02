@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 function del(f) {/* delete가 예약어라 del씀 */
 	var c = confirm('삭제 하시겠습니까?');
@@ -33,9 +27,6 @@ function register(f) {
 		};
 	}
 </script>
-<style></style>
-</head>
-<body>
 <h1>board detail</h1>
 
 	<table border="1">
@@ -97,5 +88,3 @@ function register(f) {
 		<input type="button" value="등록" onclick="register(this.form)">
 	</div>
 </form>	
-</body>
-</html>

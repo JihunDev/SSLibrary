@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 function register(f){
 	var id = f.id.value;
@@ -51,10 +45,6 @@ function register(f){
 	} 
 };
 </script>
-<style>
-</style>
-</head>
-<body>
 <div class="row centered-form">
  <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
                 <div class="panel panel-default">
@@ -90,20 +80,3 @@ function register(f){
                     		  </div>
                 </div>
             </div>                
-<!--<fieldset>
-<legend>책 등록 양식</legend>
-<form enctype="multipart/form-data">
-<table>
-<tr><th>CATEGORY</th><td align="right"><select name="id"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select></td></tr>
-<tr><th>NAME</th><td align="right"><input type="text" name="name" placeholder="NAME"></td></tr>
-<tr><th>WRITER</th><td align="right"><input type="text" name="writer" placeholder="WRITER"></td></tr>
-<tr><th>IMG</th><td align="right"><input type="file" name="img"></td></tr>
-<tr><th>FLOOR</th><td align="right"><select name="floor"><option>선택</option><option>1층</option><option>2층</option><option>3층</option><option>4층</option></select></td></tr>
-<tr><th>TOTAL_QT</th><td align="right"><input type="text" name="total_qt" placeholder="TOTAL_QT"></td></tr>
-<tr><th></th><td align="right"><input type="button" value="register" onclick="register(this.form);"></td></tr>
-</table>
-</form>
-</fieldset>
-</div> -->
-</body>
-</html>

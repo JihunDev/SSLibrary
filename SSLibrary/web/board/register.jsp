@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 
 	function register(f) {
@@ -24,9 +18,6 @@
 		}
 	}
 </script>
-<style></style>
-</head>
-<body>
 <h1>board register</h1>
 <form enctype="multipart/form-data" >
 <input type="hidden" name="u_id" value="${id}">
@@ -41,5 +32,3 @@
 	<input type="file" name="file_name"><br> 
 	<input type="button" value="등록" onclick="register(this.form)">
 </form>
-</body>
-</html>

@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <body>
+<div class="fieldsetform">
 <h1 align="center">내가 대여한 도서들</h1>
 <fieldset>
 <legend>현재 대여 도서</legend>
@@ -18,3 +19,4 @@
 <div>
 </div>
 </fieldset>
+</div>

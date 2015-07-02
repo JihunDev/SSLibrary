@@ -31,7 +31,7 @@ function deletebook(){
 	};		
 }
 </script>
-<h1 align="center">Book Detail Page</h1>
+<div class="fieldsetform">
 <fieldset>
 <legend>Book Detail</legend>
 <table width="700" class="table"> 
@@ -57,3 +57,4 @@ function deletebook(){
 <%}else{ %>
 <%} %>
 </fieldset>
+</div>

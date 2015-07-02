@@ -258,15 +258,15 @@ section {
 }
 #notice{
 	width : 325px;
-	height : 220px;
+	height : 230px;
 	float : left;
 	padding : 10px;
-	margin : 0px 23px 0px 20px;
+	margin : 0px 23px 0px 18px;
 
 }
 #free{
 	width : 325px;
-	height : 220px;
+	height : 230px;
 	float : left;
 	padding : 10px;
 

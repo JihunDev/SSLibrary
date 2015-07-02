@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script></script>
-<style></style>
-</head>
-<body>
 	<fieldset>
 		<legend>회원정보</legend>
 		<h4>${userlist.id}정보</h4>
@@ -45,5 +35,3 @@
 			<a href="userremoveimpl.do?id=${userlist.id}">회원삭제</a>
 		</div>
 	</fieldset>
-</body>
-</html>

@@ -7,10 +7,7 @@
 %>
 
 <script>
-	window.onload = function(){	
-		
-		
-	};
+
 	// 좌석 등록 함수	
 	function register(f) {
 		var s_id = f.s_id.value;
@@ -53,30 +50,15 @@
 		$(".seatstate").val(data);
 		$(".seatid").val(s_id);
 		if (state == 'y') {
-			/* $("#modifyY").dialog({
-				'modal' : true,
-				'width' : 300,
-				'height' : 200
-			}); */
-
-	        $('#modifyY').modal({
-	        	'width' : 300,
-				'height' : 200
-			});
+	        $('#modifyY').modal();
 		}
 		if (state == 'n') {
 			$("#adminTab").tab('show');
-			$("#modifyR").modal({
-				'width' : 500,
-				'height' : 400
-			});
+			$("#modifyR").modal();
 
 		}
 		if (state == 'f') {
-	        $('#modifyG').modal({
-	        	'width' : 300,
-				'height' : 200
-			});
+	        $('#modifyG').modal();
 		}
 	}
 

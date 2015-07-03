@@ -2,6 +2,13 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="container-fluid">
+    <div class="input-group">
+     <input type="text" id="search" class="form-control input-sm" placeholder="도서 전체 검색">
+      <span class="input-group-btn">
+        <button class="btn btn-default btn-sm" type="button" onclick="getBook();" >검색</button>
+      </span>
+    </div><!-- /input-group -->
+	<div>
 		<h4>날씨</h4>
 		<!-- weather widget start -->
 		<div id="m-booked-weather-bl250-17526">
@@ -100,4 +107,5 @@
 		<script type="text/javascript" charset="UTF-8"
 			src="http://widgets.booked.net/weather/info?action=get_weather_info&ver=4&cityID=18406&type=3&scode=124&ltid=3457&domid=593&cmetric=1&wlangID=24&color=fa8b2a&wwidth=250&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
 		<!-- weather widget end -->
+		</div>
 	</div>

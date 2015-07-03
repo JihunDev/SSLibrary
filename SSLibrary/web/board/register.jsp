@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script>
 
 	function register(f) {
@@ -17,12 +18,17 @@
 			};
 		}
 	}
+	window.onload = function(){
+		var sort = "${sort}";
+		$("select[name='sort']").val(sort).attr("selected", "selected");
+		//게시판에 종류에 따른 SelectBox 옵션 선택		
+	}
 </script>
 <h1>board register</h1>
 <form enctype="multipart/form-data" >
 <input type="hidden" name="u_id" value="${id}">
 <input type="hidden" name="reg_number" value="0">
-	<select name="sort">
+	<select id="sort" name="sort">
 		<option value="">선택</option>
 		<option value="notice">공지사항</option>
 		<option value="free">자유게시판</option>

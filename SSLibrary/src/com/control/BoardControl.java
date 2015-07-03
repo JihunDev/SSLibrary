@@ -1,5 +1,6 @@
 package com.control;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,9 +64,10 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boardwrite.do")
-	public ModelAndView boardwrite() {
+	public ModelAndView boardwrite(String sort) {
 		ModelAndView mv = new ModelAndView("main");
 		mv.addObject("center", "board/register.jsp");
+		mv.addObject("sort", sort);
 		return mv;
 	}
 
@@ -103,8 +105,7 @@ public class BoardControl {
 				byte[] data;
 				try {
 					data = file.getBytes();
-					FileOutputStream out = new FileOutputStream(dir
-							+ file.getOriginalFilename());
+					FileOutputStream out = new FileOutputStream(dir	+ file.getOriginalFilename());
 					out.write(data);
 					out.close();
 				} catch (IOException e) {

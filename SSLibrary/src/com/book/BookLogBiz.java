@@ -52,8 +52,7 @@ public class BookLogBiz implements Biz, SearchBiz, UpdateAndReturnBiz {
 
 	@Override
 	public ArrayList<Object> gettitle(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchtitle(obj);
 	}
 
 	@Override

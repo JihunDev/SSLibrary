@@ -58,7 +58,6 @@ public class M_MainControl {
 	@RequestMapping("/m_registerimpl.do")
 	public ModelAndView m_registerimpl(HttpServletRequest request,
 			UserCommand com) {
-		System.out.println(com);
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -145,7 +144,6 @@ public class M_MainControl {
 				session.setAttribute("user", result);
 				// 회원정보 세션에 올림
 				mv.addObject("m_center", "m_center.jsp");
-				System.out.println(result);
 			} else {
 				mv.addObject("m_center", "m_login.jsp");
 			}

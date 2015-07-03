@@ -658,12 +658,14 @@ public class BookControl {
 		ArrayList<Object> list = null;
 		HttpHeaders header = new HttpHeaders(); 
 		header.add("Content-type", "application/json;charset=EUC-KR");
-
+		System.out.println("들어옴");
 		if(whatsearch.equals("user")){	
-			BookLog bookuser = new BookLog("", name);
+			BookLog bookuser = new BookLog("1", name);
+			System.out.println("userid로 찾을 때 : "+bookuser);
 			list=sbooklogbiz.getname(bookuser);
 		}else if(whatsearch.equals("book")){
-			BookLog bookid = new BookLog(name, "");
+			BookLog bookid = new BookLog(name, "1");
+			System.out.println("bookid로 찾을 때 : "+bookid);
 			list =sbooklogbiz.gettitle(bookid);
 		}
 		System.out.println("list : "+list);

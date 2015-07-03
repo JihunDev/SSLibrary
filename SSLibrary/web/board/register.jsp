@@ -21,20 +21,27 @@
 	window.onload = function(){
 		var sort = "${sort}";
 		$("select[name='sort']").val(sort).attr("selected", "selected");
+		makeHeight();
 		//게시판에 종류에 따른 SelectBox 옵션 선택		
 	}
 </script>
-<h1>board register</h1>
-<form enctype="multipart/form-data" >
+<div class="fieldsetform">
+<fieldset>
+<legend align="center">Board Register</legend>
+<form class="form-inline" enctype="multipart/form-data" >
+
 <input type="hidden" name="u_id" value="${id}">
 <input type="hidden" name="reg_number" value="0">
-	<select id="sort" name="sort">
+	<select class="form-control input-sm" id="sort" name="sort">
 		<option value="">선택</option>
 		<option value="notice">공지사항</option>
 		<option value="free">자유게시판</option>
 	</select>
-	<input type="text" name="title" placeholder="제목을 입력하세요."><br>
-	<textarea rows="20" cols="40" name="content"></textarea><br>
-	<input type="file" name="file_name"><br> 
-	<input type="button" value="등록" onclick="register(this.form)">
+	<input type="text" class="form-control input-sm" name="title" placeholder="제목을 입력하세요."><br>
+	<br>
+	<textarea class="form-control" rows="10" cols="90" name="content"></textarea><br><br>
+	<input type="file" name="file_name"><br>
+	<input type="button" class="btn btn-default" value="등록" onclick="register(this.form)">
 </form>
+</fieldset>
+</div>

@@ -16,21 +16,29 @@ window.onload = function(){
 	//게시판에 종류에 따른 SelectBox 옵션 선택		
 }
 </script>
-
-<h1>board update</h1>
-<form enctype="multipart/form-data" >
-
-	<select name="sort">
+<div class="fieldsetform">
+<fieldset>
+<legend align="center">board update</legend>
+<form class="form-inline" enctype="multipart/form-data" >
+	<div class="form-group">    
+	<select class="form-control input-sm" name="sort">
 		<option value="">선택</option>
 		<option value="notice">공지사항</option>
 		<option value="free">자유게시판</option>
 	</select>
-	
-	<input type="text" name="title" value="${boardupdate.title}"><br>
-	<textarea rows="20" cols="40" name="content">${boardupdate.content}</textarea><br>
-	<input type="file" name="file_name"><br> 
-	<input type="text" name="u_id" value="${id}">
+	<input type="text" class="form-control input-sm" name="title" value="${boardupdate.title}"><br><br>
+	</div>
+	<div class="form-group">
+	<textarea class="form-control" rows="10" cols="90" name="content">${boardupdate.content}</textarea><br><br>
+	</div>
+	<div class="form-group">
+	<input type="file" name="file_name"><br>
 	<input type="hidden" name="id" value="${boardupdate.id}">
-	
-	<input type="button" value="수정" onclick="update(this.form)"><!-- 추후 수정 -->
+	</div>
+	<div class="form-group">
+	<input type="hidden" class="form-control" name="u_id" value="${id}"><span class="input-group-btn">
+	<input type="button" class="btn btn-default" value="수정" onclick="update(this.form)"></span>
+	</div>
 </form>	
+</fieldset>
+</div>

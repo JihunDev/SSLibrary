@@ -103,14 +103,20 @@
 .modify {
 	display: none;
 }
+#seattable{
+
+}
 </style>
 
 <h1>Seat State(현재 좌석 정보) (login: ${user.id}, Admin: ${user.isadmin}</h1>
-<table id = "seattable">
+<table id = "seattable"">
 	<tr>
 		<c:forEach items="${seatlist}" var="s" varStatus="i">
 		<c:if test="${i.index % 8 == 0}">
 				</tr><tr>
+		</c:if>
+		<c:if test="${i.index % 16 == 0}">
+				</tr><tr><td>ddddd</td></tr><tr>
 		</c:if>
 		<c:choose>
 			<c:when test="${user.isadmin == 'n' }">

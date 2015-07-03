@@ -58,9 +58,11 @@ function update(f) {
 		;
 	}
 </script>
-<h1>board detail</h1>
+<div class="fieldsetform">
+<fieldset>
+<legend align="center">board detail</legend>
 
-	<table border="1">
+	<table class="table table-hover">
 	<tbody>
 		<tr>
 			<th>제목</th>
@@ -88,13 +90,13 @@ function update(f) {
 	<input type="hidden" name="sort" value="${boarddetail.sort}">
 	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">	
-	<input type="button" value="목록" onclick="location.href='boardmain.do?sort=${boarddetail.sort}'">
+	<input type="button" class="btn btn-default" value="목록" onclick="location.href='boardmain.do?sort=${boarddetail.sort}'">
 	<c:if test="${id == boarddetail.u_id || user.isadmin == 'y'}">
-		<input type="button" value="삭제" onclick="del(this.form)">
-		<input type="button" value="수정" onclick="update(this.form)">
+		<input type="button" class="btn btn-default" value="삭제" onclick="del(this.form)">
+		<input type="button" class="btn btn-default" value="수정" onclick="update(this.form)">
 	</c:if>
 </form>
-	<table border=1>
+	<table  class="table table-condensed">
 		<c:forEach items="${boardreply}" var="reply">
 		<form>
 			<input type="hidden" name="sort" value="${reply.sort}">
@@ -108,14 +110,14 @@ function update(f) {
 				<th>시간</th><td>${reply.reg_date}</td>
 				<td><c:if test="${id == reply.u_id || user.isadmin == 'y'}">
 	
-				<input type="button" value="삭제" onclick="del(this.form)">
+				<input type="button" class="btn btn-default " value="삭제" onclick="del(this.form)">
 				</c:if></td>
 			</tr>
 			<tr>			
 				<th>글쓴이</th><td>${reply.u_id}</td>
 				<th>내용</th>
 				<td id = "content_${reply.id}">${reply.content}</td>
-				<td><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></td>
+				<td><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" class="btn btn-defaul btn-smt" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></td>
 			</tr>
 		</form>
 		</c:forEach>
@@ -126,8 +128,15 @@ function update(f) {
 		<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}"><br>
 		<input type="hidden" name="sort" value="${boarddetail.sort}"><br>
 		<input type="hidden" name="u_id" value="${id}"><br>
-		<textarea rows="5" cols="40" name="content"></textarea>
-		<input type="button" value="등록" onclick="register(this.form)">
+		<div class="col-xs-10">
+		<div class="form-group">
+ 		<label for="content">Comment:</label>
+ 		<textarea class="form-control" rows="5" cols="40" name="content"></textarea>
+		<input type="button" class="btn btn-default" value="등록" onclick="register(this.form)">
+		</div>
+		</div>
 	</div>
 	</c:if>
-</form>	
+	</form>	
+	</fieldset>
+</div>

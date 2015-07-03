@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -13,7 +13,9 @@
 </head>
 <body>
 <div data-role="page">
+
   <div data-role="header">
+  
     <jsp:include page="${m_top}"/>
   </div>
   <div data-role="main" class="ui-content">

@@ -117,8 +117,10 @@ a {
 <%=next_pageno%><br />
 <hr />
  --%>
-<h1>board list</h1>
-<table>
+<div class="fieldsetform">
+<fieldset>
+<legend align="center">board list</legend>
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>±Û¹øÈ£</th>
@@ -189,3 +191,5 @@ a {
 		}
 	}
 %>
+</fieldset>
+</div>

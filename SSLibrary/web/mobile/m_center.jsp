@@ -15,7 +15,7 @@
 			style="height: 120px; width: 100px">현재 이용정보</a>
 	</div>
 	<div class="ui-block-b">
-		<a href="#" data-role="button" data-inline="true"
+		<a href="m_msgloglist.do?id=${user.id}" data-role="button" data-inline="true"
 			style="height: 120px; width: 100px">메세지 확인</a>
 	</div>
 	<div class="ui-block-a">

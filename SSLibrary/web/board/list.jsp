@@ -10,8 +10,10 @@
 		return a;
 	}%>
 <c:set var="list_length" value="${boardlist_length}" />
+<c:set var="loginuser_isadmin" value="${user.isadmin}" />
 <%
 	int list_length = toInt((String) pageContext.getAttribute("list_length"));
+	String loginuser_isadmin= (String) pageContext.getAttribute("loginuser_isadmin");
 	String sort = request.getParameter("sort");
 	int pageno = toInt(request.getParameter("pageno"));
 
@@ -82,7 +84,7 @@
 a {
 	text-decoration: none;
 }
-</style>
+</style><%-- 
 현재 페이지 (pageno) :
 <%=pageno%><br />
 전체 데이터 수 (total_record) :
@@ -114,7 +116,7 @@ a {
 다음 페이지 번호 (next_pageno)
 <%=next_pageno%><br />
 <hr />
-
+ --%>
 <h1>board list</h1>
 <table>
 	<thead>
@@ -176,5 +178,14 @@ a {
 
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
-<a href="boardwrite.do">등록</a>
-
+<%
+	if(sort.equals("notice")){
+		if(loginuser_isadmin.equals("y")){
+			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%
+		}
+	}else{
+		if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
+			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%	
+		}
+	}
+%>

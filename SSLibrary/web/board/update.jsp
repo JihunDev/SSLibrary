@@ -10,6 +10,11 @@ function update(f) {
 			f.submit();
 		};
 	}
+window.onload = function(){
+	var sort = "${boardupdate.sort}";
+	$("select[name='sort']").val(sort).attr("selected", "selected");
+	//게시판에 종류에 따른 SelectBox 옵션 선택		
+}
 </script>
 
 <h1>board update</h1>

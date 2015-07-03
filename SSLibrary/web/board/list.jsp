@@ -181,19 +181,18 @@ a {
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
 
-
 <c:set var="loginuser_isadmin" value="${user.isadmin}" />
 <%
-	String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
-	if(sort.equals("notice") && loginuser_isadmin != null){
-		if(loginuser_isadmin.equals("y")){
-			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%
-		}
-	}else if(loginuser_isadmin != null){
-		if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
-			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%	
-		}
-	}
+   String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
+   if(sort.equals("notice") && loginuser_isadmin != null){
+      if(loginuser_isadmin.equals("y")){
+         %><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%
+      }
+   }else if(loginuser_isadmin != null){
+      if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
+         %><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%   
+      }
+   }
 %>
 </fieldset>
 </div>

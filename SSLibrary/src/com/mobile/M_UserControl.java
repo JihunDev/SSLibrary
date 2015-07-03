@@ -37,6 +37,7 @@ public class M_UserControl {
 		ArrayList<Object> booklist = new ArrayList<Object>();
 		UserSeat userseat = null;
 		UserSeat returnuserseat = null;
+		
 		try {
 			userbooklist = userbookbiz.getid(id);// userbook¿¡¼­ ²¨³»¿È
 			for (Object obj : userbooklist) {
@@ -47,11 +48,10 @@ public class M_UserControl {
 				String end = userbook.getEnd_date().substring(0, 10);
 				String[] info = { bid, book.getName(), start, end };
 				booklist.add(info);
-				System.out.println(userbook);
 			}
 			userseat = (UserSeat) userseatbiz.get(id);
-			String start = (String) userseat.getStart_time().substring(10);
-			String end = (String) userseat.getEnd_time().substring(10);
+			String start = (String) userseat.getStart_time().substring(10).substring(0,9);
+			String end = (String) userseat.getEnd_time().substring(10).substring(0,9);
 			returnuserseat = new UserSeat(userseat.getU_id(),
 					userseat.getS_id(), start, end, userseat.getRenew_qt());
 		} catch (Exception e) {

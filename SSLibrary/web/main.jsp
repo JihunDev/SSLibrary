@@ -243,6 +243,7 @@ section {
 #left{
 	width : 30%;
 /* 	height : 600px; */
+	padding-top : 9px;
 	float : left;	
 	background: rgba(250,230,195,0.4);
 }

@@ -57,7 +57,6 @@
 				<td>${n.u_id}</td>
 				<td><a href="boarddetail.do?id=${n.id}">${n.title}</a></td>
 				<td>${n.counter}</td>
-				
 			</tr>
 		</c:forEach>
 		</tbody>

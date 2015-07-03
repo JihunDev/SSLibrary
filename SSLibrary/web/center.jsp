@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 	<!-- 움직이는 광고-->
+	<div class="maincenter1">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -38,6 +39,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  </div>
+	<div class="col-sm-6">
   <div id="notice" class="board">
 	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
 	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=notice">더보기</a></b>
@@ -62,6 +65,8 @@
 		</tbody>
 		</table>
 	</div>  
+	</div>
+	<div class="col-sm-6">
 	<div id="free" class="board">
 	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=free">더보기</a></b>
 	<table class="table table-condensed">
@@ -85,14 +90,11 @@
 		</tbody>
 		</table>
 	</div>
-
-<%-- <div id="lastbook" class="board">
-<font size="5px">최신 도서 TOP10</font>
-<table border="1">
+</div>
+<div class="col-sm-12">
+<legend>최신 도서 TOP10</legend>
 	<c:forEach items="${book}" var="b">
-				<td>${b.img}</td>
+				<img width="50px" src="img/book/${b.img}">
 	</c:forEach>
-</table>
-</div> --%>
-
+</div> 
 

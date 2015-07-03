@@ -270,6 +270,22 @@ section {
 	padding : 10px;
 
 }
+#top10book{
+	padding : 10px 20px 10px 10px;
+	margin : 10px 20px 10px 10px;
+
+}
+#top10book>fieldset>#top10bookimg>img{
+	margin : 0px 10px 0px 10px;
+	align : center;
+	right : 20px;
+}
+#top10bookimg{
+	margin : 0 10px;
+}
+.bookimg{
+	margin : 0px 10px;
+}
 
 /** Footer CSS**/
 footer{

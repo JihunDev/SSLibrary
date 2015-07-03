@@ -21,6 +21,8 @@ public interface BookLogMapper {
 
 	public ArrayList<Object> selectuseridlogbooks(Object obj);
 	
+	public ArrayList<Object> selectbookidlogbooks(Object obj);
+	
 	
 
 }

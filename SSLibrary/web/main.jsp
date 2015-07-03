@@ -260,24 +260,17 @@ section {
 #notice{
 	width : 325px;
 	height : 230px;
-	float : left;
 	padding : 10px;
-	margin : 0px 23px 0px 18px;
+	margin : 0px 23px 0px 3px;
 
 }
 #free{
 	width : 325px;
 	height : 230px;
-	float : left;
 	padding : 10px;
 
 }
-#lastbook{
-	width : 640px;
-	height : 200px;
-	padding : 10px;
 
-}
 /** Footer CSS**/
 footer{
 	width : 100%;

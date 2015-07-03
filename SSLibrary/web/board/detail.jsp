@@ -77,9 +77,9 @@ function update(f) {
 			<td>${boarddetail.counter}</td>
 		</tr>
 		<tr>	
-			<td colspan="6">
-				${boarddetail.content}
-			</td>
+			<td colspan="4">	${boarddetail.content}</td>
+			<th>파일</th>
+			<td><a href="img/board/${boarddetail.file_name}" download>${boarddetail.file_name}</a></td>
 		</tr>
 	</tbody>
 	
@@ -88,6 +88,7 @@ function update(f) {
 	<input type="hidden" name="sort" value="${boarddetail.sort}">
 	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">	
+	<input type="button" value="목록" onclick="location.href='boardmain.do?sort=${boarddetail.sort}'">
 	<c:if test="${id == boarddetail.u_id || user.isadmin == 'y'}">
 		<input type="button" value="삭제" onclick="del(this.form)">
 		<input type="button" value="수정" onclick="update(this.form)">

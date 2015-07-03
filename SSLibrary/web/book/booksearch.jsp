@@ -136,6 +136,7 @@ $(document).ready(function(){
    <%if(user!=null && user.getIsadmin().equals("y")){ %>
    <div class="btn-group">
    <a class="btn btn-default btn-sm" href="bookregister.do" role="button">등록</a>
+   <a class="btn btn-default btn-sm" href="adminbookloglist.do" role="button">도서 대여 기록</a>
    <a class="btn btn-default btn-sm" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
    </div>
    <%} %>

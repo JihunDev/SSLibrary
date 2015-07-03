@@ -47,8 +47,7 @@ public class BookLogDao implements Dao, SearchDao, UpdateAndReturnDao {
 
 	@Override
 	public ArrayList<Object> searchtitle(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.selectbookidlogbooks(obj);
 	}
 
 	@Override

@@ -34,9 +34,14 @@ public class M_MainControl {
 	public ModelAndView m_main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-
+		User user = (User) session.getAttribute("user");
+		
 		session.setAttribute("m_top", "m_top.jsp");
-		mv.addObject("m_center", "m_login.jsp");
+		if(user == null){
+			mv.addObject("m_center", "m_login.jsp");
+		}else {
+			mv.addObject("m_center", "m_center.jsp");
+		}//조금더 생각해보겠음 뒤로가기 할때에 로그인으로 자꾸감		
 
 		return mv;
 	}
@@ -102,6 +107,7 @@ public class M_MainControl {
 		}
 		return mv;
 	}
+
 	// 로그인
 	@RequestMapping("/m_login.do")
 	public ModelAndView m_login(HttpServletRequest request) {
@@ -135,14 +141,18 @@ public class M_MainControl {
 				}
 
 				session.setAttribute("msgcheck", msgchecknumber);
+				// 메세지 수 카운트
+				session.setAttribute("user", result);
+				// 회원정보 세션에 올림
 				mv.addObject("m_center", "m_center.jsp");
+				System.out.println(result);
 			} else {
 				mv.addObject("m_center", "m_login.jsp");
 			}
 		}
 		return mv;
 	}
-	
+
 	// id중복체크
 	@ResponseBody
 	@RequestMapping("/m_idcheck.do")
@@ -161,7 +171,5 @@ public class M_MainControl {
 		}
 		return result;
 	}
-	
-	
-	
+
 }

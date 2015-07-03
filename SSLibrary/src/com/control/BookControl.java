@@ -641,6 +641,53 @@ public class BookControl {
 		return "회원 정지 ok";
 	}
 	
+	@RequestMapping("/adminbookloglist.do")//관리자 지금까지 빌렸던 도서들 확인하기////////////////
+	public ModelAndView adminbookloglist() throws Exception{
+		ModelAndView mv = new ModelAndView("main");
+		ArrayList<Object> loglist = new ArrayList<Object>();
+		loglist = booklogbiz.get();
+		mv.addObject("loglist",loglist);
+		mv.addObject("center", "admin/booklog/booklogdetail.jsp");
+		return mv;
+	}
+	
+	@ResponseBody 
+	@RequestMapping("adminbooklogsearch.do") //관리자가 booklog에서 검색(user/book)
+	public ResponseEntity<String> adminbooklogsearch(String whatsearch, String name) throws Exception{
+		ResponseEntity<String> returnData = null;
+		ArrayList<Object> list = null;
+		HttpHeaders header = new HttpHeaders(); 
+		header.add("Content-type", "application/json;charset=EUC-KR");
+
+		if(whatsearch.equals("user")){	
+			BookLog bookuser = new BookLog("", name);
+			list=sbooklogbiz.getname(bookuser);
+		}else if(whatsearch.equals("book")){
+			BookLog bookid = new BookLog(name, "");
+			list =sbooklogbiz.gettitle(bookid);
+		}
+		System.out.println("list : "+list);
+		JSONArray ja = new JSONArray();
+		for(Object obj: list){
+			BookLog book = (BookLog)obj;
+			JSONObject jo = new JSONObject();
+			jo.put("id", book.getId());
+			jo.put("b_id", book.getB_id());
+			jo.put("u_id", book.getU_id());
+			jo.put("start_date", book.getStart_date());
+			jo.put("end_date", book.getEnd_date());
+			jo.put("real_date", book.getReal_date());
+			jo.put("renew_qt", book.getRenew_qt());
+			
+			ja.add(jo);
+		}
+		returnData = new ResponseEntity<String>(
+				ja.toJSONString(),
+				header,
+				HttpStatus.CREATED //강제로 결과를 만들어 넣어주는것
+				);
+		return returnData;
+	}	
 }
 
 

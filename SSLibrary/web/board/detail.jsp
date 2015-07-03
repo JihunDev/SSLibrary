@@ -110,19 +110,19 @@ function update(f) {
 				<th>시간</th><td>${reply.reg_date}</td>
 				<td><c:if test="${id == reply.u_id || user.isadmin == 'y'}">
 	
-				<input type="button" class="btn btn-default " value="삭제" onclick="del(this.form)">
+				<input type="button" class="btn btn-default btn-xs " value="삭제" onclick="del(this.form)">
 				</c:if></td>
 			</tr>
 			<tr>			
 				<th>글쓴이</th><td>${reply.u_id}</td>
 				<th>내용</th>
 				<td id = "content_${reply.id}">${reply.content}</td>
-				<td><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" class="btn btn-defaul btn-smt" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></td>
+				<td><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" class="btn btn-default btn-xs" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></td>
 			</tr>
 		</form>
 		</c:forEach>
 	</table>
-	<form>
+	<form >
 	<c:if test="${user.isadmin != 's'}">
 	<div>
 		<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}"><br>

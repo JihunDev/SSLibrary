@@ -10,10 +10,9 @@
 		return a;
 	}%>
 <c:set var="list_length" value="${boardlist_length}" />
-<c:set var="loginuser_isadmin" value="${user.isadmin}" />
+
 <%
 	int list_length = toInt((String) pageContext.getAttribute("list_length"));
-	String loginuser_isadmin= (String) pageContext.getAttribute("loginuser_isadmin");
 	String sort = request.getParameter("sort");
 	int pageno = toInt(request.getParameter("pageno"));
 
@@ -21,6 +20,7 @@
       pageno = 1;
    }
    int total_record = list_length;      //총 레코드 수
+   
    int page_per_record_cnt = 10;  //페이지 당 레코드 수
    int group_per_page_cnt =5;     //페이지 당 보여줄 번호 수[1],[2],[3],[4],[5]
 //                                              [6],[7],[8],[9],[10]                                 
@@ -180,12 +180,16 @@ a {
 
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
+
+
+<c:set var="loginuser_isadmin" value="${user.isadmin}" />
 <%
-	if(sort.equals("notice")){
+	String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
+	if(sort.equals("notice") && loginuser_isadmin != null){
 		if(loginuser_isadmin.equals("y")){
 			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%
 		}
-	}else{
+	}else if(loginuser_isadmin != null){
 		if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
 			%><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%	
 		}

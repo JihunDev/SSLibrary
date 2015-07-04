@@ -119,7 +119,7 @@ public class M_SeatControl {
 			e.printStackTrace();
 		}
 		mv.addObject("seatloglist", sl_l);
-		mv.addObject("m_center", "seat/m_seatloglist.jsp");
+		mv.addObject("m_center", "seat/m_list.jsp");
 
 		return mv;
 	}

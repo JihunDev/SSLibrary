@@ -27,24 +27,22 @@ public class M_MainControl {
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
 
-	// 메인화면
 	@RequestMapping("/m_main.do")
 	public ModelAndView m_main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		
-		session.setAttribute("m_top", "m_top.jsp");
-		if(user == null){
-			mv.addObject("m_center", "m_login.jsp");
-		}else {
-			mv.addObject("m_center", "m_center.jsp");
-		}//조금더 생각해보겠음 뒤로가기 할때에 로그인으로 자꾸감		
-
+		mv.addObject("m_center", "m_login.jsp");
+		System.out.println("메인");
 		return mv;
 	}
 
-	// 회원가입 창으로 이동
+	@RequestMapping("/m_center.do")
+	public ModelAndView m_center(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		mv.addObject("m_center", "m_center.jsp");
+		System.out.println("센터");
+		return mv;
+	}
+
 	@RequestMapping("/m_register.do")
 	public ModelAndView m_register() {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
@@ -52,7 +50,6 @@ public class M_MainControl {
 		return mv;
 	}
 
-	// 회원가입 impl
 	@RequestMapping("/m_registerimpl.do")
 	public ModelAndView m_registerimpl(HttpServletRequest request,
 			UserCommand com) {
@@ -96,7 +93,7 @@ public class M_MainControl {
 				} else {
 					userbiz.register(user);
 					session.setAttribute("user", user);
-					mv.addObject("m_center", "m_center.jsp");
+					mv = new ModelAndView("redirect:/m_center.do");
 				}
 			}
 		} catch (Exception e1) {
@@ -105,30 +102,34 @@ public class M_MainControl {
 		return mv;
 	}
 
-	// 로그인
 	@RequestMapping("/m_login.do")
 	public ModelAndView m_login(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
+		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		User result = null;
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
+		
 		try {
-			result = (User) userbiz.get(new User(id));
-			list = messagelogsearchbiz.getid(new MessageLog(id));
+			if (id == null || id.equals("")) {
+				User sessionuser = (User) session.getAttribute("user");
+				String sessionid = sessionuser.getId();
+				result = (User) userbiz.get(new User(sessionid));
+				list = messagelogsearchbiz.getid(new MessageLog(sessionid));
+			} else {
+				result = (User) userbiz.get(new User(id));
+				list = messagelogsearchbiz.getid(new MessageLog(id));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (result.getIsadmin().equals("d")) {
-			// 삭제 회원 로그인 불가능
+			System.out.println("삭제회원");
 		} else {
 			if (result != null && (result.getPwd()).equals(pwd)) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", result);
-				session.setAttribute("id", id);
-
 				for (Object obj : list) {
 					MessageLog log = (MessageLog) obj;
 					String read = log.getRead();
@@ -136,20 +137,17 @@ public class M_MainControl {
 						msgchecknumber += 1;
 					}
 				}
-
 				session.setAttribute("msgcheck", msgchecknumber);
-				// 메세지 수 카운트
 				session.setAttribute("user", result);
-				// 회원정보 세션에 올림
 				mv.addObject("m_center", "m_center.jsp");
 			} else {
 				mv.addObject("m_center", "m_login.jsp");
 			}
 		}
+		System.out.println("로그인임플");
 		return mv;
 	}
 
-	// id중복체크
 	@ResponseBody
 	@RequestMapping("/m_idcheck.do")
 	public String m_idcheck(String id) {
@@ -166,6 +164,15 @@ public class M_MainControl {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	@RequestMapping("/m_logout.do")
+	public String m_logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session != null) {
+			session.invalidate();
+		}
+		return "redirect:/m_main.do";
 	}
 
 }

@@ -39,8 +39,8 @@ public class M_BookControl {
 
 	// 책 연장하기
 	@RequestMapping("/m_userbookmodifyimpl.do")
-	public ModelAndView m_userbookmodifyimpl(HttpServletRequest request, String id)
-			throws Exception {
+	public ModelAndView m_userbookmodifyimpl(HttpServletRequest request,
+			String id) throws Exception {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
@@ -90,8 +90,7 @@ public class M_BookControl {
 			Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
 			String start = userbook.getStart_date().substring(0, 10);
 			String end = userbook.getEnd_date().substring(0, 10);
-			String[] info = { bid, book1.getName(), start,
-					end};
+			String[] info = { bid, book1.getName(), start, end };
 			// 현재 이용 정보에 필요한 값 String 배열에 넣음
 			booklist.add(info);// array에 담음
 		}
@@ -175,4 +174,23 @@ public class M_BookControl {
 		mv.addObject("m_center", "book/m_list.jsp");
 		return mv;
 	}
+
+	// 책 아이디 눌렀을 때 나오는 책 상세 정보
+	@RequestMapping("/m_bookdetail.do")
+	public ModelAndView m_bookdetail(String id) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		Object result = null;
+		System.out.println(id);
+		System.out.println("됌");
+		try {
+			result = bookbiz.get(id);
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("bookdetail", result);
+		mv.addObject("m_center", "book/m_detail.jsp");
+		return mv;
+	}
+
 }

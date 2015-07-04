@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   
+
     <table>
 		<thead>
 			<tr>
-				<th>¹øÈ£</th>
-				<th>º¸³½»ç¶÷ ID</th>
+				<th>ë²ˆí˜¸</th>
+				<th>ë³´ë‚¸ì‚¬ëžŒ ID</th>
 				<th>text</th>
-				<th>º¸³½½Ã°£</th>
-				<th>ÀÐ¾ú³ª È®ÀÎ</th>
+				<th>ë³´ë‚¸ì‹œê°„</th>
+				<th>ì½ì—ˆë‚˜ í™•ì¸</th>
 			</tr>
 		</thead>
 		<tbody>

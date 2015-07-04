@@ -13,7 +13,6 @@
 		} else if (qt == 2) {
 			alert("도서 대여 기간 연장이 완료되었습니다.");
 		}
-
 	});
 
 	function extendMySeat() {
@@ -26,41 +25,41 @@
 		} else {
 			alert("2회 이후로 연장하실 수 없습니다.");
 		}
-
 	}
+
 	function returnMySeat() {
 		var c = confirm("${userseat.s_id}번 좌석을 반납하시겠습니까??");
 		if (c == true) {
 			location.href = "m_userseatremove.do?id=${userseat.s_id}";
 			alert("좌석을 반납하셨습니다.");
 		}
-
 	}
 </script>
 <!-- 좌석 내역 -->
-<table>
-	<tr>
-		<td>사용좌석 :</td>
-		<td colspan="2">${userseat.s_id}번좌석</td>
-	</tr>
-	<tr>
-		<td>사용시간 :</td>
-		<td>${userseat.start_time}~${userseat.end_time}</td>
-		<td><a href="javascript:;" onClick="extendMySeat();"
-			data-role="button">연장</a></td>
-	</tr>
-	<tr>
-		<td>연장횟수 :</td>
-		<td>${userseat.renew_qt}</td>
-		<td><a href="javascript:;" onClick="returnMySeat();"
-			data-role="button">반납</a></td>
-	</tr>
-	<tr>
-		<td colspan="3"><a href="m_seatloglist.do?id=${user.id}"
-			data-role="button">내역</a></td>
-	</tr>
-</table>
-
+<c:if test="${userseat != null}">
+	<table>
+		<tr>
+			<td>사용좌석 :</td>
+			<td colspan="2">${userseat.s_id}번좌석</td>
+		</tr>
+		<tr>
+			<td>사용시간 :</td>
+			<td>${userseat.start_time}~${userseat.end_time}</td>
+			<td><a href="javascript:;" onClick="extendMySeat();"
+				data-role="button">연장</a></td>
+		</tr>
+		<tr>
+			<td>연장횟수 :</td>
+			<td>${userseat.renew_qt}</td>
+			<td><a href="javascript:;" onClick="returnMySeat();"
+				data-role="button">반납</a></td>
+		</tr>
+		<tr>
+			<td colspan="3"><a href="m_seatloglist.do?id=${user.id}"
+				data-role="button">내역</a></td>
+		</tr>
+	</table>
+</c:if>
 <!-- 책 내역 -->
 <table>
 	<tbody>

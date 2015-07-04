@@ -5,28 +5,30 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>SSLibrary Mobile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script>
 	$(document).bind("mobileinit", function() {
 		$.mobile.page.prototype.options.addBackBtn = true;
 	});
 </script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
-	$.mobile.pageLoadErrorMessage = "Error"
+	$.mobile.defaultPageTransition = "fade";
+	$.mobile.loadingMessage = "페이지 로딩중...";
+	$.mobile.pageLoadErrorMessage = "페이지 로딩실패";
 </script>
 <style></style>
 </head>
 <body>
 	<div data-role="page" data-add-back-btn="true">
 		<div data-role="panel" id="myPanel" data-display="overlay">
-			<h2>Panel Header</h2>
-			<a href="m_logout.do">logout</a>
+			<h2>${user.name} 님 환영합니다.</h2>
+			<a href="m_logout.do" data-role="button">logout</a>
 		</div>
 		<div data-role="header">
 			<a href="#myPanel"

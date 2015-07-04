@@ -58,15 +58,28 @@ a {
 	width: 100%;
 	position: relative;
 }
+.main{ /*내가 배경 넣은 것  */
+	
+	background-image: url(../images/woodback.jpg);	
+	background-size : 698px;
+	width: 100%;
+	background-repeat: no-repeat;
+	border-radius: 10px 10px 10px 10px;
+	z-index : 2;
+	padding : 20px 30px 20px 50px;
+	color : white;
+	margin : 20px 0px 20px 2px;
+	position: relative;
+}
 
-.main,
+/* .main,
 .container > header {
-	width: 90%;
+	
 	max-width: 1060px;
 	margin: 0 auto;
-	position: relative;
+	
 	padding: 0 30px 50px 30px;
-}
+} */
 
 .container > header {
 	padding: 30px 30px 40px 30px;
@@ -151,7 +164,7 @@ a {
 }
 
 .bookshelf {
-	width: 100%;
+	width: 95%;
 	height: 63px;
 	z-index: -1;
 	margin-top: -25px;

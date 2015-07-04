@@ -215,11 +215,11 @@
 
 .bk-content {
 	position: absolute;
-	top: 30px;
-	left: 20px;
+	top: 10px;
+	left: 5px;
 	bottom: 20px;
-	right: 20px;
-	padding: 30px;
+	right: 5px;
+	padding: 20px;
 	overflow: hidden;
 	background: #fff;
 	opacity: 0;
@@ -237,11 +237,11 @@
 }
 
 .bk-content p {
-	padding: 0 0 10px;
+	padding: 10px 0 10px 0px;
 	-webkit-font-smoothing: antialiased;
 	color: #000;
-	font-size: 13px;
-	line-height: 20px;
+	font-size: 12px;
+	line-height: 18px;
 	text-align: justify;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -254,9 +254,9 @@
 .bk-page nav {
 	display: block;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 5px;
 	position: relative;
-	z-index: 100;
+	z-index: 80;
 	cursor: pointer;
 }
 
@@ -321,7 +321,7 @@
 	color: #fff;
 	font-size: 15px;
 	line-height: 40px;
-	padding-right: 10px;
+	padding-right: 40px;
 	text-align: right;
 }
 
@@ -344,6 +344,7 @@
 
 .book-2 .bk-cover {
 	background-image: url(../images/2.png);	
+	background-size : 100px	100px;
 	background-repeat: no-repeat;
 	background-position: 98% 0%;
 }
@@ -352,12 +353,12 @@
 .book-2 .bk-left h2 {
 	color: #fff;
 	font-family: 'the_godfatherregular', Georgia, serif;
-	font-weight: 300;
+	font-weight: 160;
 }
 
 .book-2 .bk-cover h2 {
-	font-size: 50px;
-	line-height: 45px;
+	font-size: 22px;
+	line-height: 27px;
 	padding: 30px;
 }
 
@@ -378,8 +379,8 @@
 }
 
 .book-2 .bk-cover h2 span:last-child {
-	font-size: 100px;
-	line-height: 80px;
+	font-size: 80px;
+	line-height: 70px;
 	display: block;
 	position: relative;
 }
@@ -406,9 +407,9 @@
 }
 
 .book-2 .bk-left h2 {
-	font-size: 20px;
+	font-size: 15px;
 	line-height: 40px;
-	padding-right: 10px;
+	padding-right: 35px;
 	text-align: right;
 }
 
@@ -465,7 +466,7 @@
 
 .book-3 .bk-left h2 {
 	color: #fff;
-	font-size: 14px;
+	font-size: 8px;
 	line-height: 40px;
 	text-align: center;
 }
@@ -478,7 +479,7 @@
 
 .book-3 .bk-back p {
 	color: #fff;
-	font-size: 13px;
+	font-size: 10px;
 	font-family: Georgia, Times, "Times New Roman", serif;
 	padding: 40px;
 	text-align: center;

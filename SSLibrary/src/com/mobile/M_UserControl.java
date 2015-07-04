@@ -18,14 +18,12 @@ import com.frame.SearchBiz;
 
 @Controller
 public class M_UserControl {
-	// user
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
 	@Resource(name = "userbiz")
 	SearchBiz SearchBiz;
 	@Resource(name = "userseatbiz")
 	Biz userseatbiz;
-	// book
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
 

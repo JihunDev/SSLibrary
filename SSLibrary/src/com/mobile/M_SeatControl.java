@@ -20,7 +20,6 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class M_SeatControl {
-
 	@Resource(name = "seatbiz")
 	Biz biz;
 	@Resource(name = "userseatbiz")

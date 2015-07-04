@@ -22,10 +22,8 @@ import com.frame.SearchBiz;
 
 @Controller
 public class M_MainControl {
-	// User
 	@Resource(name = "userbiz")
 	Biz userbiz;
-	// Message
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
 

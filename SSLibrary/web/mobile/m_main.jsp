@@ -13,15 +13,11 @@
 <script>
 $.mobile.pageLoadErrorMessage = "Error"
 </script>
-<style>
-
-</style>
+<style></style>
 </head>
 <body>
 <div data-role="page">
-
   <div data-role="header">
-  
     <jsp:include page="${m_top}"/>
   </div>
   <div data-role="main" class="ui-content">

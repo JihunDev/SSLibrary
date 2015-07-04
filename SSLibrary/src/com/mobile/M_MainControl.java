@@ -31,7 +31,6 @@ public class M_MainControl {
 	public ModelAndView m_main(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		mv.addObject("m_center", "m_login.jsp");
-		System.out.println("메인");
 		return mv;
 	}
 
@@ -39,7 +38,6 @@ public class M_MainControl {
 	public ModelAndView m_center(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		mv.addObject("m_center", "m_center.jsp");
-		System.out.println("센터");
 		return mv;
 	}
 
@@ -104,47 +102,59 @@ public class M_MainControl {
 
 	@RequestMapping("/m_login.do")
 	public ModelAndView m_login(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("mobile/m_main");
+		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		User result = null;
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-		
+
 		try {
 			if (id == null || id.equals("")) {
 				User sessionuser = (User) session.getAttribute("user");
 				String sessionid = sessionuser.getId();
 				result = (User) userbiz.get(new User(sessionid));
 				list = messagelogsearchbiz.getid(new MessageLog(sessionid));
+
+				if (result.getIsadmin().equals("d")) {
+					System.out.println("삭제회원");
+				} else {
+					for (Object obj : list) {
+						MessageLog log = (MessageLog) obj;
+						String read = log.getRead();
+						if (read.equals("n")) {
+							msgchecknumber += 1;
+						}
+					}
+					mv = new ModelAndView("redirect:/m_center.do");
+				}
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
+				if (result.getIsadmin().equals("d")) {
+					System.out.println("삭제회원");
+				} else {
+					if (result != null && (result.getPwd()).equals(pwd)) {
+						for (Object obj : list) {
+							MessageLog log = (MessageLog) obj;
+							String read = log.getRead();
+							if (read.equals("n")) {
+								msgchecknumber += 1;
+							}
+						}
+						mv = new ModelAndView("redirect:/m_center.do");
+					} else {
+						mv.addObject("m_center", "m_login.jsp");
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("msgcheck", msgchecknumber);
+		session.setAttribute("user", result);
 
-		if (result.getIsadmin().equals("d")) {
-			System.out.println("삭제회원");
-		} else {
-			if (result != null && (result.getPwd()).equals(pwd)) {
-				for (Object obj : list) {
-					MessageLog log = (MessageLog) obj;
-					String read = log.getRead();
-					if (read.equals("n")) {
-						msgchecknumber += 1;
-					}
-				}
-				session.setAttribute("msgcheck", msgchecknumber);
-				session.setAttribute("user", result);
-				mv.addObject("m_center", "m_center.jsp");
-			} else {
-				mv.addObject("m_center", "m_login.jsp");
-			}
-		}
-		System.out.println("로그인임플");
 		return mv;
 	}
 

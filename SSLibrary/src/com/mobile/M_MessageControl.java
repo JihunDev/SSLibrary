@@ -16,7 +16,6 @@ import com.frame.SearchBiz;
 
 @Controller
 public class M_MessageControl {
-	// Message
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")

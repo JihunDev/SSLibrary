@@ -19,7 +19,6 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class M_BookControl {
-
 	@Resource(name = "userbookbiz")
 	Biz userbookbiz;
 	@Resource(name = "userbookbiz")

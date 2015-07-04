@@ -108,4 +108,13 @@
 			src="http://widgets.booked.net/weather/info?action=get_weather_info&ver=4&cityID=18406&type=3&scode=124&ltid=3457&domid=593&cmetric=1&wlangID=24&color=fa8b2a&wwidth=250&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
 		<!-- weather widget end -->
 		</div>
+		<br>
+		<div class="">
+		<div class="well well-sm">책 카테고리</div>
+		<ul>
+		<li><a href="">⊙   IT</a></li>
+		<li><a href="">⊙   소설</a></li>
+		<li><a href="">⊙   만화책</a></li>
+		</ul>
+		</div>
 	</div>

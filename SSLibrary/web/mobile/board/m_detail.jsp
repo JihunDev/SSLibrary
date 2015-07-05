@@ -10,7 +10,6 @@ tbody td {
 tbody th {
 	border-bottom: 1px solid #d6d6d6;
 }
-
 </style>
 
 <script>
@@ -22,13 +21,23 @@ function del(f) {/* delete가 예약어라 del씀 */
 			f.submit();
 		};
 	}
-	
+
+function register(f) {
+	var c = confirm('댓글을 등록 하시겠습니까?');
+	if (c == true) {
+		f.action = 'm_boardwriteimpl.do';
+		f.method = 'POST';
+		f.submit();
+	}
+	;
+}
+
 function update(f) {
 	var reg_number = f.reg_number.value;
 	var id = f.id.value;
 	if(reg_number != 0 && $('#btn_'+id+'').val() == "수정"){// 댓글을 수정하려할때
 		var content = f.old_content.value;
-		$('#content_'+id+'').html("<input type='text' id='content_id' value='"+content+"'>");
+		$('#content_'+id+'').html("<textarea id='content_id' value='"+${reply.content}+"'></textarea>");
 		$('#btn_'+id+'').val("완료");	
 		alert("Before : " + f.old_content.value);
 	}else if(reg_number != 0 && $('#btn_'+id+'').val() == "완료"){// 댓글수정을 완료할때
@@ -50,16 +59,6 @@ function update(f) {
 			f.submit();
 		};
 	}
-}
-
-function register(f) {
-	var c = confirm('댓글을 등록 하시겠습니까?');
-	if (c == true) {
-		f.action = 'm_boardwriteimpl.do';
-		f.method = 'POST';
-		f.submit();
-	}
-	;
 }
 </script>
 
@@ -124,14 +123,15 @@ function register(f) {
 				<input type="hidden" name="old_content" value="${reply.content}">	
 				<input type="hidden" name="u_id" value="${id}">
 				<input type="hidden" name="content" >	
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<input type="button" value="삭제" onclick="del(this.form)">
+				<div id = "content_${reply.id}"></div>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="button" value="삭제" onclick="del(this.form)">
+					</div>
+					<div class="ui-block-b">
+						<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
+					</div>
 				</div>
-				<div class="ui-block-b">
-					<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
-				</div>
-			</div>
 			</form>
 		</c:forEach>
 	</ul>

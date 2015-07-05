@@ -81,9 +81,9 @@ tr:nth-child(even) {
 	</tbody>
 </table>
 <form>
-	<input type="text" name="sort" value="${boarddetail.sort}"> 
-	<input type="text" name="id" value="${boarddetail.id}"> 
-	<input type="text" name="reg_number" value="${boarddetail.reg_number}">
+	<input type="hidden" name="sort" value="${boarddetail.sort}"> 
+	<input type="hidden" name="id" value="${boarddetail.id}"> 
+	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">
 	<div class="ui-grid-b">
 		<div class="ui-block-a">
 			<input type="submit" onClick="update(this.form);" value="¼öÁ¤">

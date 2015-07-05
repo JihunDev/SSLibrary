@@ -2,8 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<a href="#" class="ui-btn">등록</a>
-
+<a href="m_boardwrite.do" class="ui-btn">등록</a>
 <table>
 	<thead>
 		<tr>

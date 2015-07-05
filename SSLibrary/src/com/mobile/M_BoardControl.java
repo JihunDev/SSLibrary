@@ -158,7 +158,7 @@ public class M_BoardControl {
 	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
 		Board board = null;
 		ModelAndView mv = new ModelAndView();
-
+		System.out.println("수정"+com);
 		if (com.getReg_number() == 0) {
 			// 게시글
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),
@@ -204,7 +204,7 @@ public class M_BoardControl {
 	public ModelAndView m_boardremoveimpl(Board board) {
 		ModelAndView mv = new ModelAndView();
 		Board delete_board = null;
-
+		System.out.println(board);
 		try {
 			delete_board = new Board(board.getId(), board.getReg_number());
 			biz.remove(delete_board);

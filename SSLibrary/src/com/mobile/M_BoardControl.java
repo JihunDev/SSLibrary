@@ -157,7 +157,8 @@ public class M_BoardControl {
 	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
-System.out.println(com.getTitle());
+		
+		System.out.println(com);
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename());
@@ -165,6 +166,7 @@ System.out.println(com.getTitle());
 			mv.setViewName("redirect:/m_boarddetail.do?id=" + com.getId());
 		} else {
 			board = new Board(com.getId(), com.getContent(), com.getSort());
+			
 			mv.setViewName("redirect:/m_boarddetail.do?id="
 					+ com.getReg_number());
 		}

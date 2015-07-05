@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <a href="m_boardwrite.do" class="ui-btn">µî·Ï</a>
+
+
+
+
 <table>
 	<thead>
 		<tr>

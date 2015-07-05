@@ -6,6 +6,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +27,11 @@ import com.frame.UpdateAndReturnBiz;
 @Controller
 public class SeatControl {
 
-	MainControl mc;
+	@Resource(name = "userbiz")
+	Biz user_biz;
+	
+	@Resource(name = "seatbiz")
+	Biz biz;
 	
 	@Resource(name = "userseatbiz")
 	Biz ubiz;
@@ -33,13 +41,10 @@ public class SeatControl {
 	@Resource(name = "seatlogbiz")
 	Biz lbiz;
 	@Resource(name = "seatlogbiz")
-	SearchBiz s_lbiz;
-	
+	SearchBiz s_lbiz;	
 	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz ur_lbiz;
-	
-	@Resource(name = "seatbiz")
-	Biz biz;
+
 
 	@RequestMapping("/seatmain.do")
 	public ModelAndView seatmain(HttpServletRequest request) {
@@ -72,7 +77,8 @@ public class SeatControl {
 		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
 		mv.addObject("myseat", myseat);
 		
-		mv.addObject("modifypage", "seatmodify.jsp");
+		mv.addObject("dialogpage", "seatdialog.jsp");
+		mv.addObject("seateduserpage", "seateduserinfo.jsp");
 		mv.addObject("registermsg", "register.jsp");
 
 		mv.addObject("center", "seat/seatstate.jsp");
@@ -102,10 +108,11 @@ public class SeatControl {
 		return "redirect:/seatmain.do";
 	}
 
-	// 수정을 해당 좌석 상태 반환
+	// 수정할 좌석에 등록된 회원의 정보 전달
+	@SuppressWarnings({ "unchecked" })
 	@ResponseBody
 	@RequestMapping("/seatmodify.do")
-	public String seatmodify(String s_id, HttpServletRequest request) {
+	public ResponseEntity<String> seatmodify(String s_id, HttpServletRequest request) {
 		int sid_num = Integer.parseInt(s_id);
 		Seat seat = null;
 		ArrayList<Object> seatbys_id = null;
@@ -114,8 +121,7 @@ public class SeatControl {
 		try {
 			seat = (Seat) biz.get(new Seat(sid_num));
 		} catch (Exception e) {
-			System.out.println("seatmodify.do : biz.get(new Seat(" + sid_num
-					+ ") 실패");
+			System.out.println("seatmodify.do : (Seat) biz.get(new Seat(sid_num)) Fail");
 			e.printStackTrace();
 		}
 		// 수정할 좌석의 정보를 불러와 해당 좌석의 u_id 추출
@@ -129,39 +135,59 @@ public class SeatControl {
 				}
 			}
 		} catch (Exception e) {
+			System.out.println("seatmodify.do : (ArrayList<Object>) s_ubiz.getid(s_id) Fail");
+			e.printStackTrace();
+		}
+
+		JSONObject result = null;
+		try {
+			
+			User user = (User) user_biz.get(u_id);
+			UserSeat userseat = (UserSeat) ubiz.get(u_id); 
+			result = new JSONObject();
+			result.put("s_id", userseat.getS_id());
+			result.put("u_id", userseat.getU_id());
+			result.put("pwd", user.getPwd());
+			result.put("name", user.getName());
+			result.put("phone", user.getPhone());
+			result.put("img", user.getImg());
+			result.put("email", user.getEmail());
+			result.put("start_time", userseat.getStart_time());
+			result.put("end_time", userseat.getEnd_time());
+			result.put("renew_qt", userseat.getRenew_qt());
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		String result = seat.getState();
-	//	HttpSession session = request.getSession();
-	//	session.setAttribute("seatstate", seat.getState());
-	//	session.setAttribute("receiver_sid", seat.getId());
-	//  session.setAttribute("receiver_uid", u_id);
-
 		System.out.println("receiver_sid: " + seat.getId());
 		System.out.println("receiver_uid: " + u_id);
-		System.out.println("seatstate: " + result);
+		System.out.println("seatstate: " + seat.getState());
+		System.out.println("userdetail(JSON): " + result);
 		
-	//	session.setAttribute("s_state", result);
-
-		return result;
+		ResponseEntity<String> returnData = null;
+		HttpHeaders header = new HttpHeaders(); 
+		header.add("Content-type", "application/json;charset=EUC-KR");
+	
+		returnData = new ResponseEntity<String>(result.toJSONString(),
+				header,
+				HttpStatus.CREATED //강제로 결과를 만들어 넣어주는것
+				);
+		return returnData;
 	}
 
+	
 	// 좌석 수정 수행 및 결과 반환
 	@ResponseBody
 	@RequestMapping("/seatmodifyimpl.do")
-	public String seatmodifyimpl(String s_id, String state,
-			HttpServletRequest request) {
+	public String seatmodifyimpl(String s_id, String state, HttpServletRequest request) {
 		int sid_num = Integer.parseInt(s_id);
 		String result = "";
 		String new_state = state;
 
 		ArrayList<Object> seatbys_id = null;
 		String u_id = "";
-
-		// System.out.println("sid_num: " + sid_num);
-		// System.out.println("new_state: " + new_state);
 
 		try {
 			// 수정할 좌석의 정보를 불러와 해당 좌석의 u_id 추출
@@ -177,16 +203,16 @@ public class SeatControl {
 			biz.modify(new Seat(sid_num, new_state));
 
 		} catch (Exception e) {
+			System.out.println("seatmodifyimpl.do Fail");
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-	// 연장
+	// 좌석 연장
 	@RequestMapping("/userseatmodify.do")
 	public ModelAndView userseatmodify(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
-	//	int s_id =  (int) request.getAttribute("s_id");
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String u_id = user.getId();
@@ -194,7 +220,7 @@ public class SeatControl {
 		try {
 			userseat = (UserSeat) ubiz.get(new UserSeat(u_id));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("userseatmodify.do Fail");
 			e.printStackTrace();
 		}
 		UserSeat us = (UserSeat) userseat;
@@ -221,7 +247,7 @@ public class SeatControl {
 		return mv;
 	}
 
-	// 반납
+	// 좌석 반납
 	@RequestMapping("/userseatremove.do")
 	public ModelAndView userseatremove(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
@@ -257,6 +283,8 @@ public class SeatControl {
 		mv.addObject("center","user/usinginfo.jsp");
 		return mv;
 	}
+	
+	
 	// 좌석 대여 과거 내역 출력
 	@RequestMapping("/seatloglist.do")
 	public ModelAndView seatloglist(String id) {
@@ -278,6 +306,7 @@ public class SeatControl {
 		return mv;
 	}
 
+	// 반납기간이 지난 좌석 반납 및 이용정보 삭제
 	@ResponseBody
 	@RequestMapping("/expireseat.do")
 	public String expireseat(){

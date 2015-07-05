@@ -5,10 +5,8 @@
 	String receiver_uid = (String) request.getAttribute("receiver_uid");
 	String receiver_sid = (String) request.getAttribute("receiver_sid");
 %>
-<h1>메세지 전송</h1>
-<h2>발신자: ${user.id}(${user.name}) </h2>
-
 <script>
+
 function	 sendMsgImpl(f){
 	// 수신자 좌석 정보
 	var s_id = f.receiver_sid.value;
@@ -43,10 +41,14 @@ function	 sendMsgImpl(f){
 }
 
 </script>
-<!-- 추후 변경 -->
+<h4>발신자: ${user.id}(${user.name}) </h4>
 <form>
 	<input type="hidden" name="sender_uid" value="${user.id}">
 	<input type="hidden" name="receiver_sid" class="seatid">
-	<textarea rows="10" cols="20" name="textarea"></textarea>
-	<br> <input type="button" value="전송" onclick="sendMsgImpl(this.form);">	
+	<textarea rows="2" cols="70" name="textarea"></textarea>
+	<br>	
+	<div class="modal-footer">		
+		<button type="button" class="btn btn-default" data-dismiss="modal" name="Nbtn" id="Nbtn" value="보내기" onclick="sendMsgImpl(this.form);">보내기</button>
+ 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	</div>
 </form>

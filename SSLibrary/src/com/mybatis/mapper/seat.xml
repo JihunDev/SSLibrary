@@ -8,7 +8,7 @@
 	</select>
 
 	<select id="selectseats" resultType="seat">
-		SELECT * FROM A_SEAT
+		SELECT * FROM A_SEAT ORDER BY 1
 	</select>
 
 	<update id="updateseat" parameterType="seat">

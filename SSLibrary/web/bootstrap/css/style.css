@@ -37,7 +37,7 @@ button.btn.btn-primary {
   border: 0;
 }
 .title {
-  font-size: 20vw;
+  font-size: 18vw;
   color: rgba(255, 255, 255, 0.67);
   font-family: 'Comfortaa';
   font-weight: 700;
@@ -74,13 +74,15 @@ button.btn.btn-primary.homeBtn {
   width: 100%;
 }
 .api-row {
-  margin-top: 75px;
+  margin-top: 100px;
 }
 .logos {
   display: inline-block;
   width: 8.7%;
   text-align: center;
   color: white;
+  align: center; 
+  margin : 0px 0px 0px 25px;
 }
 .logos img {
   -webkit-filter: grayscale(100%);
@@ -95,46 +97,42 @@ button.btn.btn-primary.homeBtn {
   text-align: right;
 }
 #js {
-  width: 30%;
-  height: 30%;
+  width: 45%;
 }
-#mandrill {
-  width: 70%;
-  height: 70%;
+#spring {
+  width: 80%;
+  height: 80%;
 }
 #heroku {
   width: 30%;
   height: 30%;
 }
-#twitter {
-  width: 50px;
+#html {
+  width: 45%;
 }
 #coinbase {
   width: 125px;
 }
-#club {
-  width: 100px;
+#css {
+  width: 45%;
 }
 #expedia {
   width: 100px;
 }
-#gulp {
-  width: 100px;
+#bootstrap {
+  width: 55%;
 }
 #node {
-  width: 90px;
+  width: 65px;
 }
-#mongo {
-  width: 100px;
+#jquery {
+  width: 100%;
 }
-#hapi {
-  width: 100px;
+#jmobile {
+  width: 100%;
 }
-#mongoose {
-  width: 100px;
-}
-#gulp {
-  width: 100px;
+#mybatis {
+  width: 90%;
 }
 /* Animations */
 .animated-globe {

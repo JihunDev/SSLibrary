@@ -9,7 +9,36 @@ function del(f) {/* delete가 예약어라 del씀 */
 			f.method = 'POST';
 			f.submit();
 		};
-	}	
+	}
+	
+function update(f) {
+	var reg_number = f.reg_number.value;
+	var id = f.id.value;
+	if(reg_number != 0 && $('#btn_'+id+'').val() == "수정"){// 댓글을 수정하려할때
+		var content = f.old_content.value;
+		$('#content_'+id+'').html("<input type='text' id='content_id' value='"+content+"'>");
+		$('#btn_'+id+'').val("완료");	
+		alert("Before : " + f.old_content.value);
+	}else if(reg_number != 0 && $('#btn_'+id+'').val() == "완료"){// 댓글수정을 완료할때
+		var c = confirm('댓글을 수정 하시겠습니까?');
+			if (c == true) {
+				var content = $('#content_id').val();
+				$('input[name="content"]').val(content);
+				alert("After : " + f.content.value);
+				
+				f.action = 'm_boardmodifyimpl.do';
+				f.method = 'POST';
+				f.submit();
+			};
+	} else {
+		var c = confirm('수정 하시겠습니까?');
+		if (c == true) {
+			f.action = 'm_boardmodify.do';
+			f.method = 'POST';
+			f.submit();
+		};
+	}
+}
 </script>
 
 <style>
@@ -57,10 +86,10 @@ tr:nth-child(even) {
 	<input type="text" name="reg_number" value="${boarddetail.reg_number}">
 	<div class="ui-grid-b">
 		<div class="ui-block-a">
-			<input type="button" onClick="del(this.form);" value="수정">
+			<input type="submit" onClick="update(this.form);" value="수정">
 		</div>
 		<div class="ui-block-b">
-			<input type="button" onClick="update(this.form);" value="삭제">
+			<input type="submit" onClick="del(this.form);" value="삭제">
 		</div>
 		<div class="ui-block-c">
 			<a href="m_boardmain.do?sort=${boarddetail.sort}" data-role="button">목록</a>

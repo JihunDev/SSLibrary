@@ -11,9 +11,6 @@ tbody th {
 	border-bottom: 1px solid #d6d6d6;
 }
 
-tr:nth-child(even) {
-	background: #e9e9e9;
-}
 </style>
 
 <script>
@@ -53,6 +50,16 @@ function update(f) {
 			f.submit();
 		};
 	}
+}
+
+function register(f) {
+	var c = confirm('댓글을 등록 하시겠습니까?');
+	if (c == true) {
+		f.action = 'm_boardwriteimpl.do';
+		f.method = 'POST';
+		f.submit();
+	}
+	;
 }
 </script>
 
@@ -97,3 +104,45 @@ function update(f) {
 		</div>
 	</div>
 </form>
+
+<div data-role="content">
+	<ul data-role="listview">
+		<c:forEach items="${boardreply}" var="reply">
+				<li>
+					<a href="#">						
+						<h3>${reply.content}</h3>
+						<p>${reply.u_id} | ${reply.reg_date}</p>
+						<p class="ui-li-aside">
+							<strong>등록 번호 : ${reply.id}</strong>
+						</p>						
+					</a>
+				</li>
+			<form>
+				<input type="hidden" name="sort" value="${reply.sort}">
+				<input type="hidden" name="id" value="${reply.id}">	
+				<input type="hidden" name="reg_number" value="${reply.reg_number}">	
+				<input type="hidden" name="old_content" value="${reply.content}">	
+				<input type="hidden" name="u_id" value="${id}">
+				<input type="hidden" name="content" >	
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<input type="button" value="삭제" onclick="del(this.form)">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
+				</div>
+			</div>
+			</form>
+		</c:forEach>
+	</ul>
+</div>
+
+<!-- reply 창 -->	
+<form>
+	<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}">
+	<input type="hidden" name="sort" value="${boarddetail.sort}">
+	<input type="hidden" name="u_id" value="${user.id}">
+	<label for="content">Comment:</label>
+	<textarea rows="5" cols="40" name="content"></textarea>
+	<input type="button" value="등록" onclick="register(this.form)">
+</form>	

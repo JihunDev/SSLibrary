@@ -150,22 +150,20 @@ public class M_BoardControl {
 			mv.setViewName("redirect:/m_boarddetail.do?id="
 					+ board.getReg_number());
 		}
-
 		return mv;
 	}
 
 	@RequestMapping("/m_boardmodifyimpl.do")
 	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
-		Board board = null;
 		ModelAndView mv = new ModelAndView();
-		System.out.println("수정"+com);
+		Board board = null;
+System.out.println(com.getTitle());
 		if (com.getReg_number() == 0) {
-			// 게시글
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename());
+
 			mv.setViewName("redirect:/m_boarddetail.do?id=" + com.getId());
 		} else {
-			// 댓글
 			board = new Board(com.getId(), com.getContent(), com.getSort());
 			mv.setViewName("redirect:/m_boarddetail.do?id="
 					+ com.getReg_number());

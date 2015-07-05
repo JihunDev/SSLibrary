@@ -51,7 +51,7 @@
 
 	<update id="updateboard" parameterType="board">
 		UPDATE A_BOARD	SET
-			<if test = "reg_number == '0'"> TITLE = #{title}, FILE_NAME=#{file_name},</if>
+			<if test = "reg_number == '0'"> TITLE = #{title}, FILE_NAME=#{file_name, jdbcType=VARCHAR},</if>
 				CONTENT = #{content}, SORT = #{sort} WHERE ID = #{id}
 	</update>
 	

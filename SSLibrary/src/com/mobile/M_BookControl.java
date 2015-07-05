@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.Book;
 import com.entity.BookLog;
+import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -165,11 +166,13 @@ public class M_BookControl {
 			throws Exception {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
-															// 가져오기
+		User sessionuser = (User) session.getAttribute("user"); // 회원 아이디 정보 세션에서
+		String uid = sessionuser.getId();
+				
 		ArrayList<Object> result = new ArrayList<Object>();
 		result = sbooklogbiz.getname(uid); // uid로 가져온 booklog의 리스트들....
 		mv.addObject("booklist", result);
+		System.out.println(result);
 		mv.addObject("m_center", "book/m_list.jsp");
 		return mv;
 	}

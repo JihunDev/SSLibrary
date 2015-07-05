@@ -61,7 +61,7 @@ a {
 .main{ /*내가 배경 넣은 것  */
 	
 	background-image: url(../images/woodback.jpg);	
-	background-size : 698px;
+	background-size : 700px;
 	width: 100%;
 	background-repeat: no-repeat;
 	border-radius: 10px 10px 10px 10px;

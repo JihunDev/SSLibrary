@@ -31,7 +31,8 @@
 	</select>
 	<input type="text" class="form-control input-sm" name="title" placeholder="제목을 입력하세요.">
 	<textarea class="form-control" rows="50" cols="90" name="content"></textarea>
-	<input type="file" name="file_name"><br>
+	<input type="file" name="file_name">
+	<br>
 	<input type="button" class="btn btn-default" value="등록" onclick="register(this.form)">
 </form>
     

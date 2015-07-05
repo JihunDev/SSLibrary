@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<style>
+tbody td {
+	border-bottom: 1px solid #d6d6d6;
+}
+
+tbody th {
+	border-bottom: 1px solid #d6d6d6;
+}
+
+tr:nth-child(even) {
+	background: #e9e9e9;
+}
+</style>
+
 <script>
 function del(f) {/* delete가 예약어라 del씀 */
 	var c = confirm('삭제 하시겠습니까?');
@@ -40,20 +55,6 @@ function update(f) {
 	}
 }
 </script>
-
-<style>
-tbody td {
-	border-bottom: 1px solid #d6d6d6;
-}
-
-tbody th {
-	border-bottom: 1px solid #d6d6d6;
-}
-
-tr:nth-child(even) {
-	background: #e9e9e9;
-}
-</style>
 
 <table>
 	<tbody>

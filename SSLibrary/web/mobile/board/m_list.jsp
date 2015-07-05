@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <a href="m_boardwrite.do" class="ui-btn">µî·Ï</a>
-
-
-
-
 <table>
 	<thead>
 		<tr>

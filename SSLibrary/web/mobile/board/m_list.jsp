@@ -2,25 +2,20 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <a href="m_boardwrite.do" class="ui-btn">등록</a>
-<table>
-	<thead>
-		<tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>글쓴이</th>
-			<th>작성일</th>
-			<th>조회수</th>
-		</tr>
-	</thead>
-	<tbody>
+<div data-role="content">
+	<ul data-role="listview">
 		<c:forEach items="${boardlist}" var="b">
-			<tr>
-				<td>${b.id}</td>
-				<td><a href="m_boarddetail.do?id=${b.id}">${b.title}(${b.reply_num})</a></td>
-				<td>${b.u_id}</td>
-				<td>${b.reg_date}</td>
-				<td>${b.counter}</td>
-			</tr>
+			<li>
+				<a href="m_boarddetail.do?id=${b.id}">						
+					<h3>${b.title}(${b.reply_num})</h3>
+					<p>글쓴이 : ${b.u_id}</p>
+					<p>작성일 : ${b.reg_date}</p>
+					<p class="ui-li-aside">
+						<strong>글번호 : ${b.id}</strong>
+					</p>
+					<span class="ui-li-count">조회수 : ${b.counter}</span>
+				</a>
+			</li>
 		</c:forEach>
-	</tbody>
-</table>
+	</ul>
+</div>

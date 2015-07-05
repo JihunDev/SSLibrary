@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <script>
 	$(document).ready(function() {
 		if ("${returnqt}" == 1) {
@@ -35,58 +34,56 @@
 		}
 	}
 </script>
-<!-- 좌석 내역 -->
-<c:if test="${userseat != null}">
-	<table>
-		<tr>
-			<td>사용좌석 :</td>
-			<td colspan="2">${userseat.s_id}번좌석</td>
-		</tr>
-		<tr>
-			<td>사용시간 :</td>
-			<td>${userseat.start_time}~${userseat.end_time}</td>
-			<td><a href="javascript:;" onClick="extendMySeat();"
-				data-role="button">연장</a></td>
-		</tr>
-		<tr>
-			<td>연장횟수 :</td>
-			<td>${userseat.renew_qt}</td>
-			<td><a href="javascript:;" onClick="returnMySeat();"
-				data-role="button">반납</a></td>
-		</tr>
-		<tr>
-			<td colspan="3"><a href="m_seatloglist.do?id=${user.id}"
-				data-role="button">내역</a></td>
-		</tr>
-	</table>
-</c:if>
-<!-- 책 내역 -->
-<table>
-	<tbody>
+<h2>좌석 이용 내용</h2>
+<div data-role="content">
+	<ul data-role="listview">
+		<li>
+			<h3>사용좌석 : ${userseat.s_id}번좌석</h3>
+			<P>사용시간</P>
+			<p>${userseat.start_time}~${userseat.end_time}</p>
+			<p class="ui-li-aside">
+				<strong>연장횟수 : ${userseat.renew_qt}</strong>
+			</p>
+		</li>
+	</ul>
+</div>
+<div class="ui-grid-b">
+	<div class="ui-block-a">
+		<a href="javascript:;" onClick="extendMySeat();" data-role="button">연장</a>
+	</div>
+	<div class="ui-block-b">
+		<a href="javascript:;" onClick="returnMySeat();" data-role="button">반납</a>
+	</div>
+	<div class="ui-block-c">
+		<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
+	</div>
+</div>
+<h2>도서 이용 내용</h2>
+<div data-role="content">
+	<ul data-role="listview">
 		<c:forEach items="${booklist}" var="book" varStatus="status">
-			<tr>
-				<td>도서번호 :</td>
-				<td colspan="2">${book[0]}</td>
-			</tr>
-			<tr>
-				<td>책이름 :</td>
-				<td>${book[1]}</td>
-				<td><a href="javascript:;"
-					onClick="if (confirm('연장하시겠습니까?')) location.href='m_userbookmodifyimpl.do?id=${book[0]}'"
-					data-role="button">연장</a></td>
-			</tr>
-			<tr>
-				<td>대여기간 :</td>
-				<td>${book[2]}~${book[3]}</td>
-				<td><a href="javascript:;"
-					onClick="if (confirm('반납하시겠습니까?')) location.href='m_userbookremove.do?id=${book[0]}'"
-					data-role="button">반납</a></td>
-			</tr>
-			<c:if test="${status.last}">
-				<tr>
-					<td colspan="3"><a href="m_bookloglist.do" data-role="button">내역</a></td>
-				</tr>
-			</c:if>
+			<li>
+				<h3>도서번호 : ${book[0]}</h3>
+				<p>책이름 : ${book[1]}</p>
+				<P>사용시간</P>
+				<p>${book[2]}~${book[3]}</p>
+				<p class="ui-li-aside">
+					<strong>연장횟수 : ${userseat.renew_qt}</strong>
+				</p>
+			</li>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<a href="javascript:;"
+						onClick="if (confirm('연장하시겠습니까?')) location.href='m_userbookmodifyimpl.do?id=${book[0]}'"
+						data-role="button">연장</a>
+				</div>
+				<div class="ui-block-b">
+					<a href="javascript:;"
+						onClick="if (confirm('반납하시겠습니까?')) location.href='m_userbookremove.do?id=${book[0]}'"
+						data-role="button">반납</a>
+				</div>
+			</div>
 		</c:forEach>
-	</tbody>
-</table>
+	</ul>
+</div>
+<a href="m_bookloglist.do" data-role="button">내역</a>

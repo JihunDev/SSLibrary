@@ -1,0 +1,493 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,%20800');
+/* --------Font--------- */
+body {
+  font-family: 'Comfortaa';
+}
+h1,
+h2,
+h3,
+h4,
+h6,
+h6 {
+  font-family: 'Comfortaa';
+}
+/* Homepage Video */
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+}
+button.btn.btn-primary {
+  padding: 4vw 4vw;
+  margin-top: 0px;
+  border-radius: 10px;
+  background: rgba(63, 182, 24, 0.85);
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  border: 0;
+}
+.title {
+  font-size: 20vw;
+  color: rgba(255, 255, 255, 0.67);
+  font-family: 'Comfortaa';
+  font-weight: 700;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+.tagline {
+  font-size: 6vh;
+  color: white;
+  margin-top: -7vh;
+}
+.cta {
+  font-size: 4vw;
+  font-family: 'Open Sans';
+  text-align: center;
+}
+.anchor-cta {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.67);
+}
+i.fa.fa-globe.nav-globe {
+  font-size: 1em;
+  padding: 0;
+  color: #fff;
+}
+button.btn.btn-primary.homeBtn {
+  border-radius: 50%;
+}
+/* Homepage Footer */
+.api-row {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.api-row {
+  margin-top: 75px;
+}
+.logos {
+  display: inline-block;
+  width: 8.7%;
+  text-align: center;
+  color: white;
+}
+.logos img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.logos img:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+#sabre {
+  width: 125px;
+  text-align: right;
+}
+#js {
+  width: 30%;
+  height: 30%;
+}
+#mandrill {
+  width: 70%;
+  height: 70%;
+}
+#heroku {
+  width: 30%;
+  height: 30%;
+}
+#twitter {
+  width: 50px;
+}
+#coinbase {
+  width: 125px;
+}
+#club {
+  width: 100px;
+}
+#expedia {
+  width: 100px;
+}
+#gulp {
+  width: 100px;
+}
+#node {
+  width: 90px;
+}
+#mongo {
+  width: 100px;
+}
+#hapi {
+  width: 100px;
+}
+#mongoose {
+  width: 100px;
+}
+#gulp {
+  width: 100px;
+}
+/* Animations */
+.animated-globe {
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+/* New Trips Page */
+.row.new-trip-row.animated.slideInLeft {
+  margin-top: 60px;
+}
+.form-group.special-form-group {
+  display: inline-block;
+}
+select.form-control#theme {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+select.form-control#theme option:first-letter {
+  text-transform: lowercase;
+}
+.new-trip-row input,
+.new-trip-row select {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid #fff;
+}
+.new-trip-row label {
+  color: rgba(255, 255, 255, 0.7);
+}
+.new-trip-row input:focus,
+select#theme:focus {
+  border-bottom: 3px solid #fff;
+}
+.packages {
+  background: rgba(0, 0, 0, 0.54);
+  height: 150px;
+  border: none !important;
+  border-radius: 10px;
+  color: white;
+  margin-top: 5vh;
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+.trips a {
+  color: white;
+}
+.trips {
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.54);
+  height: 150px;
+  border: none !important;
+  border-radius: 10px;
+  color: white;
+  margin-top: 5vh;
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+.packages:hover,
+.trips:hover {
+  border: 3px solid white;
+  cursor: pointer;
+}
+.fare:before {
+  content: "$ ";
+}
+p.fare {
+  font-size: 3.5vh;
+  display: inline-block;
+  float: left;
+}
+p.triptitle {
+  padding: 5px 0 0 0;
+  color: white;
+  font-size: 3vh;
+  display: inline;
+  float: left;
+}
+p.lbl {
+  text-decoration: underline;
+  display: inline-block;
+  font-size: 1.8vh;
+}
+p.departure {
+  float: left;
+  font-size: 2vh;
+  display: block;
+  width: 50%;
+}
+p.return {
+  float: left;
+  font-size: 2vh;
+  display: block;
+  width: 50%;
+}
+p.city {
+  padding: 5px 0 0 0;
+  float: left;
+  font-size: 2vh;
+  display: block;
+  width: 100%;
+}
+p.airport {
+  font-size: 3.5vh;
+  display: inline-block;
+  float: right;
+}
+.fare:before {
+  content: "$ ";
+}
+.btn.btn-success#get-flights {
+  border-radius: 5px;
+  margin-left: 7px;
+  display: block;
+}
+/* animated loading gif */
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('/media/gif/load.gif') 50% 50% no-repeat rgba(0, 0, 0, 0.54);
+  visibility: hidden;
+}
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+img.bg2 {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+@media screen and (max-width: 1024px) {
+  /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;
+    /* 50% */
+  }
+  img.bg2 {
+    left: 50%;
+    margin-left: -512px;
+    /* 50% */
+  }
+}
+span#xIcon {
+  visibility: hidden;
+}
+span#checkIcon {
+  visibility: hidden;
+}
+.backgroundRegister {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  z-index: -1;
+}
+#logHead,
+#regHead {
+  margin-top: 5%;
+  background: #222222;
+  border-radius: 10px !important;
+  color: white;
+  padding: 1em 3em;
+}
+input#email {
+  border-radius: 5px;
+  autofocus: true;
+}
+input#twitterForm {
+  border-radius: 0px 5px 5px 0px;
+  width: 100%;
+}
+span#twitter {
+  border-radius: 5px 0px 0px 5px;
+}
+input#password,
+input#confirmPass {
+  border-radius: 5px;
+}
+#twitter.input-group {
+  width: 100%;
+}
+h3.login,
+h3.register {
+  margin-top: 0px;
+  font-weight: 400;
+  text-align: center;
+}
+button#login,
+button#register {
+  background: white;
+  color: black;
+  border-radius: 5px;
+}
+/* New Trip Nav */
+nav.navbar.navbar-default.animated-navbar.new-nav,
+nav.navbar.navbar-default.animated-navbar.new-nav .btn-default {
+  background: rgba(0, 0, 0, 0.3);
+}
+nav.navbar.navbar-default.animated-navbar.new-nav .btn-default {
+  border: none;
+}
+#schedule {
+  height: 300px;
+}
+img.bg.show-page {
+  filter: blur(60px);
+}
+.trip-title {
+  display: block;
+  font-size: 8vh;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+i.fa.fa-arrow-circle-left.inverse.fa-2x,
+i.fa.fa-arrow-circle-left.inverse.fa-flip-horizontal.fa-2x {
+  padding-top: 15px;
+  padding-left: 7px;
+  padding-right: 7px;
+  color: #fff;
+}
+.trip-depart,
+.trip-return {
+  color: #fff;
+  font-size: 3.5vh;
+}
+.trip-dest,
+h3.tweet-cta {
+  color: #fff;
+  font-size: 4vh;
+}
+.col-xs-12.text-center.tweet-button {
+  margin-top: 15px;
+}
+.twitter-share-button {
+  width: 100px;
+}
+.row.generator {
+  background: rgba(237, 237, 237, 0.5);
+}
+.itinerary {
+  font-size: 3vh;
+  background: none;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+input[type="time"] {
+  line-height: 30px;
+  font-size: 3vh;
+  background: rgba(243, 243, 243, 0.32);
+}
+span.suggestion {
+  position: relative;
+  top: 25px;
+}
+input[type="time"]:focus {
+  border: 1px solid white;
+}
+i.fa.fa-map-marker,
+i.fa.fa-calendar,
+i.fa.fa-floppy-o {
+  font-size: 10vh;
+  color: #fff;
+}
+.itinerary.selected {
+  margin-top: 40px !important;
+}
+i.fa.fa-plus {
+  font-size: 3vh;
+}
+i.fa.fa-floppy-o {
+  color: #fff;
+}
+.col-xs-12.reco-hash {
+  font-size: 3vh;
+}
+.suggestion {
+  display: inline-block;
+}
+.col-sm-3.text-center {
+  padding-top: 20px;
+}
+button#save,
+button.btn.btn-default#complete {
+  margin-top: 10px;
+  padding: 10px 30px;
+  background: rgba(225, 225, 225, 0.7);
+  border: 1px solid rgba(63, 182, 24, 0.85);
+  border-radius: 5px;
+  color: rgba(63, 182, 24, 0.85);
+  font-weight: 700;
+}
+button.btn.btn-default#complete {
+  margin-top: -4px;
+  margin-left: 10px;
+}
+.schedule {
+  padding: 10px;
+  margin: 10px 0;
+}
+.schedule {
+  width: 250px;
+  background: rgba(0, 0, 0, 0.54);
+  color: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Firefox 3.5 - 3.6 */
+  box-shadow: 3px 3px 5px 3px rgba(29, 29, 29, 0.7);
+  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+#schedule .name,
+#schedule .time {
+  font-size: 3vh;
+}
+div#schedule {
+  margin-top: 100px;
+}
+/* comment */

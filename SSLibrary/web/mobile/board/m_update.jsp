@@ -12,7 +12,7 @@ function update(f) {
 	}
 </script>
 
-<form enctype="multipart/form-data" >
+<form enctype="multipart/form-data">
 	<c:if test="${boardupdate.sort == 'notice'}">
 		<select name="sort">
 			<option value="">선택</option>
@@ -32,6 +32,6 @@ function update(f) {
 	<input type="file" name="file_name"><br>
 	<input type="hidden" name="id" value="${boardupdate.id}">
 	<input type="hidden" name="u_id" value="${id}">
-	<input type="submit" value="수정" onclick="update(this.form)">
+	<input type="button" value="수정" onclick="update(this.form)">
 </form>	
     

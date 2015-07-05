@@ -154,34 +154,30 @@ public class M_BoardControl {
 	}
 
 	@RequestMapping("/m_boardmodifyimpl.do")
-	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
+	public ModelAndView boardmodifyimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
+		System.out.println("com "+com);
 		
-		System.out.println(com);
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename());
-
+			System.out.println("board 1 "+board);
 			mv.setViewName("redirect:/m_boarddetail.do?id=" + com.getId());
 		} else {
 			board = new Board(com.getId(), com.getContent(), com.getSort());
-			
-			mv.setViewName("redirect:/m_boarddetail.do?id="
-					+ com.getReg_number());
+			System.out.println("board 2 "+board);
+			mv.setViewName("redirect:/m_boarddetail.do?id="	+ com.getReg_number());
 		}
-
 		try {
 			biz.modify(board);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
 		if (com.getFile_name() != null) {
 			MultipartFile file = com.getFile_name();
 			String dir = "C:/lib/SSLibrary/web/img/board/";
 			String img = file.getOriginalFilename();
-
 			if (img == null || img.equals("")) {
 
 			} else {

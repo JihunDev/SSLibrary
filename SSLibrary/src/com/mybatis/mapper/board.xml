@@ -24,16 +24,18 @@
 
 	<select id="selectidboards" parameterType="java.lang.String"
 		resultType="board">
-		SELECT * FROM A_BOARD WHERE SORT = #{s} AND REG_NUMBER IN(0) ORDER BY 1 DESC 
+		SELECT * FROM A_BOARD WHERE SORT = #{s} AND REG_NUMBER
+		IN(0) ORDER BY 1 DESC
 	</select>
-	
-	<select id="selectreplyboards" parameterType="board"	resultType="board">
-		SELECT * FROM A_BOARD WHERE REG_NUMBER = #{id} AND SORT = #{sort} ORDER BY 1 ASC 
+
+	<select id="selectreplyboards" parameterType="board" resultType="board">
+		SELECT * FROM A_BOARD WHERE REG_NUMBER = #{id} AND SORT = #{sort}
+		ORDER BY 1 ASC
 	</select>
 
 	<select id="selectreplynums" parameterType="board" resultType="java.lang.Integer">
-	      SELECT COUNT(*) FROM A_BOARD WHERE SORT = #{sort} AND REG_NUMBER=#{id}
-	</select> 
+		SELECT COUNT(*) FROM A_BOARD WHERE SORT = #{sort} AND REG_NUMBER=#{id}
+	</select>
 
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD
@@ -50,11 +52,12 @@
 	</delete>
 
 	<update id="updateboard" parameterType="board">
-		UPDATE A_BOARD	SET
-			<if test = "reg_number == '0'"> TITLE = #{title}, FILE_NAME=#{file_name, jdbcType=VARCHAR},</if>
-				CONTENT = #{content}, SORT = #{sort} WHERE ID = #{id}
+		UPDATE A_BOARD SET
+		<if test="reg_number == 0"> TITLE = #{title}, FILE_NAME=#{file_name,
+			jdbcType=VARCHAR},</if>
+		CONTENT = #{content}, SORT = #{sort} WHERE ID = #{id}
 	</update>
-	
+
 	<update id="updatecounterboard" parameterType="board">
 		UPDATE A_BOARD SET
 		COUNTER = COUNTER+1 WHERE ID = #{id}

@@ -43,7 +43,6 @@ public class M_MessageControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(mlre);
 
 		mv.addObject("messagelog", mlre);
 		mv.addObject("m_center", "message/m_list.jsp");

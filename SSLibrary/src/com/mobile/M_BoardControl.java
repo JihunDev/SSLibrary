@@ -32,12 +32,10 @@ public class M_BoardControl {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> return_list = new ArrayList<Object>();
-		System.out.println(com.getSort());
 		int count = 0;
 		int reply_count = 0;
 		try {
 			list = boardsearchbiz.getid(com.getSort());
-			System.out.println(list);
 			for (Object obj1 : list) {
 				Board b = (Board) obj1;
 				reply_count = boardsearchbiz.getnum_reply(b);
@@ -48,7 +46,6 @@ public class M_BoardControl {
 				return_list.add(bcom);
 				reply_count = 0;
 				count++;
-				System.out.println(return_list);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

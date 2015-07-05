@@ -118,7 +118,7 @@ public class M_MainControl {
 				list = messagelogsearchbiz.getid(new MessageLog(sessionid));
 
 				if (result.getIsadmin().equals("d")) {
-					System.out.println("삭제회원");
+		
 				} else {
 					for (Object obj : list) {
 						MessageLog log = (MessageLog) obj;
@@ -133,7 +133,7 @@ public class M_MainControl {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
 				if (result.getIsadmin().equals("d")) {
-					System.out.println("삭제회원");
+		
 				} else {
 					if (result != null && (result.getPwd()).equals(pwd)) {
 						for (Object obj : list) {

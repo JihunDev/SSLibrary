@@ -109,7 +109,7 @@ public class MainControl {
 				Book book = (Book) obj;
 				book_list.add(book);
 				count++;
-				if (count == 10)
+				if (count == 12)
 					break;
 			}
 			count = 0;

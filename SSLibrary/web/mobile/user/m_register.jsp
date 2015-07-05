@@ -57,14 +57,8 @@ function idcheck(g) {
 <div data-role="content">
 	<form enctype="multipart/form-data">
 		<input type="hidden" name="isadmin" value="n"><br> 
-		<fieldset class="ui-grid-a">
-			<div class="ui-block-a">
-				<input type="text" name="id" placeholder="ID">
-			</div>
-			<div class="ui-block-b">
-				<input type="button" class="ui-btn ui-mini" value="중복확인" onclick="idcheck(this.form)"><br>
-			</div>
-		</fieldset>
+		<input type="text" name="id" placeholder="ID">
+		<input type="button" class="ui-btn ui-mini" value="중복확인" onclick="idcheck(this.form)"><br>
 		<input type="text" name="pwd" placeholder="PWD">
 		<input type="text" name="pwdcheck" placeholder="PWD CHECK">
 		<input type="text" name="name" placeholder="NAME">

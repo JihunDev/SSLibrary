@@ -20,11 +20,11 @@
 			style="height: 100px; width: 100px">메세지<br><h2>${msgcheck}</h2></a>
 	</div>
 	<div class="ui-block-a">
-		<a href="m_boardmain.do?sort='notice'" data-role="button" data-inline="true"
+		<a href="m_boardmain.do?sort=notice" data-role="button" data-inline="true"
 			style="height: 100px; width: 100px">공지사항</a>
 	</div>
 	<div class="ui-block-b">
-		<a href="m_boardmain.do?sort='free'" data-role="button" data-inline="true"
+		<a href="m_boardmain.do?sort=free" data-role="button" data-inline="true"
 			style="height: 100px; width: 100px">자유 게시판</a>
 	</div>
 </fieldset>

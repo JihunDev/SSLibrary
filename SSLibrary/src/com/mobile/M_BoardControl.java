@@ -71,6 +71,7 @@ public class M_BoardControl {
 	public ModelAndView m_boardwriteimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
+		System.out.println(com);
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getU_id(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename(),

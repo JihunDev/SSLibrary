@@ -27,8 +27,9 @@
 		</div>
 		<div data-role="header">
 			<a href="#myPanel"
-				class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open Panel</a>
+				class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open</a>
 			<h1>라이브러리</h1>
+			<a href="m_center.do" data-role="button">Home</a>
 		</div>
 		<div data-role="main" class="ui-content">
 			<jsp:include page="${m_center}" />

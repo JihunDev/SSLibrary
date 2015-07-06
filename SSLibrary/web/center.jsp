@@ -16,17 +16,33 @@
     <div class="carousel-inner" role="listbox">
       <div class="item active">
         <img src="img/css/Library01.jpg">
+        <div class="carousel-caption">
+          <h3>Library</h3>
+          <p>넓고 책 읽기 좋은 공간</p>
+        </div>
       </div>
       <div class="item">
         <img src="img/css/Library02.jpg">
+        <div class="carousel-caption">
+          <h3>bookshelves</h3>
+          <p>100여권의 책 보유, 빠른 대여 및 정보 파악 가능</p>
+        </div>
       </div>
     
       <div class="item">
         <img src="img/css/Library03.jpg">
+        <div class="carousel-caption">
+          <h3>Reading Room</h3>
+          <p>실시간으로 좌석 정보를 확인하고 예약 할 수 있는 곳</p>
+        </div>
       </div>
 
       <div class="item">
         <img src="img/css/Library04.jpg">
+        <div class="carousel-caption">
+          <h3>SangSang Library</h3>
+          <p>당신을 기다리고 있습니다.</p>
+        </div>
       </div>
     </div>
     <!-- Left and right controls -->
@@ -39,13 +55,14 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+  <div class="doverlay"></div>
   </div>
  <div class="container">	
 	<div class="col-sm-6">
   <div id="notice" class="board">
 	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
 	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=notice">더보기</a></b>
-		<table class="table table-condensed">
+		<table width="305px">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -70,7 +87,7 @@
 	<div class="col-sm-6">
 	<div id="free" class="board">
 	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=free">더보기</a></b>
-	<table class="table table-condensed">
+	<table width="305px">
 		<thead>
 		<tr>
 			<th>번호</th>
@@ -93,21 +110,6 @@
 	</div>
 </div>
 </div>
-<%-- <div id="top10book" class="col-sm-12">
-<fieldset>
-<font size="3px"><b>최신도서 TOP10</b><br></font>
-<div id="top10bookimg">
-	<c:forEach items="${book}" var="b" varStatus ="status">
-				<a href="bookdetail.do?id=${b.id}"><img class="bookimg" width="70px" src="img/book/${b.img}"></a>
-		<c:if test="${status.count%5==0}">
-				<br><img src="img/css/shelve.gif">
-		</c:if>
-	</c:forEach>
-</div>
-</fieldset>
-</div> 
-<div>
-<div id="test"> --%>
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 

@@ -177,10 +177,9 @@ setInterval( function() {
 		<!-- weather widget end -->
 		</div>
 		<br>	
-
+ <div class="well well-sm" ><b>달력</b></div>
       <!-- Responsive calendar - START -->
       <div class="calendar">
-          <div class="well well-sm" ><b>달력</b></div>
     	<div class="responsive-calendar">
         <div class="controls">
             <a class="pull-left" data-go="prev"><div class="btn btn-primary">Prev</div></a>

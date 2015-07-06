@@ -120,7 +120,6 @@ public class M_BookControl {
 			BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(),
 					logbook.getU_id(), logbook.getReal_date());
 			booklogbiz.modify(logbook2); // 반납 정보 보내준다. real_date가 업데이트 됨
-			System.out.println("booklog 업데이트 완료");
 		}
 
 		int returnqt = 0; // 반납했는지 안했는지
@@ -172,7 +171,6 @@ public class M_BookControl {
 		ArrayList<Object> result = new ArrayList<Object>();
 		result = sbooklogbiz.getname(uid); // uid로 가져온 booklog의 리스트들....
 		mv.addObject("booklist", result);
-		System.out.println(result);
 		mv.addObject("m_center", "book/m_list.jsp");
 		return mv;
 	}
@@ -182,8 +180,6 @@ public class M_BookControl {
 	public ModelAndView m_bookdetail(String id) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		Object result = null;
-		System.out.println(id);
-		System.out.println("됌");
 		try {
 			result = bookbiz.get(id);
 			System.out.println(result);

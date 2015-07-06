@@ -13,7 +13,7 @@ tr:nth-child(even) {
     background: #e9e9e9;
 }
 </style>
-<table data-role="table" class="ui-responsive">
+<table width="100%">
 <tbody>
 		<tr>
 			<th>보낸사람</th>

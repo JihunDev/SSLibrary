@@ -290,8 +290,8 @@ public class M_BookControl {
 	public ModelAndView m_userbookregister(HttpServletRequest request, String id) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
-															// 가져오기
+		User usessionid = (User) session.getAttribute("user");	// 회원 아이디 정보 세션에서
+		String uid = usessionid.getId();
 		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부
 		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료 )

@@ -88,9 +88,8 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${booklist}" var="b">
-				<!-- 추후수정 -->
 				<tr>
-					<td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
+					<td><a href="m_bookdetail.do?id=${b.id}">${b.id}</a></td>
 					<td>${b.name}</td>
 					<td>${b.writer}</td>
 					<td><img width="30px" src="img/book/${b.img}"></td>

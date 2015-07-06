@@ -60,6 +60,7 @@
 		</div>
 	</div>
 </c:if>
+<input type="hidden" id="qt" value="${qt}">
 <c:if test="${userseat.s_id == null}">
 	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
 </c:if>
@@ -73,7 +74,7 @@
 				<P>사용시간</P>
 				<p>${book[2]}~${book[3]}</p>
 				<p class="ui-li-aside">
-					<strong>연장횟수 : ${userseat.renew_qt}</strong>
+					<strong>연장횟수 : ${book[4]}</strong>
 				</p>
 			</li>
 			<div class="ui-grid-a">

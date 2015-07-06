@@ -21,6 +21,9 @@ function rentbook(){
 	};			
 }
 </script>
+<input type="text" id="borrowbook" value="${borrowbook}">
+<input type="text" id="bookid" value="${bookdetail.id}">
+<button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
 
 <!-- 디테일 페이지 -->
 <table width="100%">
@@ -55,7 +58,5 @@ function rentbook(){
 		</tr>
 	</tbody>
 </table>
-<input type="text" id="borrowbook" value="${borrowbook}">
-<input type="hidden" id="bookid" value="${bookdetail.id}">
-<button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
+
 

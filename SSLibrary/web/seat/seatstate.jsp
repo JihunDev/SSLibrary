@@ -95,10 +95,11 @@
 	width: 9%;
 	height: 50px;
 	float:left;
-	border-color: #993800;
+	border-color: white;
 }
 #seattable>form>button[name="s_id"]:hover{
-	background: #FFC19E;
+/* 	background: #FFC19E; */
+	opacity: 0.5;
 	border-color: white;
 }
 #seattable>form:nth-child(10n)>button{
@@ -116,23 +117,44 @@
 }
 
 
-#seattable>form>.y_btn {
+.y_btn {
 	background: #CC723D;
 }
 
-#seattable>form>.n_btn {
+.n_btn {
 	background: #300000;
 }
 
-#seattable>form>.f_btn {
-	background: #003399;
+.f_btn {
+	background: #337AB7;
+}
+.y_btn:hover {
+	background: #CC723D;
+}
+
+.n_btn:hover {
+	background: #300000;
+}
+
+.f_btn:hover {
+	background: #337AB7;
 }
 
 .modify {
 	display: none;
 }
-#seattable{
+.example_btn{
+	width:90px;
+ 	height:30px; 
+	float:right;
+	color:white;
+	font-size: 15px;
+	border-radius: 5px 5px 5px 5px;
+}
 
+
+.text_center{
+	text-align:center;
 }
 
 .seattableform{
@@ -141,16 +163,16 @@
     margin-top : 40px;
     padding : 20px;
 	border-radius: 10px 10px 10px 10px;
+
 }
 </style>
 <div class="seattableform">
-<div><h3>Seat State(현재 좌석 정보) (Admin: ${user.isadmin})</h3></div>
-
+<div class="text_center"> <h3>열람실 좌석 현황</h3></div> <br>
+<div><input type="button" class = "f_btn example_btn" value="수리 중" disabled>
+<input type="button" class = "n_btn example_btn" value="사용 중" disabled> 
+<input type="button" class = "y_btn example_btn" value="예약 가능"disabled></div><br><br>
 <div id = "seattable">	
 	<c:forEach items="${seatlist}" var="s" varStatus="i">
-	<c:if test="${i.index % 11 == 0}">
-			
-	</c:if>
 	<c:choose>
 		
 		<c:when test="${user.isadmin == 'n' }">

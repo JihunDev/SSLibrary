@@ -40,9 +40,9 @@
     <video autoplay="1" loop="2" poster="">
       <source src="https://s3-us-west-1.amazonaws.com/toor-video/background2.mp4" type="video/mp4">
     </video>
-    <script src="/vendor/jquery/dist/jquery.js"></script>
-    <script src="/vendor/lodash/lodash.js"></script>
-    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/vendor/async/lib/async.js"></script>
+    <script src="bootstrap/vender/jquery.js"></script>
+    <script src="bootstrap/vender/lodash.js"></script>
+    <script src="bootstrap/vender/bootstrap.min.js"></script>
+    <script src="bootstrap/vender/async.js"></script>
   </body>
 </html>

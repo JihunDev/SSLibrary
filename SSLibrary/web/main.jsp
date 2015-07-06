@@ -19,6 +19,11 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+
+  <!-- Respomsive slider -->
+<link href="bootstrap/css/responsive-calendar.css" rel="stylesheet">
+
+
 <style>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 /**Global CSS**/
@@ -318,7 +323,10 @@ footer>div{
       height : 300px;
       margin: auto;
   }
-
+.calendar{
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 10px 10px 10px 10px;
+}
 </style>
 <script>
 function makeHeight(){

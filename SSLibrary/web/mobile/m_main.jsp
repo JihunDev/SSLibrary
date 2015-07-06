@@ -17,7 +17,9 @@
 	$.mobile.loadingMessage = "페이지 로딩중...";
 	$.mobile.pageLoadErrorMessage = "페이지 로딩실패";
 </script>
-<style></style>
+<style>
+
+</style>
 </head>
 <body>
 	<div data-role="page" data-add-back-btn="true">

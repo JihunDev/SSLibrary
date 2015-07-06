@@ -177,7 +177,6 @@ public class MainControl {
 	@ResponseBody
 	@RequestMapping("/loginimpl.do")
 	public String loginimpl(String id, String pwd, HttpServletRequest request) {
-		//ModelAndView mv = new ModelAndView("main");
 		User user = null;
 
 		ArrayList<Object> list = new ArrayList<Object>();

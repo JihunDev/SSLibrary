@@ -5,24 +5,34 @@
 	function displaybook(data) {
 		$('#book_result').empty();
 		var output = '';
-		output += '<table class="table table-hover">'
-		output += '<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
-		$(data)
-				.each(
-						function(index, item) {
-							with (item) {
-								output += '<tr><td><a href="bookdetail.do?id='
-										+ bid + '">' + bid + '</a></td>';
-								output += '<td>' + name + '</td>';
-								output += '<td>' + writer + '</td>';
-								output += '<td><img width="50px" src="img/book/'+img+'"></td>';
-								output += '<td>' + floor + '</td>';
-								output += '<td>' + total_qt + '</td>';
-								output += '<td>' + current_qt + '</td>';
-								output += '<td>' + reg_date + '</td></tr>';
-							}
-						});
-		output += "</table>"
+		output += '<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="result_Table">'
+		output += '<thead>';
+		output += '<tr>';
+		output += '<th data-priority="7">ID</th>';
+		output += '<th data-priority="7">NAME</th>';
+		output += '<th data-priority="7">WRITER</th>';
+		output += '<th data-priority="1">IMG</th>';
+		output += '<th data-priority="2">FLOOR</th>';
+		output += '<th data-priority="4">TOTAL_QT</th>';
+		output += '<th data-priority="4">CURRENT_QT</th>';
+		output += '<th data-priority="3">REGDATE</th>';
+		output += '</tr>';
+		output += '</thead>';
+		output += '<tbody>';
+		$(data).each(function(index, item) {
+			with (item) {
+				output += '<tr><td><a href="m_bookdetail.do?id=' + bid + '">' + bid + '</a></td>';
+				output += '<td>' + name + '</td>';
+				output += '<td>' + writer + '</td>';
+				output += '<td><img width="50px" src="img/book/'+img+'"></td>';
+				output += '<td>' + floor + '</td>';
+				output += '<td>' + total_qt + '</td>';
+				output += '<td>' + current_qt + '</td>';
+				output += '<td>' + reg_date + '</td></tr>';
+			}
+		});
+		output += '</tbody>';
+		output += '</table>';
 		$('#book_result').html(output);
 	}
 
@@ -42,7 +52,6 @@
 			url : 'm_booksearch.do',
 			success : function(data) {
 				displaybook(data);
-				makeHeight();
 			}
 		});
 	};

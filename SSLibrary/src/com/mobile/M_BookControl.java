@@ -245,7 +245,7 @@ public class M_BookControl {
 		sbookbiz.getnum_reply(b);
 
 		System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
-		
+
 		mv.addObject("returnqt", returnqt);
 		mv.addObject("booklist", booklist);
 		mv.addObject("m_center", "user/m_usinginfo.jsp");
@@ -290,9 +290,8 @@ public class M_BookControl {
 	public ModelAndView m_userbookregister(HttpServletRequest request, String id) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-		User sessionuser = (User) session.getAttribute("user");// 회원 아이디 정보 세션에서
-		System.out.println("아이디디디디디디디디디"+id);														// 가져오기
-		String uid = sessionuser.getId();
+		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
+															// 가져오기
 		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부
 		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료 )
@@ -364,11 +363,11 @@ public class M_BookControl {
 
 			try {
 				upbook = (Book) bookbiz.get(id); // 현재 빌리려는 책의 정보를 가져온다.
-				System.out.println(upbook);
 				current_qt = upbook.getCurrent_qt(); // 대여 가능한 수 확인한다.
 
 				if (current_qt == 0) { // 대여 가능한 책 수량이 0일 경우
-					System.out.println("---------------------대여 가능한 책 0---------------------");
+					System.out
+							.println("---------------------대여 가능한 책 0---------------------");
 					borrowbook = 2;
 					try {
 						upbook = (Book) bookbiz.get(id);// 현재 빌리려는 책의 정보를 가져온다.

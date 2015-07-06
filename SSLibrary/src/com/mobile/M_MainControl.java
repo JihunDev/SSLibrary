@@ -154,6 +154,7 @@ public class M_MainControl {
 		}
 		session.setAttribute("msgcheck", msgchecknumber);
 		session.setAttribute("user", result);
+		session.setAttribute("id", result.getId());
 
 		return mv;
 	}

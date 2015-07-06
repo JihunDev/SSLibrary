@@ -5,7 +5,8 @@
 	function displaybook(data) {
 		$('#book_result').empty();
 		var output = '';
-		output += '<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="result_Table">'
+		
+		output += '<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable">'
 		output += '<thead>';
 		output += '<tr>';
 		output += '<th data-priority="7">ID</th>';
@@ -19,6 +20,7 @@
 		output += '</tr>';
 		output += '</thead>';
 		output += '<tbody>';
+		
 		$(data).each(function(index, item) {
 			with (item) {
 				output += '<tr><td><a href="m_bookdetail.do?id=' + bid + '">' + bid + '</a></td>';
@@ -40,7 +42,7 @@
 		var search = $('#search').val();
 		var category = $('#category').val();
 		var issearch = $('#issearch').val();
-
+		alert(search+" | "+category+" | "+issearch);
 		$.ajax({
 			dataType : 'JSON',
 			async : 'false',

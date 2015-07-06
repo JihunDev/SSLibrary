@@ -8,7 +8,7 @@
 			style="height: 100px; width: 100px">열람실</a>
 	</div>
 	<div class="ui-block-b">
-		<a href="#" data-role="button" data-inline="true"
+		<a href="m_bookmain.do" data-role="button" data-inline="true"
 			style="height: 100px; width: 100px">도서 조회</a>
 	</div>
 	<div class="ui-block-a">

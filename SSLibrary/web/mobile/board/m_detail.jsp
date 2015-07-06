@@ -13,10 +13,10 @@ tbody th {
 </style>
 
 <script>
-function del(f) {/* delete가 예약어라 del씀 */
+function del(f) {
 	var c = confirm('삭제 하시겠습니까?');
 		if (c == true) {
-			f.action = 'm_boardremoveimpl.do';/* 추후 수정 */
+			f.action = 'm_boardremoveimpl.do';
 			f.method = 'POST';
 			f.submit();
 		};
@@ -35,22 +35,13 @@ function register(f) {
 function update(f) {
 	var reg_number = f.reg_number.value;
 	var id = f.id.value;
-	if(reg_number != 0 && $('#btn_'+id+'').val() == "수정"){// 댓글을 수정하려할때
-		var content = f.old_content.value;
-		$('#content_'+id+'').html("<textarea id='content_id' value='"+${reply.content}+"'></textarea>");
-		$('#btn_'+id+'').val("완료");	
-		alert("Before : " + f.old_content.value);
-	}else if(reg_number != 0 && $('#btn_'+id+'').val() == "완료"){// 댓글수정을 완료할때
+	if(reg_number != 0){
 		var c = confirm('댓글을 수정 하시겠습니까?');
-			if (c == true) {
-				var content = $('#content_id').val();
-				$('input[name="content"]').val(content);
-				alert("After : " + f.content.value);
-				
-				f.action = 'm_boardmodifyimpl.do';
-				f.method = 'POST';
-				f.submit();
-			};
+		if (c == true) {
+			f.action = 'm_boardmodifyimpl.do';
+			f.method = 'POST';
+			f.submit();
+		};
 	} else {
 		var c = confirm('수정 하시겠습니까?');
 		if (c == true) {
@@ -62,7 +53,8 @@ function update(f) {
 }
 </script>
 
-<table>
+<!-- 게시글 -->
+<table width="100%">
 	<tbody>
 		<tr>
 			<th>제목</th>
@@ -87,55 +79,29 @@ function update(f) {
 		</tr>
 	</tbody>
 </table>
+
+<!-- 게시글 수정 -->
 <form>
 	<input type="hidden" name="sort" value="${boarddetail.sort}"> 
 	<input type="hidden" name="id" value="${boarddetail.id}"> 
 	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">
-	<div class="ui-grid-b">
-		<div class="ui-block-a">
-			<input type="submit" onClick="update(this.form);" value="수정">
+	<c:if test="${boarddetail.u_id == user.id}">
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<input type="submit" onClick="update(this.form);" value="수정">
+			</div>
+			<div class="ui-block-b">
+				<input type="submit" onClick="del(this.form);" value="삭제">
+			</div>
+			<div class="ui-block-c">
+				<a href="m_boardmain.do?sort=${boarddetail.sort}" data-role="button">목록</a>
+			</div>
 		</div>
-		<div class="ui-block-b">
-			<input type="submit" onClick="del(this.form);" value="삭제">
-		</div>
-		<div class="ui-block-c">
-			<a href="m_boardmain.do?sort=${boarddetail.sort}" data-role="button">목록</a>
-		</div>
-	</div>
+	</c:if>
+	<c:if test="${boarddetail.u_id != user.id}">
+		<a href="m_boardmain.do?sort=${boarddetail.sort}" data-role="button">목록</a>
+	</c:if>
 </form>
-
-<div data-role="content">
-	<ul data-role="listview">
-		<c:forEach items="${boardreply}" var="reply">
-				<li>
-					<a href="#">						
-						<h3>${reply.content}</h3>
-						<p>${reply.u_id} | ${reply.reg_date}</p>
-						<p class="ui-li-aside">
-							<strong>등록 번호 : ${reply.id}</strong>
-						</p>						
-					</a>
-				</li>
-			<form>
-				<input type="hidden" name="sort" value="${reply.sort}">
-				<input type="hidden" name="id" value="${reply.id}">	
-				<input type="hidden" name="reg_number" value="${reply.reg_number}">	
-				<input type="hidden" name="old_content" value="${reply.content}">	
-				<input type="hidden" name="u_id" value="${id}">
-				<input type="hidden" name="content" >	
-				<div id = "content_${reply.id}"></div>
-				<div class="ui-grid-a">
-					<div class="ui-block-a">
-						<input type="button" value="삭제" onclick="del(this.form)">
-					</div>
-					<div class="ui-block-b">
-						<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
-					</div>
-				</div>
-			</form>
-		</c:forEach>
-	</ul>
-</div>
 
 <!-- reply 창 -->	
 <form>
@@ -146,3 +112,40 @@ function update(f) {
 	<textarea rows="5" cols="40" name="content"></textarea>
 	<input type="button" value="등록" onclick="register(this.form)">
 </form>	
+
+<!-- reply 목록 -->
+<br>
+<ul data-role="listview" >
+	<c:forEach items="${boardreply}" var="reply">
+		<li>
+			<h3>${reply.content}</h3>
+			<p>${reply.u_id} | ${reply.reg_date}</p>
+			<p class="ui-li-aside">
+				<strong>등록번호 : ${reply.id}</strong>
+			</p>
+			
+			<c:if test="${reply.u_id == user.id}">
+				<form>
+					<div data-role="collapsible">
+        				<h1>수정삭제</h1>
+        				<textarea rows="5" cols="40" name="content">${reply.content}</textarea>
+    	  		  		<input type="hidden" name="sort" value="${reply.sort}">
+						<input type="hidden" name="id" value="${reply.id}">	
+						<input type="hidden" name="reg_number" value="${reply.reg_number}">	
+						<input type="hidden" name="old_content" value="${reply.content}">	
+						<input type="hidden" name="u_id" value="${user.id}">
+						<input type="hidden" name="content" >	
+    	  		  	   	<div class="ui-grid-a">
+							<div class="ui-block-a">
+    	  		  	   			<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
+		 	     			</div>
+				    		<div class="ui-block-b">
+	      						<input type="button" value="삭제" onclick="del(this.form)">
+      						</div>
+				    	</div>
+     				</div>
+     			</form>
+			</c:if>
+			</li>
+	</c:forEach>
+</ul>

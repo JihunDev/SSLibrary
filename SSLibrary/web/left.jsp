@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid">
     <div class="input-group">
      <input type="text" id="search" class="form-control input-sm" placeholder="도서 전체 검색">
       <span class="input-group-btn">
         <button class="btn btn-default btn-sm" type="button" onclick="getBook();" >검색</button>
       </span>
-    </div><!-- /input-group -->
+    </div>/input-group -->
 	<div>
 	<br>
-		<div class="well well-sm">날씨</div>
+		<div class="well well-sm"><b>날씨</b></div>
 		<!-- weather widget start -->
 		<div id="m-booked-weather-bl250-17526">
 			<a href="//booked.kr/weather/seoul-18406" class="booked-wzs-250-175"
@@ -111,7 +111,7 @@
 		</div>
 		<br>
 		<div class="">
-		<div class="well well-sm">책 카테고리</div>
+		<div class="well well-sm" ><b>책 카테고리</b></div>
 		<ul>
 		<li><a href="">⊙   IT</a></li>
 		<li><a href="">⊙   소설</a></li>

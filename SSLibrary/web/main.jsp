@@ -262,14 +262,14 @@ section {
 }
 #notice{
 	width : 325px;
-	height : 230px;
+	height : 180px;
 	padding : 10px;
-	margin : 0px 23px 0px 3px;
+	margin : 0px 30px 0px 0px;
 
 }
 #free{
 	width : 325px;
-	height : 230px;
+	height : 180px;
 	padding : 10px;
 
 }
@@ -308,8 +308,8 @@ footer>div{
 }
 
 #myCarousel{
-	width : 95%;
-	margin : 20px auto;
+	width : 93%;
+	margin : 42px 10px 20px 32px;
 }
 
 .carousel-inner > .item > img,

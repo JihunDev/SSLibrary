@@ -67,7 +67,6 @@
 	function changeState(f) {
 		var s_id = f.s_id.value;
 		var s_state = f.s_state.value;
-		showDialog(s_id, s_state);
 		if(s_state == 'n'){
 		$.ajax({
 			type : 'post',
@@ -78,13 +77,16 @@
 			url : 'seatmodify.do',
 			dataType:'JSON',
 			success : function(data) {
-				displayuserinfo(data);				
+				displayuserinfo(data);	
+				showDialog(s_id, s_state);			
 			},
 			error : function() {
 				alert("À¸¾Ó ¾Ó´ë¤Ð¤Ð");
 			}
 		});
-		}		
+		}else{
+			showDialog(s_id, s_state);
+		}
 	};
 
 </script>

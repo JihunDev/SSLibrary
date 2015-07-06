@@ -35,7 +35,7 @@ public class UserControl {
 	UpdateAndReturnBiz seatlogbiz;
 
 	@RequestMapping("/usersearch.do")
-	public ModelAndView usersearch() {
+	public ModelAndView usersearch(String search) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
@@ -53,7 +53,16 @@ public class UserControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("userlist", list_check);
+		
+		if(search.equals("true")){
+			// 검색을 수행한 후에 bookmain.do를 불렀으므로 전체리스트를 전달하지 않는다.
+			
+		}else if(search.equals("false")){
+			// 메뉴에서 처음으로 자료실을 선택할 때 전체 리스트와 요소 수 전달
+			mv.addObject("search", "search=false&");
+			mv.addObject("userlist", list_check);		
+			mv.addObject("usercount", String.valueOf(list_check.size()));		
+		}
 		mv.addObject("center", "admin/user/list.jsp");
 		return mv;
 	}
@@ -147,7 +156,7 @@ public class UserControl {
 	}
 
 	@RequestMapping("/usersearchname.do")
-	public ModelAndView usersearchname(User user1) {
+	public ModelAndView usersearchname(User user1, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
@@ -172,8 +181,16 @@ public class UserControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("userlist", list_check);
-		mv.addObject("center", "admin/user/list.jsp");
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("search", "search=true&");
+		session.setAttribute("userlist", list_check);
+		session.setAttribute("usercount", String.valueOf(list_check.size()));
+		// 검색을 수행했다는 search값과 검색 결과 리스트 및 요소 수 전달
+		
+		// System.out.println(list_check);
+		// System.out.println(list_check.size());
+		session.setAttribute("center", "admin/user/list.jsp");
 		return mv;
 	}
 }

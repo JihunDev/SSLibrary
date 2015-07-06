@@ -165,7 +165,7 @@ public class SeatControl {
 		System.out.println("receiver_uid: " + u_id);
 		System.out.println("seatstate: " + seat.getState());
 		System.out.println("userdetail(JSON): " + result);
-		
+
 		ResponseEntity<String> returnData = null;
 		HttpHeaders header = new HttpHeaders(); 
 		header.add("Content-type", "application/json;charset=EUC-KR");

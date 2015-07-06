@@ -67,6 +67,8 @@
 	function changeState(f) {
 		var s_id = f.s_id.value;
 		var s_state = f.s_state.value;
+		showDialog(s_id, s_state);
+		if(s_state == 'n'){
 		$.ajax({
 			type : 'post',
 			data : {
@@ -76,15 +78,13 @@
 			url : 'seatmodify.do',
 			dataType:'JSON',
 			success : function(data) {
-				showDialog(s_id, s_state);
-				if(s_state == 'n'){
-					displayuserinfo(data);	
-				}				
+				displayuserinfo(data);				
 			},
 			error : function() {
 				alert("À¸¾Ó ¾Ó´ë¤Ð¤Ð");
 			}
 		});
+		}		
 	};
 
 </script>
@@ -93,31 +93,36 @@
 	width: 9%;
 	height: 50px;
 	float:left;
+	border-color: black;
+}
+#seattable>form>button[name="s_id"]:hover{
+	background: #FFC19E;
+	border-color: white;
 }
 #seattable>form:nth-child(10n)>button{
 	float:none;
 }
 
 #seattable>form:nth-child(10n-2)>button{
-	background:red;
+/* 	background:red; */
 	margin:0 7% 0 0;
 }
 
 #seattable>form:nth-child(20n)>button{
-	background:blue;
+/* 	background:blue; */
 	margin:0 0 30px 0;
 }
 
 
-.y_btn {
+#seattable>form>.y_btn {
 	background: #CC723D;
 }
 
-.n_btn {
+#seattable>form>.n_btn {
 	background: #300000;
 }
 
-.f_btn {
+#seattable>form>.f_btn {
 	background: #002266;
 }
 
@@ -127,6 +132,7 @@
 #seattable{
 
 }
+
 .seattableform{
 	background: rgba(255, 255, 255, 0.8);
     box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
@@ -169,24 +175,25 @@
 						</c:when>
 					</c:choose>
 				</c:when>
-					<c:otherwise>
+				
+				<c:otherwise>
 					<c:choose>
 						<c:when test="${s.state == 'y'}">
 							<form>
 								<input type="hidden" name="s_state" value="${s.state}">
-								<button type="button" class="btn btn-primary ${s.state}_btn" name="s_id"	onclick="registeredUser();" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+								<button type="button" class="btn btn-primary ${s.state}_btn" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
 							</form>
 						</c:when>
 						<c:when test="${s.state == 'n'}">
 							<form>
 								<input type="hidden" name="s_state" value="${s.state}">
-								<button type="button" class="btn btn-primary ${s.state}_btn" name="s_id"	onclick="sendMsg(this.form);" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+								<button type="button" class="btn btn-primary ${s.state}_btn" value="${s.id}" name="s_id" onclick="sendMsg(this.form);" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
 							</form>
 						</c:when>
 						<c:when test="${s.state == 'f'}">
 							<form>
 								<input type="hidden" name="s_state" value="${s.state}">
-								<button type="button" class="btn btn-primary ${s.state}_btn" name="s_id"	onclick="repairState();" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+								<button type="button" class="btn btn-primary ${s.state}_btn" value="${s.id}" onclick="repairState();" value="${s.id}" data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
 							</form>
 						</c:when>
 					</c:choose>
@@ -205,7 +212,7 @@
 		<c:when test="${user == null || user.isadmin == 's'}">
 			<form>
 				<input type="hidden" name="s_state" value="${s.state}">
-				<button type="button" class="btn btn-primary ${s.state}_btn" name="s_id">${s.id}</button>
+				<button type="button" class="btn btn-primary ${s.state}_btn">${s.id}</button>
 			</form>
 		</c:when>
 		

@@ -27,7 +27,6 @@
 }
 
 </style>
-<script type="text/javascript" src="bootstrap/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 // Create two variable with the names of the months and days in an array

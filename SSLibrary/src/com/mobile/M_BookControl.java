@@ -6,8 +6,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.Book;
@@ -36,6 +42,131 @@ public class M_BookControl {
 	Biz bookbiz;
 	@Resource(name = "bookbiz")
 	SearchBiz sbookbiz;
+
+	@RequestMapping("/m_bookmain.do")
+	// 메인////////////////////////////////////////////
+	public ModelAndView bookmain(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		ArrayList<Object> list = null;
+
+		try {
+			list = bookbiz.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("booklist", list);
+		mv.addObject("m_center", "book/m_search.jsp");
+		return mv;
+	}
+
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	// 검색하기////////////////////////////////////////////
+	@RequestMapping("/m_booksearch.do")
+	public ResponseEntity<String> booksearch(String issearch, String category,
+			String search) {
+		ResponseEntity<String> returnData = null;
+
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-type", "application/json;charset=EUC-KR");
+
+		ArrayList<Object> list = new ArrayList<Object>();
+		ArrayList<Object> resultlist = new ArrayList<Object>();
+		ArrayList<Object> sublist1 = new ArrayList<Object>();
+		ArrayList<Object> sublist2 = new ArrayList<Object>();
+
+		System.out.println(issearch);
+		System.out.println(category);
+		System.out.println(search);
+
+		if (issearch.equals("name")) { // 책제목 검색할 때
+			try {
+				list = sbookbiz.getname(search);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (issearch.equals("writer")) { // 글쓴이 검색할 때
+			try {
+				list = sbookbiz.getwriter(search);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else { // 책제목과 글쓴이 모두에서 검색할 때
+			try {
+				list = sbookbiz.getname(search);
+				for (Object o : list) {
+					sublist1.add(o);
+				}
+				sublist2 = sbookbiz.getwriter(search);
+				for (Object o1 : sublist2) {
+					Book b1 = (Book) o1;
+					for (Object o2 : sublist1) {
+						Book b2 = (Book) o2;
+						if (b1.getId().equals(b2.getId())) {
+						} else {
+							sublist1.add(o1);
+						}
+					}
+				}
+
+				list = sublist1;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		switch (category) { // 카테고리 분류
+		case "i": // 카테고리가 IT일 경우
+			for (Object o : list) {
+				Book b = (Book) o;
+				if (b.getId().substring(0, 1).equals("i")) {
+					resultlist.add(o);
+					System.out.println(resultlist);
+				}
+			}
+			break;
+		case "n": // 카테고리가 소설일 경우
+			for (Object o : list) {
+				Book b = (Book) o;
+				if (b.getId().substring(0, 1).equals("n")) {
+					resultlist.add(o);
+				}
+			}
+			break;
+		case "m": // 카테고리가 만화책일 경우
+			for (Object o : list) {
+				Book b = (Book) o;
+				if (b.getId().substring(0, 1).equals("m")) {
+					resultlist.add(o);
+				}
+			}
+			break;
+		default: // 카테고리 전체에서 검색
+			resultlist = list;
+			break;
+		}
+
+		JSONArray ja = new JSONArray();
+		for (Object obj : resultlist) { // resultlist를 jason으로 넘겨줌
+			Book book = (Book) obj;
+			JSONObject jo = new JSONObject();
+			jo.put("bid", book.getId());
+			jo.put("name", book.getName());
+			jo.put("writer", book.getWriter());
+			jo.put("img", book.getImg());
+			jo.put("floor", book.getFloor());
+			jo.put("total_qt", book.getTotal_qt());
+			jo.put("current_qt", book.getCurrent_qt());
+			jo.put("reg_date", book.getReg_date());
+
+			ja.add(jo);
+		}
+		returnData = new ResponseEntity<String>(ja.toJSONString(), header,
+				HttpStatus.CREATED // 강제로 결과를 만들어 넣어주는것
+		);
+		return returnData;
+	}
 
 	// 책 연장하기
 	@RequestMapping("/m_userbookmodifyimpl.do")
@@ -165,9 +296,10 @@ public class M_BookControl {
 			throws Exception {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-		User sessionuser = (User) session.getAttribute("user"); // 회원 아이디 정보 세션에서
+		User sessionuser = (User) session.getAttribute("user"); // 회원 아이디 정보
+																// 세션에서
 		String uid = sessionuser.getId();
-				
+
 		ArrayList<Object> result = new ArrayList<Object>();
 		result = sbooklogbiz.getname(uid); // uid로 가져온 booklog의 리스트들....
 		mv.addObject("booklist", result);

@@ -1,1 +1,12 @@
-<script>location.href = 'main.do'</script>
+<script language="JavaScript" type="text/JavaScript">
+  var mobileKeyWords = new Array('iPhone', 'iPod', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
+    for (var word in mobileKeyWords){
+      if (navigator.userAgent.match(mobileKeyWords[word]) != null){
+        window.location.href='m_main.do';
+        break;
+      }else{
+        window.location.href='main.do';
+        break;   
+      }
+    }
+</script>

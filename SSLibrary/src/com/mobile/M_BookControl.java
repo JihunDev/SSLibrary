@@ -402,7 +402,7 @@ public class M_BookControl {
 				e.printStackTrace();
 			}
 		}
-
+		
 		mv.addObject("borrowbook", borrowbook);
 		mv.addObject("m_center", "book/m_detail.jsp");
 		return mv;

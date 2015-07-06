@@ -174,30 +174,32 @@ public class MainControl {
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
-
+	@ResponseBody
 	@RequestMapping("/loginimpl.do")
-	public ModelAndView loginimpl(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("main");
-		User result = null;
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+	public String loginimpl(String id, String pwd, HttpServletRequest request) {
+		//ModelAndView mv = new ModelAndView("main");
+		User user = null;
+
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
+		
+		String result = "";
+		
 		System.out.println(id + "   " + pwd);
 		try {
-			result = (User) biz.get(new User(id));
+			user = (User) biz.get(new User(id));
 			list = messagelogsearchbiz.getid(new MessageLog(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		if (result.getIsadmin().equals("d")) {
+		if (user.getIsadmin().equals("d")) {
 			// 삭제 회원 로그인 불가능
 		} else {
-			if (result != null && (result.getPwd()).equals(pwd)) {
-				mv.addObject("center", "center.jsp");
+			if (user != null && (user.getPwd()).equals(pwd)) {
+			// 제대로 로그인 한경우
 				HttpSession session = request.getSession();
-				session.setAttribute("user", result);
+				session.setAttribute("user", user);
 				session.setAttribute("id", id);
 
 				for (Object obj : list) {
@@ -208,13 +210,14 @@ public class MainControl {
 					}
 				}
 				session.setAttribute("msgcheck", msgchecknumber);
+				result = "loginok";
 			} else {
-				mv.addObject("check", "fail");
-				mv.addObject("center", "center.jsp");
+			  // 로그인이 안 된 경우
+				result = "loginfail";
 			}
 		}
 
-		return mv;
+		return result;
 	}
 
 	@RequestMapping("/del.do")

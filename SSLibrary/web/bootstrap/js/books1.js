@@ -13,7 +13,7 @@ var Books = (function() {
 				$bookview = $parent.find( 'button.bk-bookview' ),
 				$content = $page.children( 'div.bk-content' ), current = 0;
 
-			$parent.find( 'button.bk-bookback' ).on( 'click', function() {				
+		/*	$parent.find( 'button.bk-bookback' ).on( 'click', function() {				
 				
 				$bookview.removeClass( 'bk-active' );
 
@@ -29,8 +29,8 @@ var Books = (function() {
 				}
 					
 			} );
-
-			$bookview.on( 'click', function() {
+*/
+		/*	$bookview.on( 'click', function() {
 
 				var $this = $( this );			
 				
@@ -51,7 +51,7 @@ var Books = (function() {
 					$content.removeClass( 'bk-content-current' ).eq( current ).addClass( 'bk-content-current' );
 				}
 
-			} );
+			} );*/
 
 			if( $content.length > 1 ) {
 

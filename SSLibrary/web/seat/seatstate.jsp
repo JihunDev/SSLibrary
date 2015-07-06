@@ -99,44 +99,47 @@
 }
 #seattable>form>button[name="s_id"]:hover{
 /* 	background: #FFC19E; */
-	opacity: 0.5;
+	opacity: 0.6;
 	border-color: white;
+}
+#seattable>form>button[name="s_id"]:active{
+ 	opacity: 0.3;
+	border-color: white;
+	color: white;
 }
 #seattable>form:nth-child(10n)>button{
 	float:none;
 }
 
 #seattable>form:nth-child(10n-2)>button{
-/* 	background:red; */
 	margin:0 7% 0 0;
 }
 
 #seattable>form:nth-child(20n)>button{
-/* 	background:blue; */
 	margin:0 0 30px 0;
 }
 
-
-.y_btn {
+.y_btn,
+#seattable>form>.y_btn,
+#seattable>form>.y_btn:hover,
+#seattable>form>.y_btn:active,
+#seattable>form>.y_btn:focus{
 	background: #CC723D;
 }
 
-.n_btn {
+.n_btn,
+#seattable>form>.n_btn,
+#seattable>form>.n_btn:hover,
+#seattable>form>.n_btn:active,
+#seattable>form>.n_btn:focus{
 	background: #300000;
 }
 
-.f_btn {
-	background: #337AB7;
-}
-.y_btn:hover {
-	background: #CC723D;
-}
-
-.n_btn:hover {
-	background: #300000;
-}
-
-.f_btn:hover {
+.f_btn,
+#seattable>form>.f_btn,
+#seattable>form>.f_btn:hover,
+#seattable>form>.f_btn:active,
+#seattable>form>.f_btn:focus{
 	background: #337AB7;
 }
 

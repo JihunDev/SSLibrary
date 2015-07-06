@@ -1,7 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+$(document).ready(function(){
+	var borrowbook = $('#borrowbook').val();
+	if(borrowbook==1){
+		alert("이미 빌린 책입니다.")	
+	}else if(borrowbook==2){
+		alert("현재 도서가 0개입니다. 대여가 불가능 합니다.")	
+	}else if(borrowbook==3){
+		alert("대여가 완료되었습니다.");
+	}		
+});
 
+function rentbook(){
+	var  bookid = $('#bookid').val();
+	var c = confirm('대여하시겠습니까?');
+	if (c == true) {
+		location.href ='m_userbookregister.do?id='+bookid;
+	};			
+}
+</script>
+
+<!-- 디테일 페이지 -->
 <table width="100%">
 	<tbody>
 		<tr>
@@ -34,4 +55,7 @@
 		</tr>
 	</tbody>
 </table>
+<input type="text" id="borrowbook" value="${borrowbook}">
+<input type="hidden" id="bookid" value="${bookdetail.id}">
+<button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
 

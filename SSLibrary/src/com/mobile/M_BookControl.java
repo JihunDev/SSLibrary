@@ -6,14 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.entity.Book;
@@ -43,8 +37,7 @@ public class M_BookControl {
 	@Resource(name = "bookbiz")
 	SearchBiz sbookbiz;
 
-	@RequestMapping("/m_bookmain.do")
-	// 메인////////////////////////////////////////////
+	@RequestMapping("/m_bookmain.do")// 메인
 	public ModelAndView bookmain(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		ArrayList<Object> list = null;
@@ -59,25 +52,15 @@ public class M_BookControl {
 		return mv;
 	}
 
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	// 검색하기////////////////////////////////////////////
+	// 검색하기
 	@RequestMapping("/m_booksearch.do")
-	public ResponseEntity<String> booksearch(String issearch, String category,
+	public ModelAndView m_booksearch(String issearch, String category,
 			String search) {
-		ResponseEntity<String> returnData = null;
-
-		HttpHeaders header = new HttpHeaders();
-		header.add("Content-type", "application/json;charset=EUC-KR");
-
+		ModelAndView mv = new ModelAndView("mobile/m_main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> resultlist = new ArrayList<Object>();
 		ArrayList<Object> sublist1 = new ArrayList<Object>();
 		ArrayList<Object> sublist2 = new ArrayList<Object>();
-
-		System.out.println(issearch);
-		System.out.println(category);
-		System.out.println(search);
 
 		if (issearch.equals("name")) { // 책제목 검색할 때
 			try {
@@ -122,7 +105,6 @@ public class M_BookControl {
 				Book b = (Book) o;
 				if (b.getId().substring(0, 1).equals("i")) {
 					resultlist.add(o);
-					System.out.println(resultlist);
 				}
 			}
 			break;
@@ -146,28 +128,13 @@ public class M_BookControl {
 			resultlist = list;
 			break;
 		}
-
-		JSONArray ja = new JSONArray();
-		for (Object obj : resultlist) { // resultlist를 jason으로 넘겨줌
-			Book book = (Book) obj;
-			JSONObject jo = new JSONObject();
-			jo.put("bid", book.getId());
-			jo.put("name", book.getName());
-			jo.put("writer", book.getWriter());
-			jo.put("img", book.getImg());
-			jo.put("floor", book.getFloor());
-			jo.put("total_qt", book.getTotal_qt());
-			jo.put("current_qt", book.getCurrent_qt());
-			jo.put("reg_date", book.getReg_date());
-
-			ja.add(jo);
-		}
-		returnData = new ResponseEntity<String>(ja.toJSONString(), header,
-				HttpStatus.CREATED // 강제로 결과를 만들어 넣어주는것
-		);
-		return returnData;
+		
+		mv.addObject("booklist", resultlist);
+		mv.addObject("m_center", "book/m_search.jsp");
+		
+		return mv;
 	}
-
+	
 	// 책 연장하기
 	@RequestMapping("/m_userbookmodifyimpl.do")
 	public ModelAndView m_userbookmodifyimpl(HttpServletRequest request,

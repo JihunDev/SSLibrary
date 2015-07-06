@@ -58,7 +58,12 @@ a {
 	width: 100%;
 	position: relative;
 }
-.main{ /*내가 배경 넣은 것  */
+.main{
+	padding : 0px 0px 0px 40px;
+	
+	
+}
+/* .main{ 내가 배경 넣은 것 
 	
 	background-image: url(../images/woodback.jpg);	
 	background-size : 700px;
@@ -70,7 +75,7 @@ a {
 	color : white;
 	margin : 20px 0px 20px 2px;
 	position: relative;
-}
+} */
 
 /* .main,
 .container > header {

@@ -50,6 +50,7 @@ function modifystate(f, i) {
 	height:200px;
 	width:300px;	
 }
+
 </style>
 
 

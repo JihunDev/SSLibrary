@@ -117,12 +117,13 @@ public class M_BoardControl {
 		ArrayList<Object> list = new ArrayList<Object>();
 		Board board = new Board(id);
 		Board board2 = null;
-
+		
 		try {
 			board2 = (Board) biz.get(board);
 			boardUpdateAndReturnBiz.logupdate(board);// 카운터
 			list = boardsearchbiz.getname(new Board(board2.getId(), board2
 					.getSort()));// 리플불러오기
+			System.out.println(board2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -4,9 +4,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%User user = (User)session.getAttribute("user");%> 
 <%if(user == null){  %>
+<script>
+function logincheck(f){
+	var id = f.id.value;
+	var pwd = f.pwd.value;
+	$.ajax({
+		type:'post',
+		data:{
+			'id': id,
+			'pwd': pwd
+		},
+		async : 'false',
+		url : 'loginimpl.do',
+		success : function(data){
+			if(data == "loginok")
+				location.href = "main.do";
+			else
+				alert("ID와 비밀번호가 맞지 않습니다.");
+		},
+		error : function(){
+			alert("login ajax fail");
+		}	
+		
+	});
+}
+</script>
 <div id="top">
    <fieldset>
-         <form class="form-inline" role="form" action="loginimpl.do" method="POST" enctype="multipart/form-data">
+         <form class="form-inline" role="form">
          <div class="form-group">
          <label class="sr-only" for="id">ID :</label>
             <input type="text" class="form-control input-sm"  name="id" id="id" placeholder="Enter ID">         
@@ -15,7 +40,7 @@
          <label class="sr-only" for="pwd">PASSWORD :</label>
             <input type="password" class="form-control input-sm" name="pwd" id="pwd" placeholder="Enter password">
              </div>
-    <input type="submit" value ="login" class="btn btn-primary btn-sm">
+    <input type="button" value ="login" class="btn btn-primary btn-sm" onclick="logincheck(this.form)">
       <a class="btn btn-primary btn-sm" href="register.do" role="button">register</a>
          </form>
    </fieldset>   

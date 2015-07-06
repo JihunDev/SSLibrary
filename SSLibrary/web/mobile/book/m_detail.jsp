@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script>
 $(document).ready(function(){
+	
 	var borrowbook = $('#borrowbook').val();
 	if(borrowbook==1){
 		alert("이미 빌린 책입니다.")	
@@ -21,10 +23,9 @@ function rentbook(){
 	};			
 }
 </script>
-<input type="text" id="borrowbook" value="${borrowbook}">
 <input type="text" id="bookid" value="${bookdetail.id}">
+<input type="text" id="borrowbook" value="${borrowbook}">
 <button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
-
 <!-- 디테일 페이지 -->
 <table width="100%">
 	<tbody>
@@ -58,5 +59,7 @@ function rentbook(){
 		</tr>
 	</tbody>
 </table>
+
+
 
 

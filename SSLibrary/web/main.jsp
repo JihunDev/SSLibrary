@@ -19,8 +19,8 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 /**Global CSS**/
 *{
 	margin : 0;
@@ -275,7 +275,7 @@ section {
 }
 #top10book{
 	padding : 10px 20px 10px 10px;
-	margin : 10px 20px 10px 10px;
+	margin : 10px 50px 10px 50px;
 
 }
 #top10book>fieldset>#top10bookimg>img{

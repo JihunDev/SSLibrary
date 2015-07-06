@@ -9,7 +9,8 @@
       </span>
     </div><!-- /input-group -->
 	<div>
-		<h4>³¯¾¾</h4>
+	<br>
+		<div class="well well-sm">³¯¾¾</div>
 		<!-- weather widget start -->
 		<div id="m-booked-weather-bl250-17526">
 			<a href="//booked.kr/weather/seoul-18406" class="booked-wzs-250-175"

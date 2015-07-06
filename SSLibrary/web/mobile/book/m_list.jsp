@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<table>
+<table width="100%">
 	<tbody>
 		<c:forEach items="${booklist}" var='b'>
 			<tr>

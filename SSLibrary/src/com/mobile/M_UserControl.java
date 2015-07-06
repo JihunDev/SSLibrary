@@ -42,9 +42,10 @@ public class M_UserControl {
 				UserBook userbook = (UserBook) obj;
 				String bid = userbook.getB_id();// id »Ì¾Æ¿È
 				Book book = (Book) bookbiz.get(bid);// ÇÏ³ª¾¿ Ã£À½
+				String qt =  Integer.toString(userbook.getRenew_qt());
 				String start = userbook.getStart_date().substring(0, 10);
 				String end = userbook.getEnd_date().substring(0, 10);
-				String[] info = { bid, book.getName(), start, end };
+				String[] info = { bid, book.getName(), start, end, qt };
 				booklist.add(info);
 			}
 			userseat = (UserSeat) userseatbiz.get(id);

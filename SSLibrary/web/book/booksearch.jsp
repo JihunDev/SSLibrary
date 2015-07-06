@@ -168,9 +168,10 @@ $(document).ready(function(){
    makeHeight();
    var isdelete = $('#isdelete').val();
       deletebook(isdelete);
+  	if(<%=page_eno%>==0){
+		alert("검색결과가 없습니다.");
+	}   
 });
-
-
 /* function display(data){
    $('#book_result').empty(); //remove는 style까지 다 지움
    var output='';
@@ -242,14 +243,14 @@ $(document).ready(function(){
 					<table width="700" class="table table-hover">
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>NAME</th>
-								<th>WRITER</th>
-								<th>IMG</th>
-								<th>FLOOR</th>
-								<th>TOTAL_QT</th>
-								<th>CURRENT_QT</th>
-								<th>REGDATE</th>
+								<th>등록번호</th>
+								<th>제목</th>
+								<th>저자</th>
+								<th>표지</th>
+								<th>위치</th>
+								<th>총 수량</th>
+								<th>남은 수량</th>
+								<th>등록일자</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -277,29 +278,23 @@ $(document).ready(function(){
 <a href="bookmain.do?${search}pageno=1">[맨앞으로]</a>
 <a href="bookmain.do?${search}pageno=<%=prev_pageno%>">[이전]</a>
 <%
+	if(page_eno == 0){
+		%><b><a href="bookmain.do?${search}pageno=1">[1]</a></b><%
+	}else{
 	for(int i =page_sno;i<=page_eno;i++){
 %>
-<a href="bookmain.do?${search}pageno=<%=i%>"> <%
- 	if(pageno == i){
- %>
-	<b>[<%=i%>]
-</b> <%
- 	}else{
- %> <%=i%> <%
- 	}
- %>
+<a href="bookmain.do?${search}pageno=<%=i%>">
+	<%if(pageno == i){ %>
+		<b>[<%=i%>]</b>
+	<%}else{%>
+		 [<%=i%>]
+	<%} %>
 </a>
 <%--   콤마    --%>
-<%
-	if(i<page_eno){
-%>
-,
-<%
-	}
-%>
-<%
-	}
-%>
+	<%if(i<page_eno){%>
+	,
+	<%}%>
+<%}}%>
 
 <a href="bookmain.do?${search}pageno=<%=next_pageno%>">[다음]</a>
 <a href="bookmain.do?${search}pageno=<%=total_page%>">[맨뒤로]</a>

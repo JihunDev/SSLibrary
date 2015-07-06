@@ -88,7 +88,11 @@
    // [11][12]
 %>
 <script>
-
+$(document).ready(function(){
+	  	if(<%=page_eno%>==0){
+			alert("검색결과가 없습니다.");
+		}   
+	});
 </script>
 <div class="fieldsetform">
 <form class="form-inline" action="usersearchname.do" method="POST">
@@ -114,8 +118,8 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>PWD</th>
-					<th>NAME</th>
+					<th>비밀번호</th>
+					<th>이름</th>
 					<th>TEL</th>
 					<th>E-MAIL</th>
 					<th>회원상태</th>
@@ -143,6 +147,9 @@
 		<a href="usersearch.do?${search}pageno=1">[맨앞으로]</a>
 <a href="usersearch.do?${search}pageno=<%=prev_pageno%>">[이전]</a>
 <%
+if(page_eno == 0){
+	%><b><a href="usersearch.do?${search}pageno=1">[1]</a></b><%
+}else{
 	for(int i =page_sno;i<=page_eno;i++){
 %>
 <a href="usersearch.do?${search}pageno=<%=i%>"> <%
@@ -164,7 +171,7 @@
 	}
 %>
 <%
-	}
+	}}
 %>
 
 <a href="usersearch.do?${search}pageno=<%=next_pageno%>">[다음]</a>

@@ -37,7 +37,6 @@ public class M_BookControl {
 	@Resource(name = "bookbiz")
 	SearchBiz sbookbiz;
 	@Resource(name = "userbiz")
-	// user¡§∫∏
 	Biz userbiz;
 
 	@RequestMapping("/m_bookmain.do")

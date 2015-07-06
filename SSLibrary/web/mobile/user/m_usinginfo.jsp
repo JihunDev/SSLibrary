@@ -47,17 +47,22 @@
 		</li>
 	</ul>
 </div>
-<div class="ui-grid-b">
-	<div class="ui-block-a">
-		<a href="javascript:;" onClick="extendMySeat();" data-role="button">연장</a>
+<c:if test="${userseat.s_id != null}">
+	<div class="ui-grid-b">
+		<div class="ui-block-a">
+			<a href="javascript:;" onClick="extendMySeat();" data-role="button">연장</a>
+		</div>
+		<div class="ui-block-b">
+			<a href="javascript:;" onClick="returnMySeat();" data-role="button">반납</a>
+		</div>
+		<div class="ui-block-c">
+			<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
+		</div>
 	</div>
-	<div class="ui-block-b">
-		<a href="javascript:;" onClick="returnMySeat();" data-role="button">반납</a>
-	</div>
-	<div class="ui-block-c">
-		<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
-	</div>
-</div>
+</c:if>
+<c:if test="${userseat.s_id == null}">
+	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
+</c:if>
 <h2>도서 이용 내용</h2>
 <div data-role="content">
 	<ul data-role="listview">

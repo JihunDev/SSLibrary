@@ -84,7 +84,14 @@
 a {
 	text-decoration: none;
 }
-</style><%-- 
+</style>
+<script>
+
+</script>
+
+
+
+<%-- 
 현재 페이지 (pageno) :
 <%=pageno%><br />
 전체 데이터 수 (total_record) :
@@ -153,7 +160,9 @@ a {
 <hr>
 <a href="boardmain.do?sort=<%=sort%>&pageno=1">[맨앞으로]</a>
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=prev_pageno%>">[이전]</a>
-<%
+<%if(page_eno == 0){
+	%><b><a href="boardmain.do?sort=<%=sort%>&pageno=1">[1]</a></b><%
+}else{
 	for(int i =page_sno;i<=page_eno;i++){
 %>
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=i%>"> <%
@@ -175,7 +184,7 @@ a {
 	}
 %>
 <%
-	}
+	}}
 %>
 
 <a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>

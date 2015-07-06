@@ -95,7 +95,7 @@
 	width: 9%;
 	height: 50px;
 	float:left;
-	border-color: black;
+	border-color: #993800;
 }
 #seattable>form>button[name="s_id"]:hover{
 	background: #FFC19E;
@@ -125,7 +125,7 @@
 }
 
 #seattable>form>.f_btn {
-	background: #002266;
+	background: #003399;
 }
 
 .modify {

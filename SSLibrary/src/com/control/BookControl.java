@@ -283,7 +283,7 @@ public class BookControl {
 			e.printStackTrace();
 		}
 
-		return "redirect:/bookmain.do";
+		return "redirect:/bookmain.do?search=false";
 	}
 
 	@RequestMapping("/bookremoveimpl.do")

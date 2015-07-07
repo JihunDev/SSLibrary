@@ -83,7 +83,7 @@ public class UserControl {
 
 	@RequestMapping("/userremoveimpl.do")
 	public ModelAndView userremoveimpl(String id) {
-		ModelAndView mv = new ModelAndView("redirect:/usersearch.do");
+		ModelAndView mv = new ModelAndView("redirect:/usersearch.do?search=false");
 		User user = new User(id, "d");
 		try {
 			biz.remove(user);
@@ -110,7 +110,8 @@ public class UserControl {
 	@RequestMapping("/usermodifyimpl.do")
 	public ModelAndView usermodifyimpl(HttpServletRequest request,
 			UserCommand com) {
-		ModelAndView mv = new ModelAndView("redirect:/usersearch.do");
+		System.out.println("usermodifyimpl.do com: " + com);
+		ModelAndView mv = new ModelAndView("redirect:/usersearch.do?search=false");
 		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
 		MultipartFile file = com.getImg();
@@ -121,10 +122,12 @@ public class UserControl {
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
+			System.out.println("usermodifyimpl.do user: " + user);
 		} else {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), com.getImg().getOriginalFilename(),
 					com.getEmail(), com.getIsadmin());
+			System.out.println("usermodifyimpl.do user: " + user);
 			byte[] data;
 			try {
 				data = file.getBytes();
@@ -138,11 +141,11 @@ public class UserControl {
 		}
 
 		try {
-			biz.remove(user);
-			User user_ch = (User) biz.get(com.getId());
+			biz.modify(user);
+			User user_ch = (User) biz.get(new User(com.getId()));
+			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
 			if (user_ch.getIsadmin().equals("s")) {
-				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(
-						user_ch.getId()));
+				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(user_ch.getId()));
 				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
 				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
 				// seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É
@@ -151,7 +154,6 @@ public class UserControl {
 			e1.printStackTrace();
 		}
 		
-		session.setAttribute("user", user);
 		return mv;
 	}
 
@@ -160,6 +162,7 @@ public class UserControl {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
+		
 		String name = user1.getName();
 		String isadmin = user1.getIsadmin();
 		String id = "";
@@ -183,6 +186,7 @@ public class UserControl {
 		}
 		
 		HttpSession session = request.getSession();
+
 		session.setAttribute("search", "search=true&");
 		session.setAttribute("userlist", list_check);
 		session.setAttribute("usercount", String.valueOf(list_check.size()));
@@ -190,7 +194,7 @@ public class UserControl {
 		
 		// System.out.println(list_check);
 		// System.out.println(list_check.size());
-		session.setAttribute("center", "admin/user/list.jsp");
+		mv.addObject("center", "admin/user/list.jsp");
 		return mv;
 	}
 }

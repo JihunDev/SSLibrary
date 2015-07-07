@@ -199,7 +199,7 @@ nav{
 }
  nav>#bottom{
 	width : 400px;
-	margin : 0 100px 0 0;
+	margin : 0 100px;
 } 
 nav>#bottom>ul>li{
 	float : left;
@@ -213,6 +213,7 @@ nav>#bottom>ul>li>a{
 nav>#bottom>ul>li>a:hover{
 	color : red;
 }
+
 
 /** Section CSS**/
 section {

@@ -25,7 +25,9 @@
 		$(".seatid").val(s_id);
 		//메세지 전송 다이얼로그 출력
 		$('#sendMsg').dialog({
-			modal : true
+			modal : true,
+			height: 300,  
+            width: 250 
 		});
 		//$('#sendMsg' ).popup('open');
 

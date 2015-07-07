@@ -117,63 +117,15 @@ function getBook(f) {
    f.submit();
 
 };
-function deletebook(isdelete){
-   if(isdelete=="1"){
-      alert("누군가 대여 중이어서 삭제할 수 없습니다.");
-   }else{
-   }
-}
 
 $(document).ready(function(){
    makeHeight();
-   var isdelete = $('#isdelete').val();
-      deletebook(isdelete);
   	if(<%=page_eno%>==0){
 		alert("검색결과가 없습니다.");
 	}   
 });
-/* function display(data){
-   $('#book_result').empty(); //remove는 style까지 다 지움
-   var output='';
-   output +='<table width="700" border="1">';
-   output+='<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
-   $(data).each(function(index, item){
-      output+='<tr>';
-      with(item){
-         output+='<th>'+id+'</th>';
-         output+='<td>'+name+'</td>';
-         output+='<td>'+writer+'</td>';
-         output+="<td><img width='100px' src='img/book/"+img+"'></td>";
-         output+='<td>'+floor+'</td>';
-         output+='<td>'+total_qt+'</td>';
-         output+='<td>'+current_qt+'</td>';
-         output+='<td>'+reg_date+'</td>';
-      }
-      output+='</tr>';
-   });
-   output+='</table>';
-   $('#book_result').html(output);   
-   makeHeight();
-   
-      
-};
 
-function firstBook(){
-   $.ajax({
-      url : 'booklist.do',
-      dataType : 'JSON',
-      async : false,
-      success : function(data){
-         display(data);
-         makeHeight();
-      }      
-   });
-};
 
-$(document).ready(function(){
-   firstBook();
-   makeHeight();
-}); */
 </script>
 
 

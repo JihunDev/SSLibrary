@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	User user = (User) session.getAttribute("user");
+	String receiver_uid = (String) request.getAttribute("receiver_uid");
+	String receiver_sid = (String) request.getAttribute("receiver_sid");
 %>
 
 <script>
@@ -24,12 +26,7 @@
 		// 좌석의 id 값 대입
 		$(".seatid").val(s_id);
 		//메세지 전송 다이얼로그 출력
-		$('#sendMsg').dialog({
-			modal : true,
-			height: 300,  
-            width: 250 
-		});
-		//$('#sendMsg' ).popup('open');
+		$('#sendMsg').popup('open');
 
 	}
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
@@ -43,6 +40,40 @@
 	// 예약한 사람이 다른 빈 좌석을 클릭한 경우
 	function registeredUser() {
 		alert("이미 좌석을 예약하셨습니다.");
+	}
+	// 메세지 전송
+	function sendMsgImpl(f) {
+		// 수신자 좌석 정보
+		var s_id = f.receiver_sid.value;
+		// 발신자
+		var sender_id = f.sender_uid.value;
+		// 내용
+		var text = f.textarea.value;
+
+		alert("s_id: " + s_id + ", sender_id: " + sender_id + ", text: " + text);
+
+		var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
+		if (c == true) {
+			$.ajax({
+				type : 'post',
+				data : {
+					's_id_str' : s_id,
+					'sender_id' : sender_id,
+					'text' : text
+				},
+				async : 'false',
+				url : 'm_msgsendimpl.do',
+				success : function(data) {
+					alert(s_id + "번 좌석으로 메세지를 전송하였습니다.");
+					$('#sendMsg').popup('close');
+				},
+				error : function() {
+					alert("오류로 인해 메세지가 전송되지 않았습니다.");
+					$('#sendMsg').popup('close');
+				}
+			});
+		}
+
 	}
 </script>
 
@@ -124,54 +155,20 @@
 	</c:choose>
 </c:forEach>
 
-
-<%
-	String receiver_uid = (String) request.getAttribute("receiver_uid");
-	String receiver_sid = (String) request.getAttribute("receiver_sid");
-%>
-<script>
-	function sendMsgImpl(f) {
-		// 수신자 좌석 정보
-		var s_id = f.receiver_sid.value;
-		// 발신자
-		var sender_id = f.sender_uid.value;
-		// 내용
-		var text = f.textarea.value;
-
-		alert("s_id: " + s_id + ", sender_id: " + sender_id + ", text: " + text);
-
-		var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
-		if (c == true) {
-			$.ajax({
-				type : 'post',
-				data : {
-					's_id_str' : s_id,
-					'sender_id' : sender_id,
-					'text' : text
-				},
-				async : 'false',
-				url : 'm_msgsendimpl.do',
-				success : function(data) {
-					alert(s_id + "번 좌석으로 메세지를 전송하였습니다.");
-					showSeatList(f);
-				},
-				error : function() {
-					alert("오류로 인해 메세지가 전송되지 않았습니다.");
-				}
-			});
-		}
-
-	}
-</script>
-
 <!--   Sending Message Part (User) -->
-<div id="sendMsg" title="메세지 전송">
-	<h4>발신자: ${user.id}(${user.name})</h4>
-	<form>
-		<input type="hidden" name="sender_uid" value="${user.id}"> <input
-			type="hidden" name="receiver_sid" class="seatid">
-		<textarea rows="2" cols="70" name="textarea"></textarea>
-		<button type="button" name="Nbtn" id="Nbtn" value="보내기"
-			onclick="sendMsgImpl(this.form);">보내기</button>
-	</form>
+<div data-role="popup" id="sendMsg">
+	<div data-role="header">
+		<h1>메세지전송</h1>
+		<p>발신자: ${user.id}(${user.name})</p>
+		<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main" class="ui-content">
+		<form>
+			<input type="hidden" name="sender_uid" value="${user.id}"> 
+			<input type="hidden" name="receiver_sid" class="seatid">
+			<textarea rows="2" cols="70" name="textarea"></textarea>
+			<button type="button" name="Nbtn" id="Nbtn" onclick="sendMsgImpl(this.form);">보내기</button>
+		</form>
+	</div>
 </div>
+

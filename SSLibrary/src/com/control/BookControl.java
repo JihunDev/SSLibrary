@@ -259,10 +259,7 @@ public class BookControl {
 				book.getTotal_qt(), book.getTotal_qt());
 		System.out.println(b);
 		try {
-			Book b1 = (Book) bookbiz.register(b);
-			HttpSession session = request.getSession();
-			session.setAttribute("bookregister", b1);
-			System.out.println(b1);
+			 bookbiz.register(b);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

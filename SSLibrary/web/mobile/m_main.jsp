@@ -42,7 +42,7 @@
 			<jsp:include page="${m_center}" />
 		</div>
 		<div data-role="footer">
-			<a href="#" data-rel="back" data-icon="arrow-l" data-iconpos="notext">back</a>
+			<a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
 		</div>
 	</div>
 </body>

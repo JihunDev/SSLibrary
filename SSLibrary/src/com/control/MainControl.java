@@ -368,7 +368,7 @@ public class MainControl {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
 		HttpSession session = request.getSession();
-		int number = (int) session.getAttribute("msgcheck");
+		int number = 0;
 		ArrayList<Object> list = new ArrayList<Object>();
 
 		try {

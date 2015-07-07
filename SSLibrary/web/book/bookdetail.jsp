@@ -24,11 +24,18 @@ function rentbook(){
 	};			
 }
 function deletebook(){
-	var  bookid = $('#bookid').val();
-	var c = confirm('정말 삭제하시겠습니까?');
-	if (c == true) {
-		location.href = "bookremoveimpl.do?id="+bookid;
-	};		
+	var current_qt = "${bookdetail.current_qt}";
+	var total_qt = "${bookdetail.total_qt}";
+	
+	if(total_qt == current_qt){
+		var  bookid = $('#bookid').val();
+		var c = confirm('정말 삭제하시겠습니까?');
+		if (c == true) {
+			location.href = "bookremoveimpl.do?id="+bookid;
+		};
+	}else{
+		alert("대여 중인 책은 삭제할 수 없습니다.");	
+	}
 }
 </script>
 <div class="fieldsetform">

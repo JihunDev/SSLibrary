@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	function register(f) {
 		if (f.sort.value == null || f.sort.value == "") {
@@ -15,10 +16,6 @@
 			};
 		}
 	}
-	window.onload = function(){
-		var sort = "${sort}";
-		$("select[name='sort']").val(sort).attr("selected", "selected");
-	}
 </script>
 
 <form class="form-inline" enctype="multipart/form-data" >
@@ -26,8 +23,10 @@
 	<input type="hidden" name="reg_number" value="0">
 	<select class="form-control input-sm" id="sort" name="sort">
 		<option value="">선택</option>
-		<option value="notice">공지사항</option>
-		<option value="free">자유게시판</option>
+		<c:if test="${user.isadmin == 'y'}">	
+			<option value="notice" >공지사항</option>
+		</c:if>
+		<option value="free" selected="selected">자유게시판</option>
 	</select>
 	<input type="text" class="form-control input-sm" name="title" placeholder="제목을 입력하세요.">
 	<textarea class="form-control" rows="50" cols="90" name="content"></textarea>

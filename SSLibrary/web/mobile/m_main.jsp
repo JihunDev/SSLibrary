@@ -11,8 +11,8 @@
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-  <link rel="stylesheet" href="themes/a.css" />
+  <link rel="stylesheet" href="mobile/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="mobile/themes/a.css" />
   <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>

@@ -20,14 +20,13 @@
 	$.mobile.pageLoadErrorMessage = "페이지 로딩실패";
 </script>
 <style>
-
 </style>
 </head>
 <body>
 	<div data-role="page" data-add-back-btn="true">
 		<div data-role="panel" id="myPanel" data-display="overlay">
 			<h2>${user.name} 님 환영합니다.</h2>
-			<img width="200px" height="200px"  style="border: 3px solid gold; border-radius: 120px;" src="img/user/${user.img}">
+			<img width="200px" height="200px"  style="border: 3px solid gold; border-radius: 120px; background-position: center center;" src="img/user/${user.img}">
 			<a href="m_modify.do?id=${user.id}" data-role="button">개인정보수정</a>
 			<a href="m_logout.do" data-role="button">logout</a>
 		</div>
@@ -38,8 +37,8 @@
 			</c:if>
 			<h1>SSLibrary</h1>
 		</div>
-		<div data-role="main" class="ui-content">
-			<jsp:include page="${m_center}" />
+		<div data-role="main" class="ui-content" style="background-image: url(img/mobile/m_back.jpg); background-size : 100% 100%; background-attachment : scroll;">
+                	<jsp:include page="${m_center}" />
 		</div>
 		<div data-role="footer">
 			<a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>

@@ -1,5 +1,7 @@
 package com.mobile;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -8,9 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.command.UserCommand;
 import com.entity.Book;
+import com.entity.SeatLog;
+import com.entity.User;
 import com.entity.UserBook;
 import com.entity.UserSeat;
 import com.frame.Biz;
@@ -26,6 +32,8 @@ public class M_UserControl {
 	Biz userseatbiz;
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
+	@Resource(name="userbiz")
+	Biz userbiz;
 
 	@RequestMapping("/m_usinginfo.do")
 	public ModelAndView m_usinginfo(String id, HttpServletRequest request) {
@@ -65,5 +73,58 @@ public class M_UserControl {
 
 		return mv;
 	}
+	
+	@RequestMapping("/m_modify.do")
+	public ModelAndView m_modify(String id) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		User user = null;
+		try {
+			user = (User) userbiz.get(new User(id));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("userupdate", user);
+		mv.addObject("m_center", "user/m_update.jsp");
+		return mv;
+	} 
+	
+	@RequestMapping("/m_modifyimpl.do")
+	public ModelAndView m_modifyimpl(HttpServletRequest request,UserCommand com) {
+		ModelAndView mv = new ModelAndView("redirect:/m_center.do");
+		String old_img = request.getParameter("oldimg");
+		MultipartFile file = com.getImg();
+		String dir = "C:/lib/SSLibrary/web/img/user/";
+		String img = file.getOriginalFilename();
+		User user = null;
 
+		if (img == null || img.equals("")) {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
+			System.out.println("이미지 안바꿀때 : "+user);
+		} else {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), com.getImg().getOriginalFilename(),
+					com.getEmail(), com.getIsadmin());
+			System.out.println("이미지 바꿀때 : "+user);
+			byte[] data;
+			try {
+				data = file.getBytes();
+				FileOutputStream out = new FileOutputStream(dir
+						+ file.getOriginalFilename());
+				out.write(data);
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			userbiz.modify(user);
+		
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		return mv;
+	}
 }

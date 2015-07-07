@@ -91,6 +91,7 @@ public class M_UserControl {
 	@RequestMapping("/m_modifyimpl.do")
 	public ModelAndView m_modifyimpl(HttpServletRequest request,UserCommand com) {
 		ModelAndView mv = new ModelAndView("redirect:/m_center.do");
+		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
@@ -124,7 +125,7 @@ public class M_UserControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+		session.setAttribute("user", user);
 		return mv;
 	}
 }

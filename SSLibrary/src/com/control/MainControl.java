@@ -377,10 +377,8 @@ public class MainControl {
 			list = messagelogbiz.get();
 			for (Object obj : list) {
 				MessageLog numbercheck = (MessageLog) obj;
-				if (numbercheck.equals(id)) {
-					if (numbercheck.getRead().equals("n")) {
-						number += 1;
-					}
+				if (numbercheck.getRead().equals("n")) {
+					number += 1;
 				}
 			}
 		} catch (Exception e) {

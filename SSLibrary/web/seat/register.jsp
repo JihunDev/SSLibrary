@@ -39,13 +39,18 @@ function	 sendMsgImpl(f){
 	}	
 
 }
-
 </script>
+<style>
+.messagetextarea{
+	width:100%;
+}
+</style>
 <h4>발신자: ${user.id}(${user.name}) </h4>
 <form>
 	<input type="hidden" name="sender_uid" value="${user.id}">
 	<input type="hidden" name="receiver_sid" class="seatid">
-	<textarea rows="2" cols="70" name="textarea"></textarea>
+	<div>
+	<textarea rows="2" name="textarea" class="messagetextarea"></textarea></div>
 	<br>	
 	<div class="modal-footer">		
 		<button type="button" class="btn btn-default" data-dismiss="modal" name="Nbtn" id="Nbtn" value="보내기" onclick="sendMsgImpl(this.form);">보내기</button>

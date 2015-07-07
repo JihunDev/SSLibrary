@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.BookMapper">
 	<select id="selectbooks" resultType="book">
-	SELECT * FROM A_BOOK ORDER BY 1 ASC
+	SELECT * FROM A_BOOK  ORDER BY 8 DESC
 	</select>
 	<select id="selectbook" parameterType="book" resultType="book">
 	SELECT * FROM A_BOOK WHERE ID = #{id} ORDER BY 1 ASC

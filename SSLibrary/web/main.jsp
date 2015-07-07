@@ -178,9 +178,9 @@ heaer>#top>fieldset>form>.form-group{
 	align : center;
 }
 
-header>#mainname{
+header>#logo>#mainname{
 	position: absolute;
-	top : 23px;
+	top : 25px;
 	left : 43%;
 }
 

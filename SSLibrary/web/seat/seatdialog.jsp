@@ -121,7 +121,7 @@ function modifystate(f, i) {
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- header -->
-			<div class="modal-header" style="background:gray;color:white;">
+			<div class="modal-header" style="background:gray;color:white;border-radius:5px 5px 0 0;">
 				<!-- 닫기(x) 버튼 -->
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<!-- header title -->
@@ -131,11 +131,11 @@ function modifystate(f, i) {
 			<div class="modal-body">
 				<ul class="nav nav-tabs" role="tablist" id="adminTab">
 					<li role="presentation">
-						<a href="#seateduser"	aria-controls="seateduser" role="tab" data-toggle="tab">좌석 이용자 정보</a></li>
+						<a href="#seateduser"	aria-controls="seateduser" role="tab" data-toggle="tab" style="color:gray;">좌석 이용자 정보</a></li>
 					<li role="presentation">
-						<a href="#modifyradio"	aria-controls="modifyradio" role="tab" data-toggle="tab">좌석 상태</a></li>
+						<a href="#modifyradio"	aria-controls="modifyradio" role="tab" data-toggle="tab" style="color:gray;">좌석 상태</a></li>
 					<li role="presentation">
-						<a href="#sendMsgByAdmin"	aria-controls="sendMsgByAdmin" role="tab" data-toggle="tab">메세지 전송</a></li>
+						<a href="#sendMsgByAdmin"	aria-controls="sendMsgByAdmin" role="tab" data-toggle="tab" style="color:gray;">메세지 전송</a></li>
 				</ul>
 					
 				<div class="tab-content">

@@ -131,7 +131,7 @@ function update(f) {
 		<div class="col-xs-10">
 		<div class="form-group">
  		<label for="content">Comment:</label>
- 		<textarea class="form-control" rows="5" cols="40" name="content"></textarea>
+ 		<textarea class="form-control" rows="5" cols="40" name="content" style="resize:none" ></textarea>
 		<input type="button" class="btn btn-default" value="µî·Ï" onclick="register(this.form)">
 		</div>
 		</div>

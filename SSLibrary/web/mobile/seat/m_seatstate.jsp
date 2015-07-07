@@ -50,8 +50,6 @@
 		// 내용
 		var text = f.textarea.value;
 
-		alert("s_id: " + s_id + ", sender_id: " + sender_id + ", text: " + text);
-
 		var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
 		if (c == true) {
 			$.ajax({
@@ -73,7 +71,6 @@
 				}
 			});
 		}
-
 	}
 </script>
 

@@ -116,6 +116,7 @@ tr th:last-child {
 .board{
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: 10px 10px 10px 10px;
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 
 /* fieldset {
@@ -300,6 +301,7 @@ footer>div{
 .calendar{
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: 10px 10px 10px 10px;
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 }
 </style>
 <script>
@@ -308,10 +310,10 @@ function makeHeight(){
 	var left = document.querySelector("#left");
 	var center = document.querySelector("#center");
 	
-	var mHeight = center.clientHeight;
+	var mHeight = center.clientHeight+30;
 	/* ClientHeight를 써서 표 높이만큼 늘리게 함. */
-	if(mHeight < 800){
-		mHeight = 800;
+	if(mHeight < 850){
+		mHeight = 850;
 	}
 	center.style.height = mHeight + 'px';
 	section.style.height = mHeight + 'px';

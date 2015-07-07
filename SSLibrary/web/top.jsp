@@ -56,5 +56,5 @@ function logincheck(f){
 </div>
 <%} %>
 <div id="logo">
-<h1 id="mainname"><a href="main.do"><img width="70%"src="img/css/mainname.gif"></a></h1>
+<h1 id="mainname"><a href="main.do"><img width="70%" src="img/css/mainname.gif"></a></h1>
 </div>

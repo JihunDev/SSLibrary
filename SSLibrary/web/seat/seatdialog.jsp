@@ -50,12 +50,13 @@ function modifystate(f, i) {
 	height:200px;
 	width:300px;	
 }
-
+#sendMsgDialog{
+}
 </style>
 
 
 <!--Useable Seat Click Dialog -->
-<div class="modal fade bs-example-modal-sm"  id="modifyY" >
+<div class="modal fade bs-example-modal-sm"  id="modifyY"  tabindex='-1'>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <!-- header -->
@@ -69,12 +70,10 @@ function modifystate(f, i) {
       <form>
       <div class="modal-body">
 			<form>
-				<br>							
 					<input type="hidden" class="seatstate" name="seatstate">
 					 <input type="hidden" class="seatid" name="seatid">
 					 <input type="radio" class="stateclass" name="seatY" id="ableseatY" value="y" checked>예약 가능<br>
 					 <input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br>
-				<br>							 
 			</div>
       <!-- Footer -->
       <div class="modal-footer">
@@ -89,7 +88,7 @@ function modifystate(f, i) {
 
 
 <!--Broken Seat Click Dialog -->
-<div class="modal fade bs-example-modal-sm"  id="modifyF" >
+<div class="modal fade bs-example-modal-sm"  id="modifyF"  tabindex='-1'>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <!-- header -->
@@ -101,13 +100,11 @@ function modifystate(f, i) {
       </div>
       <!-- body -->
       <div class="modal-body">
-			<form>
-			<br>							
+			<form>					
 				<input type="hidden" class="seatstate" name="seatstate">
 				<input type="hidden" class="seatid" name="seatid">
 				<input type="radio" class="stateclass" name="seatF" id="ableseatF" value="y">예약 가능<br>
-				<input type="radio" class="stateclass" name="seatF" id="fixseatF" value="f" checked>수리 중<br>
-			<br>							
+				<input type="radio" class="stateclass" name="seatF" id="fixseatF" value="f" checked>수리 중<br>					
 			</div>
       <!-- Footer -->
       <div class="modal-footer">
@@ -120,11 +117,11 @@ function modifystate(f, i) {
 </div>
 
 <!--Registered Seat Click Dialog -->
-<div class="modal fade " id="modifyN">
+<div class="modal fade " id="modifyN" tabindex='-1'>
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- header -->
-			<div class="modal-header">
+			<div class="modal-header" style="background:gray;color:white;">
 				<!-- 닫기(x) 버튼 -->
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<!-- header title -->
@@ -178,8 +175,8 @@ function modifystate(f, i) {
 </div>
 
 <!--   Sending Message Part (User) -->
-<div class="modal fade"  id="sendMsg" >
-  <div class="modal-dialog">
+<div class="modal fade" id="sendMsg"  tabindex='-1'>
+  <div class="modal-dialog" id="sendMsgDialog">
     <div class="modal-content">
       <!-- header -->
       <div class="modal-header">

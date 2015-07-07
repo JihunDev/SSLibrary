@@ -50,7 +50,7 @@ function logincheck(f){
    <fieldset>
             <div><a href="msglogcheck.do"><b>message</b><span class="badge">${msgcheck}</span></a></div>
              <div><img src="img/user/${user.img}" class="img-circle" alt="Cinque Terre" width="40" height="40"></div>
-              <div><a href="detail.do?id='${user.id}'"><b>${user.id}´Ô È¯¿µÇÕ´Ï´Ù.</b></a></div>
+              <div><a href="detail.do?id=${user.id}"><b>${user.id}´Ô È¯¿µÇÕ´Ï´Ù.</b></a></div>
               <a class="btn btn-primary btn-sm" href="logout.do" role="button"><b>·Î±×¾Æ¿ô</b></a>
       </fieldset>
 </div>

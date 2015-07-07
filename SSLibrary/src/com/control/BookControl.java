@@ -289,7 +289,7 @@ public class BookControl {
 	@RequestMapping("/bookremoveimpl.do")
 	// 책 삭제impl(참고 : 책을 누구 하나라도 빌리고 있을 시에 삭제가 되지 않음)//
 	public ModelAndView bookremoveimpl(String id, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("main");
+		ModelAndView mv = new ModelAndView("redirect:/bookmain.do?search=false");
 		Object IsDelete = null;
 		ArrayList<Object> list = null;
 		try {
@@ -308,10 +308,10 @@ public class BookControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		HttpSession session = request.getSession();
 		mv.addObject("isdelete", IsDelete);
-		mv.addObject("booklist", list);
-		mv.addObject("center", "book/booksearch.jsp");
+		session.setAttribute("booklist", list);
+	//	mv.addObject("center", "book/booksearch.jsp");
 		return mv;
 	}
 

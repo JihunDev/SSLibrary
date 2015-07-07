@@ -4,6 +4,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
+	User user = (User) session.getAttribute("user");
 	ArrayList<Object> userlist = (ArrayList<Object>) session.getAttribute("userlist");
 	String usercount = (String) session.getAttribute("usercount");
 	String search = (String) session.getAttribute("search");
@@ -91,9 +92,16 @@ $(document).ready(function(){
 			alert("검색결과가 없습니다.");
 		}   
 	});
+	
+function searchByName(f){
+	 f.action="usersearchname.do";
+	 f.method="POST";
+	 f.submit();
+	
+};
 </script>
 <div class="fieldsetform">
-<form class="form-inline" action="usersearchname.do" method="POST">
+<form class="form-inline">
 	<select class="form-control input-sm" name="isadmin">
 		<option value="">전체</option>
 		<option value="n">회원</option>
@@ -103,11 +111,11 @@ $(document).ready(function(){
 	 <div class="input-group">
 	<input type="text" id="name" name="name" class="form-control input-sm" placeholder="Search for...">
      <span class="input-group-btn">
-     <button class="btn btn-default btn-sm" type="submit">검색</button></span></div>
+     <button class="btn btn-default btn-sm" type="button" onclick="searchByName(this.form)">검색</button></span></div>
 	<!-- <input type="text" name="name" >
 	<input type="submit" value="검색"> -->
 </form>
-	<legend align="center">User list</legend>
+	<legend align="center">User list (${user.id})</legend>
 	<div>
 	
 	</div>

@@ -174,6 +174,7 @@ public class MainControl {
 		mv.addObject("center", "center.jsp");
 		return mv;
 	}
+
 	@ResponseBody
 	@RequestMapping("/loginimpl.do")
 	public String loginimpl(String id, String pwd, HttpServletRequest request) {
@@ -181,9 +182,9 @@ public class MainControl {
 
 		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-		
+
 		String result = "";
-		
+
 		System.out.println(id + "   " + pwd);
 		try {
 			user = (User) biz.get(new User(id));
@@ -196,7 +197,7 @@ public class MainControl {
 			// 삭제 회원 로그인 불가능
 		} else {
 			if (user != null && (user.getPwd()).equals(pwd)) {
-			// 제대로 로그인 한경우
+				// 제대로 로그인 한경우
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				session.setAttribute("id", id);
@@ -211,7 +212,7 @@ public class MainControl {
 				session.setAttribute("msgcheck", msgchecknumber);
 				result = "loginok";
 			} else {
-			  // 로그인이 안 된 경우
+				// 로그인이 안 된 경우
 				result = "loginfail";
 			}
 		}
@@ -368,11 +369,20 @@ public class MainControl {
 		MessageLog msg = null;
 		HttpSession session = request.getSession();
 		int number = (int) session.getAttribute("msgcheck");
+		ArrayList<Object> list = new ArrayList<Object>();
 
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
-			number -= 1;
+			list = messagelogbiz.get();
+			for (Object obj : list) {
+				MessageLog numbercheck = (MessageLog) obj;
+				if (numbercheck.equals(id)) {
+					if (numbercheck.getRead().equals("n")) {
+						number += 1;
+					}
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

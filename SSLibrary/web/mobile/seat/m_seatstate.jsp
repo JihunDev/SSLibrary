@@ -25,7 +25,7 @@
 		// 좌석의 id 값 대입
 		$(".seatid").val(s_id);
 		//메세지 전송 다이얼로그 출력
-		$("#sendMsg").modal({
+		$("#sendMsg").dialog({
 			'width' : 500,
 			'height' : 400
 		});
@@ -47,10 +47,7 @@
 	}
 </script>
 
-
-
 <div class="seattableform">
-
 	<div id="seattable">
 		<c:forEach items="${seatlist}" var="s" varStatus="i">
 			<c:choose>
@@ -131,5 +128,5 @@
 	<div id=managerSeat></div>
 </div>
 <div>
-<%-- 	<jsp:include page="${dialogpage}" /> --%>
+	<jsp:include page="${dialogpage}" />
 </div>

@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%
 	User user = (User)session.getAttribute("user");
-
-
 	ArrayList<Object> booklist = (ArrayList<Object>) session.getAttribute("booklist");
 	String bookcount = (String) session.getAttribute("bookcount");
 	String search = (String) session.getAttribute("search");
@@ -109,31 +107,6 @@ function makeHeight() {
    left.style.height = mHeight + 'px';
 };
 
-function displaybook(data) {
-   $('#book_result').empty();
-   var output = '';
-   output+='<table class="table table-hover">'
-   output+='<thead><tr><th >ID</th><th >NAME</th><th>WRITER</th><th>IMG</th><th>FLOOR</th><th>TOTAL_QT</th><th>CURRENT_QT</th><th>REGDATE</th></tr></thead>';
-   var count = 0;
-   $(data).each(function(index, item) {
-      with (item) {
-    		    output += '<tr><td><a href="bookdetail.do?id='+bid+'">'+bid+'</a></td>';
-        		output += '<td>'+name+'</td>';
-         		output += '<td>'+writer+'</td>';
-        		output += '<td><img width="50px" src="img/book/'+img+'"></td>';
-       			output += '<td>'+floor+'</td>';
-        		output += '<td>'+ total_qt+'</td>';
-         		output += '<td>'+current_qt+'</td>';
-         		output += '<td>'+reg_date+'</td></tr>';
-			}
-      });
-   output+="</table>"
-   $('#book_result').html(output);
-   makeHeight();
-
-}
-
-
 function getBook(f) {
    var search = $('#search').val();  
    var category = $('#category').val();
@@ -142,20 +115,7 @@ function getBook(f) {
    f.action = 'booksearch.do';
    f.method = 'POST';
    f.submit();
-   
-  /*  $.ajax({
-      dataType : 'JSON',
-      async:'false',
-      data:{
-         'issearch' : issearch,
-         'category' : category,
-         'search': search},            
-      url : 'booksearch.do',
-      success:function(data){
-         //displaybook(data);
-         makeHeight();
-      }
-   });*/ 
+
 };
 function deletebook(isdelete){
    if(isdelete=="1"){

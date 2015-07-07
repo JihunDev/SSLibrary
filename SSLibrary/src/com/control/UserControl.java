@@ -70,13 +70,13 @@ public class UserControl {
 	@RequestMapping("/userdetail.do")
 	public ModelAndView userdetail(String id) {
 		ModelAndView mv = new ModelAndView("main");
-		User user = null;
+		User userlist = null;
 		try {
-			user = (User) biz.get(new User(id));
+			userlist = (User) biz.get(new User(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.addObject("userlist", user);
+		mv.addObject("userlist", userlist);
 		mv.addObject("center", "admin/user/detail.jsp");
 		return mv;
 	}
@@ -158,7 +158,7 @@ public class UserControl {
 	}
 
 	@RequestMapping("/usersearchname.do")
-	public ModelAndView usersearchname(User user1, HttpServletRequest request) {
+	public ModelAndView usersearchname(UserCommand user1, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
@@ -178,15 +178,16 @@ public class UserControl {
 			list = searchbiz.getname(new User(id, name, isadmin));
 			System.out.println(list);
 			for (Object obj : list) {
-				User user = (User) obj;
-				list_check.add(user);				
+				User user2 = (User) obj;
+				list_check.add(user2);				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		HttpSession session = request.getSession();
-
+		User user = (User)session.getAttribute("user");
+		
 		session.setAttribute("search", "search=true&");
 		session.setAttribute("userlist", list_check);
 		session.setAttribute("usercount", String.valueOf(list_check.size()));

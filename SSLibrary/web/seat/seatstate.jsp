@@ -141,7 +141,7 @@
 }
 
 .example_btn {
-	width: 120px;
+	width: auto;
 	height: 30px;
 	float: right;
 	color: white;
@@ -180,13 +180,16 @@
 	<div class="text_center">
 		<h3>열람실 좌석 현황</h3>
 	</div>
+	<div class="btn-group">
+	 </div>
 	<br>
-	<div>
-		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
+	<div> 
+		<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록"></a>
+ 		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
 		<input type="button" class="n_btn example_btn" value="사용 중: ${n_count}" disabled>
 		<input type="button" class="y_btn example_btn" value="예약 가능: ${y_count}" disabled>
 		<input type="button" class="example_btn"
-		style="background: gray; width: 200px; float: left ;" value="총  좌석 수 : ${seatqt}" disabled> 
+		style="background: gray; width: 200px;" value="총  좌석 수 : ${seatqt}" disabled>
 	</div>
 	<br>
 	<br>

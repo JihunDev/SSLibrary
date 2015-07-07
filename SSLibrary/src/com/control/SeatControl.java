@@ -343,4 +343,45 @@ public class SeatControl {
 		//System.out.println(getClass() + ".expireseat():  사용자 좌석 이용정보 정보 갱신");
 		return "ok";
 	}
+	
+	
+	// 관리자의 전체 좌석 대여 내역 검색
+	@RequestMapping("/adminseatloglist.do")
+	public ModelAndView adminseatloglist(){
+		ArrayList<Object> seatloglist = null;
+		
+		try {
+			seatloglist = lbiz.get();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ModelAndView mv = new ModelAndView("main");
+		mv.addObject("center", "admin/seatlog/seatloglist.jsp");
+		mv.addObject("adminseatloglist", seatloglist);
+		
+		return mv;
+	}
+	// 관리자의 특정 사용자의 좌석 대여 내역 검색
+	@RequestMapping("/adminseatlogsearch.do")
+	public ModelAndView adminseatlogsearch(String search, HttpServletRequest request){
+		ArrayList<Object> seatloglist = null;
+		ModelAndView mv = new ModelAndView("main");
+		
+		try {
+			seatloglist = s_lbiz.getid(search);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("adminseatloglist", seatloglist);
+		session.setAttribute("adminseatloglist_count", String.valueOf(seatloglist.size()));
+		//session.setAttribute("search", "search=true&");
+
+		mv.addObject("center", "admin/seatlog/seatloglist.jsp");
+		return mv;
+	}
 }

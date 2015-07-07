@@ -29,7 +29,7 @@ window.onload = function(){
 	<input type="text" class="form-control input-sm" name="title" value="${boardupdate.title}"><br><br>
 	</div>
 	<div class="form-group">
-	<textarea class="form-control" rows="10" cols="90" name="content">${boardupdate.content}</textarea><br><br>
+	<textarea class="form-control" rows="10" cols="90" name="content" style="resize:none">${boardupdate.content}</textarea><br><br>
 	</div>
 	<div class="form-group">
 	<input type="file" name="file_name"><br>

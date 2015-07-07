@@ -69,9 +69,20 @@ public class SeatControl {
 		}
 
 		mv.setViewName("main");
-
+		int y_count = 0, n_count = 0, f_count = 0;
+		for (Object obj : seatlist) {
+			Seat s = (Seat) obj;
+			if(s.getState().equals("y")) y_count++;
+			if(s.getState().equals("f")) f_count++;
+			if(s.getState().equals("n")) n_count++;
+		}
 		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
+		mv.addObject("seatqt", seatlist.size());
+		mv.addObject("y_count", y_count);
+		mv.addObject("f_count", f_count);
+		mv.addObject("n_count", n_count);
+		
 		System.out.println(seatlist);
 		
 		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
@@ -80,6 +91,7 @@ public class SeatControl {
 		mv.addObject("dialogpage", "seatdialog.jsp");
 		mv.addObject("seateduserpage", "seateduserinfo.jsp");
 		mv.addObject("registermsg", "register.jsp");
+		
 
 		mv.addObject("center", "seat/seatstate.jsp");
 		return mv;

@@ -10,7 +10,10 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script
+
+  <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="themes/a.css" />
+  <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
 	$.mobile.defaultPageTransition = "fade";
@@ -25,9 +28,9 @@
 </head>
 <body>
 	<div data-role="page" data-add-back-btn="true">
-		<div data-role="panel" id="myPanel" data-display="overlay">
+		<div data-role="panel" id="myPanel" data-display="overlay"  style="background-color : #c2d9eb;">
 			<h2>${user.name} 님 환영합니다.</h2>
-			<img width="200px" height="200px"  style="border: 3px solid gold; border-radius: 120px; background-position: center center;" src="img/user/${user.img}">
+			<img width="150px" height="150px"  style=" border: 5px solid #256799; border-radius: 120px; background-position: center center;" src="img/user/${user.img}">
 			<a href="m_modify.do?id=${user.id}" data-role="button">개인정보수정</a>
 			<a href="m_logout.do" data-role="button">logout</a>
 		</div>

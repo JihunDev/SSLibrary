@@ -71,11 +71,7 @@ public class MessageControl {
 			System.out.println("메세지 전체 출력 : "+list);
 			for (Object obj : list) {
 				MessageLog log = (MessageLog) obj;
-				String read = log.getRead();
-				if(read.equals("n")){
-					readchecklist.add(log);
-					System.out.println("n 체크 : "+log);
-				}
+				readchecklist.add(log);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

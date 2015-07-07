@@ -1,0 +1,276 @@
+
+.booked-wzs-250-175 {
+	width: 267px !important;
+	height: 170px !important;
+	/* background-image: url('//s.bookcdn.com/images/weather/we250x175.png') !important; */
+	background-repeat: no-repeat !important;
+	border-radius: 10px !important;
+	display: block !important; 
+	margin: 0 auto !important;
+	overflow: hidden !important;
+	color: #fff !important;
+	font: normal 11px/11px verdana, sans-serif !important;
+	text-decoration: none !important;
+	padding: 0 !important;
+	border: none !important;
+}
+
+.booked-wzs-250-175 * {
+	color: #fff !important;
+	font: normal 11px/11px verdana, sans-serif !important;
+	text-decoration: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	text-align: left !important;
+	text-shadow: 1px 1px 1px #727272 !important;
+}
+
+.booked-wzs-250-175-data {
+	background-image: url('//s.bookcdn.com/images/weather/wbig.png') !important;
+	background-repeat: no-repeat !important;
+	height: 88px !important;
+	margin-left: 15px !important;
+	overflow: hidden !important;
+}
+
+.booked-wzs-250-175-right {
+	width: 90px !important;
+	float: right !important;
+	padding-top: 5px !important;
+}
+
+.booked-wzs-250-175-city {
+	max-height: 30px !important;
+	margin: 5px 0 5px !important;
+}
+
+.booked-wzs-250-175-date {
+	font-family: Arial !important;
+	white-space: nowrap !important;
+	text-overflow: ellipsis;
+	text-shadow: none !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day {
+	margin-top: 4px !important;
+	float: left !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day .plus {
+	vertical-align: top !important;
+}
+
+.booked-wzs-250-175 .week-day-val .plus {
+	vertical-align: top !important;
+	line-height: 15px !important;
+	font-size: 9px !important;
+}
+
+.booked-wzs-250-175 .pls {
+	float: left !important;
+	font-size: 18px !important;
+	line-height: 30px !important;
+	display: inline-block !important;
+	vertical-align: top !important;
+}
+.booked-wzs-250-175 .tbl-plz {
+	font-size: 8px !important;
+	line-height: 26px !important;
+	letter-spacing: -1px !important;
+	display: inline-block !important;
+	vertical-align: top !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-val {
+	float: left !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-number {
+	float: left !important;
+	font: bold 35px/35px Arial, sans-serif !important;
+	letter-spacing: -1px;
+	margin-right: 2px !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-deck {
+	overflow: hidden !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-n {
+	margin-top: 2px !important;
+	padding-top: 1px !important;
+	border-top: 1px solid #fff !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-dergee {
+	float: left !important;
+	margin: 6px 2px 0 0 !important;
+	font-family: Arial, sans-serif !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-dergee-val {
+	font-size: 28px !important;
+	margin: 2px 0 0 -2px !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-day-dergee-name {
+	font-size: 12px !important;
+	margin-right: 2px !important;
+}
+
+.booked-wzs-250-175 .booked-wzs-bottom-l {
+	display: inline-block !important;
+	height: 14px !important;
+	line-height: 14px !important;
+	text-align: center !important;
+	text-shadow: none !important;
+	padding-right: 14px !important;
+	font-family: Arial, sans-serif !important;
+	background: url('data:image/gif;base64,R0lGODlhCAADAIABAP///////yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgV2luZG93cyIgeG1wOkNyZWF0ZURhdGU9IjIwMTEtMTEtMjlUMTg6MTQ6MjErMDI6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDExLTExLTI5VDE4OjE0OjU4KzAyOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDExLTExLTI5VDE4OjE0OjU4KzAyOjAwIiBkYzpmb3JtYXQ9ImltYWdlL2dpZiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0ODkwNkM0MzFBQTUxMUUxQkIyOURDQUUwMTBFQTAzOSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0ODkwNkM0NDFBQTUxMUUxQkIyOURDQUUwMTBFQTAzOSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ4OTA2QzQxMUFBNTExRTFCQjI5RENBRTAxMEVBMDM5IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjQ4OTA2QzQyMUFBNTExRTFCQjI5RENBRTAxMEVBMDM5Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAQAAAQAsAAAAAAgAAwAAAghEYogG3JdMAQA7') no-repeat 100% 6px;
+}
+
+.booked-wzs-250-175-right {
+	width: 142px !important;
+	float: right !important;
+	padding-top: 4px !important;
+}
+
+.booked-wzs-250-175-city {
+	line-height: normal !important;
+	font-size: 14px !important;
+	max-height: 18px !important;
+	overflow: hidden !important;
+	margin: 0 0 4px !important;
+}
+
+.smolest, 
+.smolest:hover {
+	font-size: 11px !important;
+}
+
+
+.booked-wzs-250-175 .booked-wzs-day {
+	margin-left: 5px !important;
+}
+
+.booked-wzs-table-250 {
+	border: none !important;
+	background: none !important;
+	text-align : center;
+}
+
+.booked-wzs-table-250 td {
+	font-weight: bold !important;
+	width: 40px !important;
+	line-height: 13spx !important;
+	font-family: Arial, sans-serif !important;
+	padding: 2px 2px 0px 2px !important;
+	vertical-align: middle !important;
+	text-align: center !important;
+	border: none !important;
+	background: none !important;
+}
+
+.booked-wzs-table-250 .wrz-sml {
+	margin: 2px 0 2px 7px !important;
+}
+
+.booked-wzs-table-250 .tbl-plz {
+	line-height: 16px !important;
+}
+
+.wrz-sml {
+	background-image: url('//s.bookcdn.com/images/weather/wsmall.png');
+	background-repeat: no-repeat;
+	display: block;
+	width: 26px;
+	height: 26px;
+}
+
+#m-booked-weather-bl250-17526{
+	background-color: rgba( 255, 255, 255, 0 );
+	margin : 0 auto;
+}
+
+.wrz-01 {background-position: -7px 0;}
+.wrz-02 {background-position: -7px -130px;}
+.wrz-03 {background-position: -7px -260px;}
+.wrz-04 {background-position: -7px -390px;}
+.wrz-05 {background-position: -7px -520px;}
+.wrz-06 {background-position: -7px -650px;}
+.wrz-07 {background-position: -7px -773px;}
+.wrz-08 {background-position: -7px -904px;}
+.wrz-11 {background-position: -7px -1033px;}
+.wrz-12 {background-position: -7px -1168px;}
+.wrz-13 {background-position: -7px -1302px;}
+.wrz-14 {background-position: -7px -1433px;}
+.wrz-15 {background-position: -7px -1561px}
+.wrz-16 {background-position: -7px -1696px}
+.wrz-17 {background-position: -11px -1828px}
+.wrz-18 {background-position: -12px -1955px}
+.wrz-19 {background-position: -7px -2087px}
+.wrz-20 {background-position: -7px -2221px}
+.wrz-21 {background-position: -13px -2353px}
+.wrz-22 {background-position: -7px -2478px}
+.wrz-23 {background-position: -7px -2616px}
+.wrz-24 {background-position: -7px -2740px}
+.wrz-25 {background-position: -7px -2874px}
+.wrz-26 {background-position: -7px -3000px}
+.wrz-29 {background-position: -7px -3132px}
+.wrz-30 {background-position: -7px -3267px}
+.wrz-31 {background-position: 5px -3391px}
+.wrz-32 {background-position: -7px -3526px}
+.wrz-33 {background-position: -7px -3658px}
+.wrz-34 {background-position: -13px -3787px}
+.wrz-35 {background-position: -13px -3918px}
+.wrz-36 {background-position: -10px -4047px}
+.wrz-37 {background-position: -7px -4177px}
+.wrz-38 {background-position: -11px -4308px}
+.wrz-39 {background-position: -7px -4438px}
+.wrz-40 {background-position: -7px -4568px}
+.wrz-41 {background-position: -7px -4697px}
+.wrz-42 {background-position: -7px -4828px}
+.wrz-43 {background-position: -7px -4958px}
+.wrz-44 {background-position: -7px -5087px}
+
+.wrzs-01 {background-position: -5px -7px;}
+.wrzs-02 {background-position: -5px -63px;}
+.wrzs-03 {background-position: -5px -123px;}
+.wrzs-04 {background-position: -5px -181px;}
+.wrzs-05 {background-position: -5px -242px;}
+.wrzs-06 {background-position: -5px -304px;}
+.wrzs-07 {background-position: -5px -362px;}
+.wrzs-08 {background-position: -5px -420px;}
+.wrzs-11 {background-position: -5px -482px;}
+.wrzs-12 {background-position: -5px -544px;}
+.wrzs-13 {background-position: -5px -603px;}
+.wrzs-14 {background-position: -5px -663px;}
+.wrzs-15 {background-position: -5px -724px;}
+.wrzs-16 {background-position: -5px -784px;}
+.wrzs-17 {background-position: -5px -843px;}
+.wrzs-18 {background-position: -5px -901px;}
+.wrzs-19 {background-position: -5px -963px;}
+.wrzs-20 {background-position: -5px -1025px;}
+.wrzs-21 {background-position: -5px -1085px;}
+.wrzs-22 {background-position: -5px -1145px;}
+.wrzs-23 {background-position: -5px -1205px;}
+.wrzs-24 {background-position: -5px -1262px;}
+.wrzs-25 {background-position: -5px -1322px;}
+.wrzs-26 {background-position: -5px -1383px;}
+.wrzs-29 {background-position: -5px -1442px;}
+.wrzs-30 {background-position: 0 -1503px;}
+.wrzs-31 {background-position: -5px -1564px;}
+.wrzs-32 {background-position: -5px -1624px;}
+.wrzs-33 {background-position: -5px -1684px;}
+.wrzs-34 {background-position: -5px -1744px;}
+.wrzs-35 {background-position: -5px -1804px;}
+.wrzs-36 {background-position: -5px -1864px;}
+.wrzs-37 {background-position: -5px -1923px;}
+.wrzs-38 {background-position: -5px -1983px;}
+.wrzs-39 {background-position: -5px -2042px;}
+.wrzs-40 {background-position: -5px -2102px;}
+.wrzs-41 {background-position: -5px -2164px;}
+.wrzs-42 {background-position: -5px -2223px;}
+.wrzs-43 {background-position: -5px -2284px;}
+.wrzs-44 {background-position: -5px -2345px;}

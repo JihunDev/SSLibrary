@@ -440,4 +440,28 @@ public class MainControl {
 		}
 		return "1";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/msgchecked.do")
+	public String msgchecked(HttpServletRequest request) {
+		ArrayList<Object> msg_list = new ArrayList<Object>();
+		HttpSession session = request.getSession();
+		int msgchecknumber = 0;
+		try {
+			msg_list = messagelogbiz.get();
+			for (Object obj : msg_list) {
+				MessageLog log = (MessageLog) obj;
+				String read = log.getRead();
+				if (read.equals("n")) {
+					msgchecknumber += 1;
+					System.out.println(msgchecknumber);
+				}
+			}
+			session.setAttribute("msgcheck", msgchecknumber);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "1";
+	}
 }

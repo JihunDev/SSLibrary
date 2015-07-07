@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<style type="text/css">
-.clock {width:250px; margin:0 auto; padding:5px; color:#fff;  background : #fa9034; border-radius : 10px 10px 10px 10px;}
+.clock {width:250px; margin:0 auto; padding:5px; color:#fff;  background : #fa9034; border-radius : 10px 10px 10px 10px;   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;}
 
 #Date { font-family: Arial, Helvetica, sans-serif; font-size:18px; text-align:center; }
 
@@ -78,8 +78,8 @@ setInterval( function() {
 	<br>
 		<div class="well well-sm"><b>³¯¾¾</b></div>
 		<!-- weather widget start -->
-		<div id="m-booked-weather-bl250-17526">
-			<a href="//booked.kr/weather/seoul-18406" class="booked-wzs-250-175"
+		<div id="m-booked-weather-bl250-17526" style="box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;">
+			<a style="margin : 0 auto;" href="//booked.kr/weather/seoul-18406" class="booked-wzs-250-175"
 				style="background-color: #fa8b2a;">
 				<div class="booked-wzs-250-175-data wrz-18">
 					<div class="booked-wzs-250-175-right">
@@ -109,7 +109,7 @@ setInterval( function() {
 						</div>
 					</div>
 				</div>
-				<table cellpadding="0" cellspacing="0" class="booked-wzs-table-250">
+				<table cellpadding="10px" cellspacing="10px" class="booked-wzs-table-250">
 					<tr>
 						<td>¸ñ</td>
 						<td>±Ý</td>
@@ -150,7 +150,7 @@ setInterval( function() {
 			css_file.setAttribute("rel", "stylesheet");
 			css_file.setAttribute("type", "text/css");
 			css_file.setAttribute("href",
-					'//s.bookcdn.com/css/w/booked-wzs-widget-275.css?v=0.0.1');
+					'bootstrap/css/weather-widget.css');
 			document.getElementsByTagName("head")[0].appendChild(css_file);
 			function setWidgetData(data) {
 				if (typeof (data) != 'undefined' && data.results.length > 0) {

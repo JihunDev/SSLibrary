@@ -40,7 +40,7 @@ public class M_SeatControl {
 	SearchBiz s_ubiz;
 	@Resource(name = "userbiz")
 	Biz user_biz;
-	
+
 	@RequestMapping("/m_seatmain.do")
 	public ModelAndView m_seatmain(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -67,15 +67,15 @@ public class M_SeatControl {
 		// 좌석 정보
 		mv.addObject("seatlist", seatlist);
 		System.out.println(seatlist);
-		
+
 		// 내가 이미 좌석예약을 했으면 유효, 없으면 null
 		mv.addObject("myseat", myseat);
-		
+
 		mv.addObject("dialogpage", "seatdialog.jsp");
 		mv.addObject("seateduserpage", "seateduserinfo.jsp");
 		mv.addObject("registermsg", "register.jsp");
 
-		mv.addObject("m_center", "seat/seatstate.jsp");
+		mv.addObject("m_center", "seat/m_seatstate.jsp");
 		return mv;
 	}
 
@@ -106,7 +106,8 @@ public class M_SeatControl {
 	@SuppressWarnings({ "unchecked" })
 	@ResponseBody
 	@RequestMapping("/m_seatmodify.do")
-	public ResponseEntity<String> m_seatmodify(String s_id, HttpServletRequest request) {
+	public ResponseEntity<String> m_seatmodify(String s_id,
+			HttpServletRequest request) {
 		int sid_num = Integer.parseInt(s_id);
 		Seat seat = null;
 		ArrayList<Object> seatbys_id = null;
@@ -115,7 +116,8 @@ public class M_SeatControl {
 		try {
 			seat = (Seat) biz.get(new Seat(sid_num));
 		} catch (Exception e) {
-			System.out.println("seatmodify.do : (Seat) biz.get(new Seat(sid_num)) Fail");
+			System.out
+					.println("seatmodify.do : (Seat) biz.get(new Seat(sid_num)) Fail");
 			e.printStackTrace();
 		}
 		// 수정할 좌석의 정보를 불러와 해당 좌석의 u_id 추출
@@ -129,15 +131,16 @@ public class M_SeatControl {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("seatmodify.do : (ArrayList<Object>) s_ubiz.getid(s_id) Fail");
+			System.out
+					.println("seatmodify.do : (ArrayList<Object>) s_ubiz.getid(s_id) Fail");
 			e.printStackTrace();
 		}
 
 		JSONObject result = null;
 		try {
-			
+
 			User user = (User) user_biz.get(u_id);
-			UserSeat userseat = (UserSeat) ubiz.get(u_id); 
+			UserSeat userseat = (UserSeat) ubiz.get(u_id);
 			result = new JSONObject();
 			result.put("s_id", userseat.getS_id());
 			result.put("u_id", userseat.getU_id());
@@ -149,7 +152,7 @@ public class M_SeatControl {
 			result.put("start_time", userseat.getStart_time());
 			result.put("end_time", userseat.getEnd_time());
 			result.put("renew_qt", userseat.getRenew_qt());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -160,21 +163,20 @@ public class M_SeatControl {
 		System.out.println("userdetail(JSON): " + result);
 
 		ResponseEntity<String> returnData = null;
-		HttpHeaders header = new HttpHeaders(); 
+		HttpHeaders header = new HttpHeaders();
 		header.add("Content-type", "application/json;charset=EUC-KR");
-	
-		returnData = new ResponseEntity<String>(result.toJSONString(),
-				header,
-				HttpStatus.CREATED //강제로 결과를 만들어 넣어주는것
-				);
+
+		returnData = new ResponseEntity<String>(result.toJSONString(), header,
+				HttpStatus.CREATED // 강제로 결과를 만들어 넣어주는것
+		);
 		return returnData;
 	}
 
-	
 	// 좌석 수정 수행 및 결과 반환
 	@ResponseBody
 	@RequestMapping("/m_seatmodifyimpl.do")
-	public String m_seatmodifyimpl(String s_id, String state, HttpServletRequest request) {
+	public String m_seatmodifyimpl(String s_id, String state,
+			HttpServletRequest request) {
 		int sid_num = Integer.parseInt(s_id);
 		String result = "";
 		String new_state = state;
@@ -202,6 +204,8 @@ public class M_SeatControl {
 		return result;
 	}
 
+	// ////////////////////////////////유징인포/////////////////////////////////////////
+
 	// 연장
 	@RequestMapping("/m_userseatmodify.do")
 	public ModelAndView m_userseatmodify(HttpServletRequest request) {
@@ -211,7 +215,7 @@ public class M_SeatControl {
 		String u_id = user.getId();
 		UserSeat userseat = null;
 		UserSeat returnuserseat = null;
-		
+
 		try {
 			userseat = (UserSeat) ubiz.get(new UserSeat(u_id));
 		} catch (Exception e) {
@@ -239,7 +243,7 @@ public class M_SeatControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		session.setAttribute("userseat", returnuserseat);
 		mv.addObject("m_center", "user/m_usinginfo.jsp");
 		return mv;

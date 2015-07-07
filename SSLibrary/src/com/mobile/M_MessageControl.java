@@ -54,19 +54,18 @@ public class M_MessageControl {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		ArrayList<Object> list = new ArrayList<Object>();
-		int number = (int) session.getAttribute("msgcheck");
+		// int number = (int) session.getAttribute("msgcheck");
 		MessageLog msg = null;
-
+		int number = 0;
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
 			list = messagelogbiz.get();
 			for (Object obj : list) {
+				System.out.println(obj);
 				MessageLog numbercheck = (MessageLog) obj;
-				if (numbercheck.equals(id)) {
-					if (numbercheck.getRead().equals("n")) {
-						number += 1;
-					}
+				if (numbercheck.getRead().equals("n")) {
+					number += 1;
 				}
 			}
 
@@ -75,6 +74,7 @@ public class M_MessageControl {
 		}
 
 		session.setAttribute("msgcheck", number);// 메세지 체크
+		System.out.println(number);
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("m_center", "message/m_detail.jsp");
 

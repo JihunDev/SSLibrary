@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
 import com.entity.Book;
-import com.entity.SeatLog;
 import com.entity.User;
 import com.entity.UserBook;
 import com.entity.UserSeat;

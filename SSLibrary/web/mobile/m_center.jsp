@@ -4,7 +4,7 @@
 
 <fieldset class="ui-grid-a">
    <div class="ui-block-a">
-      <a href="#" data-role="button" data-inline="true"
+      <a href="m_seatmain.do" data-role="button" data-inline="true"
          style="height: 100px; width: 100px"><img width="80" src="img/mobile/Pencil.png"><br>¿­¶÷½Ç</a>
    </div>
    <div class="ui-block-b">

@@ -13,7 +13,7 @@
 		var c = confirm(s_id + "번 자리를 등록하시겠습니까?");
 
 		if (c == true) {
-			f.action = "userseatregister.do?s_id=" + s_id;
+			f.action = "m_userseatregister.do?s_id=" + s_id;
 			f.method = "POST";
 			f.submit();
 		}
@@ -44,50 +44,6 @@
 	function registeredUser() {
 		alert("이미 좌석을 예약하셨습니다.");
 	}
-	// 관리자가 클릭했을 때의 Dialog창 호출 내용
-	function showDialog(s_id, s_state) {
-		var state = s_state;
-		$(".seatstate").val(s_state);
-		$(".seatid").val(s_id);
-
-		if (state == 'y') {
-			$('#modifyY').modal();
-		}
-		if (state == 'n') {
-			$("#adminTab a:first").tab('show');
-			$("#modifyN").modal();
-
-		}
-		if (state == 'f') {
-			$('#modifyF').modal();
-		}
-	}
-
-	// 관리자가 좌석을 클릭한 경우
-	function changeState(f) {
-		var s_id = f.s_id.value;
-		var s_state = f.s_state.value;
-		if (s_state == 'n') {
-			$.ajax({
-				type : 'post',
-				data : {
-					's_id' : s_id
-				},
-				async : 'false',
-				url : 'seatmodify.do',
-				dataType : 'JSON',
-				success : function(data) {
-					displayuserinfo(data);
-					showDialog(s_id, s_state);
-				},
-				error : function() {
-					alert("으앙 앙대ㅠㅠ");
-				}
-			});
-		} else {
-			showDialog(s_id, s_state);
-		}
-	};
 </script>
 <style>
 #seattable>form>button {

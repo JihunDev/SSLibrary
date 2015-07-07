@@ -198,7 +198,7 @@ nav{
 	color : black;
 }
  nav>#bottom{
-	width : 400px;
+	width : 900px;
 	margin : 0 100px;
 } 
 nav>#bottom>ul>li{

@@ -31,10 +31,12 @@
 	margin : 0;
 	pading : 0;	
 }
-body{
-	background-image: url("img/css/librarybackground.jpg");
-	background-color: #cccccc;
+
+body {
+ 	background-image: url("img/css/librarybackground.jpg");
+	background-color: #cccccc; 
 }
+
 li{
  	list-style : none;
 }
@@ -131,6 +133,7 @@ header{
 	margin : 0 auto;
 	/* background : white; *//* #f0c413; */  /*  #EB613B; */
 	position : relative;
+	background-image: url("img/css/Cover copy.jpg");
 	/* border-left : solid #f0c413 1px;
 	border-right : solid #f0c413 1px; */
 }
@@ -175,41 +178,10 @@ heaer>#top>fieldset>form>.form-group{
 	align : center;
 }
 
-header>#logo>#mainname{
+header>#mainname{
 	position: absolute;
-	top : 25px;
+	top : 23px;
 	left : 43%;
-}
-
-header > #bottom{
-	position: absolute;
-	bottom : 0;
-	left : 240px;
-	width : 100%;
-}
-
-header > #bottom > ul > li{
-	float : left;
-	background : black;
-	width : 130px;
-	height : 45px;
-	line-height : 45px;
-	text-align : center;
-/* 	border : solid/*  #f0c413 */ white 1px; */
-	
-}
-header > #bottom > ul > li > a{
-	width : 150px;
-	margin : 20px;
-	color : white;
-	font-size : 1.1em;
-	
-}
-header > #bottom > ul > li > a:HOVER{
-	color : red;
-}
-header>#bottom>ul>li{
-	border-radius: 20px 20px 0 0;
 }
 
 /** Nav CSS**/
@@ -227,7 +199,7 @@ nav{
 }
  nav>#bottom{
 	width : 400px;
-	margin : 0 100px;
+	margin : 0 100px 0 0;
 } 
 nav>#bottom>ul>li{
 	float : left;
@@ -244,12 +216,12 @@ nav>#bottom>ul>li>a:hover{
 
 /** Section CSS**/
 section {
-	width : 80%;
+	width : 100%;
 /* 	height : 600px; */
 	margin : 0 auto;
 }
 #left{
-	width : 30%;
+	width : 25%;
 /* 	height : 600px; */
 	padding-top : 9px;
 	float : left;	
@@ -260,9 +232,10 @@ section {
 }
 
 #center{
-	width : 70%;
+	width : 60%;
 /* 	height : 600px; */
 	float : left;
+	margin : 0px 0px 0px 100px;
 	background: rgba(255,255,255,0.4);
 }
 #notice{

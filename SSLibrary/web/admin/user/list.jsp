@@ -4,8 +4,6 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	User user = (User)session.getAttribute("user");
-
 	ArrayList<Object> userlist = (ArrayList<Object>) session.getAttribute("userlist");
 	String usercount = (String) session.getAttribute("usercount");
 	String search = (String) session.getAttribute("search");

@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 #seatuserinfo>tbody>tr>th{
+	background:gray;
+	color:white;
 	width:100px;
 }
 

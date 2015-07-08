@@ -10,7 +10,12 @@
 		data-filter-placeholder="Search..." data-inset="true">
 		<c:forEach items="${boardlist}" var="b">
 			<li><a href="m_boarddetail.do?id=${b.id}">
-					<h3>${b.title}(${b.reply_num})</h3>
+					<c:if test="${b.reply_num == 0}">
+					<h3>${b.title}</h3>
+					</c:if>
+					<c:if test="${b.reply_num != 0}">
+					<h3>${b.title} (${b.reply_num})</h3>
+					</c:if>
 					<p>글쓴이 : ${b.u_id}</p>
 					<p>작성일 : ${b.reg_date}</p>
 					<p class="ui-li-aside">

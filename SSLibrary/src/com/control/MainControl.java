@@ -450,7 +450,6 @@ public class MainControl {
 	public String msgchecked(String id) {
 		ArrayList<Object> msg_list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-
 		try {
 			msg_list = messagelogbiz.get();
 			for (Object obj : msg_list) {

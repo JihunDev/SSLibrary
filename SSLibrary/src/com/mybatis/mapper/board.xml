@@ -59,7 +59,7 @@
 
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD
-		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title,jdbcType=VARCHAR},#{content},SYSDATE,#{sort},#{file_name,jdbcType=VARCHAR},#{reg_number});
+		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title,jdbcType=VARCHAR},#{content},SYSDATE,#{sort},#{file_name,jdbcType=VARCHAR},#{reg_number})
 		<selectKey resultType="board">
 			SELECT * FROM A_BOARD WHERE ID = #{id}
 		</selectKey>

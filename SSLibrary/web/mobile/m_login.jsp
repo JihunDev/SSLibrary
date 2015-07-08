@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <form action="m_login.do" method="POST">
 	<input type="text" name="id" placeholder="ID" data-clear-btn="true">
 	<input type="text" name="pwd" placeholder="PASSWORD" data-clear-btn="true">    

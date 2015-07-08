@@ -56,33 +56,45 @@ public class M_MessageControl {
 	@RequestMapping("/m_msgdetail.do")
 	public ModelAndView m_msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
-		HttpSession session = request.getSession();
-		ArrayList<Object> list = new ArrayList<Object>();
-		// int number = (int) session.getAttribute("msgcheck");
 		MessageLog msg = null;
-		int number = 0;
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
-			messagelogbiz.modify(id);
-			list = messagelogbiz.get();
-			for (Object obj : list) {
-				System.out.println(obj);
-				MessageLog numbercheck = (MessageLog) obj;
-				if (numbercheck.getRead().equals("n")) {
-					number += 1;
+			messagelogbiz.modify(id);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		mv.addObject("messagelogdetail", msg);
+		mv.addObject("m_center", "message/m_detail.jsp");
+
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/m_msgchecked.do")
+	public String m_msgchecked(String id) {
+		ArrayList<Object> msg_list = new ArrayList<Object>();
+		int msgchecknumber = 0;
+		System.out.println(id);
+		try {
+			msg_list = messagelogbiz.get();
+			for (Object obj : msg_list) {
+				MessageLog log = (MessageLog) obj;
+				String read = log.getRead();
+				String getid = log.getU_id();
+				if (getid.equals(id)) {
+					if (read.equals("n")) {
+						msgchecknumber += 1;
+					}
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		session.setAttribute("msgcheck", number);// 메세지 체크
-		System.out.println(number);
-		mv.addObject("messagelogdetail", msg);
-		mv.addObject("m_center", "message/m_detail.jsp");
-
-		return mv;
+		System.out.println(msgchecknumber);
+		String stringmsgchecknumber = String.valueOf(msgchecknumber);
+		return stringmsgchecknumber;
 	}
 	
 	@ResponseBody
@@ -114,5 +126,7 @@ public class M_MessageControl {
 		
 		return "redirect:/m_seatmain.do";
 	}
+	
+	
 
 }

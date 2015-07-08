@@ -13,7 +13,7 @@
 	function register(f) {
 		var s_id = f.s_id.value;
 		var c = confirm(s_id + "번 자리를 등록하시겠습니까?");
-
+		
 		if (c == true) {
 			f.action = "m_userseatregister.do?s_id=" + s_id;
 			f.method = "POST";
@@ -228,7 +228,7 @@
 		<a href="#" data-rel="back"
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
-	<div data-role="main" class="ui-content">
+	<div data-role="main">
 		<form>
 			<input type="hidden" name="sender_uid" value="${user.id}"> <input
 				type="hidden" name="receiver_sid" class="seatid">
@@ -238,4 +238,6 @@
 		</form>
 	</div>
 </div>
+
+
 

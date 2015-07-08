@@ -68,12 +68,6 @@ setInterval( function() {
 	
 	
 	<div class="container-fluid">
-  <!--   <div class="input-group">
-     <input type="text" id="search" class="form-control input-sm" placeholder="도서 전체 검색">
-      <span class="input-group-btn">
-        <button class="btn btn-default btn-sm" type="button" onclick="getBook();" >검색</button>
-      </span>
-    </div>/input-group -->
 	<div>
 	<br>
 		<div class="well well-sm"><b>날씨</b></div>

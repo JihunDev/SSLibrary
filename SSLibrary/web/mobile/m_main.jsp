@@ -42,6 +42,7 @@
 			});
 		}, 5000);
 	};
+	//화면 높이
 	function contentHeight() {
 		var screen = $.mobile.getScreenHeight(), header = $(".ui-header")
 				.hasClass("ui-header-fixed") ? $(".ui-header").outerHeight() - 1

@@ -133,7 +133,7 @@
 
 .f_btn, #seattable>form>.f_btn, #seattable>form>.f_btn:hover, #seattable>form>.f_btn:active,
 	#seattable>form>.f_btn:focus {
-	background: #337AB7;
+	background: #35B62C;
 }
 
 .modify {
@@ -154,11 +154,12 @@
 }
 
 .seattableform {
-	background: rgba(255, 255, 255, 0.8);
+	background: rgba(255, 255, 194, 0.8);
 	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
 	margin-top: 40px;
 	padding: 20px;
 	border-radius: 10px 10px 10px 10px;
+	
 }
 
 #seat_article {
@@ -183,8 +184,11 @@
 	<div class="btn-group">
 	 </div>
 	<br>
-	<div> 
-		<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록"></a>
+	
+	<div>
+		<c:if test="${user.isadmin == 'y' && user != null}"> 
+			<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록"></a>
+ 		</c:if>
  		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
 		<input type="button" class="n_btn example_btn" value="사용 중: ${n_count}" disabled>
 		<input type="button" class="y_btn example_btn" value="예약 가능: ${y_count}" disabled>

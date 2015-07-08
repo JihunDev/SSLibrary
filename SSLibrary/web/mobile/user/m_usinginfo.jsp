@@ -68,8 +68,9 @@
 
 <h2>도서 이용 내용</h2>
 <div>
-	<ul data-role="listview" data-inset="true">
-		<c:forEach items="${booklist}" var="book" varStatus="status">
+
+	<c:forEach items="${booklist}" var="book" varStatus="status">
+		<ul data-role="listview" data-inset="true">
 			<li>
 				<h3>도서번호 : ${book[0]}</h3>
 				<p>책이름 : ${book[1]}</p>
@@ -79,20 +80,21 @@
 					<strong>연장횟수 : ${book[4]}</strong>
 				</p>
 			</li>
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<a href="javascript:;"
-						onClick="if (confirm('연장하시겠습니까?')) location.href='m_userbookmodifyimpl.do?id=${book[0]}'"
-						data-role="button">연장</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="javascript:;"
-						onClick="if (confirm('반납하시겠습니까?')) location.href='m_userbookremove.do?id=${book[0]}'"
-						data-role="button">반납</a>
-				</div>
+		</ul>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<a href="javascript:;"
+					onClick="if (confirm('연장하시겠습니까?')) location.href='m_userbookmodifyimpl.do?id=${book[0]}'"
+					data-role="button">연장</a>
 			</div>
-		</c:forEach>
-	</ul>
+			<div class="ui-block-b">
+				<a href="javascript:;"
+					onClick="if (confirm('반납하시겠습니까?')) location.href='m_userbookremove.do?id=${book[0]}'"
+					data-role="button">반납</a>
+			</div>
+		</div>
+	</c:forEach>
+
 </div>
 <br>
 <a href="m_bookloglist.do" data-role="button">내역</a>

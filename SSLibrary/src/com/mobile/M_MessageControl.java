@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,14 +56,28 @@ public class M_MessageControl {
 	@RequestMapping("/m_msgdetail.do")
 	public ModelAndView m_msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
+		HttpSession session = request.getSession();
+		ArrayList<Object> list = new ArrayList<Object>();
 		MessageLog msg = null;
+		int number = 0;
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
-			messagelogbiz.modify(id);			
+			messagelogbiz.modify(id);
+			list = messagelogbiz.get();
+			for (Object obj : list) {
+				System.out.println(obj);
+				MessageLog numbercheck = (MessageLog) obj;
+				if (numbercheck.getRead().equals("n")) {
+					number += 1;
+				}
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		session.setAttribute("msgcheck", number);// 메세지 체크
+		System.out.println(number);
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("m_center", "message/m_detail.jsp");
 

@@ -25,7 +25,7 @@
 	$.mobile.defaultPageTransition = "slide";
 
 	//메세지 실시간 확인
-	window.onload = function() {
+/* 	window.onload = function() {
 		setInterval(function() {
 			$.ajax({
 				async : 'false',
@@ -41,7 +41,7 @@
 				}
 			});
 		}, 5000);
-	};
+	}; */
 	//화면 높이
 	function contentHeight() {
 		var screen = $.mobile.getScreenHeight(), header = $(".ui-header")

@@ -13,44 +13,43 @@ tbody th {
 </style>
 
 <script>
-function del(f) {
-	var c = confirm('삭제 하시겠습니까?');
-		if (c == true) {
+	function del(f) {
+		$('#del').popup('open');
+		$("#delbutton").click(function() {
 			f.action = 'm_boardremoveimpl.do';
 			f.method = 'POST';
 			f.submit();
-		};
+		});
 	}
 
-function register(f) {
-	var c = confirm('댓글을 등록 하시겠습니까?');
-	if (c == true) {
-		f.action = 'm_boardwriteimpl.do';
-		f.method = 'POST';
-		f.submit();
+	function register(f) {
+		$('#register').popup('open');
+		$("#registerbutton").click(function() {
+			f.action = 'm_boardwriteimpl.do';
+			f.method = 'POST';
+			f.submit();
+		});
 	}
-	;
-}
 
-function update(f) {
-	var reg_number = f.reg_number.value;
-	var id = f.id.value;
-	if(reg_number != 0){
-		var c = confirm('댓글을 수정 하시겠습니까?');
-		if (c == true) {
-			f.action = 'm_boardmodifyimpl.do';
-			f.method = 'POST';
-			f.submit();
-		};
-	} else {
-		var c = confirm('수정 하시겠습니까?');
-		if (c == true) {
-			f.action = 'm_boardmodify.do';
-			f.method = 'POST';
-			f.submit();
-		};
+	function update(f) {
+		var reg_number = f.reg_number.value;
+		var id = f.id.value;
+		if (reg_number != 0) {
+			$('#update').popup('open');
+			$("#regstermsgbutton").click(function() {
+				f.action = 'm_boardmodifyimpl.do';
+				f.method = 'POST';
+				f.submit();
+			});
+		} else {
+			$('#updatereply').popup('open');
+			$("#regstermsgbutton").click(function() {
+				f.action = 'm_boardmodify.do';
+				f.method = 'POST';
+				f.submit();
+			});
+		}
 	}
-}
 </script>
 
 <!-- 게시글 -->
@@ -82,9 +81,9 @@ function update(f) {
 
 <!-- 게시글 수정 -->
 <form>
-	<input type="hidden" name="sort" value="${boarddetail.sort}"> 
-	<input type="hidden" name="id" value="${boarddetail.id}"> 
-	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">
+	<input type="hidden" name="sort" value="${boarddetail.sort}"> <input
+		type="hidden" name="id" value="${boarddetail.id}"> <input
+		type="hidden" name="reg_number" value="${boarddetail.reg_number}">
 	<c:if test="${boarddetail.u_id == user.id}">
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
@@ -103,49 +102,107 @@ function update(f) {
 	</c:if>
 </form>
 
-<!-- reply 창 -->	
+<!-- reply 창 -->
 <form>
-	<input type="hidden" name="reg_number" id="reg_number" value="${boarddetail.id}">
-	<input type="hidden" name="sort" value="${boarddetail.sort}">
-	<input type="hidden" name="u_id" value="${user.id}">
-	<label for="content">Comment:</label>
+	<input type="hidden" name="reg_number" id="reg_number"
+		value="${boarddetail.id}"> <input type="hidden" name="sort"
+		value="${boarddetail.sort}"> <input type="hidden" name="u_id"
+		value="${user.id}"> <label for="content">Comment:</label>
 	<textarea rows="5" cols="40" name="content"></textarea>
 	<input type="button" value="등록" onclick="register(this.form)">
-</form>	
+</form>
 
 <!-- reply 목록 -->
 <br>
-<ul data-role="listview" >
+<ul data-role="listview">
 	<c:forEach items="${boardreply}" var="reply">
 		<li>
 			<h3>${reply.content}</h3>
-			<p>${reply.u_id} | ${reply.reg_date}</p>
+			<p>${reply.u_id}|${reply.reg_date}</p>
 			<p class="ui-li-aside">
 				<strong>등록번호 : ${reply.id}</strong>
-			</p>
-			
-			<c:if test="${reply.u_id == user.id}">
+			</p> <c:if test="${reply.u_id == user.id}">
 				<form>
 					<div data-role="collapsible">
-        				<h1>수정삭제</h1>
-        				<textarea rows="5" cols="40" name="content">${reply.content}</textarea>
-    	  		  		<input type="hidden" name="sort" value="${reply.sort}">
-						<input type="hidden" name="id" value="${reply.id}">	
-						<input type="hidden" name="reg_number" value="${reply.reg_number}">	
-						<input type="hidden" name="old_content" value="${reply.content}">	
-						<input type="hidden" name="u_id" value="${user.id}">
-						<input type="hidden" name="content" >	
-    	  		  	   	<div class="ui-grid-a">
+						<h1>수정삭제</h1>
+						<textarea rows="5" cols="40" name="content">${reply.content}</textarea>
+						<input type="hidden" name="sort" value="${reply.sort}"> <input
+							type="hidden" name="id" value="${reply.id}"> <input
+							type="hidden" name="reg_number" value="${reply.reg_number}">
+						<input type="hidden" name="old_content" value="${reply.content}">
+						<input type="hidden" name="u_id" value="${user.id}"> <input
+							type="hidden" name="content">
+						<div class="ui-grid-a">
 							<div class="ui-block-a">
-    	  		  	   			<input type="button" id="btn_${reply.id}" value="수정" onclick="update(this.form)">
-		 	     			</div>
-				    		<div class="ui-block-b">
-	      						<input type="button" value="삭제" onclick="del(this.form)">
-      						</div>
-				    	</div>
-     				</div>
-     			</form>
+								<input type="button" id="btn_${reply.id}" value="수정"
+									onclick="update(this.form)">
+							</div>
+							<div class="ui-block-b">
+								<input type="button" value="삭제" onclick="del(this.form)">
+							</div>
+						</div>
+					</div>
+				</form>
 			</c:if>
-			</li>
+		</li>
 	</c:forEach>
 </ul>
+
+<!-- popup -->
+
+<div data-role="popup" id="del">
+	<div data-role="header">
+		<h1>등록</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>삭제 하시겠습니까?</h2>
+		<button type="button" id="delbutton">삭제</button>
+	</div>
+</div>
+
+<div data-role="popup" id="register">
+	<div data-role="header">
+		<h1>등록</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>댓글을 등록 하시겠습니까?</h2>
+		<button type="button" id="registerbutton">등록</button>
+	</div>
+</div>
+
+<div data-role="popup" id="update">
+	<div data-role="header">
+		<h1>수정</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>댓글을 수정 하시겠습니까?</h2>
+		<button type="button" id="updatebutton">수정</button>
+	</div>
+</div>
+
+<div data-role="popup" id="updatereply">
+	<div data-role="header">
+		<h1>수정</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>수정 하시겠습니까?</h2>
+		<button type="button" id="updatereplybutton">수정</button>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+

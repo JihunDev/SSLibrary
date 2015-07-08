@@ -74,7 +74,7 @@ public class M_MessageControl {
 	public String m_msgchecked(String id) {
 		ArrayList<Object> msg_list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-		System.out.println(id);
+		System.out.println("아이디 : "+id);
 		try {
 			msg_list = messagelogbiz.get();
 			for (Object obj : msg_list) {
@@ -91,7 +91,7 @@ public class M_MessageControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(msgchecknumber);
+		System.out.println("메세지 : "+msgchecknumber);
 		String stringmsgchecknumber = String.valueOf(msgchecknumber);
 		return stringmsgchecknumber;
 	}

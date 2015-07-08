@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 function update(f) {
-	var c = confirm('수정하시겠습니까?');
-		if (c == true) {
+	$('#updates').popup('open');
+	$("#updatebutton").click(function() {
 			f.action = 'm_boardmodifyimpl.do';
 			f.method = 'POST';
 			f.submit();
-		};
+		});
 	}
 </script>
 
@@ -34,4 +34,17 @@ function update(f) {
 	<input type="hidden" name="u_id" value="${id}">
 	<input type="button" value="수정" onclick="update(this.form)">
 </form>	
+
+<!-- popup -->
+<div data-role="popup" id="updates">
+	<div data-role="header">
+		<h1>수정</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>수정 하시겠습니까?</h2>
+		<button type="button" id="updatebutton">수정</button>
+	</div>
+</div>
     

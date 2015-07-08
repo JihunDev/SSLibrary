@@ -17,7 +17,7 @@
    </div>
    <div class="ui-block-b">
       <a href="m_msgloglist.do?id=${user.id}" data-role="button" data-inline="true"
-         style="height: 100px; width: 100px; background-color : #ebcf60; border : 1px solid #ebcf60;"><img width="80" src="img/mobile/Mail.png"><br>메세지 : ${msgcheck}</a>
+         style="height: 100px; width: 100px; background-color : #ebcf60; border : 1px solid #ebcf60;"><img width="80" src="img/mobile/Mail.png"><br>메세지 : <span id="msgnumber">${msgcheck}</span></a>
    </div>
    <div class="ui-block-a">
       <a href="m_boardmain.do?sort=notice" data-role="button" data-inline="true"

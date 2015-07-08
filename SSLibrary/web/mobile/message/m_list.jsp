@@ -2,8 +2,8 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div data-role="content">
-	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search...">
+<div>
+	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search..." data-inset="true">
 		<c:forEach items="${messagelog}" var="m">
 			<li>
 				<a href="m_msgdetail.do?id=${m.id}">						

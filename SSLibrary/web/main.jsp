@@ -343,20 +343,7 @@ window.onload = function(){
 	         error : function() {
 	         }
 	      });
-	   }, 5000);
-	  
-	  //메세지 실시간 확인 아작스로 바꾸겠음
-	   setInterval(function(){
-	      $.ajax({
-	         async : 'false',
-	         url : 'msgchecked.do',
-	         success : function(data) {
-	        	 alert(data);
-	         },
-	         error : function() {
-	         }
-	      });
-	   }, 1000); */ 
+	   }, 5000); */ 
 };
 
 </script>

@@ -4,16 +4,14 @@
 <script>
 	function register(f) {
 		if (f.sort.value == null || f.sort.value == "") {
-			alert("카테고리를 선택하세요");
-			f.sort.focus();
-
+			$('#sort').popup('open');
 		} else {
-			var c = confirm('등록 하시겠습니까?');
-			if (c == true) {
+			$('#registers').popup('open');
+			$("#registerbutton").click(function() {
 				f.action = 'm_boardwriteimpl.do';
 				f.method = 'POST';
 				f.submit();
-			};
+			});
 		}
 	}
 </script>
@@ -34,4 +32,29 @@
 	<br>
 	<input type="button" class="btn btn-default" value="등록" onclick="register(this.form)">
 </form>
+
+<!-- popup -->
+
+<div data-role="popup" id="registers">
+	<div data-role="header">
+		<h1>등록</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>등록 하시겠습니까?</h2>
+		<button type="button" id="registerbutton">등록</button>
+	</div>
+</div>
+
+<div data-role="popup" id="sort">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>카테고리를 선택하세요</h2>
+	</div>
+</div>
     

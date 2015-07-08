@@ -127,7 +127,7 @@ public class M_MainControl {
 								msgchecknumber += 1;
 							}
 						}
-						mv.addObject("m_center", "m_center.jsp");
+						mv = new ModelAndView("redirect:/m_center.do");
 					} else {
 						mv.addObject("m_center", "m_login.jsp");
 					}

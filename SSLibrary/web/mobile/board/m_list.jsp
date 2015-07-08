@@ -7,7 +7,7 @@
 </c:if>
 <div>
 	<ul id="list" data-role="listview" data-filter="true"
-		data-filter-placeholder="Search...">
+		data-filter-placeholder="Search..." data-inset="true">
 		<c:forEach items="${boardlist}" var="b">
 			<li><a href="m_boarddetail.do?id=${b.id}">
 					<h3>${b.title}(${b.reply_num})</h3>
@@ -17,8 +17,8 @@
 						<strong>글번호 : ${b.id}</strong>
 					</p> <span class="ui-li-count">조회수 : ${b.counter}</span>
 			</a></li>
-			<c:set var="num" value="${num+5}"></c:set>
 		</c:forEach>
 	</ul>
 </div>
+<br>
 <button onclick="re();">더보기</button>

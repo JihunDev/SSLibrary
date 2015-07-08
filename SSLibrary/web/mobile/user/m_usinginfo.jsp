@@ -35,8 +35,8 @@
 	}
 </script>
 <h2>좌석 이용 내용</h2>
-<div data-role="content">
-	<ul data-role="listview">
+<div>
+	<ul data-role="listview" data-inset="true">
 		<li>
 			<h3>사용좌석 : ${userseat.s_id}번좌석</h3>
 			<P>사용시간</P>
@@ -47,6 +47,7 @@
 		</li>
 	</ul>
 </div>
+<br>
 <c:if test="${userseat.s_id != null}">
 	<div class="ui-grid-b">
 		<div class="ui-block-a">
@@ -64,8 +65,9 @@
 <c:if test="${userseat.s_id == null}">
 	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
 </c:if>
+
 <h2>도서 이용 내용</h2>
-<div data-role="content">
+<div>
 	<ul data-role="listview">
 		<c:forEach items="${booklist}" var="book" varStatus="status">
 			<li>
@@ -76,7 +78,7 @@
 				<p class="ui-li-aside">
 					<strong>연장횟수 : ${book[4]}</strong>
 				</p>
-			</li>
+			</li>			
 			<div class="ui-grid-a">
 				<div class="ui-block-a">
 					<a href="javascript:;"

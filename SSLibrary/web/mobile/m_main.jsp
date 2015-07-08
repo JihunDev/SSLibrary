@@ -73,8 +73,8 @@ $(document).bind('mobileinit',function(){
 			<jsp:include page="${m_center}" />
 		</div>
 		<div data-role="footer" data-position="fixed">
-			<a href="#" data-rel="back"
-				class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
+			<!-- <a href="#" data-rel="back"
+				class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a> -->
 		</div>
 	</div>
 </body>

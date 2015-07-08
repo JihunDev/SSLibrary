@@ -4,7 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.SeatLogMapper">
 	<select id="selectseatlog" resultType="seatlog" parameterType="seatlog">
-		SELECT * FROM A_SEATLOG WHERE U_ID=#{u_id}
+		SELECT * FROM A_SEATLOG WHERE
+		<choose>
+			<when test="u_id == null">
+		 		S_ID=#{s_id}
+		 	</when>
+			<when test="s_id == 0">
+		 		U_ID=#{u_id}
+		 	</when>
+		</choose>
 	</select>
 
 	<select id="selectseatlogs" resultType="seatlog">

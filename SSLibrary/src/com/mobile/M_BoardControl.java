@@ -85,6 +85,7 @@ public class M_BoardControl {
 		}
 
 		try {
+			System.out.println(board);
 			biz.register(board);
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -156,7 +157,7 @@ public class M_BoardControl {
 	}
 
 	@RequestMapping("/m_boardmodifyimpl.do")
-	public ModelAndView boardmodifyimpl(BoardUploadCommand com) {
+	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
 		System.out.println("com "+com);

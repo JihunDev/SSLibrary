@@ -80,7 +80,7 @@ setInterval( function() {
 		<!-- weather widget start -->
 		<div id="m-booked-weather-bl250-17526" style="box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;">
 			<a style="margin : 0 auto;" href="//booked.kr/weather/seoul-18406" class="booked-wzs-250-175"
-				style="background-color: #fa8b2a;">
+				style="background-color: #fa9034;">
 				<div class="booked-wzs-250-175-data wrz-18">
 					<div class="booked-wzs-250-175-right">
 						<div class="booked-wzs-day-deck">

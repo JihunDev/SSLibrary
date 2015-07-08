@@ -5,8 +5,7 @@
 <!-- mapper의 클래스 이름이 들어가야함 -->
 <mapper namespace="com.mybatis.mapper.MessageLogMapper">
 	<select id="selectmessagelogs" resultType="messagelog">
-		SELECT * FROM
-		A_MESSAGELOG
+		SELECT * FROM A_MESSAGELOG ORDER BY 7 DESC
 	</select>
 
 	<select id="selectmessagelog" parameterType="messagelog"
@@ -16,7 +15,7 @@
 	
 	<select id="selectidmessagelogs" parameterType="messagelog"
 		resultType="messagelog">
-		SELECT * FROM A_MESSAGELOG WHERE U_ID = #{u_id}
+		SELECT * FROM A_MESSAGELOG WHERE U_ID = #{u_id} ORDER BY 7 DESC
 	</select>
 
 	<insert id="insertmessagelog" parameterType="messagelog">

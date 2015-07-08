@@ -365,12 +365,24 @@ public class SeatControl {
 	}
 	// 관리자의 특정 사용자의 좌석 대여 내역 검색
 	@RequestMapping("/adminseatlogsearch.do")
-	public ModelAndView adminseatlogsearch(String search, HttpServletRequest request){
+	public ModelAndView adminseatlogsearch(String search, String issearch, HttpServletRequest request){
 		ArrayList<Object> seatloglist = null;
 		ModelAndView mv = new ModelAndView("main");
 		
+		SeatLog seatlog = null;
+		switch(issearch){
+		case "u_id":
+			String u_id = search;
+			seatlog = new SeatLog(u_id, 0);
+			break;
+		case "s_id":
+			int s_id = Integer.parseInt(search);
+			seatlog = new SeatLog(null, s_id);
+			break;		
+		}
+		
 		try {
-			seatloglist = s_lbiz.getid(search);
+			seatloglist = s_lbiz.getid(seatlog);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

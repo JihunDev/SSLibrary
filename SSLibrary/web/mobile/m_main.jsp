@@ -23,7 +23,25 @@
         $.mobile.changePage(url, {
             changeHash : false
         });
-    }   
+    }
+   //메세지 실시간 확인
+   window.onload = function() {
+		setInterval(function() {
+			$.ajax({
+				async : 'false',
+				url : 'm_msgchecked.do',
+				data : {
+					'id' : "${user.id}"
+				},
+				success : function(data) {
+					document.getElementById("msgnumber").innerHTML = data;
+				},
+				error : function(data) {
+
+				}
+			});
+		}, 5000);
+   };
 </script>
 <style>
 

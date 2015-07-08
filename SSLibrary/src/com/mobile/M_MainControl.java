@@ -102,22 +102,35 @@ public class M_MainControl {
 
 	@RequestMapping("/m_login.do")
 	public ModelAndView m_login(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("mobile/m_main");
+		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		ArrayList<Object> list = new ArrayList<Object>();
 		User result = null;
+		ArrayList<Object> list = new ArrayList<Object>();
 		int msgchecknumber = 0;
 
 		try {
-			if (id == null || id.equals("")) {//값이 없으면
-				mv.addObject("m_center", "m_login.jsp");
+			if (id == null || id.equals("")) {
+				User sessionuser = (User) session.getAttribute("user");
+				if (sessionuser != null) {
+					String sessionid = sessionuser.getId();
+					result = (User) userbiz.get(new User(sessionid));
+					list = messagelogsearchbiz.getid(new MessageLog(sessionid));
+					for (Object obj : list) {
+						MessageLog log = (MessageLog) obj;
+						String read = log.getRead();
+						if (read.equals("n")) {
+							msgchecknumber += 1;
+						}
+					}
+					mv = new ModelAndView("redirect:/m_center.do");
+				}
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
-				if (result.getIsadmin().equals("d")) {//정지회원이면
-					mv.addObject("m_center", "m_login.jsp");
+				if (result.getIsadmin().equals("d")) {
+
 				} else {
 					if (result != null && (result.getPwd()).equals(pwd)) {
 						for (Object obj : list) {
@@ -136,10 +149,8 @@ public class M_MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("user", result);
-		System.out.println("세션 정보 : "+ result);
 		session.setAttribute("msgcheck", msgchecknumber);
-		System.out.println("로그인 메세지 : "+ msgchecknumber);
+		session.setAttribute("user", result);
 		return mv;
 	}
 

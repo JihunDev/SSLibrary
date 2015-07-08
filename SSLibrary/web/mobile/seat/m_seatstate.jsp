@@ -12,13 +12,13 @@
 	// 좌석 등록 함수	
 	function register(f) {
 		var s_id = f.s_id.value;
-		var c = confirm(s_id + "번 자리를 등록하시겠습니까?");
-		
-		if (c == true) {
+		$('#registerMsg').popup('open');
+		$("#regstermsgbutton").click(function() {
 			f.action = "m_userseatregister.do?s_id=" + s_id;
 			f.method = "POST";
 			f.submit();
-		}
+		});
+
 	}
 	//회원의 메세지 전송 함수
 	function sendMsg(f) {
@@ -31,46 +31,44 @@
 	}
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
-		alert("이미 예약된 좌석입니다. ");
+		$('#registeredSeat').popup('open');
 	}
 	// 사용자가 수리 중인 좌석을 클릭한 경우
 	function repairState() {
-		alert("수리 중입니다");
+		$('#repairState').popup('open');
 	}
 	// 예약한 사람이 다른 빈 좌석을 클릭한 경우
 	function registeredUser() {
-		alert("이미 좌석을 예약하셨습니다.");
+		$('#registeredUser').popup('open');
 	}
 	// 메세지 전송
 	function sendMsgImpl(f) {
+		$('#sendMsg').popup('close');
 		// 수신자 좌석 정보
 		var s_id = f.receiver_sid.value;
 		// 발신자
 		var sender_id = f.sender_uid.value;
 		// 내용
 		var text = f.textarea.value;
-
-		var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
-		if (c == true) {
-			$.ajax({
-				type : 'post',
-				data : {
-					's_id_str' : s_id,
-					'sender_id' : sender_id,
-					'text' : text
-				},
-				async : 'false',
-				url : 'm_msgsendimpl.do',
-				success : function(data) {
-					alert(s_id + "번 좌석으로 메세지를 전송하였습니다.");
-					$('#sendMsg').popup('close');
-				},
-				error : function() {
-					alert("오류로 인해 메세지가 전송되지 않았습니다.");
-					$('#sendMsg').popup('close');
-				}
-			});
-		}
+		//$('#sendMsgImpls').popup('open');
+		//$("#sendMsgImplbutton").click(function() {
+		$.ajax({
+			type : 'post',
+			data : {
+				's_id_str' : s_id,
+				'sender_id' : sender_id,
+				'text' : text
+			},
+			async : 'false',
+			url : 'm_msgsendimpl.do',
+			success : function(data) {
+				$('#sendMsgImplok').popup('open');
+			},
+			error : function() {
+				$('#sendMsgImplfail').popup('open');
+			}
+		});
+		//});
 	}
 </script>
 
@@ -139,8 +137,8 @@
 </style>
 
 <h3>열람실 좌석 현황</h3>
-<button  class="door"
-	style="border-radius: 0 0 20px 0; width : 1px; border-top: 3px solid black;"></button>
+<button class="door"
+	style="border-radius: 0 0 20px 0; width: 1px; border-top: 3px solid black;"></button>
 <br>
 <div id="seattable">
 	<c:forEach items="${seatlist}" var="s" varStatus="i">
@@ -220,7 +218,8 @@
 		</c:choose>
 	</c:forEach>
 </div>
-<!--   Sending Message Part (User) -->
+
+<!--  popup -->
 <div data-role="popup" id="sendMsg">
 	<div data-role="header">
 		<h1>메세지전송</h1>
@@ -239,5 +238,82 @@
 	</div>
 </div>
 
+<div data-role="popup" id="registerMsg">
+	<div data-role="header">
+		<h1>좌석 등록</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>등록 하시겠습니까?</h2>
+		<button type="button" id="regstermsgbutton">등록</button>
+	</div>
+</div>
 
+<div data-role="popup" id="registeredSeat">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>이미 예약된 좌석입니다.</h2>
+	</div>
+</div>
 
+<div data-role="popup" id="repairState">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>수리 중입니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="registeredUser">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>이미 좌석을 예약하셨습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="sendMsgImpls">
+	<div data-role="header">
+		<h1>메세지 전송 확인</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>전송 하시겠습니까?</h2>
+		<button type="button" id="sendMsgImplbutton">확인</button>
+	</div>
+</div>
+
+<div data-role="popup" id="sendMsgImplok">
+	<div data-role="header">
+		<h1>메세지 전송 확인</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>메세지를 전송하였습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="sendMsgImplfail">
+	<div data-role="header">
+		<h1>메세지 전송 확인</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>오류로 인해 메세지가 전송되지 않았습니다.</h2>
+	</div>
+</div>
+    

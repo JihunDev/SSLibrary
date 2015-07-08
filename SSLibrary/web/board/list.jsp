@@ -86,46 +86,31 @@ a {
 }
 </style>
 <script>
-
+function getBoard(f){
+ 	 f.action="boardsearch.do";
+	 f.method="post";
+	 f.submit();
+}
 </script>
-
-
-
-<%-- 
-현재 페이지 (pageno) :
-<%=pageno%><br />
-전체 데이터 수 (total_record) :
-<%=total_record%><br />
-한페이지 당 레코드 수 (page_per_record_cnt) :
-<%=page_per_record_cnt%><br />
-한페이지 당 보여줄 페지 번호 수 (group_per_page_cnt) :
-<%=group_per_page_cnt%><br />
-
-<hr />
-레코드 시작 번호 (record_start_no) :
-<%=record_start_no%><br />
-레코드 끝 번호 (record_end_no) :
-<%=record_end_no%><br />
-전체페이지 수 (total_page) :
-<%=total_page%><br />
-<br>
-공지사항 전체 레코드 수 (boardlist_length) :${boardlist_length}
-<br />
-<hr />
-현재 그룹번호 [1] (group_no):
-<%=group_no%><br />
-현재 그룹 시작 번호(page_sno):
-<%=page_sno%><br />
-현재 그룹 끝 번호 (page_eno):
-<%=page_eno%><br />
-이전 페이지 번호 (prev_pageno)
-<%=prev_pageno%><br />
-다음 페이지 번호 (next_pageno)
-<%=next_pageno%><br />
-<hr />
- --%>
 <div class="fieldsetform">
-<fieldset>
+<form>
+	<input type="hidden" name="sort" value="<%=sort%>">
+	<select id="issearch" name="issearch" class="form-control input-sm">
+		<option value="id">ID</option>
+		<option value="ct">제목+내용</option>
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+	</select>
+	
+	<div class="input-group">
+		<input type="text" id="search" name="search" class="form-control input-sm" placeholder="Search for...">
+		<span class="input-group-btn">
+			<button class="btn btn-default btn-sm" type="button" onclick="getBoard(this.form);">검색</button>
+		</span>
+	</div>
+	<!-- /input-group -->
+</form>
+	<fieldset>
 <legend align="center">board list</legend>
 <table class="table table-hover">
 	<thead>
@@ -158,14 +143,14 @@ a {
 </table>
 
 <hr>
-<a href="boardmain.do?sort=<%=sort%>&pageno=1">[맨앞으로]</a>
-<a href="boardmain.do?sort=<%=sort%>&pageno=<%=prev_pageno%>">[이전]</a>
+<a href="boardmain.do?${search}sort=<%=sort%>&pageno=1">[맨앞으로]</a>
+<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=prev_pageno%>">[이전]</a>
 <%if(page_eno == 0){
-	%><b><a href="boardmain.do?sort=<%=sort%>&pageno=1">[1]</a></b><%
+	%><b><a href="boardmain.do?${search}sort=<%=sort%>&pageno=1">[1]</a></b><%
 }else{
 	for(int i =page_sno;i<=page_eno;i++){
 %>
-<a href="boardmain.do?sort=<%=sort%>&pageno=<%=i%>"> <%
+<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=i%>"> <%
  	if(pageno == i){
  %>
 	<b>[<%=i%>]
@@ -187,8 +172,8 @@ a {
 	}}
 %>
 
-<a href="boardmain.do?sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
-<a href="boardmain.do?sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
+<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
+<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
 
 <c:set var="loginuser_isadmin" value="${user.isadmin}" />
 <%

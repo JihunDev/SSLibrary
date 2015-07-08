@@ -78,6 +78,13 @@ public class Board {
 		this.content = content;
 		this.sort = sort;
 	}
+	public Board(String u_id, String title, String content, String sort) {
+		super();
+		this.u_id = u_id;
+		this.content = content;
+		this.title = title;
+		this.sort = sort;
+	}
 
 
 	public Board(int id, String u_id, int counter, String title, String content, String reg_date, String sort, String file_name,

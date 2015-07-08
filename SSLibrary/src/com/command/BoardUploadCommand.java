@@ -29,6 +29,17 @@ public class BoardUploadCommand {
 		this.reg_number = reg_number;
 	}
 
+	
+	public BoardUploadCommand(String u_id, String title, String content,
+			String sort) {
+		super();
+		this.u_id = u_id;
+		this.title = title;
+		this.content = content;
+		this.sort = sort;
+	}
+
+
 	public int getId() {
 		return id;
 	}

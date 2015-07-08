@@ -47,7 +47,6 @@
 		</li>
 	</ul>
 </div>
-<br>
 <c:if test="${userseat.s_id != null}">
 	<div class="ui-grid-b">
 		<div class="ui-block-a">
@@ -62,13 +61,14 @@
 	</div>
 </c:if>
 <input type="hidden" id="qt" value="${qt}">
+<br>
 <c:if test="${userseat.s_id == null}">
 	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
 </c:if>
 
 <h2>도서 이용 내용</h2>
 <div>
-	<ul data-role="listview">
+	<ul data-role="listview" data-inset="true">
 		<c:forEach items="${booklist}" var="book" varStatus="status">
 			<li>
 				<h3>도서번호 : ${book[0]}</h3>
@@ -78,7 +78,7 @@
 				<p class="ui-li-aside">
 					<strong>연장횟수 : ${book[4]}</strong>
 				</p>
-			</li>			
+			</li>
 			<div class="ui-grid-a">
 				<div class="ui-block-a">
 					<a href="javascript:;"
@@ -94,4 +94,5 @@
 		</c:forEach>
 	</ul>
 </div>
+<br>
 <a href="m_bookloglist.do" data-role="button">내역</a>

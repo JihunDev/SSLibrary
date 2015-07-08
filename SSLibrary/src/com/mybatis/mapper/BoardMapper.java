@@ -13,12 +13,12 @@ public interface BoardMapper {
 
 	public ArrayList<Object> selectboards();
 
-	public ArrayList<Object> selecttitleboards(Object obj);
+//	public ArrayList<Object> selecttitleboards(Object obj);
 	
 	public ArrayList<Object> selectsearchboards(Object obj);
 	
 
-	public ArrayList<Object> selectcontentboards(Object obj);
+//	public ArrayList<Object> selectcontentboards(Object obj);
 
 	public ArrayList<Object> selectidboards(Object obj);
 

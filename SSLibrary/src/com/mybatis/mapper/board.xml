@@ -12,17 +12,17 @@
 		SELECT * FROM A_BOARD WHERE ID = #{id}
 	</select>
 
-	<select id="selecttitleboards" parameterType="java.lang.String" resultType="board">
-		SELECT * FROM A_BOARD WHERE TITLE LIKE '%'||#{s}||'%'
-	</select>
+<!-- 	<select id="selecttitleboards" parameterType="java.lang.String" resultType="board"> -->
+<!-- 		SELECT * FROM A_BOARD WHERE TITLE LIKE '%'||#{s}||'%' -->
+<!-- 	</select> -->
 
-	<select id="selectcontentboards" parameterType="java.lang.String" 	resultType="board">
-		SELECT * FROM A_BOARD WHERE CONTENT LIKE '%'||#{s}||'%'
-	</select>
+<!-- 	<select id="selectcontentboards" parameterType="java.lang.String" 	resultType="board"> -->
+<!-- 		SELECT * FROM A_BOARD WHERE CONTENT LIKE '%'||#{s}||'%' -->
+<!-- 	</select> -->
 
-	<select id="selectwriterboards" parameterType="java.lang.String" resultType="board">
-		SELECT * FROM A_BOARD WHERE U_ID LIKE '%'||#{s}||'%' 
-	</select>
+<!-- 	<select id="selectwriterboards" parameterType="java.lang.String" resultType="board"> -->
+<!-- 		SELECT * FROM A_BOARD WHERE U_ID LIKE '%'||#{s}||'%'  -->
+<!-- 	</select> -->
 
 	<select id="selectidboards" parameterType="java.lang.String"	resultType="board">
 		SELECT * FROM A_BOARD WHERE SORT = #{s} AND REG_NUMBER IN(0) ORDER BY 1 DESC
@@ -59,8 +59,7 @@
 
 	<insert id="insertboard" parameterType="board">
 		INSERT INTO A_BOARD
-		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title,jdbcType=VARCHAR},#{content},SYSDATE,#{sort},#{file_name,jdbcType=VARCHAR},#{reg_number})
-
+		VALUES(BOARD_SQ.NEXTVAL,#{u_id},0,#{title,jdbcType=VARCHAR},#{content},SYSDATE,#{sort},#{file_name,jdbcType=VARCHAR},#{reg_number});
 		<selectKey resultType="board">
 			SELECT * FROM A_BOARD WHERE ID = #{id}
 		</selectKey>
@@ -73,26 +72,14 @@
 
 	<update id="updateboard" parameterType="board">
 		UPDATE A_BOARD SET
-		<if test="title != null "> TITLE = #{title}, FILE_NAME=#{file_name,
-			jdbcType=VARCHAR},</if>
+		<if test="title != null "> TITLE = #{title}, FILE_NAME=#{file_name, jdbcType=VARCHAR},</if>
 		CONTENT = #{content}, SORT = #{sort} WHERE ID = #{id}
 	</update>
 
 	<update id="updatecounterboard" parameterType="board">
 		UPDATE A_BOARD SET COUNTER = COUNTER+1 WHERE ID = #{id}
 	</update>
-	
-<!-- 	SELECT * FROM A_BOARD WHERE U_ID = 'id01' AND SORT='notice' AND REG_NUMBER='0';
 
-SELECT * FROM A_BOARD WHERE TITLE LIKE '%메%' AND SORT='notice' AND REG_NUMBER='0';
-
-SELECT * FROM A_BOARD WHERE CONTENT LIKE '%메%' AND SORT='notice' AND REG_NUMBER='0';
-
-SELECT * FROM A_BOARD WHERE (TITLE LIKE '%메%' OR CONTENT LIKE '%메%') AND SORT='notice' AND REG_NUMBER='0';
- -->	
-	
-	
-	
 	
 </mapper>
 

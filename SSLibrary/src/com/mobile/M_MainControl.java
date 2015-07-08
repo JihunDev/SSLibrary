@@ -106,19 +106,18 @@ public class M_MainControl {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		User result = null;
 		ArrayList<Object> list = new ArrayList<Object>();
+		User result = null;
 		int msgchecknumber = 0;
 
 		try {
-			if (id == null || id.equals("")) {
+			if (id == null || id.equals("")) {//값이 없으면
 				mv.addObject("m_center", "m_login.jsp");
-			
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
-				if (result.getIsadmin().equals("d")) {
-		
+				if (result.getIsadmin().equals("d")) {//정지회원이면
+					mv.addObject("m_center", "m_login.jsp");
 				} else {
 					if (result != null && (result.getPwd()).equals(pwd)) {
 						for (Object obj : list) {
@@ -137,10 +136,10 @@ public class M_MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("msgcheck", msgchecknumber);
 		session.setAttribute("user", result);
-		session.setAttribute("id", result.getId());
-
+		System.out.println("세션 정보 : "+ result);
+		session.setAttribute("msgcheck", msgchecknumber);
+		System.out.println("로그인 메세지 : "+ msgchecknumber);
 		return mv;
 	}
 

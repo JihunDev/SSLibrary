@@ -91,9 +91,14 @@ function getBoard(f){
 	 f.method="post";
 	 f.submit();
 }
+$(document).ready(function(){
+	  	if(<%=page_eno%>==0){
+			alert("검색결과가 없습니다.");
+		}   
+	});
 </script>
 <div class="fieldsetform">
-<form>
+<form class="form-inline">
 	<input type="hidden" name="sort" value="<%=sort%>">
 	<select id="issearch" name="issearch" class="form-control input-sm">
 		<option value="id">ID</option>
@@ -109,7 +114,7 @@ function getBoard(f){
 		</span>
 	</div>
 	<!-- /input-group -->
-</form>
+
 	<fieldset>
 <legend align="center">board list</legend>
 <table class="table table-hover">
@@ -188,5 +193,5 @@ function getBoard(f){
       }
    }
 %>
-</fieldset>
+</fieldset></form>
 </div>

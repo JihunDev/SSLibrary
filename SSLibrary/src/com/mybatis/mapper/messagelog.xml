@@ -20,7 +20,7 @@
 	</select>
 
 	<insert id="insertmessagelog" parameterType="messagelog">
-		INSERT INTO A_MESSAGELOG VALUES(MESSAGELOG_SQ.NEXTVAL,#{u_id},#{s_id},#{sender_id},#{text},'y',SYSDATE,null)
+		INSERT INTO A_MESSAGELOG VALUES(MESSAGELOG_SQ.NEXTVAL,#{u_id},#{s_id},#{sender_id},#{text},'n',SYSDATE,null)
 		<selectKey resultType="messagelog">
 			SELECT * FROM A_MESSAGELOG WHERE
 			ID = #{id}

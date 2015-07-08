@@ -59,8 +59,7 @@ public class BoardBiz implements Biz, SearchBiz,UpdateAndReturnBiz {
 
 	@Override
 	public ArrayList<Object> getwriter(Object obj) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dao2.searchwriter(obj);
 	}
 	//리플 받아오는 용으로 사용
 	@Override

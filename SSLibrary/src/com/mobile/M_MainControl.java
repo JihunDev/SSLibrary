@@ -102,7 +102,7 @@ public class M_MainControl {
 
 	@RequestMapping("/m_login.do")
 	public ModelAndView m_login(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
@@ -112,23 +112,8 @@ public class M_MainControl {
 
 		try {
 			if (id == null || id.equals("")) {
-				User sessionuser = (User) session.getAttribute("user");
-				String sessionid = sessionuser.getId();
-				result = (User) userbiz.get(new User(sessionid));
-				list = messagelogsearchbiz.getid(new MessageLog(sessionid));
-
-				if (result.getIsadmin().equals("d")) {
-		
-				} else {
-					for (Object obj : list) {
-						MessageLog log = (MessageLog) obj;
-						String read = log.getRead();
-						if (read.equals("n")) {
-							msgchecknumber += 1;
-						}
-					}
-					mv = new ModelAndView("redirect:/m_center.do");
-				}
+				mv.addObject("m_center", "m_login.jsp");
+			
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
@@ -143,7 +128,7 @@ public class M_MainControl {
 								msgchecknumber += 1;
 							}
 						}
-						mv = new ModelAndView("redirect:/m_center.do");
+						mv.addObject("m_center", "m_center.jsp");
 					} else {
 						mv.addObject("m_center", "m_login.jsp");
 					}
@@ -154,6 +139,7 @@ public class M_MainControl {
 		}
 		session.setAttribute("msgcheck", msgchecknumber);
 		session.setAttribute("user", result);
+		session.setAttribute("id", result.getId());
 
 		return mv;
 	}

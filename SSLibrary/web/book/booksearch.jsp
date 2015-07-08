@@ -130,7 +130,6 @@ $(document).ready(function(){
 
 
 <div class="fieldsetform">
-<input type="hidden" id="isdelete" value="${isdelete}">
 <div id="book_center">
 <form class="form-inline">
  <select id="issearch" name="issearch" class="form-control input-sm"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>

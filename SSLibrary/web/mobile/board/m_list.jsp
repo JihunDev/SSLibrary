@@ -5,7 +5,7 @@
 <c:if test="${sortname !='notice'}">
 	<a href="m_boardwrite.do" class="ui-btn">µî·Ï</a>
 </c:if>
-<div data-role="content">
+<div>
 	<ul id="list" data-role="listview" data-filter="true"
 		data-filter-placeholder="Search...">
 		<c:forEach items="${boardlist}" var="b">

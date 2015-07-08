@@ -21,7 +21,27 @@
         $.mobile.changePage(url, {
             changeHash : false
         });
-    }
+    };
+	window.onload = function() {
+		setInterval(function() {
+			$.ajax({
+				async : 'false',
+				url : 'm_msgchecked.do',
+				data: {
+					'id' : "${user.id}"
+				},
+				success : function(data) {
+					display(data);
+				},
+				error : function(data) {
+
+				}
+			});
+		}, 5000);
+		function display(data) {
+			document.getElementById("msgnumber").innerHTML = data;
+		};
+	};
 </script>
 <style>
 </style>

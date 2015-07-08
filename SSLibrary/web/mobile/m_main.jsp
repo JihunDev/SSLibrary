@@ -44,33 +44,26 @@
 </style>
 </head>
 <body>
-	<div data-role="page" data-add-back-btn="true">
-		<div data-role="panel" id="myPanel" data-display="overlay"
-			style="background-color: #c2d9eb;">
-			<h2>${user.name}님 환영합니다.</h2>
-			<img width="150px" height="150px"
-				style="border: 5px solid #256799; border-radius: 120px; background-position: center center;"
-				src="img/user/${user.img}"> <a
-				href="m_modify.do?id=${user.id}" data-role="button">개인정보수정</a> <a
-				href="m_logout.do" data-role="button">logout</a>
-		</div>
-		<div data-role="header">
-			<c:if test="${user != null}">
-				<a href="#myPanel"
-					class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext">Open</a>
-				<a href="m_center.do"
-					class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext">Home</a>
-			</c:if>
-			<h1>SSLibrary</h1>
-		</div>
-		<div data-role="main" class="ui-content"
-			style="background-image: url(img/mobile/m_back.jpg); background-size: 100% 100%; background-attachment: scroll;">
-			<jsp:include page="${m_center}" />
-		</div>
-		<div data-role="footer">
-			<a href="#" data-rel="back"
-				class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
-		</div>
-	</div>
+   <div data-role="page" data-add-back-btn="true" data-position="fixed" class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
+      <div data-role="panel" id="myPanel" data-display="overlay"  style="background-color : #c2d9eb;">
+         <h2>${user.name} 님 환영합니다.</h2>
+         <img width="150px" height="150px"  style=" border: 5px solid #256799; border-radius: 120px; background-position: center center;" src="img/user/${user.img}">
+         <a href="m_modify.do?id=${user.id}" data-role="button">개인정보수정</a>
+         <a href="m_logout.do" data-role="button">logout</a>
+      </div>
+      <div data-role="header" class="ui-header ui-bar-a ui-header-fixed slidedown">
+         <c:if test="${user != null}">
+             <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext">Open</a>
+            <a href="m_center.do" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext">Home</a>
+         </c:if>
+         <h1>SSLibrary</h1>
+      </div>
+      <div data-role="main" class="ui-content ui-content jqm-content jqm-fullwidth jqm-fullheight" style="background-image: url(img/mobile/m_back.jpg); background-size : 100% 100%; background-attachment : scroll;">
+                   <jsp:include page="${m_center}" />
+      </div>
+      <div data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup">
+         <a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
+      </div>
+   </div>
 </body>
 </html>

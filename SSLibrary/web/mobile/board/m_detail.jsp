@@ -14,7 +14,7 @@ tbody th {
 
 <script>
 	function del(f) {
-		$('#del').popup('open');
+		$('#dels').popup('open');
 		$("#delbutton").click(function() {
 			f.action = 'm_boardremoveimpl.do';
 			f.method = 'POST';
@@ -23,7 +23,7 @@ tbody th {
 	}
 
 	function register(f) {
-		$('#register').popup('open');
+		$('#registers').popup('open');
 		$("#registerbutton").click(function() {
 			f.action = 'm_boardwriteimpl.do';
 			f.method = 'POST';
@@ -35,15 +35,15 @@ tbody th {
 		var reg_number = f.reg_number.value;
 		var id = f.id.value;
 		if (reg_number != 0) {
-			$('#update').popup('open');
-			$("#regstermsgbutton").click(function() {
+			$('#updates').popup('open');
+			$("#updatebutton").click(function() {
 				f.action = 'm_boardmodifyimpl.do';
 				f.method = 'POST';
 				f.submit();
 			});
 		} else {
 			$('#updatereply').popup('open');
-			$("#regstermsgbutton").click(function() {
+			$("#updatereplybutton").click(function() {
 				f.action = 'm_boardmodify.do';
 				f.method = 'POST';
 				f.submit();
@@ -87,10 +87,10 @@ tbody th {
 	<c:if test="${boarddetail.u_id == user.id}">
 		<div class="ui-grid-b">
 			<div class="ui-block-a">
-				<input type="submit" onClick="update(this.form);" value="수정">
+				<input type="button" onClick="update(this.form);" value="수정">
 			</div>
 			<div class="ui-block-b">
-				<input type="submit" onClick="del(this.form);" value="삭제">
+				<input type="button" onClick="del(this.form);" value="삭제">
 			</div>
 			<div class="ui-block-c">
 				<a href="m_boardmain.do?sort=${boarddetail.sort}" data-role="button">목록</a>
@@ -150,7 +150,7 @@ tbody th {
 
 <!-- popup -->
 
-<div data-role="popup" id="del">
+<div data-role="popup" id="dels">
 	<div data-role="header">
 		<h1>등록</h1>
 		<a href="#" data-rel="back"
@@ -162,7 +162,7 @@ tbody th {
 	</div>
 </div>
 
-<div data-role="popup" id="register">
+<div data-role="popup" id="registers">
 	<div data-role="header">
 		<h1>등록</h1>
 		<a href="#" data-rel="back"
@@ -174,7 +174,7 @@ tbody th {
 	</div>
 </div>
 
-<div data-role="popup" id="update">
+<div data-role="popup" id="updates">
 	<div data-role="header">
 		<h1>수정</h1>
 		<a href="#" data-rel="back"
@@ -197,12 +197,3 @@ tbody th {
 		<button type="button" id="updatereplybutton">수정</button>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-

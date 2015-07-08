@@ -12,18 +12,18 @@
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 <link rel="stylesheet" href="mobile/themes/jquery.mobile.icons.min.css" />
 <link rel="stylesheet" href="mobile/themes/a.css" />
+<script>
+$(document).bind('mobileinit',function(){
+	$.mobile.ajaxEnabled = 'false';
+});
+</script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
    $.mobile.defaultPageTransition = "slide";
-   function moveNoHistory(url) {
-        $.mobile.changePage(url, {
-            changeHash : false
-        });
-    }
+
    //메세지 실시간 확인
    window.onload = function() {
 		setInterval(function() {

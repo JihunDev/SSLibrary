@@ -1,46 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE>
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>SSLibrary Mobile</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes">
 <link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+   href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<link rel="stylesheet" href="mobile/themes/jquery.mobile.icons.min.css" />
-<link rel="stylesheet" href="mobile/themes/a.css" />
-<script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="mobile/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="mobile/themes/a.css" />
+  <script
+   src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
-	$.mobile.defaultPageTransition = "fade";
-	function moveNoHistory(url) {
-		$.mobile.changePage(url, {
-			changeHash : false
-		});
-	}
-	window.onload = function() {
-		setInterval(function() {
-			$.ajax({
-				async : 'false',
-				url : 'm_msgchecked.do',
-				data : {
-					'id' : "${user.id}"
-				},
-				success : function(data) {
-					document.getElementById("msgnumber").innerHTML = data;
-				},
-				error : function(data) {
+   $.mobile.defaultPageTransition = "slide";
+   function moveNoHistory(url) {
+        $.mobile.changePage(url, {
+            changeHash : false
+        });
+    }
+   
+   function contentHeight() {
+       var screen = $.mobile.getScreenHeight(),
+           header = $(".ui-header").hasClass("ui-header-fixed") ? $(".ui-header").outerHeight() - 1 : $(".ui-header").outerHeight(),
+           footer = $(".ui-footer").hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1 : $(".ui-footer").outerHeight(),
+           /* content div has padding of 1em = 16px (32px top+bottom). This step
+      can be skipped by subtracting 32px from content var directly. */
+           contentCurrent = $(".ui-content").outerHeight() - $(".ui-content").height(),
+           content = screen - header - footer - contentCurrent;
+       /* apply result */
+       $(".ui-content").height(content);
+   }
 
-				}
-			});
-		}, 5000);
-	};
+   $(document).on("pagebeforecreate", contentHeight);   
+   
 </script>
 <style>
+.ui-header, .ui-footer {
+    /*   border-width: 0 0 !important;*/
+}
 </style>
 </head>
 <body>
@@ -51,17 +52,17 @@
          <a href="m_modify.do?id=${user.id}" data-role="button">개인정보수정</a>
          <a href="m_logout.do" data-role="button">logout</a>
       </div>
-      <div data-role="header" class="ui-header ui-bar-a ui-header-fixed slidedown">
+      <div data-role="header" data-position="fixed">
          <c:if test="${user != null}">
              <a href="#myPanel" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext">Open</a>
             <a href="m_center.do" class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext">Home</a>
          </c:if>
          <h1>SSLibrary</h1>
       </div>
-      <div data-role="main" class="ui-content ui-content jqm-content jqm-fullwidth jqm-fullheight" style="background-image: url(img/mobile/m_back.jpg); background-size : 100% 100%; background-attachment : scroll;">
+      <div data-role="main" class="ui-content ui-content jqm-content jqm-fullwidth jqm-fullheight" style="background-image: url(img/mobile/m_back.jpg); background-size : 100% 100%;">
                    <jsp:include page="${m_center}" />
       </div>
-      <div data-role="footer" data-position="fixed" class="ui-footer ui-bar-a ui-footer-fixed slideup">
+      <div data-role="footer" data-position="fixed">
          <a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
       </div>
    </div>

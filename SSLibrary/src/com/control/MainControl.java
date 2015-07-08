@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -205,8 +206,11 @@ public class MainControl {
 				for (Object obj : list) {
 					MessageLog log = (MessageLog) obj;
 					String read = log.getRead();
-					if (read.equals("n")) {
-						msgchecknumber += 1;
+					String readid = log.getU_id();
+					if (readid.equals(id)) {
+						if (read.equals("n")) {
+							msgchecknumber += 1;
+						}
 					}
 				}
 				session.setAttribute("msgcheck", msgchecknumber);
@@ -367,25 +371,25 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-		HttpSession session = request.getSession();
-		int number = 0;
-		ArrayList<Object> list = new ArrayList<Object>();
+		// HttpSession session = request.getSession();
+		// int number = 0;
+		// ArrayList<Object> list = new ArrayList<Object>();
 
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
-			list = messagelogbiz.get();
-			for (Object obj : list) {
-				MessageLog numbercheck = (MessageLog) obj;
-				if (numbercheck.getRead().equals("n")) {
-					number += 1;
-				}
-			}
+			// list = messagelogbiz.get();
+			// for (Object obj : list) {
+			// MessageLog numbercheck = (MessageLog) obj;
+			// if (numbercheck.getRead().equals("n")) {
+			// number += 1;
+			// }
+			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		session.setAttribute("msgcheck", number);// 메세지 체크
+		// session.setAttribute("msgcheck", number);// 메세지 체크
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
 
@@ -443,9 +447,8 @@ public class MainControl {
 
 	@ResponseBody
 	@RequestMapping("/msgchecked.do")
-	public int msgchecked() {
+	public String msgchecked(String id) {
 		ArrayList<Object> msg_list = new ArrayList<Object>();
-
 		int msgchecknumber = 0;
 
 		try {
@@ -453,8 +456,11 @@ public class MainControl {
 			for (Object obj : msg_list) {
 				MessageLog log = (MessageLog) obj;
 				String read = log.getRead();
-				if (read.equals("n")) {
-					msgchecknumber += 1;
+				String getid = log.getU_id();
+				if (getid.equals(id)) {
+					if (read.equals("n")) {
+						msgchecknumber += 1;
+					}
 				}
 			}
 
@@ -462,6 +468,7 @@ public class MainControl {
 			e.printStackTrace();
 		}
 		System.out.println(msgchecknumber);
-		return msgchecknumber;
+		String stringmsgchecknumber = String.valueOf(msgchecknumber);
+		return stringmsgchecknumber;
 	}
 }

@@ -22,7 +22,7 @@ function register(f) {
 		alert("NAME을 입력하세요.");
 	}else{
 		var c = confirm('등록 하시겠습니까?');
-		if (c == true) {http://localhost/SSLibrary/m_register.do
+		if (c == true) {
 			f.action = 'm_registerimpl.do';
 			f.method = 'POST';
 			f.submit();

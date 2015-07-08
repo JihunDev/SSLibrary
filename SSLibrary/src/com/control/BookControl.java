@@ -71,7 +71,7 @@ public class BookControl {
 		mv.setViewName("main");
 		ArrayList<Object> list = null;
 		try {
-			list = bookbiz.get();
+			list = bookbiz.get(); //book 전체 가져오기
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -83,7 +83,7 @@ public class BookControl {
 		// 메뉴에서 처음으로 자료실을 선택할 때 전체 리스트와 요소 수 전달
 			mv.addObject("search", "search=false&");
 			mv.addObject("booklist", list);
-			mv.addObject("bookcount", String.valueOf(list.size()));	
+			mv.addObject("bookcount", String.valueOf(list.size()));  //책 갯수 전달
 		}
 
 		mv.addObject("center", "book/booksearch.jsp");
@@ -287,7 +287,7 @@ public class BookControl {
 	// 책 삭제impl
 	public ModelAndView bookremoveimpl(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("redirect:/bookmain.do?search=false");
-		Object IsDelete = null;
+/*		Object IsDelete = null;*/
 		ArrayList<Object> list = null;
 		try {
 			bookbiz.remove(id);

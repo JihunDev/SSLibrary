@@ -58,7 +58,7 @@ public class BoardDao implements Dao ,SearchDao, UpdateAndReturnDao {
 
 	@Override
 	public ArrayList<Object> searchwriter(Object obj) throws Exception {
-		return null;
+		return mapper.selectsearchboards(obj);
 	}
 
 	@Override

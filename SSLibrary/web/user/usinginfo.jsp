@@ -68,11 +68,15 @@ function returnMySeat(){
 					<td>사용시간</td>
 					<td>${userseat.start_time}~${userseat.end_time}</td>
 					<td>${userseat.renew_qt}</td>
-					<td><a class="btn btn-primary" href="javascript:;" onClick="returnMySeat();">반납</a></td><!-- 추후수정 -->
+					<c:if test="${user.isadmin() != 's'}">
+						<td><a class="btn btn-primary" href="javascript:;" onClick="returnMySeat();">반납</a></td><!-- 추후수정 -->
+					</c:if>
 				</tr>
 				<tr>
 				<tr>
-					<td colspan="4"><a class="btn btn-primary btn-block" href="seatloglist.do?id=${user.id}">이력</a></td>
+					<c:if test="${user.isadmin() != 's'}">
+						<td colspan="4"><a class="btn btn-primary btn-block" href="seatloglist.do?id=${user.id}">이력</a></td>
+					</c:if>
 				</tr>
 				<tr>
 					<td colspan="4">현재대여 도서 정보</td>
@@ -88,12 +92,10 @@ function returnMySeat(){
 						<td colspan="2">${book[2]}~${book[3]}</td>
 						<td><a class="btn btn-primary" href="javascript:;"  onClick="if (confirm('반납하시겠습니까?')) location.href='userbookremove.do?id=${book[0]}'">반납</a></td><!-- 추후수정 -->
 					</tr>
-					<c:if test="${status.last}">
-						<tr>
-							<td colspan="4"><a class="btn btn-primary btn-block" href="bookloglist.do">이력</a></td>
-						</tr>
-					</c:if>
 				</c:forEach>
+				<tr>
+					<td colspan="4"><a class="btn btn-primary btn-block" href="bookloglist.do">이력</a></td>
+				</tr>
 			</tbody>
 		</table>
 </fieldset>

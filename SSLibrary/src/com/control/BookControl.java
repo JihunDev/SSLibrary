@@ -728,17 +728,27 @@ public class BookControl {
 			System.out.println("bookid로 찾을 때 : " + bookid);
 			list = sbooklogbiz.gettitle(bookid);
 		}
+		
+		BookLog book = null;
+		
 		System.out.println("list : " + list);
 		JSONArray ja = new JSONArray();
 		for (Object obj : list) {
-			BookLog book = (BookLog) obj;
+			book = (BookLog) obj;
 			JSONObject jo = new JSONObject();
 			jo.put("id", book.getId());
 			jo.put("b_id", book.getB_id());
 			jo.put("u_id", book.getU_id());
 			jo.put("start_date", book.getStart_date());
 			jo.put("end_date", book.getEnd_date());
-			jo.put("real_date", book.getReal_date());
+			
+			String real_data = null;
+			if(book.getReal_date()==null){
+				real_data="";
+			}else{
+				real_data = book.getReal_date();
+			}
+			jo.put("real_date", real_data);
 			jo.put("renew_qt", book.getRenew_qt());
 			ja.add(jo);
 		}

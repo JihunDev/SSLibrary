@@ -4,37 +4,24 @@
 <script>
 $(document).ready(function(){
 	var borrowbook = "${borrowbook}";
-	if(borrowbook=="1"){
-		window.setTimeout(function name() {
-			$('#borrowbook1').popup('open');
-		}, 1000);
-	}else if(borrowbook=="2"){
-		window.setTimeout(function name() {
-			$('#borrowbook2').popup('open');
-		}, 1000);	
-	}else if(borrowbook=="3"){
-		window.setTimeout(function name() {
-			$('#borrowbook3').popup('open');
-		}, 1000);
+	if(borrowbook==1){
+		alert("이미 빌린 책입니다.")	
+	}else if(borrowbook==2){
+		alert("현재 도서가 0개입니다. 대여가 불가능 합니다.")	
+	}else if(borrowbook==3){
+		alert("대여가 완료되었습니다.");
 	}		
 });
 
 function rentbook(){
 	var  bookid = "${bookdetail.id}";
-	alert(bookid);
-	$('#rentbook').popup('open');
-	
-	$("#rentbookbutton").click(function() {
-		$('#rentbook').popup('close');
-		//location.href ="m_userbookregister.do?id=${bookdetail.id}";
- 		
-	});
-	
+	var c = confirm('대여하시겠습니까?');
+	if (c == true) {
+		location.href ='m_userbookregister.do?id='+bookid;
+	};			
 }
 </script>
-
 <button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
-
 <!-- 디테일 페이지 -->
 <table width="100%">
 	<tbody>
@@ -68,50 +55,3 @@ function rentbook(){
 		</tr>
 	</tbody>
 </table>
-
-
-<!-- popup -->
-<div data-role="popup" id="borrowbook1">
-	<div data-role="header">
-		<h1>알람</h1>
-		<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-	</div>
-	<div data-role="main">
-		<h2>이미 빌린 책입니다.</h2>
-	</div>
-</div>
-
-<div data-role="popup" id="borrowbook2">
-	<div data-role="header">
-		<h1>알람</h1>
-		<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-	</div>
-	<div data-role="main">
-		<h2>현재 도서가 0개입니다. 대여가 불가능 합니다.</h2>
-	</div>
-</div>
-
-<div data-role="popup" id="borrowbook3">
-	<div data-role="header">
-		<h1>알람</h1>
-		<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-	</div>
-	<div data-role="main">
-		<h2>대여가 완료되었습니다.</h2>
-	</div>
-</div>
-
-<div data-role="popup" id="rentbook">
-	<div data-role="header">
-		<h1>대여 확인</h1>
-		<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-	</div>
-	<div data-role="main" data-dismissible="false">
-		<h2>대여 하시겠습니까?</h2>
-		<button type="button" id="rentbookbutton">확인</button>
-	</div>
-</div>

@@ -50,19 +50,19 @@ function returnMySeat(){
 		<table width="670" class="table table-hover">
 			<thead>
 				<tr>
-					<th colspan="6">현재이용정보</th>
+					<th colspan="4">현재이용정보</th>
 				<tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td colspan="6">현재 예약한 열람실정보</td>
+					<td colspan="4">현재 예약한 열람실정보</td>
 				</tr>
+				
 				<tr>
 					<td>열람실 좌석</td>
 					<td>${userseat.s_id}번 좌석</td>
 					<td>연장회수</td>
 					<td><a class="btn btn-primary" href="javascript:;" onClick="extendMySeat();">연장</a></td><!-- 추후수정 -->
-					<td rowspan="2"><a class="btn btn-primary option-button" href="seatloglist.do?id=${user.id}">이력</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
 					<td>사용시간</td>
@@ -71,22 +71,28 @@ function returnMySeat(){
 					<td><a class="btn btn-primary" href="javascript:;" onClick="returnMySeat();">반납</a></td><!-- 추후수정 -->
 				</tr>
 				<tr>
-					<td colspan="6">현재대여 도서 정보</td>
+				<tr>
+					<td colspan="4"><a class="btn btn-primary btn-block" href="seatloglist.do?id=${user.id}">이력</a></td>
+				</tr>
+				<tr>
+					<td colspan="4">현재대여 도서 정보</td>
 				</tr>
 				<c:forEach items="${booklist}" var="book" varStatus="status">
-				<tr>
-					<td>도서번호 : ${book[0]}</td>
-					<td colspan="2">대여 기간</td>
-					<td><a class="btn btn-primary" href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userbookmodifyimpl.do?id=${book[0]}'">연장</a></td><!-- 추후수정 -->
-					<c:if test="${status.first}">
-						<td rowspan="2"><a class="btn btn-primary option-button" href="bookloglist.do">이력</a></td><!-- 추후수정 -->
+					<tr>
+						<td>도서번호 : ${book[0]}</td>
+						<td colspan="2">대여 기간</td>
+						<td><a class="btn btn-primary" href="javascript:;" onClick="if (confirm('연장하시겠습니까?')) location.href='userbookmodifyimpl.do?id=${book[0]}'">연장</a></td><!-- 추후수정 -->
+					</tr>
+					<tr>
+						<td>책이름 : ${book[1]}</td>
+						<td colspan="2">${book[2]}~${book[3]}</td>
+						<td><a class="btn btn-primary" href="javascript:;"  onClick="if (confirm('반납하시겠습니까?')) location.href='userbookremove.do?id=${book[0]}'">반납</a></td><!-- 추후수정 -->
+					</tr>
+					<c:if test="${status.last}">
+						<tr>
+							<td colspan="4"><a class="btn btn-primary btn-block" href="seatloglist.do?id=${user.id}">이력</a></td>
+						</tr>
 					</c:if>
-				</tr>
-				<tr>
-					<td>책이름 : ${book[1]}</td>
-					<td colspan="2">${book[2]}~${book[3]}</td>
-					<td><a class="btn btn-primary" href="javascript:;"  onClick="if (confirm('반납하시겠습니까?')) location.href='userbookremove.do?id=${book[0]}'">반납</a></td><!-- 추후수정 -->
-				</tr>
 				</c:forEach>
 			</tbody>
 		</table>

@@ -36,8 +36,13 @@
 				- contentCurrent;
 		$(".ui-content").height(content);
 	}
-
 	$(document).on("pagecontainerbeforeshow", contentHeight);
+	
+	$(document).on("pagehide", "div[data-role=main]", function(event){
+		  
+		$(event.target).remove();
+		
+	});
 </script>
 <style>
 </style>

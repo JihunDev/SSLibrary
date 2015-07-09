@@ -50,8 +50,8 @@
 		var sender_id = f.sender_uid.value;
 		// ³»¿ë
 		var text = f.textarea.value;
-		//$('#sendMsgImpls').popup('open');
-		//$("#sendMsgImplbutton").click(function() {
+		$('#sendMsgImpls').popup('open');
+		$("#sendMsgImplbutton").click(function() {
 		$.ajax({
 			type : 'post',
 			data : {

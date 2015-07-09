@@ -90,11 +90,6 @@ tr td:last-child, tr th:last-child {
 	border-bottom-right-radius: 6px;
 }
 
-.option-button {
-	height: 90px;
-	line-height: 70px;
-}
-
 .centered-form {
 	margin-top: 40px;
 	margin-bottom: 40px;

@@ -4,34 +4,40 @@
 <script>
 	$(document).ready(function() {
 		if ("${returnqt}" == 1) {
-			alert("대여반납이 확인되었습니다.");
+			$('#bookokpopup').popup('open');
 		}
 		var qt = $('#qt').val();
 		if (qt == 1) {
-			alert("더 이상 연장할 수 없습니다.(최대 2번 연장 가능)");
+			$('#bookfailpopup').popup('open');
 		} else if (qt == 2) {
-			alert("도서 대여 기간 연장이 완료되었습니다.");
+			$('#bookokpopup').popup('open');
 		}
 	});
 
 	function extendMySeat() {
 		if ('${userseat.renew_qt}' != 2) {
-			var c = confirm("${userseat.s_id}번 좌석을 연장하시겠습니까??");
-			if (c == true) {
+			$('#extendMySeat').popup('open');
+			$("#extendMySeatbutton").click(function() {
 				location.href = "m_userseatmodify.do?id=${userseat.s_id}";
-				alert("좌석 등록 기간이 연장되었습니다.");
-			}
+				window.setTimeout(function name() {
+					$('#seatuppopup').popup('open');
+				}, 1000);
+				
+			});
 		} else {
-			alert("2회 이후로 연장하실 수 없습니다.");
+			$('#seatpopup').popup('open');
 		}
 	}
 
 	function returnMySeat() {
-		var c = confirm("${userseat.s_id}번 좌석을 반납하시겠습니까??");
-		if (c == true) {
+		$('#returnMySeat').popup('open');
+		$("#returnMySeatbutton").click(function() {
 			location.href = "m_userseatremove.do?id=${userseat.s_id}";
-			alert("좌석을 반납하셨습니다.");
-		}
+			window.setTimeout(function name() {
+				$('#seatrepopup').popup('open');
+			}, 1000);
+			
+		});
 	}
 </script>
 <h2>좌석 이용 내용</h2>
@@ -65,10 +71,8 @@
 <c:if test="${userseat.s_id == null}">
 	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
 </c:if>
-
 <h2>도서 이용 내용</h2>
 <div>
-
 	<c:forEach items="${booklist}" var="book" varStatus="status">
 		<ul data-role="listview" data-inset="true">
 			<li>
@@ -94,7 +98,104 @@
 			</div>
 		</div>
 	</c:forEach>
-
 </div>
 <br>
 <a href="m_bookloglist.do" data-role="button">내역</a>
+
+
+<!-- popup -->
+
+<!-- seat -->
+<div data-role="popup" id="seatuppopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>좌석 등록 기간이 연장되었습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="seatpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>2회 이후로 연장하실 수 없습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="seatrepopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>좌석을 반납하셨습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="extendMySeat">
+	<div data-role="header">
+		<h1>좌석</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>${userseat.s_id}번 좌석을 연장하시겠습니까?</h2>
+		<button type="button" id="extendMySeatbutton">연장</button>
+	</div>
+</div>
+
+<div data-role="popup" id="returnMySeat">
+	<div data-role="header">
+		<h1>좌석</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>${userseat.s_id}번 좌석을 반납하시겠습니까?</h2>
+		<button type="button" id="returnMySeatbutton">반납</button>
+	</div>
+</div>
+
+<!-- book popup -->
+
+<div data-role="popup" id="bookokpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>대여반납이 확인되었습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="bookfailpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>더 이상 연장할 수 없습니다.(최대 2번 연장 가능)</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="bookokpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>도서 대여 기간 연장이 완료되었습니다.</h2>
+	</div>
+</div>
+
+

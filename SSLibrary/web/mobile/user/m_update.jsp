@@ -8,18 +8,18 @@ function update(f) {
 	var name = f.name.value;
 	
 	if(pwd == null || pwd == ''){
-		alert("PWD를 입력하세요.");
+		$('#pwdpopup').popup('open');
 	}else if(pwd != pwdcheck){
-		alert("비밀번호가 같지 않습니다.");
+		$('#pwdchepopup').popup('open');
 	}else if((pwd.length < 8 || pwd.length > 16) || (pwdcheck.length < 8 || pwdcheck.length > 16)){
-		alert("비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.");	
+		$('#pwdnumberpopup').popup('open');	
 	}else{
-		var c = confirm('수정 하시겠습니까?');
-		if (c == true) {
+		$('#userupdateuser').popup('open');
+		$("#updatebutton").click(function() {
 			f.action = 'm_modifyimpl.do';/* 추후 수정 */
 			f.method = 'POST';
 			f.submit();
-		};
+		});
 	}			
 }
 </script>   
@@ -40,3 +40,50 @@ function update(f) {
 		<input type="button" value="update" onclick="update(this.form);">
 	</form>
 </div>
+
+
+<div data-role="popup" id="pwdpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>PWD를 입력하세요.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdchepopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>비밀번호가 같지 않습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdnumberpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="userupdateuser">
+	<div data-role="header">
+		<h1>회원가입</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>등록 하시겠습니까?</h2>
+		<button type="button" id="updatebutton">등록</button>
+	</div>
+</div>
+

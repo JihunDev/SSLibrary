@@ -526,6 +526,8 @@ public class BookControl {
 		} else { // 연장이 2번 미만이면
 			userbookbiz.modify(book);// 유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만
 										// 되야함...
+			
+			book = (UserBook) userbookbiz.get(book); //업데이트 한 값 다시 가져옴
 
 			// booklog 업데이트
 			BookLog blog = new BookLog(id, uid);
@@ -536,7 +538,7 @@ public class BookControl {
 				BookLog logbook = (BookLog) obj;
 				BookLog logbook2 = new BookLog(logbook.getId(),
 						logbook.getB_id(), logbook.getU_id(),
-						usersbook.getRenew_qt());
+						book.getRenew_qt());
 				uprebiz.logupdate(logbook2); // 연장 정보 업데이트
 				System.out.println(logbook2);
 

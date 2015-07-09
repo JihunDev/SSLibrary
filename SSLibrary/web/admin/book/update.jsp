@@ -3,7 +3,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 function update(f){
+	var total_qt =  f.total_qt.value; //새롭게 받아온 수정할 책 전체 값
+	var originaltotal_qt = ${bookinfo.total_qt}; //원래 책 전체 값
+	var current_qt =f.current_qt.value; //원래 책 현재 대여 가능 수
+	
+	var result = 0;
+	
+	if(total_qt>originaltotal_qt){//수정값이 더 클 때
+		result = (total_qt-originaltotal_qt) + Number(current_qt);
 
+			$('input[name=current_qt]').val(result);		
+		
+	}else if(total_qt<originaltotal_qt){//수정 값이 더 작을 때
+		if(current_qt!=0 && (originaltotal_qt-total_qt)<=current_qt){
+		result =current_qt-(originaltotal_qt-total_qt);
+			$('input[name=current_qt]').val(result);		
+		}else if(current_qt!=0 && (originaltotal_qt-total_qt)>current_qt){
+			alert('남은 책보다 더 많은 수량을 줄일 수 없습니다.');
+			 f.total_qt.focus();
+		      return;
+			
+		}else{
+		
+			alert('현재 모든 책이 대여 중이어서 수량을 줄일 수 없습니다.');
+			 f.total_qt.focus();
+		      return;
+		}
+	}
+
+	if((total_qt>99999)){
+		alert('최대 넣을 수 있는 수량은 99999개 입니다.');
+		 f.total_qt.focus();
+	      return;	
+	}
 	var c = confirm('수정하시겠습니까?'); 
 	if(c==true){
 		f.action='bookmodifyimpl.do';

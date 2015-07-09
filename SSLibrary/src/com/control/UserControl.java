@@ -149,7 +149,7 @@ public class UserControl {
 				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(user_ch.getId()));
 				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
 				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
-				// seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É
+				//seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();

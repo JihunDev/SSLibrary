@@ -330,12 +330,13 @@ public class MainControl {
 
 		try {
 			biz.modify(user);
+		
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		System.out.println(user);
 		session.setAttribute("user", user);
-		mv.addObject("center", "center.jsp");
+		mv.addObject("center", "user/detail.jsp");
 		return mv;
 	}
 

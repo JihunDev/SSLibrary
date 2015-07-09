@@ -8,33 +8,33 @@ function register(f) {
 	var pwdcheck = f.pwdcheck.value;
 	var name = f.name.value;
 	if(id == null || id == ''){
-		alert("ID를 입력하세요.");
+		$('#idpopup').popup('open');
 	}else if(pwd == null || pwd == ''){
-		alert("PWD를 입력하세요.");
+		$('#pwdpopup').popup('open');
 	}else if(pwdcheck == null || pwdcheck ==''){
-		alert("비밀번호 확인을 입력바랍니다");
+		$('#pwdcheckpopup').popup('open');
 	}else if(pwd != pwdcheck){
-		alert("비밀번호가 같지 않습니다.");
+		$('#pwdchepopup').popup('open');
 	}else if((pwd.length < 8) || (pwd.length > 16) || 
 			(pwdcheck.length < 8) || (pwdcheck.length > 16)){
-		alert("비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.");	
+		$('#pwdnumberpopup').popup('open');	
 	}else if(name == null || name == ''){
-		alert("NAME을 입력하세요.");
+		$('#pwdnamepopup').popup('open');	
 	}else{
-		var c = confirm('등록 하시겠습니까?');
-		if (c == true) {
+		$('#registeruser').popup('open');
+		$("#regsterbutton").click(function() {
 			f.action = 'm_registerimpl.do';
 			f.method = 'POST';
 			f.submit();
-		};
+		});
 	}			
 }
 
 function display(data) {
 	if(data=="1"){
-		alert("사용가능");
+		$('#idcheckokpopup').popup('open');	
 	}else{
-		alert("사용불가능");
+		$('#idcheckfailpopup').popup('open');	
 	}
 }
 
@@ -68,3 +68,114 @@ function idcheck(g) {
 		<input type="button" class="btn btn-primary btn-block" value="register" onclick="register(this.form)">
 	</form>
 </div>
+
+<!-- popup -->
+
+<div data-role="popup" id="idpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>ID를 입력하세요.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>PWD를 입력하세요.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdcheckpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>비밀번호 확인을 입력바랍니다</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdchepopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>비밀번호가 같지 않습니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdnumberpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>비밀번호는 8자리 이상 16자리 이하로 사용하시기 바랍니다.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="pwdnamepopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>NAME을 입력하세요.</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="idcheckokpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>사용가능</h2>
+	</div>
+</div>
+
+<div data-role="popup" id="idcheckfailpopup">
+	<div data-role="header">
+		<h1>알람</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>사용불가능</h2>
+	</div>
+</div>
+
+
+<div data-role="popup" id="registeruser">
+	<div data-role="header">
+		<h1>회원가입</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>등록 하시겠습니까?</h2>
+		<button type="button" id="regsterbutton">등록</button>
+	</div>
+</div>
+
+
+
+
+
+
+
+

@@ -98,7 +98,7 @@ public class M_UserControl {
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		User user = null;
-
+		
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());

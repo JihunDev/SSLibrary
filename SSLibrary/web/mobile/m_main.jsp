@@ -23,38 +23,17 @@
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
 	$.mobile.defaultPageTransition = "slide";
-
-	//메세지 실시간 확인
-/* 	window.onload = function() {
-		setInterval(function() {
-			$.ajax({
-				async : 'false',
-				url : 'm_msgchecked.do',
-				data : {
-					'id' : "${user.id}"
-				},
-				success : function(data) {
-					document.getElementById("msgnumber").innerHTML = data;
-				},
-				error : function(data) {
-
-				}
-			});
-		}, 5000);
-	}; */
+	
 	//화면 높이
 	function contentHeight() {
 		var screen = $.mobile.getScreenHeight(), header = $(".ui-header")
 				.hasClass("ui-header-fixed") ? $(".ui-header").outerHeight() - 1
 				: $(".ui-header").outerHeight(), footer = $(".ui-footer")
 				.hasClass("ui-footer-fixed") ? $(".ui-footer").outerHeight() - 1
-				: $(".ui-footer").outerHeight(),
-		/* content div has padding of 1em = 16px (32px top+bottom). This step
-		can be skipped by subtracting 32px from content var directly. */
-		contentCurrent = $(".ui-content").outerHeight()
+				: $(".ui-footer").outerHeight(), contentCurrent = $(
+				".ui-content").outerHeight()
 				- $(".ui-content").height(), content = screen - header - footer
 				- contentCurrent;
-		/* apply result */
 		$(".ui-content").height(content);
 	}
 
@@ -68,7 +47,7 @@
 		class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
 		<div data-role="panel" id="myPanel" data-display="overlay"
 			style="background-color: #c2d9eb;">
-			<h2>${user.name}님 환영합니다.</h2>
+			<h2>${user.name}님환영합니다.</h2>
 			<img width="150px" height="150px"
 				style="border: 5px solid #256799; border-radius: 120px; background-position: center center;"
 				src="img/user/${user.img}"> <a
@@ -90,8 +69,10 @@
 			<jsp:include page="${m_center}" />
 		</div>
 		<div data-role="footer" data-position="fixed">
+			<c:if test="${user != null}">
 			<a href="#" data-rel="back"
 				class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
+			</c:if>
 		</div>
 	</div>
 </body>

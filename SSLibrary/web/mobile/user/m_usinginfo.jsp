@@ -39,6 +39,7 @@
 			$('#extendMySeat').popup('open');
 			$("#extendMySeatbutton").click(function() {
 				location.href = "m_userseatmodify.do?id=${userseat.s_id}";
+				$('#extendMySeat').popup('close');
 				window.setTimeout(function name() {
 					$('#seatuppopup').popup('open');
 				}, 1000);
@@ -53,6 +54,7 @@
 		$('#returnMySeat').popup('open');
 		$("#returnMySeatbutton").click(function() {
 			location.href = "m_userseatremove.do?id=${userseat.s_id}";
+			$('#returnMySeat').popup('close');
 			window.setTimeout(function name() {
 				$('#seatrepopup').popup('open');
 			}, 1000);

@@ -107,7 +107,7 @@ public class UserControl {
 		return mv;
 	}
 
-	@RequestMapping("/usermodifyimpl.do")
+	@RequestMapping("/usermodifyimpl.do")//예외처리해야함
 	public ModelAndView usermodifyimpl(HttpServletRequest request,
 			UserCommand com) {
 		System.out.println("usermodifyimpl.do com: " + com);

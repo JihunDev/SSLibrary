@@ -393,6 +393,8 @@ public class BookControl {
 		Book upbook; // 빌리려는 책 정보 가져오는 곳
 		Book upbooknew; // 대여 성공시 대여가능 수 1개 줄이기 위해 넣어줘야 하는 책 업데이트 정보
 		int current_qt = 0; // 대여 가능한 책이 몇개인지 가져오는 변수
+		
+		String isreturn = null; // 반환되었는지 여부를 알기 위한 변수 (관리자 확인 안하고 또 그책 빌릴때)
 
 		try {
 			user = (User) userbiz.get(uid); // 지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
@@ -416,7 +418,7 @@ public class BookControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		String bid = "";
+		String bid = ""; //ArrayList에서 book id 빼기 위해서 만든 변수
 
 		if (userbooklist.size() == 0) { // 대여를 한번도 안한 경우
 			overlap = 2;
@@ -433,7 +435,7 @@ public class BookControl {
 					System.out
 							.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
 					overlap = 1; // 중복된 경우
-					borrowbook = 1;
+					borrowbook = 1; //중복대여 불가
 					try {
 						upbook = (Book) bookbiz.get(id);// 현재 빌리려는 책의 정보를 가져온다.
 						mv.addObject("bookdetail", upbook);
@@ -444,6 +446,9 @@ public class BookControl {
 
 				} else {
 					overlap = 2; // 중복 안 된경우
+				}
+				if	(userbook.getIsreturn()=="y" || userbook.getIsreturn().equals("y")){//반환한경우
+					isreturn = "y";
 				}
 			}
 			System.out.println("중복 여부 : " + overlap);
@@ -457,7 +462,8 @@ public class BookControl {
 			try {
 				upbook = (Book) bookbiz.get(id); // 현재 빌리려는 책의 정보를 가져온다.
 				current_qt = upbook.getCurrent_qt(); // 대여 가능한 수 확인한다.
-
+				
+				
 				if (current_qt == 0) { // 대여 가능한 책 수량이 0일 경우
 					System.out
 							.println("---------------------대여 가능한 책 0---------------------");
@@ -468,7 +474,7 @@ public class BookControl {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				} else if (current_qt != 0 && bid != id) {// 대여가 가능할 경우
+				} else if (current_qt != 0 && bid != id && (isreturn=="y"||isreturn.equals("y"))) {// 대여가 가능할 경우
 					// 3. 대여가 가능한 경우(대여 중복이 아니면서 대여할 책이 있는 경우)
 					// upbooknew에 갯수를 한개를 빼서 업데이트 한다.
 					// userbook과 booklog에 등록한다.
@@ -503,17 +509,20 @@ public class BookControl {
 
 	@RequestMapping("/userbookmodifyimpl.do")
 	// 책 연장하기//////////////////////////////////////////
-	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id)
-			throws Exception {
+	public ModelAndView userbookmodifyimpl(HttpServletRequest request, String id){
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
 															// 가져오기
 		int isqt = 0;
 		UserBook book = new UserBook(uid, id);
-		UserBook usersbook = (UserBook) userbookbiz.get(book); // 회원이 빌렸던 책의 정보
-																// userbook에서
-																// 가져오기
+		UserBook usersbook = null;
+		try {
+			usersbook = (UserBook) userbookbiz.get(book);// 회원이 빌렸던 책의 정보 userbook에서 가져오기
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+																
 
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
 		ArrayList<Object> booklist = new ArrayList<Object>(); // 다시 usinginfo에
@@ -524,42 +533,47 @@ public class BookControl {
 			isqt = 1;
 
 		} else { // 연장이 2번 미만이면
-			userbookbiz.modify(book);// 유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만
-										// 되야함...
-			
-			book = (UserBook) userbookbiz.get(book); //업데이트 한 값 다시 가져옴
+			try {
+				userbookbiz.modify(book); // 유저의 책 정보 업데이트 -> 연장횟수 증가, 7일 증가... 2번만 되야함...
+				book = (UserBook) userbookbiz.get(book); //업데이트 한 값 다시 가져옴
+				// booklog 업데이트
+				BookLog blog = new BookLog(id, uid);
+				ArrayList<Object> booklog = new ArrayList<Object>();
+				booklog = sbooklogbiz.getid(blog); // Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
 
-			// booklog 업데이트
-			BookLog blog = new BookLog(id, uid);
-			ArrayList<Object> booklog = new ArrayList<Object>();
-			booklog = sbooklogbiz.getid(blog); // Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
+				for (Object obj : booklog) {// 새로 연장한 정보를 넣어준다.
+					BookLog logbook = (BookLog) obj;
+					BookLog logbook2 = new BookLog(logbook.getId(),
+							logbook.getB_id(), logbook.getU_id(),
+							book.getRenew_qt());
+					uprebiz.logupdate(logbook2); // 연장 정보 업데이트
+					System.out.println(logbook2);
 
-			for (Object obj : booklog) {// 새로 연장한 정보를 넣어준다.
-				BookLog logbook = (BookLog) obj;
-				BookLog logbook2 = new BookLog(logbook.getId(),
-						logbook.getB_id(), logbook.getU_id(),
-						book.getRenew_qt());
-				uprebiz.logupdate(logbook2); // 연장 정보 업데이트
-				System.out.println(logbook2);
-
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
 			System.out.println("연장 완료");
 			isqt = 2;
 		}
 
-		userbooklist = suserbookbiz.getid(uid);// userbook에서 꺼내옴(다시 usinginfo에
-												// 들어갈 정보)
-		for (Object obj : userbooklist) {
-			UserBook userbook = (UserBook) obj;
-			String bid = userbook.getB_id();// id 뽑아옴
-			Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
+		try {
+			userbooklist = suserbookbiz.getid(uid); // userbook에서 꺼내옴(다시 usinginfo에 들어갈 정보)
+			for (Object obj : userbooklist) {
+				UserBook userbook = (UserBook) obj;
+				String bid = userbook.getB_id();// id 뽑아옴
+				Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
 
-			String[] info = { bid, book1.getName(), userbook.getStart_date(),
-					userbook.getEnd_date() };
-			// 현재 이용 정보에 필요한 값 String 배열에 넣음
-			booklist.add(info);// array에 담음
+				String[] info = { bid, book1.getName(), userbook.getStart_date(),
+						userbook.getEnd_date() };
+				// 현재 이용 정보에 필요한 값 String 배열에 넣음
+				booklist.add(info);// array에 담음
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		// mv.addObject("booklist",booklist); //바뀐것 다시 넣어줌
 		session.setAttribute("booklist", booklist);
 		mv.addObject("qt", isqt);
@@ -569,8 +583,8 @@ public class BookControl {
 
 	@RequestMapping("/userbookremove.do")
 	// 반납하기 : UserBook에 반납 정보 수정,Log에 반납처리///////////////////
-	public ModelAndView userbookremove(HttpServletRequest request, String id)
-			throws Exception {
+	public ModelAndView userbookremove(HttpServletRequest request, String id){
+		
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
@@ -579,47 +593,59 @@ public class BookControl {
 
 		BookLog blog = new BookLog(id, uid);
 		ArrayList<Object> booklog = new ArrayList<Object>();
-		booklog = sbooklogbiz.getid(blog); // Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
-
-		for (Object obj : booklog) {// 새로 연장한 정보를 넣어준다.
-			BookLog logbook = (BookLog) obj;
-			BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(),
-					logbook.getU_id(), logbook.getReal_date());
-			booklogbiz.modify(logbook2); // 반납 정보 보내준다. real_date가 업데이트 됨
-			System.out.println("booklog 업데이트 완료");
-		}
+		try {
+			booklog = sbooklogbiz.getid(blog); // Booklog에서 회원이 빌렸던 책의 정보를 가져온다.
+			for (Object obj : booklog) {// 새로 연장한 정보를 넣어준다.
+				BookLog logbook = (BookLog) obj;
+				BookLog logbook2 = new BookLog(logbook.getId(), logbook.getB_id(),
+						logbook.getU_id(), logbook.getReal_date());
+				booklogbiz.modify(logbook2); // 반납 정보 보내준다. real_date가 업데이트 됨
+				System.out.println("booklog 업데이트 완료");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 
 		int returnqt = 0; // 반납했는지 안했는지
 
 		// 2. UserBook의 isreturn을 y로 바꾼다.
 		UserBook userbook = new UserBook(uid, id);
-		userbook = (UserBook) userbookbiz.get(userbook);
-		UserBook modifyuserbook = new UserBook(uid, id, "y");
-		upreuserbookbiz.logreturn(modifyuserbook); // y로 수정
+		try {
+			userbook = (UserBook) userbookbiz.get(userbook);
+			UserBook modifyuserbook = new UserBook(uid, id, "y");
+			upreuserbookbiz.logreturn(modifyuserbook); // y로 수정
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 
 		returnqt = 1;
 
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
-		ArrayList<Object> booklist = new ArrayList<Object>(); // 다시 usinginfo에
-																// 들어갈 정보
-		userbooklist = suserbookbiz.getid(uid);// userbook에서 꺼내옴(다시 usinginfo에
-												// 들어갈 정보)
-		for (Object obj : userbooklist) {
-			UserBook userbook1 = (UserBook) obj;
-			String bid = userbook1.getB_id();// id 뽑아옴
-			Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
+		ArrayList<Object> booklist = new ArrayList<Object>(); // 다시 usinginfo에 들어갈 정보
+		
+		try {
+			userbooklist = suserbookbiz.getid(uid); // userbook에서 꺼내옴(다시 usinginfo에 들어갈 정보)
+			for (Object obj : userbooklist) {
+				UserBook userbook1 = (UserBook) obj;
+				String bid = userbook1.getB_id();// id 뽑아옴
+				Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
 
-			String[] info = { bid, book1.getName(), userbook1.getStart_date(),
-					userbook1.getEnd_date() };
-			// 현재 이용 정보에 필요한 값 String 배열에 넣음
-			booklist.add(info);// array에 담음
+				String[] info = { bid, book1.getName(), userbook1.getStart_date(),
+						userbook1.getEnd_date() };
+				// 현재 이용 정보에 필요한 값 String 배열에 넣음
+				booklist.add(info);// array에 담음
+			}
+			
+			// 그 책의 qt를 1다시 증가시켜준다.
+			Book b = new Book(id);
+			sbookbiz.getnum_reply(b);
+			System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		// 그 책의 qt를 1다시 증가시켜준다.
-		Book b = new Book(id);
-		sbookbiz.getnum_reply(b);
-
-		System.out.println("회원이 반납했습니다. 관리자님 확인해주세요.");
 		mv.addObject("returnqt", returnqt);
 		session.setAttribute("booklist", booklist);
 		mv.addObject("center", "user/usinginfo.jsp");
@@ -628,14 +654,17 @@ public class BookControl {
 
 	@RequestMapping("/bookloglist.do")
 	// 자기 대여 내역 보기 (마이페이지 : 도서 이력)////////////////////
-	public ModelAndView bookloglist(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView bookloglist(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
 															// 가져오기
 		ArrayList<Object> result = new ArrayList<Object>();
-		result = sbooklogbiz.getname(uid); // uid로 가져온 booklog의 리스트들....
+		try {
+			result = sbooklogbiz.getname(uid);// uid로 가져온 booklog의 리스트들....
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 		mv.addObject("booklist", result);
 		mv.addObject("center", "book/booklist.jsp");
 		return mv;
@@ -643,14 +672,17 @@ public class BookControl {
 
 	@RequestMapping("/userbookremoveconfirm.do")
 	// 관리자가 반납한 도서 내역 확인하는 창///////////////////
-	public ModelAndView userbookremoveconfirm(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView userbookremoveconfirm(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
 															// 가져오기
 		ArrayList<Object> result = new ArrayList<Object>();
-		result = suserbookbiz.getname(uid); // 반납이 y인 유저들의 정보
+		try {
+			result = suserbookbiz.getname(uid); // 반납이 y인 유저들의 정보
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mv.addObject("userbooklist", result);
 		mv.addObject("center", "admin/book/returnbook.jsp");
 		return mv;
@@ -658,24 +690,28 @@ public class BookControl {
 
 	@RequestMapping("/userbookremoveimpl.do")
 	// 관리자가 반납한 도서 내역을 확인했을 때 userbook 지우는 것////
-	public ModelAndView userbookremoveimpl(HttpServletRequest request)
-			throws Exception {
+	public ModelAndView userbookremoveimpl(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
 															// 가져오기
 		ArrayList<Object> result = new ArrayList<Object>();
-		result = suserbookbiz.getname(uid); // 반납이 y인 유저들의 정보
-		for (Object obj : result) {
-			UserBook userbook = (UserBook) obj;
-			String userid = userbook.getU_id();
-			String bookid = userbook.getB_id();
-			userbook = new UserBook(userid, bookid); // 리스트에서 뽑아온 유저 아이디와 책 아이디를
-														// 가져온다.
-			userbookbiz.remove(userbook); // 이 객체를 userbook리스트에서 지운다.
-			System.out.println("반납확인완료");
+		try {
+			result = suserbookbiz.getname(uid); // 반납이 y인 유저들의 정보
+			for (Object obj : result) {
+				UserBook userbook = (UserBook) obj;
+				String userid = userbook.getU_id();
+				String bookid = userbook.getB_id();
+				userbook = new UserBook(userid, bookid); // 리스트에서 뽑아온 유저 아이디와 책 아이디를
+															// 가져온다.
+				userbookbiz.remove(userbook); // 이 객체를 userbook리스트에서 지운다.
+				System.out.println("반납확인완료");
+			}
+			result = suserbookbiz.getname(uid);// 다시 반납이 y인 유저들의 정보를 계속 불러온다
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		result = suserbookbiz.getname(uid);// 다시 반납이 y인 유저들의 정보를 계속 불러온다
+		
 		mv.addObject("userbooklist", result);
 		mv.addObject("center", "admin/book/returnbook.jsp");
 		return mv;
@@ -684,26 +720,36 @@ public class BookControl {
 	@ResponseBody
 	// 연체자들 정지되게 만들기 ////////////////////////////////////////////////
 	@RequestMapping("/stopborrowbook.do")
-	public String notreturnbook() throws Exception {
+	public String notreturnbook(){
 		ArrayList<Object> overduelist = null;
-		overduelist = suserbookbiz.getexpired(); // 현재시간을 기준으로 책 연체자들 가져오기
-		for (Object obj : overduelist) {
-			UserBook ub = (UserBook) obj;
-			String uid = ub.getU_id();
-			User userinfo = new User(uid, "s"); // user의 상태를 정지로 바꿔줌
-			userbiz.remove(userinfo);
+		try {
+			overduelist = suserbookbiz.getexpired();// 현재시간을 기준으로 책 연체자들 가져오기
+			for (Object obj : overduelist) {
+				UserBook ub = (UserBook) obj;
+				String uid = ub.getU_id();
+				User userinfo = new User(uid, "s"); // user의 상태를 정지로 바꿔줌
+				userbiz.remove(userinfo);
 
-			/* System.out.println(userinfo); */
-		}
+				/* System.out.println(userinfo); */
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} 
+	
 		return "회원 정지 ok";
 	}
 
 	@RequestMapping("/adminbookloglist.do")
 	// 관리자 지금까지 빌렸던 도서들 확인하기////////////////
-	public ModelAndView adminbookloglist() throws Exception {
+	public ModelAndView adminbookloglist(){
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> loglist = new ArrayList<Object>();
-		loglist = booklogbiz.get();
+		try {
+			loglist = booklogbiz.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mv.addObject("loglist", loglist);
 		mv.addObject("center", "admin/booklog/booklogdetail.jsp");
 		return mv;
@@ -712,8 +758,7 @@ public class BookControl {
 	@ResponseBody
 	@RequestMapping("adminbooklogsearch.do")
 	// 관리자가 booklog에서 검색(user/book)
-	public ResponseEntity<String> adminbooklogsearch(String whatsearch,
-			String name) throws Exception {
+	public ResponseEntity<String> adminbooklogsearch(String whatsearch, String name){
 		ResponseEntity<String> returnData = null;
 		ArrayList<Object> list = null;
 		HttpHeaders header = new HttpHeaders();
@@ -722,11 +767,19 @@ public class BookControl {
 		if (whatsearch.equals("user")) {
 			BookLog bookuser = new BookLog("1", name);
 			System.out.println("userid로 찾을 때 : " + bookuser);
-			list = sbooklogbiz.getname(bookuser);
+			try {
+				list = sbooklogbiz.getname(bookuser);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if (whatsearch.equals("book")) {
 			BookLog bookid = new BookLog(name, "1");
 			System.out.println("bookid로 찾을 때 : " + bookid);
-			list = sbooklogbiz.gettitle(bookid);
+			try {
+				list = sbooklogbiz.gettitle(bookid);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		BookLog book = null;
@@ -742,7 +795,7 @@ public class BookControl {
 			jo.put("start_date", book.getStart_date());
 			jo.put("end_date", book.getEnd_date());
 			
-			String real_data = null;
+			String real_data = null; //null이 표시가 안되게 바꿈
 			if(book.getReal_date()==null){
 				real_data="";
 			}else{

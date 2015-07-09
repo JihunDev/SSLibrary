@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <meta name="viewport"
-	content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes, width=device-width, target-densitydpi=device-dpi">
+	content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes, width=device-width">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>SSLibrary Mobile</title>
 <link rel="stylesheet"

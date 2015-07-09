@@ -52,23 +52,23 @@
 		var text = f.textarea.value;
 		$('#sendMsgImpls').popup('open');
 		$("#sendMsgImplbutton").click(function() {
-		$.ajax({
-			type : 'post',
-			data : {
-				's_id_str' : s_id,
-				'sender_id' : sender_id,
-				'text' : text
-			},
-			async : 'false',
-			url : 'm_msgsendimpl.do',
-			success : function(data) {
-				$('#sendMsgImplok').popup('open');
-			},
-			error : function() {
-				$('#sendMsgImplfail').popup('open');
-			}
+			$.ajax({
+				type : 'post',
+				data : {
+					's_id_str' : s_id,
+					'sender_id' : sender_id,
+					'text' : text
+				},
+				async : 'false',
+				url : 'm_msgsendimpl.do',
+				success : function(data) {
+					$('#sendMsgImplok').popup('open');
+				},
+				error : function() {
+					$('#sendMsgImplfail').popup('open');
+				}
+			});
 		});
-		//});
 	}
 </script>
 
@@ -316,4 +316,4 @@
 		<h2>오류로 인해 메세지가 전송되지 않았습니다.</h2>
 	</div>
 </div>
-    
+

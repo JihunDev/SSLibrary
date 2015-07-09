@@ -90,7 +90,7 @@ function returnMySeat(){
 					</tr>
 					<c:if test="${status.last}">
 						<tr>
-							<td rowspan="4"><a class="btn btn-primary option-button" href="bookloglist.do">이력</a></td>
+							<td colspan="4"><a class="btn btn-primary btn-block" href="bookloglist.do">이력</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>

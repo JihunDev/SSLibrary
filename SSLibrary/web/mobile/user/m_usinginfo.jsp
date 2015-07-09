@@ -14,6 +14,26 @@
 		}
 	});
 
+	function extendbook(f) {
+		var bookname = f.bookname.value;
+		$('#extendbook').popup('open');
+		$("#extendbookbutton").click(function() {
+			f.action = "m_userbookmodifyimpl.do?id="+bookname;
+			f.method = "POST";
+			f.submit();
+		});
+	}
+
+	function returnbook(f) {
+		var bookname = f.bookname.value;
+		$('#returnbook').popup('open');
+		$("#returnbookbutton").click(function() {
+			f.action = "m_userbookremove.do?id="+bookname;
+			f.method = "POST";
+			f.submit();
+		});
+	}
+
 	function extendMySeat() {
 		if ('${userseat.renew_qt}' != 2) {
 			$('#extendMySeat').popup('open');
@@ -22,7 +42,7 @@
 				window.setTimeout(function name() {
 					$('#seatuppopup').popup('open');
 				}, 1000);
-				
+
 			});
 		} else {
 			$('#seatpopup').popup('open');
@@ -36,7 +56,7 @@
 			window.setTimeout(function name() {
 				$('#seatrepopup').popup('open');
 			}, 1000);
-			
+
 		});
 	}
 </script>
@@ -74,29 +94,28 @@
 <h2>도서 이용 내용</h2>
 <div>
 	<c:forEach items="${booklist}" var="book" varStatus="status">
-		<ul data-role="listview" data-inset="true">
-			<li>
-				<h3>도서번호 : ${book[0]}</h3>
-				<p>책이름 : ${book[1]}</p>
-				<P>사용시간</P>
-				<p>${book[2]}~${book[3]}</p>
-				<p class="ui-li-aside">
-					<strong>연장횟수 : ${book[4]}</strong>
-				</p>
-			</li>
-		</ul>
-		<div class="ui-grid-a">
-			<div class="ui-block-a">
-				<a href="javascript:;"
-					onClick="if (confirm('연장하시겠습니까?')) location.href='m_userbookmodifyimpl.do?id=${book[0]}'"
-					data-role="button">연장</a>
+		<form>
+			<ul data-role="listview" data-inset="true">
+				<li>
+					<h3>도서번호 : ${book[0]}</h3>
+					<p>책이름 : ${book[1]}</p>
+					<P>사용시간</P>
+					<p>${book[2]}~${book[3]}</p>
+					<p class="ui-li-aside">
+						<strong>연장횟수 : ${book[4]}</strong>
+					</p>
+				</li>
+			</ul>
+			<input type="hidden" value="${book[0]}" name="bookname" id="bookname">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<input type="button" value="연장" onclick="extendbook(this.form)">
+				</div>
+				<div class="ui-block-b">
+					<input type="button" value="반납" onclick="returnbook(this.form)">
+				</div>
 			</div>
-			<div class="ui-block-b">
-				<a href="javascript:;"
-					onClick="if (confirm('반납하시겠습니까?')) location.href='m_userbookremove.do?id=${book[0]}'"
-					data-role="button">반납</a>
-			</div>
-		</div>
+		</form>
 	</c:forEach>
 </div>
 <br>
@@ -146,7 +165,7 @@
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
 	<div data-role="main">
-		<h2>${userseat.s_id}번 좌석을 연장하시겠습니까?</h2>
+		<h2>${userseat.s_id}번좌석을 연장하시겠습니까?</h2>
 		<button type="button" id="extendMySeatbutton">연장</button>
 	</div>
 </div>
@@ -158,7 +177,7 @@
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
 	<div data-role="main">
-		<h2>${userseat.s_id}번 좌석을 반납하시겠습니까?</h2>
+		<h2>${userseat.s_id}번좌석을 반납하시겠습니까?</h2>
 		<button type="button" id="returnMySeatbutton">반납</button>
 	</div>
 </div>
@@ -198,4 +217,27 @@
 	</div>
 </div>
 
+<div data-role="popup" id="extendbook">
+	<div data-role="header">
+		<h1>좌석</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>연장하시겠습니까?</h2>
+		<button type="button" id="extendbookbutton">연장</button>
+	</div>
+</div>
+
+<div data-role="popup" id="returnbook">
+	<div data-role="header">
+		<h1>좌석</h1>
+		<a href="#" data-rel="back"
+			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	</div>
+	<div data-role="main">
+		<h2>반납하시겠습니까?</h2>
+		<button type="button" id="returnbookbutton">반납</button>
+	</div>
+</div>
 

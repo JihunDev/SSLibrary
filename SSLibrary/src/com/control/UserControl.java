@@ -142,7 +142,7 @@ public class UserControl {
 
 		try {
 			System.out.println("¾÷µ«"+user);
-			biz.remove(user);
+			biz.modify(user);
 			User user_ch = (User) biz.get(new User(com.getId()));
 			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
 			if (user_ch.getIsadmin().equals("s")) {

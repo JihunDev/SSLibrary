@@ -384,7 +384,7 @@ footer>div {
 
 				}
 			});
-		}, 5000);
+		}, 1000000);
 		function display(data) {
 			document.getElementById("msgnumber").innerHTML = data;
 		};

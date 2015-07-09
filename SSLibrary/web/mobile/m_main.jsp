@@ -23,7 +23,7 @@
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script>
 	$.mobile.defaultPageTransition = "slide";
-	
+
 	//화면 높이
 	function contentHeight() {
 		var screen = $.mobile.getScreenHeight(), header = $(".ui-header")
@@ -38,17 +38,16 @@
 	}
 	$(document).on("pagecontainerbeforeshow", contentHeight);
 	
-	$(document).on("pagehide", "div[data-role=main]", function(event){
-		  
-		$(event.target).remove();
-		
-	});
+	function display(data) {
+		document.getElementById("msgnumber").innerHTML = data;
+	}
+
 </script>
 <style>
 </style>
 </head>
 <body>
-	<div data-role="page" data-add-back-btn="true" data-position="fixed"
+	<div data-role="page" id="listpage" data-add-back-btn="true" data-position="fixed"
 		class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
 		<div data-role="panel" id="myPanel" data-display="overlay"
 			style="background-color: #c2d9eb;">
@@ -75,8 +74,8 @@
 		</div>
 		<div data-role="footer" data-position="fixed">
 			<c:if test="${user != null}">
-			<a href="#" data-rel="back"
-				class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
+				<a href="#" data-rel="back"
+					class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
 			</c:if>
 		</div>
 	</div>

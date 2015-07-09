@@ -124,13 +124,17 @@ public class M_MainControl {
 							msgchecknumber += 1;
 						}
 					}
+					session.setAttribute("msgcheck", msgchecknumber);
+					session.setAttribute("user", result);
 					mv = new ModelAndView("redirect:/m_center.do");
+				}else{
+					mv = new ModelAndView("redirect:/m_main.do");
 				}
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
-				if (result.getIsadmin().equals("d")) {
-
+				if (result ==  null || result.getIsadmin().equals("d")) {
+					mv = new ModelAndView("redirect:/m_main.do");
 				} else {
 					if (result != null && (result.getPwd()).equals(pwd)) {
 						for (Object obj : list) {
@@ -140,6 +144,9 @@ public class M_MainControl {
 								msgchecknumber += 1;
 							}
 						}
+						session.setAttribute("msgcheck", msgchecknumber);
+						session.setAttribute("user", result);
+						mv.addObject("id", result.getId());
 						mv = new ModelAndView("redirect:/m_center.do");
 					} else {
 						mv.addObject("m_center", "m_login.jsp");
@@ -149,8 +156,7 @@ public class M_MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("msgcheck", msgchecknumber);
-		session.setAttribute("user", result);
+		
 		return mv;
 	}
 

@@ -257,14 +257,16 @@ public class M_SeatControl {
 		User user = (User) session.getAttribute("user");
 		String u_id = user.getId();
 		Object userseat = null;
-
+		int s_id = 0;
 		try {
 			userseat = (UserSeat) ubiz.get(new UserSeat(u_id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		UserSeat us = (UserSeat) userseat;
-		int s_id = us.getS_id();
+		if(us!=null){
+			s_id = us.getS_id();	
+		}
 
 		try {
 			ubiz.remove(new UserSeat(u_id));

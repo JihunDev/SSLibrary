@@ -71,7 +71,7 @@ function register(f){
                            <label class="control-label" for="floor">FLOOR</label><select class="form-control" name="floor"><option>摹鷗</option><option>1類</option><option>2類</option><option>3類</option><option>4類</option></select>
                             </div>
                              <div class="form-group">
-                                <input type="text" name="total_qt" id="total_qt" class="form-control" placeholder="TOTAL_QT">
+                                <input type="text" name="total_qt" class="form-control" placeholder="TOTAL_QT">
                             </div>
                             <input type="button" class="btn btn-primary btn-block" value="register" onclick="register(this.form);">
                            </div>

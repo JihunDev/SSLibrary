@@ -4,13 +4,18 @@
 <script>
 $(document).ready(function(){
 	var borrowbook = "${borrowbook}";
-	alert(borrowbook);
-	if(borrowbook==1){
-		$('#borrowbook1').popup('open');
-	}else if(borrowbook==2){
-		$('#borrowbook2').popup('open');	
-	}else if(borrowbook==3){
-		$('#borrowbook3').popup('open');
+	if(borrowbook=="1"){
+		window.setTimeout(function name() {
+			$('#borrowbook1').popup('open');
+		}, 1000);
+	}else if(borrowbook=="2"){
+		window.setTimeout(function name() {
+			$('#borrowbook2').popup('open');
+		}, 1000);	
+	}else if(borrowbook=="3"){
+		window.setTimeout(function name() {
+			$('#borrowbook3').popup('open');
+		}, 1000);
 	}		
 });
 
@@ -18,7 +23,7 @@ function rentbook(){
 	var  bookid = "${bookdetail.id}";
 	$('#rentbook').popup('open');
 	$("#rentbookbutton").click(function() {
-		location.href ='m_userbookregister.do?id='+bookid;
+		location.href ="m_userbookregister.do?id=${bookdetail.id}";
 	});			
 }
 </script>
@@ -98,7 +103,7 @@ function rentbook(){
 		<a href="#" data-rel="back"
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
-	<div data-role="main">
+	<div data-role="main" data-dismissible="false">
 		<h2>대여 하시겠습니까?</h2>
 		<button type="button" id="rentbookbutton">확인</button>
 	</div>

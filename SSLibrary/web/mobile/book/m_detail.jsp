@@ -21,13 +21,20 @@ $(document).ready(function(){
 
 function rentbook(){
 	var  bookid = "${bookdetail.id}";
+	alert(bookid);
 	$('#rentbook').popup('open');
+	
 	$("#rentbookbutton").click(function() {
-		location.href ="m_userbookregister.do?id=${bookdetail.id}";
-	});			
+		$('#rentbook').popup('close');
+		//location.href ="m_userbookregister.do?id=${bookdetail.id}";
+ 		
+	});
+	
 }
 </script>
+
 <button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
+
 <!-- 디테일 페이지 -->
 <table width="100%">
 	<tbody>

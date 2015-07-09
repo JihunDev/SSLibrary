@@ -4,7 +4,6 @@
 <script>
 $(document).ready(function(){
 	var borrowbook = "${borrowbook}";
-	alert(borrowbook);
 	if(borrowbook==1){
 		$('#borrowbook1').popup('open');
 	}else if(borrowbook==2){

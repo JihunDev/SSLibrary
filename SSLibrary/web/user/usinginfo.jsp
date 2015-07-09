@@ -90,7 +90,7 @@ function returnMySeat(){
 					</tr>
 					<c:if test="${status.last}">
 						<tr>
-							<td colspan="4"><a class="btn btn-primary btn-block" href="seatloglist.do?id=${user.id}">이력</a></td>
+							<td colspan="4"><a class="btn btn-primary" href="javascript:;"  onClick="if (confirm('반납하시겠습니까?')) location.href='userbookremove.do?id=${book[0]}'">반납</a></td>
 						</tr>
 					</c:if>
 				</c:forEach>

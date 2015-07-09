@@ -194,7 +194,7 @@ public class MainControl {
 			e.printStackTrace();
 		}
 
-		if (user.getIsadmin().equals("d")) {
+		if (user == null || user.getIsadmin().equals("d")) {
 			// 삭제 회원 로그인 불가능
 		} else {
 			if (user != null && (user.getPwd()).equals(pwd)) {
@@ -220,7 +220,7 @@ public class MainControl {
 				result = "loginfail";
 			}
 		}
-
+		System.out.println(result);
 		return result;
 	}
 

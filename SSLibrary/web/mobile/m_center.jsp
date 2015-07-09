@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <script>
+$(document).ready(function() {
+	var id = "${user.id}";
+	setInterval(function() {
+		$.ajax({
+			async : 'false',
+			url : 'm_msgchecked.do',
+			data : {
+				'id' : id
+			},
+			success : function(data) {
+				display(data);
+			},
+			error : function(data) {
 
+			}
+		});
+	}, 5000);
+});
 </script>
 
 <fieldset class="ui-grid-a">

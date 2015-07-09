@@ -21,20 +21,20 @@ function makeHeight() {
 function displaybook(data) {
 	$('#book_result').empty();
 	var output = '';
-	output+='<table  class="table table-hover">'
+	output+='<fieldset><legend align="center">검색 결과</legend><table  class="table table-hover">'
 	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
 	$(data).each(function(index, item) {
 		with (item) {
 			output += '<tr><td>'+id+'</td>';
 			output += '<td>'+b_id+'</td>';
 			output += '<td>'+u_id+'</td>';
-			output += '<td>'+start_date+'"></td>';
+			output += '<td>'+start_date+'</td>';
 			output += '<td>'+end_date+'</td>';
 			output += '<td>'+real_date+'</td>';
 			output += '<td>'+renew_qt+'</td></tr>';
 		}
 	});
-	output+="</table>"
+	output+="</table></fieldset>"
 	$('#book_result').html(output);
 	makeHeight();
 
@@ -67,6 +67,9 @@ function getLogBook() {
 	<input type="text" id="searchname" name="searchname" class="form-control input-sm" placeholder="Search for...">
      <span class="input-group-btn">
      <button class="btn btn-default btn-sm" type="button" onclick="getLogBook();">검색</button></span></div>
+	<div style="float:right;" >
+     	<button class="btn btn-default btn-sm" style="float:right;" type="submit" onclick='location.href="adminbookloglist.do"'>목록</button>
+     </div>
 </form>
 <div id="book_result">
 <fieldset>

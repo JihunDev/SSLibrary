@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -307,9 +308,14 @@ public class BookControl {
 
 	@RequestMapping("/bookmodify.do")
 	// 책 수정페이지////////////////////////////////////////////
-	public ModelAndView bookmodify(String id) throws Exception {
+	public ModelAndView bookmodify(String id){
 		ModelAndView mv = new ModelAndView("main");
-		Object b = bookbiz.get(id);
+		Object b = null;
+		try {
+			b = bookbiz.get(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		mv.addObject("bookinfo", b);
 		mv.addObject("center", "admin/book/update.jsp");
 		return mv;
@@ -318,7 +324,7 @@ public class BookControl {
 	@RequestMapping("/bookmodifyimpl.do")
 	// 책 수정(기존 사진과 새로운 사진으로 번갈아서 넣을 수 있음)///////////
 	public ModelAndView bookmodifyimpl(HttpServletRequest request,
-			BookUploadCommand book) throws Exception {
+			BookUploadCommand book){
 		System.out.println(book.getId() + " " + book.getName() + " "
 				+ book.getWriter());
 		System.out.println(book.getImg().getOriginalFilename() + " "
@@ -327,8 +333,8 @@ public class BookControl {
 		String img = book.getImg().getOriginalFilename();
 
 		String oldimg = request.getParameter("oldimg");
-		Book b;
-
+		Book b =null;
+			
 		if (img == null || img.equals("")) {
 			b = new Book(book.getId(), book.getName(), book.getWriter(),
 					oldimg, book.getFloor(), book.getTotal_qt(),
@@ -345,16 +351,25 @@ public class BookControl {
 			MultipartFile file = book.getImg();
 			String dir = "c:/lib/SSLibrary/web/img/book/";
 			if (file != null) {
-				byte[] data = file.getBytes(); // 올라온 데이터를 byte array로 변환함. (모든
-												// 파일 가능)
-				FileOutputStream out = new FileOutputStream(dir
-						+ file.getOriginalFilename());
-				out.write(data);
-				out.close();
+				byte[] data;
+				try {
+					data = file.getBytes();
+					FileOutputStream out = new FileOutputStream(dir
+							+ file.getOriginalFilename());
+					out.write(data);
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} // 올라온 데이터를 byte array로 변환함. (모든 파일 가능)
+				
 			}
 		}
 
-		bookbiz.modify(b);
+		try {
+			bookbiz.modify(b);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		ModelAndView mv = new ModelAndView("redirect:/bookdetail.do?id="
 				+ book.getId());
@@ -362,7 +377,7 @@ public class BookControl {
 	}
 
 	// --------------------------------------UserBook---------------------------------------
-
+	@Transactional
 	@RequestMapping("/userbookregister.do")
 	// 책 대여하기
 	public ModelAndView userbookregister(HttpServletRequest request, String id) {

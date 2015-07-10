@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 function removeUserbook(){
+	if("${userbooklist}" == "[]"){
+		alert('반납된 책이 없습니다.');
+		return;
+	}
 	var c = confirm('반납 확인하시겠습니까?');
 	if (c == true) {
 		location.href = "userbookremoveimpl.do";
@@ -10,16 +14,26 @@ function removeUserbook(){
 	};		
 	
 }
+$(document).ready(function(){
+	makeHeight();
+	var element = document.getElementById("listtable");
+	if("${userbooklist}" == "[]"){
+		$('#returnbooklist').html("<tr><td colspan=6>반납된 책이 없습니다.</td><tr>");
+	}else{
+		$('#listtable').addClass("scroll");
+		
+	}
+});
 </script>
 <div class="fieldsetform">
 <fieldset>
 <legend align="center">실시간 반납 도서 정보</legend>
 <form>
 <div>
-<table width="700" class="table table-hover">
+<table width="700" id="listtable" class="table table-hover">
 <thead><tr><th>U_ID</th><th >B_ID</th><th >START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
 <th>ISRETURN</th></tr></thead>
-<tbody>
+<tbody id="returnbooklist">
 <c:forEach items="${userbooklist}" var="b"> <!-- 추후수정 -->
 <tr>
 <td>${b.u_id}</td>

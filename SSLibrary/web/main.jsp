@@ -387,7 +387,7 @@ footer>div {
 		      });
 		   }, 5000); */
 
-		setInterval(function() {
+		<%-- setInterval(function() {
 			$.ajax({
 				async : 'false',
 				url : 'msgchecked.do',
@@ -409,7 +409,7 @@ footer>div {
 			}
 		}
 		;
-
+ --%>
 	};
 </script>
 </head>

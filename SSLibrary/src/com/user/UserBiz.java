@@ -10,17 +10,19 @@ import com.frame.Biz;
 import com.frame.Dao;
 import com.frame.SearchBiz;
 import com.frame.SearchDao;
+
 @Service("userbiz")
 public class UserBiz implements Biz,SearchBiz {
 	@Resource(name="userdao")
 	private Dao dao;
 	@Resource(name="userdao")
 	private SearchDao dao2;
+
 	@Override
 	public Object register(Object obj) throws Exception {
 		return dao.insert(obj);
 	}
-
+	
 	@Override
 	public Object modify(Object obj) throws Exception {
 		return dao.update(obj);

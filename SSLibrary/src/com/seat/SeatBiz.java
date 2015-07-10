@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.frame.Biz;
 import com.frame.Dao;
@@ -21,6 +22,7 @@ public class SeatBiz implements Biz {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public Object modify(Object obj) throws Exception {
 		Object result = dao.update(obj);

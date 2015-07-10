@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.frame.Biz;
 import com.frame.Dao;
@@ -37,7 +38,8 @@ public class SeatLogBiz implements Biz, UpdateAndReturnBiz, SearchBiz {
 		
 		return null;
 	}
-
+	
+	
 	@Override
 	public Object remove(Object obj) throws Exception {
 		Object result = dao.delete(obj);
@@ -60,7 +62,8 @@ public class SeatLogBiz implements Biz, UpdateAndReturnBiz, SearchBiz {
 		Object result = ur_dao.logupdate(obj);
 		return result;
 	}
-
+	
+	@Transactional
 	@Override
 	public Object logreturn(Object obj) throws Exception {
 		Object result = ur_dao.logreturn(obj);

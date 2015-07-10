@@ -10,7 +10,7 @@
 	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id} AND ISRETURN in ('n')
 	</select>
 	<select id="selectiduserbooks" parameterType="java.lang.String" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%' AND ISRETURN in ('n')
+	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%' 
 	</select>
 	<insert id="insertuserbook" parameterType="userbook">
 	INSERT INTO A_USERBOOK VALUES(#{u_id},#{b_id},SYSDATE,SYSDATE+14,0,'n')	

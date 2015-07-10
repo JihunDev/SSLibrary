@@ -135,14 +135,10 @@ public class UserControl {
 			}
 		}
 
-		try {
-			biz.modify(user);
-			if (com.getIsadmin().equals("s")) {
-				userimpl.tr_usermodifyimpl(com.getId());
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		if (com.getIsadmin().equals("s")) {
+			userimpl.tr_usermodifyimpl(com.getId());
 		}
+
 		return mv;
 	}
 

@@ -174,7 +174,10 @@ public class M_BookControl {
 			String start = userbook.getStart_date().substring(0, 10);
 			String end = userbook.getEnd_date().substring(0, 10);
 			String[] info = { bid, book1.getName(), start, end, qt };
-			booklist.add(info);
+			if (userbook.getIsreturn() == "n"
+					|| userbook.getIsreturn().equals("n")) {
+				booklist.add(info);// array에 담음
+			}
 		}
 		session.setAttribute("booklist", booklist);
 		mv.addObject("qt", isqt);
@@ -213,7 +216,10 @@ public class M_BookControl {
 			Book book1 = (Book) bookbiz.get(bid);
 			String[] info = { bid, book1.getName(), userbook1.getStart_date(),
 					userbook1.getEnd_date() };
-			booklist.add(info);
+			if (userbook1.getIsreturn() == "n"
+					|| userbook1.getIsreturn().equals("n")) {
+				booklist.add(info);
+			}
 		}
 		Book b = new Book(id);
 		sbookbiz.getnum_reply(b);
@@ -252,12 +258,11 @@ public class M_BookControl {
 		mv.addObject("m_center", "book/m_detail.jsp");
 		return mv;
 	}
-
-	@Transactional
+	
 	@RequestMapping("/m_userbookregister.do")
 	// 책 대여하기
 	public ModelAndView m_userbookregister(HttpServletRequest request, String id) {
-		ModelAndView mv = new ModelAndView("main");
+		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		User sessionuser = (User) session.getAttribute("user");
 		String uid = sessionuser.getId(); // 회원 아이디 정보 세션에서

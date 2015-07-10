@@ -177,7 +177,7 @@ public class UserControl {
 		}
 		
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
+		//User user = (User)session.getAttribute("user");
 		
 		session.setAttribute("search", "search=true&");
 		session.setAttribute("userlist", list_check);

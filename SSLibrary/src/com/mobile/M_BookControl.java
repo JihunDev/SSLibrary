@@ -259,7 +259,8 @@ public class M_BookControl {
 	public ModelAndView m_userbookregister(HttpServletRequest request, String id) {
 		ModelAndView mv = new ModelAndView("main");
 		HttpSession session = request.getSession();
-		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
+		User sessionuser = (User) session.getAttribute("user");
+		String uid = sessionuser.getId(); // 회원 아이디 정보 세션에서
 															// 가져오기
 		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부

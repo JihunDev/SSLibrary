@@ -31,7 +31,7 @@ public class M_UserControl {
 	Biz userseatbiz;
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
-	@Resource(name="userbiz")
+	@Resource(name = "userbiz")
 	Biz userbiz;
 
 	@RequestMapping("/m_usinginfo.do")
@@ -49,21 +49,24 @@ public class M_UserControl {
 				UserBook userbook = (UserBook) obj;
 				String bid = userbook.getB_id();// id 뽑아옴
 				Book book = (Book) bookbiz.get(bid);// 하나씩 찾음
-				String qt =  Integer.toString(userbook.getRenew_qt());
+				String qt = Integer.toString(userbook.getRenew_qt());
 				String start = userbook.getStart_date().substring(0, 10);
 				String end = userbook.getEnd_date().substring(0, 10);
 				String[] info = { bid, book.getName(), start, end, qt };
-				booklist.add(info);
+				if (userbook.getIsreturn() == "n"
+						|| userbook.getIsreturn().equals("n")) {
+					booklist.add(info);// array에 담음
+				}
 			}
 			userseat = (UserSeat) userseatbiz.get(id);
-			if(userseat != null){
+			if (userseat != null) {
 				String start = (String) userseat.getStart_time().substring(10)
 						.substring(0, 9);
 				String end = (String) userseat.getEnd_time().substring(10)
 						.substring(0, 9);
 				returnuserseat = new UserSeat(userseat.getU_id(),
 						userseat.getS_id(), start, end, userseat.getRenew_qt());
-			}			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -74,7 +77,7 @@ public class M_UserControl {
 
 		return mv;
 	}
-	
+
 	@RequestMapping("/m_modify.do")
 	public ModelAndView m_modify(String id) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
@@ -87,10 +90,10 @@ public class M_UserControl {
 		mv.addObject("userupdate", user);
 		mv.addObject("m_center", "user/m_update.jsp");
 		return mv;
-	} 
-	
+	}
+
 	@RequestMapping("/m_modifyimpl.do")
-	public ModelAndView m_modifyimpl(HttpServletRequest request,UserCommand com) {
+	public ModelAndView m_modifyimpl(HttpServletRequest request, UserCommand com) {
 		ModelAndView mv = new ModelAndView("redirect:/m_center.do");
 		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
@@ -98,16 +101,16 @@ public class M_UserControl {
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
 		User user = null;
-		
+
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
-			System.out.println("이미지 안바꿀때 : "+user);
+			System.out.println("이미지 안바꿀때 : " + user);
 		} else {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), com.getImg().getOriginalFilename(),
 					com.getEmail(), com.getIsadmin());
-			System.out.println("이미지 바꿀때 : "+user);
+			System.out.println("이미지 바꿀때 : " + user);
 			byte[] data;
 			try {
 				data = file.getBytes();
@@ -122,7 +125,7 @@ public class M_UserControl {
 
 		try {
 			userbiz.modify(user);
-		
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

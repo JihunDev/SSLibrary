@@ -21,6 +21,11 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class M_BookControl {
+	//book
+	@Resource(name = "bookbiz")
+	Biz bookbiz;
+	@Resource(name = "bookbiz")
+	SearchBiz sbookbiz;
 	@Resource(name = "userbookbiz")
 	Biz userbookbiz;
 	@Resource(name = "userbookbiz")
@@ -33,10 +38,7 @@ public class M_BookControl {
 	SearchBiz sbooklogbiz;
 	@Resource(name = "booklogbiz")
 	UpdateAndReturnBiz uprebiz;
-	@Resource(name = "bookbiz")
-	Biz bookbiz;
-	@Resource(name = "bookbiz")
-	SearchBiz sbookbiz;
+	//user
 	@Resource(name = "userbiz")
 	Biz userbiz;
 

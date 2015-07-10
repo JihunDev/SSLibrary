@@ -153,7 +153,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										name="s_id" onclick="register(this.form);" value="${s.id}"
-										data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 							<c:when test="${s.state == 'n'}">
@@ -161,7 +161,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										name="s_id" onclick="registeredSeat();" value="${s.id}"
-										data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 							<c:when test="${s.state == 'f'}">
@@ -169,7 +169,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										name="s_id" onclick="repairState();" value="${s.id}"
-										data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 						</c:choose>
@@ -182,7 +182,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										value="${s.id}" name="s_id" onclick="registeredUser();"
-										data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 							<c:when test="${s.state == 'n'}">
@@ -190,8 +190,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										value="${s.id}" name="s_id" onclick="sendMsg(this.form);"
-										value="${s.id}" data-toggle="button" aria-pressed="false"
-										autocomplete="off">${s.id}</button>
+										value="${s.id}" data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 							<c:when test="${s.state == 'f'}">
@@ -199,8 +198,7 @@
 									<input type="hidden" name="s_state" value="${s.state}">
 									<button type="button" class="btn btn-primary ${s.state}_btn"
 										value="${s.id}" name="s_id" onclick="repairState();"
-										value="${s.id}" data-toggle="button" aria-pressed="false"
-										autocomplete="off">${s.id}</button>
+										value="${s.id}" data-toggle="button" aria-pressed="false">${s.id}</button>
 								</form>
 							</c:when>
 						</c:choose>

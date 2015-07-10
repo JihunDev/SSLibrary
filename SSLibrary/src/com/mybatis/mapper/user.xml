@@ -38,6 +38,7 @@
 		</selectKey>
 	</insert>
 
+	<!-- 안씀 -->
 	<update id="deleteuser" parameterType="user">
 		UPDATE A_USER
 		<trim prefix="SET" suffixOverrides=",">

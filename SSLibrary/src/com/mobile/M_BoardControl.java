@@ -72,7 +72,6 @@ public class M_BoardControl {
 	public ModelAndView m_boardwriteimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
-		System.out.println(com);
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getU_id(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename(),
@@ -86,7 +85,6 @@ public class M_BoardControl {
 		}
 
 		try {
-			System.out.println(board);
 			biz.register(board);
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -125,7 +123,6 @@ public class M_BoardControl {
 			boardUpdateAndReturnBiz.logupdate(board);// 카운터
 			list = boardsearchbiz.getname(new Board(board2.getId(), board2
 					.getSort()));// 리플불러오기
-			System.out.println(board2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -161,16 +158,13 @@ public class M_BoardControl {
 	public ModelAndView m_boardmodifyimpl(BoardUploadCommand com) {
 		ModelAndView mv = new ModelAndView();
 		Board board = null;
-		System.out.println("com "+com);
 		
 		if (com.getReg_number() == 0) {
 			board = new Board(com.getId(), com.getTitle(), com.getContent(),
 					com.getSort(), com.getFile_name().getOriginalFilename());
-			System.out.println("board 1 "+board);
 			mv.setViewName("redirect:/m_boarddetail.do?id=" + com.getId());
 		} else {
 			board = new Board(com.getId(), com.getContent(), com.getSort());
-			System.out.println("board 2 "+board);
 			mv.setViewName("redirect:/m_boarddetail.do?id="	+ com.getReg_number());
 		}
 		try {
@@ -204,7 +198,6 @@ public class M_BoardControl {
 	public ModelAndView m_boardremoveimpl(Board board) {
 		ModelAndView mv = new ModelAndView();
 		Board delete_board = null;
-		System.out.println(board);
 		try {
 			delete_board = new Board(board.getId(), board.getReg_number());
 			biz.remove(delete_board);

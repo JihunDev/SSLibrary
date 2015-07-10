@@ -109,16 +109,23 @@ public class M_MessageControl {
 		return stringmsgchecknumber;
 	}
 
-	@ResponseBody
+	@RequestMapping("/m_msgsend.do")
+	public ModelAndView m_msgsend(String s_id){
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		System.out.println(s_id);
+		mv.addObject("s_id", s_id);
+		mv.addObject("m_center", "seat/m_register.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/m_msgsendimpl.do")
-	public String m_msgsendimpl(String s_id_str, String sender_id, String text,
+	public ModelAndView m_msgsendimpl(String s_id_str, String sender_id, String text,
 			HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		int s_id = Integer.parseInt(s_id_str);
 		String u_id = "";
 		ArrayList<Object> seatbys_id = null;
 		
-		System.out.println("u_id: " + u_id + " s_id: " + s_id
-				+ " sender_id: " + sender_id);
 		try {
 			seatbys_id = s_ubiz.getid(s_id);
 			
@@ -132,7 +139,9 @@ public class M_MessageControl {
 			e1.printStackTrace();
 		}
 		
-		return "ok";
+		mv = new ModelAndView("redirect:/m_seatmain.do");
+		
+		return mv;
 	}
 
 }

@@ -127,7 +127,7 @@ public class M_MainControl {
 							}
 						}
 					}
-					session.setAttribute("msgcheck", msgchecknumber);
+					//session.setAttribute("msgcheck", msgchecknumber);
 					session.setAttribute("user", result);
 					mv = new ModelAndView("redirect:/m_center.do");
 				} else {
@@ -150,7 +150,7 @@ public class M_MainControl {
 								}
 							}
 						}
-						session.setAttribute("msgcheck", msgchecknumber);
+						//session.setAttribute("msgcheck", msgchecknumber);
 						session.setAttribute("user", result);
 						mv.addObject("id", result.getId());
 						mv = new ModelAndView("redirect:/m_center.do");

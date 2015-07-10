@@ -31,8 +31,8 @@ $(document).ready(function(){
 <form>
 <div>
 <table width="700" id="listtable" class="table table-hover">
-<thead><tr><th>U_ID</th><th >B_ID</th><th >START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
-<th>ISRETURN</th></tr></thead>
+<thead><tr><th>U_ID</th><th>B_ID</th><th>START_DATE</th><th>END_DATE</th><th>RENEW_QT</th>
+<th width="100px">ISRETURN</th></tr></thead>
 <tbody id="returnbooklist">
 <c:forEach items="${userbooklist}" var="b"> <!-- 추후수정 -->
 <tr>

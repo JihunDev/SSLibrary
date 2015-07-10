@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.BookUploadCommand;
+import com.control.impl.UserImpl;
 import com.entity.Book;
 import com.entity.BookLog;
 import com.entity.User;
@@ -63,7 +64,9 @@ public class BookControl {
 	@Resource(name = "booklogbiz")
 	// 책 연장, 반납 시 업데이트 할 때 필요
 	UpdateAndReturnBiz uprebiz;
-
+	
+	@Resource(name="userimpl")
+	UserImpl userimpl;
 	// -------------------------------------Book------------------------------------------
 
 	@RequestMapping("/bookmain.do")
@@ -395,7 +398,6 @@ public class BookControl {
 		HttpSession session = request.getSession();
 		String uid = session.getAttribute("id").toString(); // 회원 아이디 정보 세션에서
 															// 가져오기
-		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부
 		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료  / 4 : 관리자가 확인 안해줌)
 		int overlap = 0; // 대여가 중복되었는지 여부 (1 : 중복됨 / 2 : 중복 안됨)
@@ -407,8 +409,7 @@ public class BookControl {
 		/*String isreturn = null; // 반환되었는지 여부를 알기 위한 변수 (관리자 확인 안하고 또 그책 빌릴때)
 */
 		try {
-			user = (User) userbiz.get(uid); // 지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
-			System.out.println("지금 로그인 한 user  :  " + user.getId());
+			System.out.println("지금 로그인 한 user  :  " + uid);
 			System.out.println("빌리려는 책 아이디 : " + id); // 지금 빌리려고 하는 책 id
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -501,11 +502,11 @@ public class BookControl {
 							upbook.getCurrent_qt() - 1);
 					System.out.println("업데이트 한 book : " + upbooknew);
 					bookbiz.modify(upbooknew);
-					UserBook book = new UserBook(user.getId(), id);
+					UserBook book = new UserBook(uid, id);
 					userbookbiz.register(book); // userbook에 등록
 					System.out.println("userbook 등록 : " + book);
 
-					BookLog logbook = new BookLog(id, user.getId()); // booklog에
+					BookLog logbook = new BookLog(id, uid); // booklog에
 																		// 등록
 					booklogbiz.register(logbook);
 					System.out.println("userbook과 booklog에 등록 완료!!");
@@ -751,7 +752,7 @@ public class BookControl {
 				String uid = ub.getU_id();
 				User userinfo = new User(uid, "s"); // user의 상태를 정지로 바꿔줌
 				userbiz.remove(userinfo);
-
+				userimpl.tr_usermodifyimpl(uid);
 				/* System.out.println(userinfo); */
 			}
 		} catch (Exception e) {

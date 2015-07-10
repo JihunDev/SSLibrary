@@ -387,15 +387,15 @@ public class BookControl {
 															// 가져오기
 		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부
-		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료 )
+		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료  / 4 : 관리자가 확인 안해줌)
 		int overlap = 0; // 대여가 중복되었는지 여부 (1 : 중복됨 / 2 : 중복 안됨)
 
 		Book upbook; // 빌리려는 책 정보 가져오는 곳
 		Book upbooknew; // 대여 성공시 대여가능 수 1개 줄이기 위해 넣어줘야 하는 책 업데이트 정보
 		int current_qt = 0; // 대여 가능한 책이 몇개인지 가져오는 변수
 		
-		String isreturn = null; // 반환되었는지 여부를 알기 위한 변수 (관리자 확인 안하고 또 그책 빌릴때)
-
+		/*String isreturn = null; // 반환되었는지 여부를 알기 위한 변수 (관리자 확인 안하고 또 그책 빌릴때)
+*/
 		try {
 			user = (User) userbiz.get(uid); // 지금 누구 회원이 로그인 했는지 회원 아이디 가져오기
 			System.out.println("지금 로그인 한 user  :  " + user.getId());
@@ -431,24 +431,31 @@ public class BookControl {
 				bid = userbook.getB_id();// id 뽑아와서 넣기
 				System.out.println("책 id : " + bid);
 
-				if (bid.equals(id) || bid == id) {// 대여할려는 책이 중복일 경우
-					System.out
-							.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
-					overlap = 1; // 중복된 경우
-					borrowbook = 1; //중복대여 불가
+				if ((bid.equals(id) || bid == id)) {// 대여할려는 책이 중복일 경우
+					
+					if((userbook.getIsreturn()=="n" || userbook.getIsreturn().equals("n"))){//관리자가 확인한 경우
+						System.out
+						.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
+						overlap = 1; // 중복된 경우
+						borrowbook = 1; //중복대여 불가
+								
+					}else{//관리자가 확인안한 경우
+						System.out
+						.println("---------------------관리자가 아직 확인을 안해줌---------------------");
+						overlap = 1; // 중복된 경우
+						borrowbook = 4; //관리자가 확인 안해줌
+						
+					}
 					try {
 						upbook = (Book) bookbiz.get(id);// 현재 빌리려는 책의 정보를 가져온다.
 						mv.addObject("bookdetail", upbook);
 						break;
 					} catch (Exception e) {
 						e.printStackTrace();
-					}
+					}	
 
-				} else {
+				}else {
 					overlap = 2; // 중복 안 된경우
-				}
-				if	(userbook.getIsreturn()=="y" || userbook.getIsreturn().equals("y")){//반환한경우
-					isreturn = "y";
 				}
 			}
 			System.out.println("중복 여부 : " + overlap);
@@ -474,7 +481,7 @@ public class BookControl {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				} else if (current_qt != 0 && bid != id && (isreturn=="y"||isreturn.equals("y"))) {// 대여가 가능할 경우
+				} else if (current_qt != 0 && bid != id) {// 대여가 가능할 경우
 					// 3. 대여가 가능한 경우(대여 중복이 아니면서 대여할 책이 있는 경우)
 					// upbooknew에 갯수를 한개를 빼서 업데이트 한다.
 					// userbook과 booklog에 등록한다.
@@ -563,12 +570,15 @@ public class BookControl {
 			for (Object obj : userbooklist) {
 				UserBook userbook = (UserBook) obj;
 				String bid = userbook.getB_id();// id 뽑아옴
-				Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
+				
+				if(userbook.getIsreturn()=="n" || userbook.getIsreturn().equals("n")){
+					Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
 
-				String[] info = { bid, book1.getName(), userbook.getStart_date(),
-						userbook.getEnd_date() };
-				// 현재 이용 정보에 필요한 값 String 배열에 넣음
-				booklist.add(info);// array에 담음
+					String[] info = { bid, book1.getName(), userbook.getStart_date(),
+							userbook.getEnd_date() };
+					// 현재 이용 정보에 필요한 값 String 배열에 넣음
+					booklist.add(info);// array에 담음
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -629,12 +639,14 @@ public class BookControl {
 			for (Object obj : userbooklist) {
 				UserBook userbook1 = (UserBook) obj;
 				String bid = userbook1.getB_id();// id 뽑아옴
+				if(userbook1.getIsreturn()=="n" || userbook1.getIsreturn().equals("n")){
 				Book book1 = (Book) bookbiz.get(bid);// 하나씩 찾음
 
 				String[] info = { bid, book1.getName(), userbook1.getStart_date(),
 						userbook1.getEnd_date() };
 				// 현재 이용 정보에 필요한 값 String 배열에 넣음
 				booklist.add(info);// array에 담음
+				}
 			}
 			
 			// 그 책의 qt를 1다시 증가시켜준다.

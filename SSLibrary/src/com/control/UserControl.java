@@ -79,7 +79,7 @@ public class UserControl {
 	public ModelAndView userremoveimpl(String id) {
 		ModelAndView mv = new ModelAndView(
 				"redirect:/usersearch.do?search=false");
-		User user = new User(id, "d");
+		User user = new User(id);
 		try {
 			biz.remove(user);
 		} catch (Exception e) {

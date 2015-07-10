@@ -365,7 +365,7 @@ footer>div {
 		      });
 		   }, 5000); */
 
-		setInterval(function() {
+	 	setInterval(function() {
 			$.ajax({
 				async : 'false',
 				url : 'msgchecked.do',
@@ -379,7 +379,7 @@ footer>div {
 
 				}
 			});
-		}, 1000000);
+		}, 5000);
 		function display(data) {
 			document.getElementById("msgnumber").innerHTML = data;
 		};

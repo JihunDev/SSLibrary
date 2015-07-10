@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 
+<!-- 
 <script>
 	function display(data) {
 		document.getElementById("msgnumber").innerHTML = data;
@@ -24,7 +25,7 @@
 		}, 5000);
 	});
 </script>
-
+ -->
 <fieldset class="ui-grid-a">
 	<div class="ui-block-a">
 		<a href="m_seatmain.do" data-role="button" data-inline="true"

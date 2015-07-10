@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
+import com.control.impl.UserImpl;
 import com.entity.User;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -140,8 +141,10 @@ public class UserControl {
 
 			User user_ch = (User) biz.get(new User(com.getId()));
 			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
+			
 			if (user_ch.getIsadmin().equals("s")) {
-				userimpl.tr_usermodifyimpl(user_ch);
+				String id = user_ch.getId();
+				userimpl.tr_usermodifyimpl(id);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();

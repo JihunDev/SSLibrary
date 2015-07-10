@@ -109,6 +109,7 @@
 		if('${myseat.s_id}' != ''){
 			$('button[value=${myseat.s_id}]').css('background-color','#FF5E00');			
 		}
+		makeHeight();
 	}
 </script>
 <style>
@@ -208,10 +209,17 @@
 	<br>
 	
 	<div>
-		<c:if test="${user.isadmin == 'y' && user != null}"> 
-			<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록"></a>
- 		</c:if>
- 		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
+		<c:if test="${user != null}">
+			<c:choose>
+				<c:when test="${user.isadmin == 'y'}"> 
+					<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록">
+				</c:when>
+				<c:otherwise> 
+						<input type="button" class="example_btn" style="float:left;background-color:#FF5E00;width:auto;" value="내 자리" disabled>
+				</c:otherwise>	
+			</c:choose>
+		</c:if>
+		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
 		<input type="button" class="n_btn example_btn" value="사용 중: ${n_count}" disabled>
 		<input type="button" class="y_btn example_btn" value="예약 가능: ${y_count}" disabled>
 		<input type="button" class="example_btn"

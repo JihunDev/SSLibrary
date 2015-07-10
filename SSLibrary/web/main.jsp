@@ -361,22 +361,39 @@ footer>div {
 		section.style.height = mHeight + 'px';
 		left.style.height = mHeight + 'px';
 	}
+	$(document).ready(function(){
+		makeHeight();
+		   setInterval(function() { //좌석 자동 반납
+		      $.ajax({
+		         async : 'false',
+		         url : 'expireseat.do',
+		         data : {},
+		         success : function(data){
+		   //      alert(data);
+		         },
+		         error : function(data) {
+		             //alert("좌석 자동반납이 종료 안 돼");
+		         }
+		      });
+		   }, 5000);
+		   
+		   setInterval(function(){ //연체된 사람 정지되게 함.
+				$.ajax({
+					async : 'false',
+					url : 'stopborrowbook.do',
+					success : function(data) {
+						alert(data);
+					},
+					error : function() {
+					//	alert("으앙 에러 ㅠㅠ")
+					}
+				});
+			}, 5000);	 
+		});
 	window.onload = function() {
 		makeHeight();
-		/* setInterval(function(){
-			$.ajax({
-				async : 'false',
-				url : 'stopborrowbook.do',
-				success : function(data) {
-					//alert(data);
-				},
-				error : function() {
-				//	alert("으앙 에러 ㅠㅠ")
-				}
-			});
-		}, 5000);	
 		  //유저 초기화
-		   setInterval(function(){
+		/*   setInterval(function(){
 		      $.ajax({
 		         async : 'false',
 		         url : 'resetuser.do',
@@ -387,7 +404,7 @@ footer>div {
 		      });
 		   }, 5000); */
 
-		<%-- setInterval(function() {
+	<%-- 	setInterval(function() {
 			$.ajax({
 				async : 'false',
 				url : 'msgchecked.do',

@@ -90,6 +90,28 @@ tr td:last-child, tr th:last-child {
 	border-bottom-right-radius: 6px;
 }
 
+
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+table.scroll thead tr th { 
+    height: 30px;
+    width : 700px;
+    line-height: 30px;
+    /* text-align: left; */
+}
+
+table.scroll tbody {
+    height: 500px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+table.scroll tbody tr td{
+	width : 700px;
+}
+
+
+
 .centered-form {
 	margin-top: 40px;
 	margin-bottom: 40px;

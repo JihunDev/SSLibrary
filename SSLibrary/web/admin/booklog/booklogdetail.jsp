@@ -20,10 +20,11 @@ function makeHeight() {
 
 function displaybook(data) {
 	var cont = Object.keys(data).length;
-	console.log(cont);
+	var element = document.getElementById("lastbooklist");
+	
 	$('#book_result').empty();
 	var output = '';
-	output+='<fieldset><legend align="center">검색 결과</legend><table  class="table table-hover scroll">'
+	output+='<fieldset><legend align="center">검색 결과</legend><table id="lastbooklist" class="table table-hover">'
 	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
 	output+='<tbody id="bookloglist">';
 	if(cont == 0){
@@ -45,6 +46,10 @@ function displaybook(data) {
 	}
 	output+="</table></fieldset>"
 	$('#book_result').html(output);
+	var element2 = $("#bookloglist");	
+	if(element2.height()>=500){
+		$('#lastbooklist').addClass("scroll");
+	}
 	makeHeight();
 
 }
@@ -85,7 +90,7 @@ function getLogBook() {
 <fieldset>
 <legend align="center">도서 과거 대여 내역</legend>
 <table width="700" class="table table-hover scroll" >
-<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
+<thead><tr><th width="50px">ID</th><th width="50px">B_ID</th><th width="50px">U_ID</th ><th width="190px">START_DATE</th><th width="190px">END_DATE</th><th width="190px">REAL_DATE</th><th width="80px">RENEW_QT</th></thead>
 <tbody>
 <c:forEach items="${loglist}" var="b"> <!-- 추후수정 -->
 <tr>
@@ -93,7 +98,7 @@ function getLogBook() {
 <td>${b.b_id}</td>
 <td>${b.u_id}</td>
 <td>${b.start_date}</td>
-<td>${b.end_date}</td>
+<td >${b.end_date}</td>
 <td>${b.real_date}</td>
 <td>${b.renew_qt}</td>
 </tr>

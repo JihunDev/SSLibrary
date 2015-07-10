@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,14 +35,17 @@ public class MainControl {
 	SearchBiz userbookbiz;
 	@Resource(name = "userseatbiz")
 	Biz userseatbiz;
+	
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
+	
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
+	
 	@Resource(name = "seatbiz")
 	Biz seatbiz;
 	@Resource(name = "seatlogbiz")

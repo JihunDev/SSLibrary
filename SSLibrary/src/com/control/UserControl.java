@@ -14,12 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.command.UserCommand;
-import com.entity.SeatLog;
 import com.entity.User;
-import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.SearchBiz;
-import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class UserControl {
@@ -27,12 +24,8 @@ public class UserControl {
 	Biz biz;
 	@Resource(name = "userbiz")
 	SearchBiz searchbiz;
-	@Resource(name = "userseatbiz")
-	Biz userseatbiz;
-	@Resource(name = "seatbiz")
-	Biz seatbiz;
-	@Resource(name = "seatlogbiz")
-	UpdateAndReturnBiz seatlogbiz;
+	@Resource(name = "user_usermodifyimpl")
+	UserImpl userimpl;
 
 	@RequestMapping("/usersearch.do")
 	public ModelAndView usersearch(String search) {
@@ -106,13 +99,13 @@ public class UserControl {
 		mv.addObject("center", "admin/user/update.jsp");
 		return mv;
 	}
-
-	@RequestMapping("/usermodifyimpl.do")//¿¹¿ÜÃ³¸®ÇØ¾ßÇÔ
+	
+	@RequestMapping("/usermodifyimpl.do")
 	public ModelAndView usermodifyimpl(HttpServletRequest request,
 			UserCommand com) {
+		
 		System.out.println("usermodifyimpl.do com: " + com);
 		ModelAndView mv = new ModelAndView("redirect:/usersearch.do?search=false");
-		HttpSession session = request.getSession();
 		String old_img = request.getParameter("oldimg");
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
@@ -141,22 +134,19 @@ public class UserControl {
 		}
 
 		try {
-			System.out.println("¾÷µ«"+user);
 			biz.modify(user);
+			
 			User user_ch = (User) biz.get(new User(com.getId()));
 			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
 			if (user_ch.getIsadmin().equals("s")) {
-				UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(user_ch.getId()));
-				userseatbiz.remove(new UserSeat(user_ch.getId()));// ÁÂ¼® ¹Ý³³
-				seatlogbiz.logreturn(new SeatLog(user_ch.getId()));// ·Î±×¿¡ ³²±è
-				//seatbiz.modify(new Seat(userseat.getS_id(), "y"));// ÁÂ¼® »ç¿ë°¡´É
+				userimpl.tr_usermodifyimpl(user_ch);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}
-		
+		}		
 		return mv;
 	}
+	
 
 	@RequestMapping("/usersearchname.do")
 	public ModelAndView usersearchname(UserCommand user1, HttpServletRequest request) {

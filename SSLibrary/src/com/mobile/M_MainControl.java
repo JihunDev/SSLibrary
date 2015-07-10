@@ -149,7 +149,7 @@ public class M_MainControl {
 						mv.addObject("id", result.getId());
 						mv = new ModelAndView("redirect:/m_center.do");
 					} else {
-						mv.addObject("m_center", "m_login.jsp");
+						mv = new ModelAndView("redirect:/m_main.do");
 					}
 				}
 			}

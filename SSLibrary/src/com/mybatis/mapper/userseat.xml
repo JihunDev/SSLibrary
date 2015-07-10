@@ -27,12 +27,10 @@
 	<delete id="deleteuserseat" parameterType="userseat">
  		DELETE FROM A_USERSEAT WHERE U_ID=#{u_id} 
 	</delete>
-	
-
-	
+		
 	<insert id="insertuserseat" parameterType="userseat">
  		INSERT INTO A_USERSEAT VALUES(#{u_id},#{s_id}, SYSDATE, SYSDATE + 6/24/60/60, 0)
- 		<selectKey resultType="userseat"> -->
+ 		<selectKey resultType="userseat"> 
  			SELECT * FROM A_USERSEAT WHERE U_ID=#{u_id}
  		</selectKey> -->
 	</insert>

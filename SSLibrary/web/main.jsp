@@ -382,7 +382,7 @@ footer>div {
 					async : 'false',
 					url : 'stopborrowbook.do',
 					success : function(data) {
-						alert(data);
+					//	alert(data);
 					},
 					error : function() {
 					//	alert("À¸¾Ó ¿¡·¯ ¤Ð¤Ð")

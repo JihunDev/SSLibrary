@@ -1,6 +1,7 @@
 package com.mobile;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -83,12 +84,15 @@ public class M_BookControl {
 				sublist2 = sbookbiz.getwriter(search);
 				for (Object o1 : sublist2) {
 					Book b1 = (Book) o1;
-					for (Object o2 : sublist1) {
-						Book b2 = (Book) o2;
+					Iterator<Object> it = sublist1.iterator();
+					while (it.hasNext()) {
+						Book b2 = (Book) it.next();
 						if (b1.getId().equals(b2.getId())) {
 						} else {
 							sublist1.add(o1);
+							break;
 						}
+
 					}
 				}
 				list = sublist1;
@@ -257,7 +261,7 @@ public class M_BookControl {
 		mv.addObject("m_center", "book/m_detail.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/m_userbookregister.do")
 	// 책 대여하기
 	public ModelAndView m_userbookregister(HttpServletRequest request, String id) {
@@ -265,7 +269,7 @@ public class M_BookControl {
 		HttpSession session = request.getSession();
 		User sessionuser = (User) session.getAttribute("user");
 		String uid = sessionuser.getId(); // 회원 아이디 정보 세션에서
-															// 가져오기
+											// 가져오기
 		User user = null;
 		int borrowbook = 0; // 책을 빌렸는지 확인 여부
 		// (0 : 아무일도 없음 / 1 : 중복 대여 불가 / 2 : 갯수없어 대여할 수 없음 / 3 : 대여완료 / 4 : 관리자가

@@ -24,8 +24,6 @@ public class MessageControl {
 	@Resource(name = "messagelogbiz")
 	SearchBiz s_mbiz;
 	@Resource(name = "userseatbiz")
-	Biz ubiz;
-	@Resource(name = "userseatbiz")
 	SearchBiz s_ubiz;
 	
 	@ResponseBody

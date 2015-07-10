@@ -47,9 +47,9 @@
 		UPDATE A_USER
 		<trim prefix="SET" suffixOverrides=",">
 			<if test='name != null'>PWD = #{pwd}, NAME = #{name}, PHONE = #{phone}, IMG =
-				#{img}, EMAIL = #{email}
+				#{img}, EMAIL = #{email},
 			</if>
-			<if test='isadmin != "s"'>,ISADMIN = #{isadmin},STOP_DATE = NULL</if>
+			<if test='isadmin != "s"'>ISADMIN = #{isadmin},STOP_DATE = NULL</if>
 			<if test='isadmin == "s"'>ISADMIN = #{isadmin}, STOP_DATE = SYSDATE+7</if>
 		</trim>
 		WHERE ID = #{id}

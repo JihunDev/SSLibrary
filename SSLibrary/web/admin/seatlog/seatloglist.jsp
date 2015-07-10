@@ -14,15 +14,19 @@ function searchseatlog(f){
 	var search = f.search.value;
 	//alert(typeof(search));
 	//alert(Number(search));
-	
-	if(issearch == "s_id" && isNaN(Number(search))==true){
-		// 좌석 검색할때 숫자가 아닌 문자를 입력했다면
-		alert("올바른 좌석 ID를 입력하세요.");
+	if(search==null || search == ""){
+		alert("검색어를 입력하세요.");
+		f.search.focus();
 	}else{	
-		// 올바른 검색값을 입력했다면
-		f.action = "adminseatlogsearch.do";
-		f.method="POST";
-		f.submit();
+		if(issearch == "s_id" && isNaN(Number(search))==true){
+			// 좌석 검색할때 숫자가 아닌 문자를 입력했다면
+			alert("올바른 좌석 ID를 입력하세요.");
+		}else{	
+			// 올바른 검색값을 입력했다면
+			f.action = "adminseatlogsearch.do";
+			f.method="POST";
+			f.submit();
+		}
 	}
 }
 

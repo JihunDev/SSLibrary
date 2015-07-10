@@ -1,4 +1,4 @@
-package com.control;
+package com.control.impl;
 
 import javax.annotation.Resource;
 

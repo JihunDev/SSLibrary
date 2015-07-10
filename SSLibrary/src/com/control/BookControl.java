@@ -153,9 +153,7 @@ public class BookControl {
 				sublist2 = sbookbiz.getwriter(search);
 				for (Object o1 : sublist2) {
 					Book b1 = (Book) o1;
-					
 					Iterator<Object> it = sublist1.iterator();
-					
 					while (it.hasNext()) {
 						Book b2 = (Book) it.next();
 						if (b1.getId().equals(b2.getId())) {
@@ -163,7 +161,6 @@ public class BookControl {
 							sublist1.add(o1);
 							break;
 						}
-						
 					}
 					/*for (Object o2 : sublist1) {
 						Book b2 = (Book) o2;

@@ -414,7 +414,9 @@ public class MainControl {
 				Book book = (Book) bookbiz.get(bid);// 하나씩 찾음
 				String[] info = { bid, book.getName(),
 						userbook.getStart_date(), userbook.getEnd_date() };
+				if(userbook.getIsreturn()=="n" || userbook.getIsreturn().equals("n")){
 				booklist.add(info);// array에 담음
+				}
 			}
 			userseat = userseatbiz.get(id);
 		} catch (Exception e) {

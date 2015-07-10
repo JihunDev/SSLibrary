@@ -83,13 +83,12 @@ public class M_MessageControl {
 
 		return mv;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/m_msgchecked.do")
 	public String m_msgchecked(String id) {
 		ArrayList<Object> msg_list = new ArrayList<Object>();
 		int msgchecknumber = 0;
-		System.out.println("아이디 : "+id);
 		try {
 			msg_list = messagelogbiz.get();
 			for (Object obj : msg_list) {
@@ -106,19 +105,19 @@ public class M_MessageControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("메세지 : "+msgchecknumber);
 		String stringmsgchecknumber = String.valueOf(msgchecknumber);
 		return stringmsgchecknumber;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/m_msgsendimpl.do")
-	public String m_msgsendimpl(String s_id_str, String sender_id, String text, HttpServletRequest request){
+	public String m_msgsendimpl(String s_id_str, String sender_id, String text,
+			HttpServletRequest request) {
 		int s_id = Integer.parseInt(s_id_str);
-		
+
 		String u_id = "";
 		ArrayList<Object> seatbys_id = null;
-		
+
 		try {
 			seatbys_id = s_ubiz.getid(s_id);
 		} catch (Exception e1) {
@@ -129,18 +128,17 @@ public class M_MessageControl {
 			UserSeat u_seat = (UserSeat) obj;
 			u_id = u_seat.getU_id();
 		}
-		
-		System.out.println("u_id: " +u_id  +" s_id: " +s_id  + " sender_id: " + sender_id);
-		
+
+		System.out.println("u_id: " + u_id + " s_id: " + s_id + " sender_id: "
+				+ sender_id);
+
 		try {
 			messagelogbiz.register(new MessageLog(u_id, s_id, sender_id, text));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "redirect:/m_seatmain.do";
 	}
-	
-	
 
 }

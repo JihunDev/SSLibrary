@@ -120,28 +120,34 @@ public class M_MainControl {
 					for (Object obj : list) {
 						MessageLog log = (MessageLog) obj;
 						String read = log.getRead();
-						if (read.equals("n")) {
-							msgchecknumber += 1;
+						String getid = log.getU_id();
+						if (getid.equals(id)) {
+							if (read.equals("n")) {
+								msgchecknumber += 1;
+							}
 						}
 					}
 					session.setAttribute("msgcheck", msgchecknumber);
 					session.setAttribute("user", result);
 					mv = new ModelAndView("redirect:/m_center.do");
-				}else{
+				} else {
 					mv = new ModelAndView("redirect:/m_main.do");
 				}
 			} else {
 				result = (User) userbiz.get(new User(id));
 				list = messagelogsearchbiz.getid(new MessageLog(id));
-				if (result ==  null || result.getIsadmin().equals("d")) {
+				if (result == null || result.getIsadmin().equals("d")) {
 					mv = new ModelAndView("redirect:/m_main.do");
 				} else {
 					if (result != null && (result.getPwd()).equals(pwd)) {
 						for (Object obj : list) {
 							MessageLog log = (MessageLog) obj;
 							String read = log.getRead();
-							if (read.equals("n")) {
-								msgchecknumber += 1;
+							String getid = log.getU_id();
+							if (getid.equals(id)) {
+								if (read.equals("n")) {
+									msgchecknumber += 1;
+								}
 							}
 						}
 						session.setAttribute("msgcheck", msgchecknumber);

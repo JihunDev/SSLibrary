@@ -81,6 +81,65 @@ public class M_UserControl {
 
 		return mv;
 	}
+	
+	@RequestMapping("/m_register.do")
+	public ModelAndView m_register() {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		mv.addObject("m_center", "user/m_register.jsp");
+		return mv;
+	}
+
+	@RequestMapping("/m_registerimpl.do")
+	public ModelAndView m_registerimpl(HttpServletRequest request,
+			UserCommand com) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		HttpSession session = request.getSession();
+		ArrayList<Object> list = new ArrayList<Object>();
+		User user = null;
+		String fistimg = "index.jpg";
+		String imgfile = com.getImg().getOriginalFilename();
+
+		if (imgfile == null || imgfile.equals("")) {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), fistimg, com.getEmail(), com.getIsadmin());
+		} else {
+			user = new User(com.getId(), com.getPwd(), com.getName(),
+					com.getPhone(), com.getImg().getOriginalFilename(),
+					com.getEmail(), com.getIsadmin());
+
+			MultipartFile file = com.getImg();
+			String dir = "C:/lib/SSLibrary/web/img/user/";
+			byte[] data;
+
+			try {
+				data = file.getBytes();
+				FileOutputStream out = new FileOutputStream(dir
+						+ file.getOriginalFilename());
+				out.write(data);
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			list = userbiz.get();
+			for (Object obj : list) {
+				User check = (User) obj;
+				if (com.getId().equals(check.getId())) {
+					mv.addObject("m_center", "user/m_register.jsp");
+					mv.addObject("fail", "fail");
+				} else {
+					userbiz.register(user);
+					session.setAttribute("user", user);
+					mv = new ModelAndView("redirect:/m_center.do");
+				}
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return mv;
+	}
 
 	@RequestMapping("/m_modify.do")
 	public ModelAndView m_modify(String id) {

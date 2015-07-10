@@ -20,6 +20,7 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class M_BoardControl {
+	//board
 	@Resource(name = "boardbiz")
 	Biz biz;
 	@Resource(name = "boardbiz")

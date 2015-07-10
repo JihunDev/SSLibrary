@@ -18,16 +18,12 @@
 			f.method = "POST";
 			f.submit();
 		});
-
 	}
 	//회원의 메세지 전송 함수
 	function sendMsg(f) {
 		var s_id = f.s_id.value;
-		// 좌석의 id 값 대입
-		$(".seatid").val(s_id);
-		//메세지 전송 다이얼로그 출력
-		$('#sendMsg').popup('open');
-
+		location.href="m_msgsend.do?s_id="+s_id;
+		
 	}
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
@@ -214,23 +210,6 @@
 </div>
 
 <!--  popup -->
-<div data-role="popup" id="sendMsg">
-	<div data-role="header">
-		<h1>메세지전송</h1>
-		<p>발신자: ${user.id}(${user.name})</p>
-		<a href="#" data-rel="back"
-			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-	</div>
-	<div data-role="main">
-		<form>
-			<input type="hidden" name="sender_uid" value="${user.id}"> <input
-				type="hidden" name="receiver_sid" class="seatid">
-			<textarea rows="2" cols="70" name="textarea"></textarea>
-			<button type="button" id="sendMsgImplbutton"
-				onclick="sendMsgImpl(this.form);">보내기</button>
-		</form>
-	</div>
-</div>
 
 <div data-role="popup" id="registerMsg">
 	<div data-role="header">
@@ -276,6 +255,16 @@
 		<h2>이미 좌석을 예약하셨습니다.</h2>
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <div data-role="popup" id="sendMsgImpls">
 	<div data-role="header">

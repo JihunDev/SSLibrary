@@ -22,15 +22,30 @@
 	//회원의 메세지 전송 함수
 	function sendMsg(f) {
 		var s_id = f.s_id.value;
-		// 좌석의 id 값 대입
-		$(".seatid").val(s_id);
-		//메세지 전송 다이얼로그 출력
-		$("#sendMsg").modal({
+		
+		if(s_id == "${myseat.s_id}"){
+			alert("회원님의 자리로 메세지를 보낼 수 없습니다.");	
+		}else{// 좌석의 id 값 대입
+			$(".seatid").val(s_id);
+		
+			
+			//메세지 전송 다이얼로그 출력
+			$("#sendMsg").modal({
+				'width' : 500,
+				'height' : 400
+			});
+					
+		}
+	}
+	
+	function confirmmsg(){
+		$("#confirmMsg").modal({
 			'width' : 500,
 			'height' : 400
-		});
+		});			
 	}
-
+	
+	
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
 		alert("이미 예약된 좌석입니다. ");
@@ -88,6 +103,13 @@
 			showDialog(s_id, s_state);
 		}
 	};
+	
+	window.onload = function(){
+		
+		if('${myseat.s_id}' != ''){
+			$('button[value=${myseat.s_id}]').css('background-color','#FF5E00');			
+		}
+	}
 </script>
 <style>
 #seattable>form>button {

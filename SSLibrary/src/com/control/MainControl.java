@@ -461,7 +461,6 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(msgchecknumber);
 		String stringmsgchecknumber = String.valueOf(msgchecknumber);
 		return stringmsgchecknumber;
 	}

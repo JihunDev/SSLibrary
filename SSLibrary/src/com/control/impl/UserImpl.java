@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Seat;
 import com.entity.SeatLog;
+import com.entity.User;
 import com.entity.UserSeat;
 import com.frame.Biz;
 import com.frame.UpdateAndReturnBiz;
@@ -24,8 +25,9 @@ public class UserImpl {
 	
 	@Transactional
 	public void tr_usermodifyimpl(String id) {
-		
+		User userinfo = new User(id, "s"); // userÀÇ »óÅÂ¸¦ Á¤Áö·Î ¹Ù²ãÁÜ
 		try {
+			biz.modify(userinfo);
 			UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(id));
 			
 			userseatbiz.remove(new UserSeat(id));// ÁÂ¼® ¹İ³³

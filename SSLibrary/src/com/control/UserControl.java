@@ -46,15 +46,15 @@ public class UserControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(search.equals("true")){
+
+		if (search.equals("true")) {
 			// 검색을 수행한 후에 bookmain.do를 불렀으므로 전체리스트를 전달하지 않는다.
-			
-		}else if(search.equals("false")){
+
+		} else if (search.equals("false")) {
 			// 메뉴에서 처음으로 자료실을 선택할 때 전체 리스트와 요소 수 전달
 			mv.addObject("search", "search=false&");
-			mv.addObject("userlist", list_check);		
-			mv.addObject("usercount", String.valueOf(list_check.size()));		
+			mv.addObject("userlist", list_check);
+			mv.addObject("usercount", String.valueOf(list_check.size()));
 		}
 		mv.addObject("center", "admin/user/list.jsp");
 		return mv;
@@ -76,7 +76,8 @@ public class UserControl {
 
 	@RequestMapping("/userremoveimpl.do")
 	public ModelAndView userremoveimpl(String id) {
-		ModelAndView mv = new ModelAndView("redirect:/usersearch.do?search=false");
+		ModelAndView mv = new ModelAndView(
+				"redirect:/usersearch.do?search=false");
 		User user = new User(id, "d");
 		try {
 			biz.remove(user);
@@ -99,13 +100,14 @@ public class UserControl {
 		mv.addObject("center", "admin/user/update.jsp");
 		return mv;
 	}
-	
+
 	@RequestMapping("/usermodifyimpl.do")
 	public ModelAndView usermodifyimpl(HttpServletRequest request,
 			UserCommand com) {
-		
+
 		System.out.println("usermodifyimpl.do com: " + com);
-		ModelAndView mv = new ModelAndView("redirect:/usersearch.do?search=false");
+		ModelAndView mv = new ModelAndView(
+				"redirect:/usersearch.do?search=false");
 		String old_img = request.getParameter("oldimg");
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
@@ -135,7 +137,7 @@ public class UserControl {
 
 		try {
 			biz.modify(user);
-			
+
 			User user_ch = (User) biz.get(new User(com.getId()));
 			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
 			if (user_ch.getIsadmin().equals("s")) {
@@ -143,17 +145,17 @@ public class UserControl {
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
-		}		
+		}
 		return mv;
 	}
-	
 
 	@RequestMapping("/usersearchname.do")
-	public ModelAndView usersearchname(UserCommand user1, HttpServletRequest request) {
+	public ModelAndView usersearchname(UserCommand user1,
+			HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> list_check = new ArrayList<Object>();
-		
+
 		String name = user1.getName();
 		String isadmin = user1.getIsadmin();
 		String id = "";
@@ -170,22 +172,19 @@ public class UserControl {
 			System.out.println(list);
 			for (Object obj : list) {
 				User user2 = (User) obj;
-				list_check.add(user2);				
+				list_check.add(user2);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		HttpSession session = request.getSession();
-		//User user = (User)session.getAttribute("user");
-		
+
 		session.setAttribute("search", "search=true&");
 		session.setAttribute("userlist", list_check);
 		session.setAttribute("usercount", String.valueOf(list_check.size()));
 		// 검색을 수행했다는 search값과 검색 결과 리스트 및 요소 수 전달
-		
-		// System.out.println(list_check);
-		// System.out.println(list_check.size());
+
 		mv.addObject("center", "admin/user/list.jsp");
 		return mv;
 	}

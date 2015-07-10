@@ -14,6 +14,7 @@
 <%
 	int list_length = toInt((String) pageContext.getAttribute("list_length"));
 	String sort = request.getParameter("sort");
+	String search = request.getParameter("search");
 	int pageno = toInt(request.getParameter("pageno"));
 
    if(pageno<1){//현재 페이지
@@ -92,7 +93,7 @@ function getBoard(f){
 	 f.submit();
 }
 $(document).ready(function(){
-	  	if(<%=page_eno%>==0){
+	  	if(<%=page_eno%>==0 && <%=search%>==true){
 			alert("검색결과가 없습니다.");
 		}   
 	});

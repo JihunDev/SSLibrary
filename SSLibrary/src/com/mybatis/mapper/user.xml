@@ -49,6 +49,9 @@
 			<if test='name != null'>PWD = #{pwd}, NAME = #{name}, PHONE = #{phone}, IMG =
 				#{img}, EMAIL = #{email} ISADMIN = #{isadmin}
 			</if>
+			<if test='isadmin == "n"'>
+				ISADMIN = #{isadmin}
+			</if>
 			<if test='isadmin == "d"'>
 				ISADMIN = #{isadmin}
 			</if>

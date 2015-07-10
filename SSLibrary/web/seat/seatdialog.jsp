@@ -193,6 +193,29 @@ function modifystate(f, i) {
   </div>
 </div>
 
+<!--   Confirm Sending Message-->
+<div class="modal fade" id="confirmMsg"  tabindex='-1'>
+  <div class="modal-dialog" id="sendMsgDialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">확인</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+		정말로 보내실테요???
+	  </div>
+	  	<div class="modal-footer">		
+		<button type="button" class="btn btn-default" data-dismiss="modal" name="Nbtn" id="Nbtn" value="보내기" onclick="sendMsgImpl(this.form);">보내기</button>
+ 		<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	</div>
+    </div>
+  </div>
+</div>
+
 
 
 

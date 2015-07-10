@@ -92,11 +92,11 @@ function getBoard(f){
 	 f.method="post";
 	 f.submit();
 }
-$(document).ready(function(){
-	  	if(<%=page_eno%>==0 && <%=search%>==true){
-			alert("검색결과가 없습니다.");
+window.onload = function(){
+	  	if(<%=page_eno%>==0){
+			$('#boardlist_div').html("<tr><td colspan=5>등록된 게시물이 없습니다.</td><tr>");
 		}   
-	});
+}
 </script>
 <div class="fieldsetform">
 <form class="form-inline">
@@ -128,7 +128,7 @@ $(document).ready(function(){
 			<th>조회수</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="boardlist_div">
 		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
 			<c:set var="foreach_count" value="${board_status.count}" />
 			<%

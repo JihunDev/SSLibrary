@@ -38,7 +38,7 @@
 		</selectKey>
 	</insert>
 
-	<!-- 안씀 -->
+
 	<update id="deleteuser" parameterType="user">
 		UPDATE A_USER SET ISADMIN = 'd' WHERE ID = #{id}
 	</update>
@@ -50,7 +50,7 @@
 				#{img}, EMAIL = #{email}
 			</if>
 			<if test='isadmin != "s"'>,ISADMIN = #{isadmin},STOP_DATE = NULL</if>
-			<if test='isadmin == "s"'>,ISADMIN = #{isadmin}, STOP_DATE = SYSDATE+7</if>
+			<if test='isadmin == "s"'>ISADMIN = #{isadmin}, STOP_DATE = SYSDATE+7</if>
 		</trim>
 		WHERE ID = #{id}
 	</update>

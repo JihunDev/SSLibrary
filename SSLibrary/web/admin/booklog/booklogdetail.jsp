@@ -23,7 +23,7 @@ function displaybook(data) {
 	console.log(cont);
 	$('#book_result').empty();
 	var output = '';
-	output+='<fieldset><legend align="center">검색 결과</legend><table  class="table table-hover">'
+	output+='<fieldset><legend align="center">검색 결과</legend><table  class="table table-hover scroll">'
 	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
 	output+='<tbody id="bookloglist">';
 	if(cont == 0){
@@ -84,7 +84,7 @@ function getLogBook() {
 <div id="book_result">
 <fieldset>
 <legend align="center">도서 과거 대여 내역</legend>
-<table width="700" class="table table-hover">
+<table width="700" class="table table-hover scroll" >
 <thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>
 <tbody>
 <c:forEach items="${loglist}" var="b"> <!-- 추후수정 -->

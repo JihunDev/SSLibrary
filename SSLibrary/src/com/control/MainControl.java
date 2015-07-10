@@ -33,9 +33,7 @@ public class MainControl {
 	SearchBiz SearchBiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
-	@Resource(name = "userseatbiz")
-	Biz userseatbiz;
-	
+		
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
@@ -43,11 +41,14 @@ public class MainControl {
 	
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
+	
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
 	
 	@Resource(name = "seatbiz")
 	Biz seatbiz;
+	@Resource(name = "userseatbiz")
+	Biz userseatbiz;
 	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz seatlogbiz;
 
@@ -374,25 +375,14 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-		// HttpSession session = request.getSession();
-		// int number = 0;
-		// ArrayList<Object> list = new ArrayList<Object>();
-
+		
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
-			// list = messagelogbiz.get();
-			// for (Object obj : list) {
-			// MessageLog numbercheck = (MessageLog) obj;
-			// if (numbercheck.getRead().equals("n")) {
-			// number += 1;
-			// }
-			// }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// session.setAttribute("msgcheck", number);// 메세지 체크
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
 

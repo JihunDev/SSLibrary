@@ -40,23 +40,17 @@
 
 	<!-- 안씀 -->
 	<update id="deleteuser" parameterType="user">
-		UPDATE A_USER SET ISADMIN = d WHERE ID = #{id}
+		UPDATE A_USER SET ISADMIN = 'd' WHERE ID = #{id}
 	</update>
 
 	<update id="updateuser" parameterType="user">
 		UPDATE A_USER
 		<trim prefix="SET" suffixOverrides=",">
 			<if test='name != null'>PWD = #{pwd}, NAME = #{name}, PHONE = #{phone}, IMG =
-				#{img}, EMAIL = #{email} ISADMIN = #{isadmin}
+				#{img}, EMAIL = #{email}
 			</if>
-			<if test='isadmin == "n"'>
-				ISADMIN = #{isadmin}
-			</if>
-			<if test='isadmin == "d"'>
-				ISADMIN = #{isadmin}
-			</if>
-			<if test='isadmin != "s"'>,STOP_DATE = NULL</if>
-			<if test='isadmin == "s"'>,STOP_DATE = SYSDATE+7</if>
+			<if test='isadmin != "s"'>,ISADMIN = #{isadmin},STOP_DATE = NULL</if>
+			<if test='isadmin == "s"'>,ISADMIN = #{isadmin}, STOP_DATE = SYSDATE+7</if>
 		</trim>
 		WHERE ID = #{id}
 	</update>

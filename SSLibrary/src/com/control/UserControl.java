@@ -138,13 +138,8 @@ public class UserControl {
 
 		try {
 			biz.modify(user);
-
-			User user_ch = (User) biz.get(new User(com.getId()));
-			System.out.println("usermodifyimpl.do user_ch: " + user_ch);
-			
-			if (user_ch.getIsadmin().equals("s")) {
-				String id = user_ch.getId();
-				userimpl.tr_usermodifyimpl(id);
+			if (com.getIsadmin().equals("s")) {
+				userimpl.tr_usermodifyimpl(com.getId());
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();

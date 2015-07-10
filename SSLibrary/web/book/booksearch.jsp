@@ -99,8 +99,8 @@ function makeHeight() {
    
    var mHeight = center_area.clientHeight+120;
    /* ClientHeight를 써서 표 높이만큼 늘리게 함. */
-   if (mHeight < 700) {
-      mHeight = 700;
+   if (mHeight < 850) {
+      mHeight = 850;
    }
    center.style.height = mHeight + 'px';
    section.style.height = mHeight + 'px';
@@ -119,9 +119,11 @@ function getBook(f) {
 };
 
 window.onload = function(){
+	makeHeight();
   	if(<%=page_eno%>==0){
 		$('#booklist_div').html("<tr><td colspan=8>검색 결과가 존재하지 않습니다.</td><tr>");
-	}   
+	}  
+  	
 }
 
 </script>

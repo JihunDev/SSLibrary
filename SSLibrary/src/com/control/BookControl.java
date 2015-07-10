@@ -64,7 +64,7 @@ public class BookControl {
 	// 책 연장, 반납 시 업데이트 할 때 필요
 	UpdateAndReturnBiz uprebiz;
 	
-	@Resource(name="userimpl")
+	@Resource(name="user_usermodifyimpl")
 	UserImpl userimpl;
 	// -------------------------------------Book------------------------------------------
 

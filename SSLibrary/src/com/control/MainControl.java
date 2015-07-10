@@ -30,7 +30,7 @@ public class MainControl {
 	Biz biz;
 	@Resource(name = "userbiz")
 	SearchBiz SearchBiz;
-	
+
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
@@ -40,7 +40,7 @@ public class MainControl {
 	Biz bookbiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
-	
+
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
 
@@ -426,7 +426,9 @@ public class MainControl {
 			for (Object obj : time_list) {
 				User user = (User) obj;
 				String userid = user.getId();
-				biz.modify(new User(userid, "n"));
+				if (user.getIsadmin().equals("s")) {
+					biz.modify(new User(userid, "n"));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

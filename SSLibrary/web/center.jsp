@@ -61,7 +61,7 @@
 	<div class="col-sm-6">
   <div id="notice" class="board">
 	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
-	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=notice">더보기</a></b>
+	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=notice">더보기</a></b>
 		<table width="305px">
 		<thead>
 		<tr>
@@ -86,7 +86,7 @@
 	</div>
 	<div class="col-sm-6">
 	<div id="free" class="board">
-	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?sort=free">더보기</a></b>
+	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=free">더보기</a></b>
 	<table width="305px">
 		<thead>
 		<tr>

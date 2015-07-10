@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.command.BookUploadCommand;
 import com.entity.Book;
 import com.entity.BookLog;
-import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
@@ -32,11 +31,6 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class BookControl {
-	@Resource(name = "userbiz")
-	// user정보
-	Biz userbiz;
-
-	// ---------------------------------------
 	@Resource(name = "bookbiz")
 	// 책 정보
 	Biz bookbiz;
@@ -749,8 +743,6 @@ public class BookControl {
 			for (Object obj : overduelist) {
 				UserBook ub = (UserBook) obj;
 				String uid = ub.getU_id();
-				User userinfo = new User(uid, "s"); // user의 상태를 정지로 바꿔줌
-				userbiz.remove(userinfo);
 				userimpl.tr_usermodifyimpl(uid);
 				/* System.out.println(userinfo); */
 			}

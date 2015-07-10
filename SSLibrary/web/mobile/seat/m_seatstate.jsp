@@ -44,13 +44,9 @@
 	// 메세지 전송
 	function sendMsgImpl(f) {
 		$('#sendMsg').popup('close');
-		// 수신자 좌석 정보
-		var s_id = f.receiver_sid.value;
-		// 발신자
-		var sender_id = f.sender_uid.value;
-		// 내용
-		var text = f.textarea.value;
-		$('#sendMsgImpls').popup('open');
+		var s_id = f.receiver_sid.value;// 수신자 좌석 정보
+		var sender_id = f.sender_uid.value;// 발신자
+		var text = f.textarea.value;// 내용
 		$("#sendMsgImplbutton").click(function() {
 			$.ajax({
 				type : 'post',
@@ -64,7 +60,7 @@
 				success : function(data) {
 					$('#sendMsgImplok').popup('open');
 				},
-				error : function() {
+				error : function(data) {
 					$('#sendMsgImplfail').popup('open');
 				}
 			});
@@ -230,7 +226,7 @@
 			<input type="hidden" name="sender_uid" value="${user.id}"> <input
 				type="hidden" name="receiver_sid" class="seatid">
 			<textarea rows="2" cols="70" name="textarea"></textarea>
-			<button type="button" name="Nbtn" id="Nbtn"
+			<button type="button" id="sendMsgImplbutton"
 				onclick="sendMsgImpl(this.form);">보내기</button>
 		</form>
 	</div>

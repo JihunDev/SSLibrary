@@ -18,10 +18,12 @@ import com.frame.SearchBiz;
 
 @Controller
 public class M_MessageControl {
+	//message
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
+	//seat
 	@Resource(name = "userseatbiz")
 	SearchBiz s_ubiz;
 
@@ -65,7 +67,6 @@ public class M_MessageControl {
 			messagelogbiz.modify(id);
 			list = messagelogbiz.get();
 			for (Object obj : list) {
-				System.out.println(obj);
 				MessageLog numbercheck = (MessageLog) obj;
 				if (numbercheck.getRead().equals("n")) {
 					number += 1;
@@ -77,7 +78,6 @@ public class M_MessageControl {
 		}
 
 		session.setAttribute("msgcheck", number);// 메세지 체크
-		System.out.println(number);
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("m_center", "message/m_detail.jsp");
 
@@ -112,7 +112,6 @@ public class M_MessageControl {
 	@RequestMapping("/m_msgsend.do")
 	public ModelAndView m_msgsend(String s_id){
 		ModelAndView mv = new ModelAndView("mobile/m_main");
-		System.out.println(s_id);
 		mv.addObject("s_id", s_id);
 		mv.addObject("m_center", "seat/m_register.jsp");
 		return mv;
@@ -125,7 +124,6 @@ public class M_MessageControl {
 		int s_id = Integer.parseInt(s_id_str);
 		String u_id = "";
 		ArrayList<Object> seatbys_id = null;
-		
 		try {
 			seatbys_id = s_ubiz.getid(s_id);
 			
@@ -138,9 +136,7 @@ public class M_MessageControl {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
 		mv = new ModelAndView("redirect:/m_seatmain.do");
-		
 		return mv;
 	}
 

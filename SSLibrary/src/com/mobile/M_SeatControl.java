@@ -26,20 +26,26 @@ import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class M_SeatControl {
+	//user
+	@Resource(name = "userbiz")
+	Biz user_biz;
+	
+	//seat
 	@Resource(name = "seatbiz")
 	Biz biz;
-	@Resource(name = "userseatbiz")
-	Biz ubiz;
+	
+	@Resource(name = "seatlogbiz")
+	Biz lbiz;
 	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz ur_lbiz;
 	@Resource(name = "seatlogbiz")
 	SearchBiz s_lbiz;
-	@Resource(name = "seatlogbiz")
-	Biz lbiz;
+	
 	@Resource(name = "userseatbiz")
 	SearchBiz s_ubiz;
-	@Resource(name = "userbiz")
-	Biz user_biz;
+	@Resource(name = "userseatbiz")
+	Biz ubiz;
+	
 
 	@RequestMapping("/m_seatmain.do")
 	public ModelAndView m_seatmain(HttpServletRequest request) {

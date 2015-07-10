@@ -6,9 +6,25 @@
 <script>
 $(document).ready(function(){
 	if("${adminseatloglist}" == "[]")
-		alert("검색결과가 없습니다.");	
+		$('#seatloglist_div').html("<tr><td colspan=6>등록된 게시물이 없습니다.</td><tr>");
+	
 });
-
+function searchseatlog(f){
+	var issearch = f.issearch.value;
+	var search = f.search.value;
+	//alert(typeof(search));
+	//alert(Number(search));
+	
+	if(issearch == "s_id" && isNaN(Number(search))==true){
+		// 좌석 검색할때 숫자가 아닌 문자를 입력했다면
+		alert("올바른 좌석 ID를 입력하세요.");
+	}else{	
+		// 올바른 검색값을 입력했다면
+		f.action = "adminseatlogsearch.do";
+		f.method="POST";
+		f.submit();
+	}
+}
 
 </script>
 <style>
@@ -30,7 +46,7 @@ $(document).ready(function(){
 	<div style="float:right;" >
      	<button class="btn btn-default btn-sm" style="float:right;" type="submit" onclick='location.href="seatmain.do"'>좌석 현황</button>
      </div> 
-     <form action ="adminseatlogsearch.do" method="POST" class="form-inline">
+     <form class="form-inline">
       <div class="input-group" style="float:left;" >
      <span class="input-group-btn">
          <select id="issearch" name="issearch" class="form-control input-sm" >
@@ -38,7 +54,7 @@ $(document).ready(function(){
 		<option value="u_id">사용자ID</option>
 	</select>
       	 <input type="text" id="search" name="search" class="form-control input-sm"placeholder="Search for ID">
-         <button class="btn btn-default btn-sm" type="submit">검색</button>
+         <button class="btn btn-default btn-sm" type="button" onclick="searchseatlog(this.form);">검색</button>
       </span>
      </div>
 
@@ -56,7 +72,7 @@ $(document).ready(function(){
 				<th>연장</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id='seatloglist_div'>
 			<c:forEach items="${adminseatloglist}" var='sl'>
 					<td>${sl.u_id}</td>
 					<td>${sl.s_id}</td>

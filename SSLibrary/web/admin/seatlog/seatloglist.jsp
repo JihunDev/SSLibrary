@@ -15,8 +15,11 @@ function searchseatlog(f){
 	//alert(typeof(search));
 	//alert(Number(search));
 	if(search==null || search == ""){
-		alert("검색어를 입력하세요.");
-		f.search.focus();
+		//alert("검색어를 입력하세요.");
+		//f.search.focus();
+		f.action = "adminseatloglist.do";
+		f.method="POST";
+		f.submit();
 	}else{	
 		if(issearch == "s_id" && isNaN(Number(search))==true){
 			// 좌석 검색할때 숫자가 아닌 문자를 입력했다면
@@ -63,7 +66,7 @@ function searchseatlog(f){
      </div>
 
 <br><br>
-<fieldset>
+<fieldset >
 	<legend align="center">Seat Log List Page</legend>
 	<table width="700" class="table table-hover" id="seatlogtable">
 		<thead>
@@ -87,6 +90,7 @@ function searchseatlog(f){
 				</tr>
 			</c:forEach>
 		</tbody>
+		
 	</table>
 </fieldset>
 

@@ -21,7 +21,10 @@
 	</select>
 	<!--연장-->
 	<update id="updateuserseat" parameterType="userseat">
- 		UPDATE A_USERSEAT SET END_TIME = END_TIME + 2/24, RENEW_QT=RENEW_QT+1  WHERE U_ID=#{u_id}
+		UPDATE A_USERSEAT SET END_TIME = 
+		CASE WHEN <![CDATA[TO_NUMBER(TO_CHAR(SYSDATE,'HH24'), '99') < 21 THEN END_TIME + 2/24]]>
+				 ELSE TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')||'23:00:00', 'YYYY-MM-DD HH24:MI:SS') END
+			, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id}
 	</update>
 	
 	<delete id="deleteuserseat" parameterType="userseat">
@@ -29,12 +32,13 @@
 	</delete>
 		
 	<insert id="insertuserseat" parameterType="userseat">
- 		INSERT INTO A_USERSEAT VALUES(#{u_id},#{s_id}, SYSDATE, SYSDATE + 6/24/60/60, 0)
- 		<selectKey resultType="userseat"> 
+		INSERT INTO A_USERSEAT VALUES(#{u_id}, #{s_id}, SYSDATE,
+		CASE WHEN <![CDATA[TO_NUMBER(TO_CHAR(SYSDATE,'HH24'), '99') < 17 THEN  SYSDATE+6/24/60/60]]>
+				ELSE TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')||'23:00:00', 'YYYY-MM-DD HH24:MI:SS') END, 0)
+	<selectKey resultType="userseat"> 
  			SELECT * FROM A_USERSEAT WHERE U_ID=#{u_id}
  		</selectKey> -->
-	</insert>
-		
+	</insert>		
 </mapper>
 
 

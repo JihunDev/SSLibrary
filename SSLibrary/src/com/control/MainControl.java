@@ -30,9 +30,7 @@ public class MainControl {
 	Biz biz;
 	@Resource(name = "userbiz")
 	SearchBiz SearchBiz;
-	@Resource(name = "userbookbiz")
-	SearchBiz userbookbiz;
-
+	
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
@@ -40,7 +38,9 @@ public class MainControl {
 
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
-
+	@Resource(name = "userbookbiz")
+	SearchBiz userbookbiz;
+	
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
 

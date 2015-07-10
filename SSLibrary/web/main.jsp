@@ -365,11 +365,11 @@ footer>div {
 		      });
 		   }, 5000); */
 
-	 	setInterval(function() {
+		setInterval(function() {
 			$.ajax({
 				async : 'false',
 				url : 'msgchecked.do',
-				data: {
+				data : {
 					'id' : "${user.id}"
 				},
 				success : function(data) {
@@ -382,7 +382,11 @@ footer>div {
 		}, 5000);
 		function display(data) {
 			document.getElementById("msgnumber").innerHTML = data;
-		};
+			if ("${msgcheck}" != null) {
+				<%session.removeAttribute("msgcheck");%>
+			}
+		}
+		;
 
 	};
 </script>

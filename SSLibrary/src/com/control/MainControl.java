@@ -226,10 +226,9 @@ public class MainControl {
 	public ModelAndView del(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		String id = request.getParameter("id");
-		String is = "d";
 
 		try {
-			biz.remove(new User(id, is));
+			biz.remove(new User(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -427,7 +426,7 @@ public class MainControl {
 			for (Object obj : time_list) {
 				User user = (User) obj;
 				String userid = user.getId();
-				biz.remove(new User(userid, "n"));
+				biz.modify(new User(userid, "n"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

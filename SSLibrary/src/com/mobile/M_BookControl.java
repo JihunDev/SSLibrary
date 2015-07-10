@@ -137,6 +137,35 @@ public class M_BookControl {
 		mv.addObject("m_center", "book/m_search.jsp");
 		return mv;
 	}
+	
+	@RequestMapping("/m_bookloglist.do")
+	public ModelAndView m_bookloglist(HttpServletRequest request)
+			throws Exception {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		HttpSession session = request.getSession();
+		User sessionuser = (User) session.getAttribute("user");
+		String uid = sessionuser.getId();
+		ArrayList<Object> result = new ArrayList<Object>();
+		result = sbooklogbiz.getname(uid);
+		mv.addObject("booklist", result);
+		mv.addObject("m_center", "book/m_list.jsp");
+		return mv;
+	}
+
+	@RequestMapping("/m_bookdetail.do")
+	public ModelAndView m_bookdetail(String id) {
+		ModelAndView mv = new ModelAndView("mobile/m_main");
+		Object result = null;
+		try {
+			result = bookbiz.get(id);
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.addObject("bookdetail", result);
+		mv.addObject("m_center", "book/m_detail.jsp");
+		return mv;
+	}
 
 	@RequestMapping("/m_userbookmodifyimpl.do")
 	public ModelAndView m_userbookmodifyimpl(HttpServletRequest request,
@@ -232,35 +261,6 @@ public class M_BookControl {
 		mv.addObject("returnqt", returnqt);
 		mv.addObject("booklist", booklist);
 		mv.addObject("m_center", "user/m_usinginfo.jsp");
-		return mv;
-	}
-
-	@RequestMapping("/m_bookloglist.do")
-	public ModelAndView m_bookloglist(HttpServletRequest request)
-			throws Exception {
-		ModelAndView mv = new ModelAndView("mobile/m_main");
-		HttpSession session = request.getSession();
-		User sessionuser = (User) session.getAttribute("user");
-		String uid = sessionuser.getId();
-		ArrayList<Object> result = new ArrayList<Object>();
-		result = sbooklogbiz.getname(uid);
-		mv.addObject("booklist", result);
-		mv.addObject("m_center", "book/m_list.jsp");
-		return mv;
-	}
-
-	@RequestMapping("/m_bookdetail.do")
-	public ModelAndView m_bookdetail(String id) {
-		ModelAndView mv = new ModelAndView("mobile/m_main");
-		Object result = null;
-		try {
-			result = bookbiz.get(id);
-			System.out.println(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.addObject("bookdetail", result);
-		mv.addObject("m_center", "book/m_detail.jsp");
 		return mv;
 	}
 

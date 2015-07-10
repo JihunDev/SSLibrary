@@ -172,8 +172,8 @@ $(document).ready(function(){
 										if(count >= record_start_no &&  count <= record_end_no){
 								%>
 								<tr>
-									<td><a href="bookdetail.do?id=${b.id}">${b.id}</a></td>
-									<td>${b.name}</td>
+									<td>${b.id}</td>
+									<td><a href="bookdetail.do?id=${b.id}">${b.name}</a></td>
 									<td>${b.writer}</td>
 									<td><img width="30px" src="img/book/${b.img}"></td>
 									<td>${b.floor}</td>

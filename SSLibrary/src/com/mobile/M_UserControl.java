@@ -23,16 +23,20 @@ import com.frame.SearchBiz;
 
 @Controller
 public class M_UserControl {
-	@Resource(name = "userbookbiz")
-	SearchBiz userbookbiz;
-	@Resource(name = "userbiz")
-	SearchBiz SearchBiz;
-	@Resource(name = "userseatbiz")
-	Biz userseatbiz;
-	@Resource(name = "bookbiz")
-	Biz bookbiz;
+	//user
 	@Resource(name = "userbiz")
 	Biz userbiz;
+	@Resource(name = "userbiz")
+	SearchBiz SearchBiz;
+	//seat
+	@Resource(name = "userseatbiz")
+	Biz userseatbiz;
+	//book
+	@Resource(name = "bookbiz")
+	Biz bookbiz;
+	@Resource(name = "userbookbiz")
+	SearchBiz userbookbiz;
+	
 
 	@RequestMapping("/m_usinginfo.do")
 	public ModelAndView m_usinginfo(String id, HttpServletRequest request) {
@@ -105,12 +109,10 @@ public class M_UserControl {
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
-			System.out.println("이미지 안바꿀때 : " + user);
 		} else {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), com.getImg().getOriginalFilename(),
 					com.getEmail(), com.getIsadmin());
-			System.out.println("이미지 바꿀때 : " + user);
 			byte[] data;
 			try {
 				data = file.getBytes();

@@ -23,7 +23,6 @@ import com.entity.User;
 import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
-import com.frame.UpdateAndReturnBiz;
 
 @Controller
 public class MainControl {
@@ -33,24 +32,20 @@ public class MainControl {
 	SearchBiz SearchBiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz userbookbiz;
-		
+
 	@Resource(name = "messagelogbiz")
 	Biz messagelogbiz;
 	@Resource(name = "messagelogbiz")
 	SearchBiz messagelogsearchbiz;
-	
+
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
-	
+
 	@Resource(name = "boardbiz")
 	SearchBiz boardsearchbiz;
-	
-	@Resource(name = "seatbiz")
-	Biz seatbiz;
+
 	@Resource(name = "userseatbiz")
 	Biz userseatbiz;
-	@Resource(name = "seatlogbiz")
-	UpdateAndReturnBiz seatlogbiz;
 
 	@RequestMapping("/main.do")
 	public ModelAndView main(HttpServletRequest request) {
@@ -333,7 +328,7 @@ public class MainControl {
 
 		try {
 			biz.modify(user);
-		
+
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -375,7 +370,7 @@ public class MainControl {
 	public ModelAndView msglogdetail(String id, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
 		MessageLog msg = null;
-		
+
 		try {
 			msg = (MessageLog) messagelogbiz.get(id);
 			messagelogbiz.modify(id);
@@ -406,8 +401,9 @@ public class MainControl {
 				Book book = (Book) bookbiz.get(bid);// 하나씩 찾음
 				String[] info = { bid, book.getName(),
 						userbook.getStart_date(), userbook.getEnd_date() };
-				if(userbook.getIsreturn()=="n" || userbook.getIsreturn().equals("n")){
-				booklist.add(info);// array에 담음
+				if (userbook.getIsreturn() == "n"
+						|| userbook.getIsreturn().equals("n")) {
+					booklist.add(info);// array에 담음
 				}
 			}
 			userseat = userseatbiz.get(id);

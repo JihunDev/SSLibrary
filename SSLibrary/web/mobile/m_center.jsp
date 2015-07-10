@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+
 <script>
 	function display(data) {
 		document.getElementById("msgnumber").innerHTML = data;

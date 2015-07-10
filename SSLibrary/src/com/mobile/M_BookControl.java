@@ -18,30 +18,37 @@ import com.entity.UserBook;
 import com.frame.Biz;
 import com.frame.SearchBiz;
 import com.frame.UpdateAndReturnBiz;
+import com.mobile.impl.M_BookImpl;
 
 @Controller
 public class M_BookControl {
+	//user
+	@Resource(name = "userbiz")
+	Biz userbiz;
+
 	//book
 	@Resource(name = "bookbiz")
 	Biz bookbiz;
 	@Resource(name = "bookbiz")
 	SearchBiz sbookbiz;
+	
 	@Resource(name = "userbookbiz")
 	Biz userbookbiz;
 	@Resource(name = "userbookbiz")
 	SearchBiz suserbookbiz;
 	@Resource(name = "userbookbiz")
 	UpdateAndReturnBiz upreuserbookbiz;
+	
 	@Resource(name = "booklogbiz")
 	Biz booklogbiz;
 	@Resource(name = "booklogbiz")
 	SearchBiz sbooklogbiz;
 	@Resource(name = "booklogbiz")
 	UpdateAndReturnBiz uprebiz;
-	//user
-	@Resource(name = "userbiz")
-	Biz userbiz;
-
+	
+	@Resource(name="bookimpl")
+	M_BookImpl bookimpl;
+	
 	@RequestMapping("/m_bookmain.do")
 	public ModelAndView m_bookmain(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
@@ -158,7 +165,6 @@ public class M_BookControl {
 		Object result = null;
 		try {
 			result = bookbiz.get(id);
-			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -180,6 +186,7 @@ public class M_BookControl {
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
 		ArrayList<Object> booklist = new ArrayList<Object>();
 		int renew_qt = usersbook.getRenew_qt();
+		
 		if (renew_qt >= 2) {
 			System.out.println("더 연장할 수 없습니다.");
 			isqt = 1;
@@ -379,15 +386,17 @@ public class M_BookControl {
 							upbook.getFloor(), upbook.getTotal_qt(),
 							upbook.getCurrent_qt() - 1);
 					System.out.println("업데이트 한 book : " + upbooknew);
-					bookbiz.modify(upbooknew);
-					UserBook book = new UserBook(user.getId(), id);
-					userbookbiz.register(book); // userbook에 등록
-					System.out.println("userbook 등록 : " + book);
-
-					BookLog logbook = new BookLog(id, user.getId()); // booklog에
-																		// 등록
-					booklogbiz.register(logbook);
-					System.out.println("userbook과 booklog에 등록 완료!!");
+					bookimpl.tr_m_userbookregister(id, upbooknew, user);
+					
+					// bookbiz.modify(upbooknew);
+					// UserBook book = new UserBook(user.getId(), id);
+					// userbookbiz.register(book); // userbook에 등록
+					// System.out.println("userbook 등록 : " + book);
+					//
+					// BookLog logbook = new BookLog(id, user.getId()); //
+					// booklog에 등록
+					// booklogbiz.register(logbook);
+					// System.out.println("userbook과 booklog에 등록 완료!!");
 					borrowbook = 3;
 					Book newbook = (Book) bookbiz.get(upbooknew.getId());
 					mv.addObject("bookdetail", newbook);

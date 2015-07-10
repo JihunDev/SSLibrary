@@ -98,8 +98,8 @@ public class M_BookControl {
 			}
 		}
 
-		switch (category) { 
-		case "i": 
+		switch (category) {
+		case "i":
 			for (Object o : list) {
 				Book b = (Book) o;
 				if (b.getId().substring(0, 1).equals("i")) {
@@ -107,7 +107,7 @@ public class M_BookControl {
 				}
 			}
 			break;
-		case "n": 
+		case "n":
 			for (Object o : list) {
 				Book b = (Book) o;
 				if (b.getId().substring(0, 1).equals("n")) {
@@ -115,7 +115,7 @@ public class M_BookControl {
 				}
 			}
 			break;
-		case "m": 
+		case "m":
 			for (Object o : list) {
 				Book b = (Book) o;
 				if (b.getId().substring(0, 1).equals("m")) {
@@ -123,7 +123,7 @@ public class M_BookControl {
 				}
 			}
 			break;
-		default: 
+		default:
 			resultlist = list;
 			break;
 		}
@@ -138,17 +138,17 @@ public class M_BookControl {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
 		User sessionuser = (User) session.getAttribute("user");
-		String uid = sessionuser.getId(); 
+		String uid = sessionuser.getId();
 		int isqt = 0;
 		UserBook book = new UserBook(uid, id);
-		UserBook usersbook = (UserBook) userbookbiz.get(book); 
+		UserBook usersbook = (UserBook) userbookbiz.get(book);
 		ArrayList<Object> userbooklist = new ArrayList<Object>();
-		ArrayList<Object> booklist = new ArrayList<Object>(); 
-		int renew_qt = usersbook.getRenew_qt(); 
-		if (renew_qt >= 2) { 
+		ArrayList<Object> booklist = new ArrayList<Object>();
+		int renew_qt = usersbook.getRenew_qt();
+		if (renew_qt >= 2) {
 			System.out.println("더 연장할 수 없습니다.");
 			isqt = 1;
-		} else { 
+		} else {
 			userbookbiz.modify(book);
 			BookLog blog = new BookLog(id, uid);
 			ArrayList<Object> booklog = new ArrayList<Object>();
@@ -158,7 +158,7 @@ public class M_BookControl {
 				BookLog logbook2 = new BookLog(logbook.getId(),
 						logbook.getB_id(), logbook.getU_id(),
 						usersbook.getRenew_qt());
-				uprebiz.logupdate(logbook2); 
+				uprebiz.logupdate(logbook2);
 				System.out.println(logbook2);
 			}
 			System.out.println("연장 완료");
@@ -228,10 +228,10 @@ public class M_BookControl {
 			throws Exception {
 		ModelAndView mv = new ModelAndView("mobile/m_main");
 		HttpSession session = request.getSession();
-		User sessionuser = (User) session.getAttribute("user"); 
+		User sessionuser = (User) session.getAttribute("user");
 		String uid = sessionuser.getId();
 		ArrayList<Object> result = new ArrayList<Object>();
-		result = sbooklogbiz.getname(uid); 
+		result = sbooklogbiz.getname(uid);
 		mv.addObject("booklist", result);
 		mv.addObject("m_center", "book/m_list.jsp");
 		return mv;
@@ -259,19 +259,19 @@ public class M_BookControl {
 		User usessionid = (User) session.getAttribute("user");
 		String uid = usessionid.getId();
 		User user = null;
-		int borrowbook = 0; 
+		int borrowbook = 0;
 		int overlap = 0;
 		Book upbook;
 		Book upbooknew;
 		int current_qt = 0;
 		try {
-			user = (User) userbiz.get(uid); 
+			user = (User) userbiz.get(uid);
 			System.out.println("지금 로그인 한 user  :  " + user.getId());
-			System.out.println("빌리려는 책 아이디 : " + id); 
+			System.out.println("빌리려는 책 아이디 : " + id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ArrayList<Object> userbooklist = new ArrayList<Object>(); 
+		ArrayList<Object> userbooklist = new ArrayList<Object>();
 		try {
 			userbooklist = suserbookbiz.getid(uid);
 			System.out.println("user가 빌린 책 : " + userbooklist);
@@ -279,11 +279,11 @@ public class M_BookControl {
 			e1.printStackTrace();
 		}
 		String bid = "";
-		if (userbooklist.size() == 0) { 
+		if (userbooklist.size() == 0) {
 			overlap = 2;
 			System.out.println("중복 안됬지롱");
-		} else { 
-			for (Object obj : userbooklist) { 
+		} else {
+			for (Object obj : userbooklist) {
 				UserBook userbook = (UserBook) obj;
 				bid = userbook.getB_id();
 				System.out.println("책 id : " + bid);
@@ -291,7 +291,7 @@ public class M_BookControl {
 				if (bid.equals(id) || bid == id) {
 					System.out
 							.println("---------------------이미 대여한 책이라 빌릴 수 없음---------------------");
-					overlap = 1; 
+					overlap = 1;
 					borrowbook = 1;
 					try {
 						upbook = (Book) bookbiz.get(id);
@@ -308,12 +308,12 @@ public class M_BookControl {
 			System.out.println("중복 여부 : " + overlap);
 		}
 
-		if (overlap == 2) { 
+		if (overlap == 2) {
 			try {
 				upbook = (Book) bookbiz.get(id);
 				current_qt = upbook.getCurrent_qt();
 
-				if (current_qt == 0) { 
+				if (current_qt == 0) {
 					System.out
 							.println("---------------------대여 가능한 책 0---------------------");
 					borrowbook = 2;
@@ -331,7 +331,7 @@ public class M_BookControl {
 					System.out.println("업데이트 한 book : " + upbooknew);
 					bookbiz.modify(upbooknew);
 					UserBook book = new UserBook(user.getId(), id);
-					userbookbiz.register(book); 
+					userbookbiz.register(book);
 					System.out.println("userbook 등록 : " + book);
 					BookLog logbook = new BookLog(id, user.getId());
 					booklogbiz.register(logbook);

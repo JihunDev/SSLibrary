@@ -73,6 +73,11 @@ tbody th {
 		<tr>
 			<th colspan="6">내용</th>
 		</tr>
+		<c:if test="${boarddetail.file_name != null}">
+		<tr>
+			<td colspan="6"><img style="height: 40%; width: 100%;" src="img/book/${boarddetail.file_name}"></td>
+		</tr>
+		</c:if>
 		<tr>
 			<td colspan="6">${boarddetail.content}</td>
 		</tr>
@@ -126,12 +131,11 @@ tbody th {
 					<div data-role="collapsible">
 						<h1>수정삭제</h1>
 						<textarea rows="5" cols="40" name="content">${reply.content}</textarea>
-						<input type="hidden" name="sort" value="${reply.sort}"> <input
-							type="hidden" name="id" value="${reply.id}"> <input
-							type="hidden" name="reg_number" value="${reply.reg_number}">
+						<input type="hidden" name="sort" value="${reply.sort}"> 
+						<input type="hidden" name="id" value="${reply.id}"> 
+						<input type="hidden" name="reg_number" value="${reply.reg_number}">
 						<input type="hidden" name="old_content" value="${reply.content}">
-						<input type="hidden" name="u_id" value="${user.id}"> <input
-							type="hidden" name="content">
+						<input type="hidden" name="u_id" value="${user.id}"> 
 						<div class="ui-grid-a">
 							<div class="ui-block-a">
 								<input type="button" id="btn_${reply.id}" value="수정"

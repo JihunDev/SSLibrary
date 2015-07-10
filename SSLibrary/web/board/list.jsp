@@ -96,6 +96,8 @@ window.onload = function(){
 	  	if(<%=page_eno%>==0){
 			$('#boardlist_div').html("<tr><td colspan=5>등록된 게시물이 없습니다.</td><tr>");
 		}   
+
+		makeHeight();
 }
 </script>
 <div class="fieldsetform">

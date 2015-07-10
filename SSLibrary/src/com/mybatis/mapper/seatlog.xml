@@ -25,7 +25,10 @@
  	</update>
  	<!-- 연장  -->
 	<update id="updateseatlog_extend" parameterType="seatlog">
-		UPDATE A_SEATLOG SET END_DATE=END_DATE+2/24, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND REAL_DATE IS NULL
+		UPDATE A_SEATLOG SET END_DATE=
+				CASE WHEN <![CDATA[TO_NUMBER(TO_CHAR(SYSDATE,'HH24'), '99') < 21 THEN END_DATE + 2/24]]>
+				ELSE TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')||'23:00:00', 'YYYY-MM-DD HH24:MI:SS') END
+				, RENEW_QT=RENEW_QT+1 WHERE U_ID=#{u_id} AND REAL_DATE IS NULL
  	</update>
 
 	<delete id="deleteseatlog" parameterType="seatlog">
@@ -33,7 +36,10 @@
 	</delete>
 	
 	<insert id="insertseatlog" parameterType="seatlog">
- 		INSERT INTO A_SEATLOG VALUES(SEATLOG_SQ.NEXTVAL,#{u_id},#{s_id}, SYSDATE, SYSDATE+6/24/60/60, null, 0)
+ 		INSERT INTO A_SEATLOG VALUES(SEATLOG_SQ.NEXTVAL,#{u_id},#{s_id}, SYSDATE, 
+			CASE WHEN <![CDATA[TO_NUMBER(TO_CHAR(SYSDATE,'HH24'), '99') < 17 THEN  SYSDATE+6/24/60/60]]>
+			ELSE TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')||'23:00:00', 'YYYY-MM-DD HH24:MI:SS') END
+			, null, 0)
  		<selectKey resultType="seat">
  			SELECT * FROM A_SEATLOG WHERE U_ID=#{u_id}
  		</selectKey>

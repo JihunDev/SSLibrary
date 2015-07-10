@@ -740,6 +740,7 @@ public class BookControl {
 		ArrayList<Object> overduelist = null;
 		try {
 			overduelist = suserbookbiz.getexpired();// 현재시간을 기준으로 책 연체자들 가져오기
+			System.out.println("연체된 사람 : "+overduelist);
 			for (Object obj : overduelist) {
 				UserBook ub = (UserBook) obj;
 				String uid = ub.getU_id();

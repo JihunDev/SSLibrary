@@ -118,13 +118,11 @@ function getBook(f) {
 
 };
 
-$(document).ready(function(){
-   makeHeight();
+window.onload = function(){
   	if(<%=page_eno%>==0){
-		alert("검색결과가 없습니다.");
+		$('#booklist_div').html("<tr><td colspan=8>검색 결과가 존재하지 않습니다.</td><tr>");
 	}   
-});
-
+}
 
 </script>
 
@@ -164,7 +162,7 @@ $(document).ready(function(){
 								<th>등록일자</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="booklist_div">
 							<c:forEach items="${booklist}" var="b" varStatus="book_status">
 								<c:set var="foreach_count" value="${book_status.count}" />
 								<%

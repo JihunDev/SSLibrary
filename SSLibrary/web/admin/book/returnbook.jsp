@@ -17,11 +17,11 @@ function removeUserbook(){
 $(document).ready(function(){
 	makeHeight();
 	var element = document.getElementById("listtable");
+	var element2 = $("#returnbooklist");
 	if("${userbooklist}" == "[]"){
 		$('#returnbooklist').html("<tr><td colspan=6>반납된 책이 없습니다.</td><tr>");
-	}else{
+	}else if("${userbooklist}" != "[]" && element2.height()>=500){
 		$('#listtable').addClass("scroll");
-		
 	}
 });
 </script>

@@ -37,17 +37,13 @@
 		$(".ui-content").height(content);
 	}
 	$(document).on("pagecontainerbeforeshow", contentHeight);
-	
-	function display(data) {
-		document.getElementById("msgnumber").innerHTML = data;
-	}
-
 </script>
 <style>
 </style>
 </head>
 <body>
-	<div data-role="page" id="listpage" data-add-back-btn="true" data-position="fixed"
+	<div data-role="page" id="listpage" data-add-back-btn="true"
+		data-position="fixed"
 		class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
 		<div data-role="panel" id="myPanel" data-display="overlay"
 			style="background-color: #c2d9eb;">

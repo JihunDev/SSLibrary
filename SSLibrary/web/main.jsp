@@ -95,9 +95,9 @@ table.scroll tbody,
 table.scroll thead { display: block; }
 
 table.scroll thead tr th { 
-    height: 30px;
+    height: 20px;
     width : 700px;
-    line-height: 30px;
+    line-height: 20px;
     /* text-align: left; */
 }
 

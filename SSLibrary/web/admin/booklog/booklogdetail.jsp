@@ -10,8 +10,8 @@ function makeHeight() {
 	 
 	var mHeight = center_area.clientHeight+80;
 	/* ClientHeight를 써서 표 높이만큼 늘리게 함. */
-	if (mHeight < 400) {
-		mHeight = 400;
+	if (mHeight < 850) {
+		mHeight = 850;
 	}
 	center.style.height = mHeight + 'px';
 	section.style.height = mHeight + 'px';
@@ -19,11 +19,18 @@ function makeHeight() {
 };
 
 function displaybook(data) {
+	var cont = Object.keys(data).length;
+	console.log(cont);
 	$('#book_result').empty();
 	var output = '';
 	output+='<fieldset><legend align="center">검색 결과</legend><table  class="table table-hover">'
 	output+='<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
-	$(data).each(function(index, item) {
+	output+='<tbody id="bookloglist">';
+	if(cont == 0){
+		output+='<tr><td colspan=7>검색 결과가 존재하지 않습니다.</td><tr>';
+	}else{
+		$(data).each(function(index, item) {
+		
 		with (item) {
 			output += '<tr><td>'+id+'</td>';
 			output += '<td>'+b_id+'</td>';
@@ -32,8 +39,10 @@ function displaybook(data) {
 			output += '<td>'+end_date+'</td>';
 			output += '<td>'+real_date+'</td>';
 			output += '<td>'+renew_qt+'</td></tr>';
+	
 		}
 	});
+	}
 	output+="</table></fieldset>"
 	$('#book_result').html(output);
 	makeHeight();
@@ -56,6 +65,7 @@ function getLogBook() {
 		}
 	});
 };
+
 </script>
 <div id="home_center" class="fieldsetform">
 <form class="form-inline">

@@ -380,7 +380,6 @@ public class MainControl {
 
 		mv.addObject("messagelogdetail", msg);
 		mv.addObject("center", "messagelog/messagedetail.jsp");
-
 		return mv;
 	}
 

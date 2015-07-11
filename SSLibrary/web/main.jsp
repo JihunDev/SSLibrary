@@ -420,8 +420,8 @@ footer>div {
 		function display(data) {
 			document.getElementById("msgnumber").innerHTML = data;
 			if ("${msgcheck}" != null) {
-<%session.removeAttribute("msgcheck");%>
-	}
+			<%session.removeAttribute("msgcheck");%>
+			}
 		}
 		;
 	};

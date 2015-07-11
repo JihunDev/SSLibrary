@@ -137,8 +137,14 @@ public class UserControl {
 
 		if (com.getIsadmin().equals("s")) {
 			userimpl.tr_usermodifyimpl(com.getId());
+		}else {
+			try {
+				biz.modify(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-
+				
 		return mv;
 	}
 

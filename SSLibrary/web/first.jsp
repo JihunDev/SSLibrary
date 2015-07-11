@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="bootstrap/css/animate.css">
-    <link rel="stylesheet" href="bootstrap/css/style.css">
+    <link rel="stylesheet" href="bootstrap/vender/style.css">
     <link rel="shortcut icon" href="/media/toor.ico">
     <!--if lt IE 9
     script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')       
@@ -30,7 +30,7 @@
         <div class="logos"><img id="js" src="img/css/js.png"></div>
         <div class="logos"><img id="html" src="img/css/html.png"></div>
         <div class="logos"><img id="css" src="img/css/css3.png"></div>
-        <div class="logos"><img id="node" src="img/css/mulcam.png"></div>
+        <div class="logos"><img id="mulcam" src="img/css/mulcam.png"></div>
         <div class="logos"><img id="jquery" src="img/css/jquery.png"></div>
         <div class="logos"><img id="jmobile" src="img/css/jquery-mobile.png"></div>
         <div class="logos"><img id="mybatis" src="img/css/mybatis.png"></div>

@@ -8,8 +8,12 @@ tr {
 
 table {
 	background: white;
-	
+	border-radius : 5px 5px 5px 5px;
 }
+
+
+
+
 </style>
 <!-- Ã¥ °Ë»ö -->
 <form action="m_booksearch.do" method="POST">

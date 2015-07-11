@@ -16,9 +16,7 @@
 		<tr><th>e-Mail</th><td>${user.email}</td></tr>
 	</table>
 	<div class="btn-group">
-		<a class="btn btn-default" href="usinginfo.do?id=${user.id}">현재이용정보</a>
 		<a class="btn btn-default" href="modify.do?id=${user.id}">개인정보수정</a>
-		<a class="btn btn-default" href="msgloglist.do?id=${user.id}">메세지 내역</a>
 	</div>
 </fieldset>
 </div>

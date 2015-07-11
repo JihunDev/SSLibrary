@@ -80,7 +80,7 @@ function makeHeight() {
 	var mHeight = center.clientHeight + 30;
 	/* ClientHeight를 써서 표 높이만큼 늘리게 함. */
 	if (mHeight < 400) {
-		mHeight = 700;
+		mHeight = 690;
 	}
 	center.style.height = mHeight + 'px';
 	section.style.height = mHeight + 'px';

@@ -124,10 +124,9 @@ function searchByName(f){
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>비밀번호</th>
 					<th>이름</th>
-					<th>TEL</th>
-					<th>E-MAIL</th>
+					<th class="hidden-xs">TEL</th>
+					<th class="hidden-xs">E-MAIL</th>
 					<th>회원상태</th>
 				</tr>
 			</thead>
@@ -140,10 +139,9 @@ function searchByName(f){
 			%>
 					<tr>
 						<td><a href="userdetail.do?id=${u.id}">${u.id}</a></td>
-						<td>${u.pwd}</td>
 						<td>${u.name}</td>
-						<td>${u.phone}</td>
-						<td>${u.email}</td>
+						<td class="hidden-xs">${u.phone}</td>
+						<td class="hidden-xs">${u.email}</td>
 						<td>${u.isadmin}</td>
 					</tr>
 			<%}%>

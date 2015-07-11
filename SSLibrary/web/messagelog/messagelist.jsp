@@ -7,10 +7,10 @@
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th>보낸사람 ID</th>
-				<th>text</th>
-				<th>보낸시간</th>
-				<th>읽었나 확인</th>
+				<th>발신자</th>
+				<th>내용</th>
+				<th class="hidden-xs">발송시간</th>
+				<th>확인</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,7 +20,7 @@
 					<td>${m.id}</td>
 					<td>${m.sender_id}</td>
 					<td><a href="msgdetail.do?id=${m.id}">${m.text}</a></td>
-					<td>${m.send_date}</td>
+					<td class="hidden-xs">${m.send_date}</td>
 					<td>${m.read}</td>
 				</tr>
 			</c:forEach>

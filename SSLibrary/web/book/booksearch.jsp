@@ -150,14 +150,14 @@ window.onload = function(){
 					<table width="700" class="table table-hover">
 						<thead>
 							<tr>
-								<th>등록번호</th>
+								<th class="hidden-xs hidden-sm">등록번호</th>
 								<th>제목</th>
 								<th>저자</th>
-								<th>표지</th>
+								<th class="hidden-xs hidden-sm">표지</th>
 								<th>위치</th>
 								<th>총 수량</th>
 								<th>남은 수량</th>
-								<th>등록일자</th>
+								<th class="hidden-xs hidden-sm">등록일자</th>
 							</tr>
 						</thead>
 						<tbody id="booklist_div">
@@ -168,14 +168,14 @@ window.onload = function(){
 										if(count >= record_start_no &&  count <= record_end_no){
 								%>
 								<tr>
-									<td>${b.id}</td>
+									<td class="hidden-xs hidden-sm">${b.id}</td>
 									<td><a href="bookdetail.do?id=${b.id}">${b.name}</a></td>
 									<td>${b.writer}</td>
-									<td><img width="30px" src="img/book/${b.img}"></td>
+									<td class="hidden-xs hidden-sm"><img width="30px" src="img/book/${b.img}"></td>
 									<td>${b.floor}</td>
 									<td>${b.total_qt}</td>
 									<td>${b.current_qt}</td>
-									<td>${b.reg_date}</td>
+									<td class="hidden-xs hidden-sm">${b.reg_date}</td>
 								</tr>
 								<%}%>
 							</c:forEach>

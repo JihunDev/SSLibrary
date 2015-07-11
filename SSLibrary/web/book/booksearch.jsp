@@ -103,7 +103,6 @@ function makeHeight() {
    }
    center.style.height = mHeight + 'px';
    section.style.height = mHeight + 'px';
-   left.style.height = mHeight + 'px';
 };
 
 function getBook(f) {

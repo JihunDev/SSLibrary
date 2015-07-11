@@ -68,7 +68,7 @@
 }
 
 .fieldsetform {
-	margin : 60px 60px 60px 60px;
+	margin : 6% 6% 6% 6%;
 }
 
 </style>

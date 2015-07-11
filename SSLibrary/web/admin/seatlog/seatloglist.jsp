@@ -36,7 +36,8 @@ function searchseatlog(f){
 </script>
 <style>
 #seatlogtable>thead>tr>th{
-	background: #35B62C;
+	background: #66c1bd;
+	color:white;
 }
 .seattableform {
 	background: rgba(255, 255, 194, 0.8);
@@ -48,35 +49,40 @@ function searchseatlog(f){
 }
 </style>
 
-<div class="seattableform"> 
+<div class="fieldsetform"> 
+<div style="height:100px">	
+	<table class="table" style="width:100%;min-width:300px;">
+		<tr>
+			<th><h1>Seated Log List</h1></th>
+		</tr>
+	</table>	
+</div>
 
-	<div style="float:right;" >
-     	<button class="btn btn-default btn-sm" style="float:right;" type="submit" onclick='location.href="seatmain.do"'>좌석 현황</button>
-     </div> 
-     <form class="form-inline">
-      <div class="input-group" style="float:left;" >
-     <span class="input-group-btn">
-         <select id="issearch" name="issearch" class="form-control input-sm" >
-		<option value="s_id">좌석번호</option>
-		<option value="u_id">사용자ID</option>
-	</select>
-      	 <input type="text" id="search" name="search" class="form-control input-sm"placeholder="Search for ID">
-         <button class="btn btn-default btn-sm" type="button" onclick="searchseatlog(this.form);">검색</button>
-      </span>
-     </div>
+<form class="form-inline" style="float:right;" >
+    <div class="input-group" style="">
+    <span class="input-group-btn">
+    	<button class="btn btn-default btn-sm" style="width:70px;float:right;" type="button" onclick='location.href="seatmain.do"'>좌석 현황</button>
+       <button class="btn btn-default btn-sm" style="width:50px;float:right;"  type="button" onclick="searchseatlog(this.form);">검색</button>
+     	<input type="text" id="search" name="search" class="form-control input-sm"  style="width:35%;float:right;" placeholder="Search for ID">
+       <select id="issearch" name="issearch" style="width:100px;float:right;"  class="form-control input-sm" >
+			<option value="s_id">좌석번호</option>
+			<option value="u_id">사용자ID</option>
+		</select>
+     </span>
+   </div>
+</form>
 
 <br><br>
-<fieldset >
-	<legend align="center">Seat Log List Page</legend>
+<fieldset>
 	<table width="700" class="table table-hover scroll" id="seatlogtable">
 		<thead>
 			<tr>
 				<th>예약자 ID</th>
 				<th>좌석 ID</th>
 				<th>예약 시작 시간</th>
-				<th>반납 예정 시간</th>
+				<th class="hidden-xs">반납 예정 시간</th>
 				<th>실 반납 시간</th>
-				<th>연장</th>
+				<th class="hidden-xs">연장</th>
 			</tr>
 		</thead>
 		<tbody id='seatloglist_div'>
@@ -84,9 +90,9 @@ function searchseatlog(f){
 					<td>${sl.u_id}</td>
 					<td>${sl.s_id}</td>
 					<td>${sl.start_date}</td>
-					<td>${sl.end_date}</td>
+					<td class="hidden-xs">${sl.end_date}</td>
 					<td>${sl.real_date}</td>
-					<td>${sl.renew_qt}</td>
+					<td class="hidden-xs">${sl.renew_qt}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -107,60 +107,76 @@
 	window.onload = function(){
 		
 		if('${myseat.s_id}' != ''){
-			$('button[value=${myseat.s_id}]').css('background-color','#FF5E00');			
+			$('button[value=${myseat.s_id}]').css('background-color','#fcce18');			
 		}
 		//makeHeight();
 	}
 </script>
 <style>
-#seattable>form>button {
-	width: 9%;
+
+#seattable{
+	position:relative;
+	width:100%;
+	min-width:none;
+}
+#seattable>tbody>tr>td{
+	width:9%;
+	min-width:none;
+}
+.seatpath{
+	height:50px;
+	width:10%;
+}
+
+#seattable>tbody>tr>td>form>button {
+ 	width: 100%;
 	height: 50px;
 	float: left;
 	border-color: white;
+	min-width:none;
 }
 
-#seattable>form>button[name="s_id"]:hover {
+#seattable>tbody>tr>td>form>button[name="s_id"]:hover {
 	/* 	background: #FFC19E; */
 	opacity: 0.6;
 	border-color: white;
 }
 
-#seattable>form>button[name="s_id"]:active {
+#seattable>tbody>tr>td>form>button[name="s_id"]:active {
 	opacity: 0.3;
 	border-color: white;
 	color: white;
 }
 
-#seattable>form:nth-child(10n)>button {
+#seattable>tbody>tr>td:nth-child(10n)>form>button {
 	float: none;
 }
 
-#seattable>form:nth-child(10n-2)>button {
+/* #seattable>tbody>tr>td:nth-child(10n-2)>form>button {
 	margin: 0 7% 0 0;
 }
 
-#seattable>form:nth-child(20n)>button {
+#seattable>tbody>tr>td:nth-child(20n)>form>button {
 	margin: 0 0 30px 0;
 }
-
-.y_btn, #seattable>form>.y_btn, #seattable>form>.y_btn:hover, #seattable>form>.y_btn:active,
-	#seattable>form>.y_btn:focus {
-	background: #CC723D;
+ */
+.y_btn, #seattable>tbody>tr>td>form>.y_btn, #seattable>tbody>tr>td>form>.y_btn:hover, #seattable>tbody>tr>td>form>.y_btn:active,
+	#seattable>tbody>tr>td>form>.y_btn:focus {
+	background: #A6A6A6;
 }
 
-.n_btn, #seattable>form>.n_btn, #seattable>form>.n_btn:hover, #seattable>form>.n_btn:active,
-	#seattable>form>.n_btn:focus {
-	background: #300000;
-}
-
-.f_btn, #seattable>form>.f_btn, #seattable>form>.f_btn:hover, #seattable>form>.f_btn:active,
-	#seattable>form>.f_btn:focus {
+.n_btn, #seattable>tbody>tr>td>form>.n_btn, #seattable>tbody>tr>td>form>.n_btn:hover, #seattable>tbody>tr>td>form>.n_btn:active,
+	#seattable>tbody>tr>td>form>.n_btn:focus {
 	background: #66c1bd;
 }
 
+.f_btn, #seattable>tbody>tr>td>form>.f_btn, #seattable>tbody>tr>td>form>.f_btn:hover, #seattable>tbody>tr>td>form>.f_btn:active,
+	#seattable>tbody>tr>td>form>.f_btn:focus {
+	background: #FFB2D9;
+}
+
 .modify {
-	display: none;
+/* 	display: none; */
 }
 
 .example_btn {
@@ -189,7 +205,7 @@
 	border: 5px double Gray;
 }
 
-#managerSeat {
+#doorImg {
 	
 }
 
@@ -200,125 +216,177 @@
 	border:0
 }
 </style>
-<div class="seattableform">
-	<div class="text_center">
-		<h3>열람실 좌석 현황</h3>
-	</div>
-	<div class="btn-group">
-	 </div>
-	<br>
-	
-	<div>
-		<c:if test="${user != null}">
+<div style="min-width:600px;">
+<div class="fieldsetform">
+<%-- 		<c:if test="${user != null}">
 			<c:choose>
 				<c:when test="${user.isadmin == 'y'}"> 
-					<input type="button" class="example_btn" style="float:left;color:gray;width:auto;" onclick='location.href="adminseatloglist.do"' value="좌석 대여 내역 기록">
-				</c:when>
+					</c:when>
 				<c:otherwise> 
-						<input type="button" class="example_btn" style="float:left;background-color:#FF5E00;width:auto;" value="내 자리" disabled>
 				</c:otherwise>	
-			</c:choose>
-		</c:if>
-		<input type="button" class="f_btn example_btn" value="수리 중: ${f_count}" disabled>
-		<input type="button" class="n_btn example_btn" value="사용 중: ${n_count}" disabled>
-		<input type="button" class="y_btn example_btn" value="예약 가능: ${y_count}" disabled>
-		<input type="button" class="example_btn"
-		style="background: gray; width: 200px;" value="총  좌석 수 : ${seatqt}" disabled>
-	</div>
-	<br>
-	<br>
-<div id="seat_article">
-	<div id=managerSeat><br>
-	<input type="button" class="door" style="border-radius:0 0 40px 0; border-top: 3px solid black;" disabled><br>
-	<input type="button"  class="door" style="border-radius:0 40px  0 0; border-bottom: 3px solid black;" disabled></div><br><br>
-	<div id="seattable">
-		<c:forEach items="${seatlist}" var="s" varStatus="i">
+			</c:choose>			
+		</c:if> --%>
+
+	<div style="height:250px">	
+<!-- 		<div style="float:left;width:55%;"><br><br><br><br>
+			
+		</div>	 -->
+		<table class="table" style="width:100%;min-width:300px;">
+			<tr>
+				<th rowspan="5"><h1>Reading Room State</h1></th>
+				<th colspan = "2" style="width:140px;">좌석 수</th>
+				<td style="width:20px;">${seatqt}</td>
+			</tr>
+			<tr>
+				<th style="width:110px;">예약 가능</th>
+				<td style="width:30px;">
+					<input type="button" class="y_btn example_btn" value="   " disabled>
+				</td>
+				<td>${y_count}</td>
+			</tr>
+			<tr>
+				<th>사용 중</th>
+				<td>
+					<input type="button" class="n_btn example_btn" value="   " disabled>
+				</td>
+				<td>${n_count}</td>
+			</tr>
+			<tr>
+				<th>수리 중</th>
+				<td>
+					<input type="button" class="f_btn example_btn" value="   " disabled>
+				</td>
+				<td> ${f_count}</td>
+			</tr>
+			<tr>
 			<c:choose>
-
-				<c:when test="${user.isadmin == 'n' }">
-					<c:choose>
-						<c:when test="${myseat == null}">
-							<c:choose>
-								<c:when test="${s.state == 'y'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											name="s_id" onclick="register(this.form);" value="${s.id}"
-											data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-								<c:when test="${s.state == 'n'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											name="s_id" onclick="registeredSeat();" value="${s.id}"
-											data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-								<c:when test="${s.state == 'f'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											name="s_id" onclick="repairState();" value="${s.id}"
-											data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-							</c:choose>
-						</c:when>
-
-						<c:otherwise>
-							<c:choose>
-								<c:when test="${s.state == 'y'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											value="${s.id}" name="s_id" onclick="registeredUser();"
-											data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-								<c:when test="${s.state == 'n'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											value="${s.id}" name="s_id" onclick="sendMsg(this.form);"
-											value="${s.id}" data-toggle="button" aria-pressed="false"
-											autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-								<c:when test="${s.state == 'f'}">
-									<form>
-										<input type="hidden" name="s_state" value="${s.state}">
-										<button type="button" class="btn btn-primary ${s.state}_btn"
-											value="${s.id}" name="s_id" onclick="repairState();"
-											value="${s.id}" data-toggle="button" aria-pressed="false"
-											autocomplete="off">${s.id}</button>
-									</form>
-								</c:when>
-							</c:choose>
-						</c:otherwise>
-					</c:choose>
+				<c:when test="${user != null && user.isadmin=='n'}">
+				<th>내 자리</th>
+				<td>
+					<input type="button" class="example_btn" style="background-color:#fcce18;width:auto;" value="   " disabled>
+				</td>
+				<td></td>
 				</c:when>
-
-				<c:when test="${user.isadmin == 'y'}">
-					<form>
-						<input type="hidden" name="s_state" value="${s.state}">
-						<button type="button" class="btn btn-primary ${s.state}_btn"
-							name="s_id" onclick="changeState(this.form);" value="${s.id}"
-							data-toggle="button" aria-pressed="false" autocomplete="off"
-							data-target=".bs-example-modal-sm">${s.id}</button>
-					</form>
+				
+				<c:when test="${user != null && user.isadmin=='y'}">
+				<th>좌석 대여 내역</th>
+				<td colspan="2">
+					<input type="button" class="example_btn" style="color:gray;width:100%;" onclick='location.href="adminseatloglist.do"' value="Click">
+				</td>
 				</c:when>
+				</c:choose>
+			</tr>
+			</table>	
+		</div>
+	
 
-				<c:when test="${user == null || user.isadmin == 's'}">
-					<form>
-						<input type="hidden" name="s_state" value="${s.state}">
-						<button type="button" class="btn btn-primary ${s.state}_btn">${s.id}</button>
-					</form>
-				</c:when>
 
-			</c:choose>
-		</c:forEach>
+	<div id="seat_article">
+		<div id=doorImg><br>
+			<input type="button" class="door" style="border-radius:0 0 40px 0; border-top: 3px solid black;" disabled><br>
+			<input type="button"  class="door" style="border-radius:0 40px  0 0; border-bottom: 3px solid black;" disabled></div><br><br>
+		<div>
+		
+		<table id="seattable"><tbody><tr>	
+			<c:forEach items="${seatlist}" var="s" varStatus="i">
+			<td>		
+				<c:choose>
+					<c:when test="${user.isadmin == 'n' }">
+						<c:choose>
+							<c:when test="${myseat == null}">
+								<c:choose>
+									<c:when test="${s.state == 'y'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												name="s_id" onclick="register(this.form);" value="${s.id}"
+												data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+									<c:when test="${s.state == 'n'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												name="s_id" onclick="registeredSeat();" value="${s.id}"
+												data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+									<c:when test="${s.state == 'f'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												name="s_id" onclick="repairState();" value="${s.id}"
+												data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+								</c:choose>
+							</c:when>
+	
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${s.state == 'y'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												value="${s.id}" name="s_id" onclick="registeredUser();"
+												data-toggle="button" aria-pressed="false" autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+									<c:when test="${s.state == 'n'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												value="${s.id}" name="s_id" onclick="sendMsg(this.form);"
+												value="${s.id}" data-toggle="button" aria-pressed="false"
+												autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+									<c:when test="${s.state == 'f'}">
+										<form>
+											<input type="hidden" name="s_state" value="${s.state}">
+											<button type="button" class="btn btn-primary ${s.state}_btn"
+												value="${s.id}" name="s_id" onclick="repairState();"
+												value="${s.id}" data-toggle="button" aria-pressed="false"
+												autocomplete="off">${s.id}</button>
+										</form>
+									</c:when>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+	
+					<c:when test="${user.isadmin == 'y'}">
+						<form>
+							<input type="hidden" name="s_state" value="${s.state}">
+							<button type="button" class="btn btn-primary ${s.state}_btn"
+								name="s_id" onclick="changeState(this.form);" value="${s.id}"
+								data-toggle="button" aria-pressed="false" autocomplete="off"
+								data-target=".bs-example-modal-sm">${s.id}</button>
+						</form>
+					</c:when>
+	
+					<c:when test="${user == null || user.isadmin == 's'}">
+						<form>
+							<input type="hidden" name="s_state" value="${s.state}">
+							<button type="button" class="btn btn-primary ${s.state}_btn">${s.id}</button>
+						</form>
+					</c:when>
+	
+				</c:choose>
+			<c:if test="${i.count % 10 == 0}" var="index">
+				</tr><tr>
+			</c:if>
+			<c:if test="${i.count % 10 == 7}" var="index">
+				<td class="seatpath"></td>
+			</c:if>
+			<c:if test="${i.count % 20 == 0}" var="index">
+				<td class="seatpath"></td></tr><tr>
+			</c:if>
+			</td>
+			</c:forEach>
+			</tr></tbody></table>
+		</div>
 	</div>
-	</div>
+</div>
 </div>
 <jsp:include page="${dialogpage}" />

@@ -96,7 +96,7 @@
 						<th width="50px">ID</th>
 						<th width="50px">B_ID</th>
 						<th width="50px">U_ID</th>
-						<th width="190px" class="hidden-xs">START_DATE</th>
+						<th width="190px">START_DATE</th>
 						<th width="190px" class="hidden-xs">END_DATE</th>
 						<th width="190px">REAL_DATE</th>
 						<th width="80px" class="hidden-xs">RENEW_QT</th>
@@ -108,7 +108,7 @@
 							<td>${b.id}</td>
 							<td>${b.b_id}</td>
 							<td>${b.u_id}</td>
-							<td class="hidden-xs">${b.start_date}</td>
+							<td>${b.start_date}</td>
 							<td class="hidden-xs">${b.end_date}</td>
 							<td>${b.real_date}</td>
 							<td class="hidden-xs">${b.renew_qt}</td>

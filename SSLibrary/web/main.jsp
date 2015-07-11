@@ -69,6 +69,12 @@
 .fieldsetform {
 	margin : 6% 6% 6% 6%;
 }
+
+.givemargin {
+    margin-top: 3%;
+    width : 100%;
+}
+
 .table{
 	text-align : center;
 }

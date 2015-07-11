@@ -23,7 +23,7 @@
 		$('#book_result').empty();
 		var output = '';
 		output += '<fieldset><legend align="center">검색 결과</legend><table id="lastbooklist" class="table table-hover">'
-		output += '<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th>END_DATE</th><th>REAL_DATE</th><th>RENEW_QT</th></thead>';
+		output += '<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th class="hidden-xs">END_DATE</th><th>REAL_DATE</th><th class="hidden-xs">RENEW_QT</th></thead>';
 		output += '<tbody id="bookloglist">';
 		if (cont == 0) {
 			output += '<tr><td colspan=7>검색 결과가 존재하지 않습니다.</td><tr>';
@@ -35,9 +35,9 @@
 					output += '<td>' + b_id + '</td>';
 					output += '<td>' + u_id + '</td>';
 					output += '<td>' + start_date + '</td>';
-					output += '<td>' + end_date + '</td>';
+					output += '<td class="hidden-xs">' + end_date + '</td>';
 					output += '<td>' + real_date + '</td>';
-					output += '<td>' + renew_qt + '</td></tr>';
+					output += '<td class="hidden-xs">' + renew_qt + '</td></tr>';
 
 				}
 			});
@@ -93,13 +93,13 @@
 			<table width="700" class="table table-hover scroll">
 				<thead>
 					<tr>
-						<th width="50px">ID</th>
-						<th width="50px">B_ID</th>
-						<th width="50px">U_ID</th>
-						<th width="190px">START_DATE</th>
-						<th width="190px" class="hidden-xs">END_DATE</th>
-						<th width="190px">REAL_DATE</th>
-						<th width="80px" class="hidden-xs">RENEW_QT</th>
+						<th>ID</th>
+						<th>B_ID</th>
+						<th>U_ID</th>
+						<th>START_DATE</th>
+						<th class="hidden-xs">END_DATE</th>
+						<th>REAL_DATE</th>
+						<th class="hidden-xs">RENEW_QT</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${loglist}" var="b">

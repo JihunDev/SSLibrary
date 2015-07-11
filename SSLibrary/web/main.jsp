@@ -76,12 +76,12 @@
 
 </style>
 <script>
-/* function makeHeight() {
+ /*function makeHeight() {
 	var section = document.querySelector("#main-content");
 	var center = document.querySelector("#center");
 
 	var mHeight = center.clientHeight + 30;
-	/* ClientHeight를 써서 표 높이만큼 늘리게 함. */
+	// ClientHeight를 써서 표 높이만큼 늘리게 함.
 	if (mHeight < 400) {
 		mHeight = 690;
 	}

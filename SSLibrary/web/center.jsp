@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 	<!-- 움직이는 광고-->
 	<div class="maincenter1">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -55,67 +55,115 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="doverlay"></div>
   </div>
- <div class="container">	
-	<div class="col-sm-6">
-  <div id="notice" class="board">
-	<font size="3px"><b>공지사항&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b>
-	<a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=notice">더보기</a></b>
-		<table width="305px">
-		<thead>
-		<tr>
-			<th>번호</th>
-			<th>글쓴이</th>
-			<th>제목</th>
-			<th>조회수</th>
-		</tr>
-		</thead>
-		<tbody>
-		<c:forEach items="${notice}" var="n">
-			<tr>
-				<td>${n.id}</td>
-				<td>${n.u_id}</td>
-				<td><a href="boarddetail.do?id=${n.id}">${n.title}</a></td>
-				<td>${n.counter}</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-		</table>
-	</div>  
-	</div>
-	<div class="col-sm-6">
-	<div id="free" class="board">
-	<font size="3px"><b>자유게시판&nbsp;&nbsp;&nbsp;&nbsp;</b></font><b><a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=free">더보기</a></b>
-	<table width="305px">
-		<thead>
-		<tr>
-			<th>번호</th>
-			<th>글쓴이</th>
-			<th>제목</th>
-			<th>조회수</th>
-		</tr>
-		</thead>
-		<tbody>
-		<c:forEach items="${free}" var="f">
-			<tr>
-				<td>${f.id}</td>
-				<td>${f.u_id}</td>
-				<td><a href="boarddetail.do?id=${f.id}">${f.title}</a></td>
-				<td>${f.counter}</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-		</table>
-	</div>
-</div>
-</div>
+  
+  
+  
+  	 <div class="col-lg-12 main-chart">
+  
+            <div class="row mt">
+                      <!-- SERVER STATUS PANELS -->
+                      	<div class="col-md-4 col-sm-4 mb">
+                      		<div class="white-panel pn donut-chart">
+                      			<div class="white-header" style="padding : 5px;">
+                      				<div class="col-sm-7 col-xs-7 goright">
+						  			<h5>공지사항</h5>
+						  			</div>
+									<a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=notice">더보기</a>
+
+                      			</div>
+								<div class="centered">
+								<div class="col-md-12 col-sm-12 mb">
+								<table class="table table-striped">
+									<thead>
+									<tr>
+										<th  style="text-align : center;">번호</th>
+										<th  style="text-align : center;">글쓴이</th>
+										<th  style="text-align : center;">제목</th>
+										<th  style="text-align : center;">조회수</th>
+									</tr>
+									</thead>
+									<tbody>
+									<c:forEach items="${notice}" var="n">
+										<tr>
+											<td>${n.id}</td>
+											<td>${n.u_id}</td>
+											<td><a href="boarddetail.do?id=${n.id}">${n.title}</a></td>
+											<td>${n.counter}</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+									</table>
+									</div>
+									</div>
+	                      	</div><! --/grey-panel -->
+                      	</div><!-- /col-md-4-->
+                      	
+
+                      	<div class="col-md-4 col-sm-4 mb">
+                      		<div class="white-panel pn">
+                      			<div class="white-header" style="padding : 5px;">
+                      			<div class="col-sm-7 col-xs-7 goright">
+						  			<h5>자유게시판</h5>
+						  			</div>
+						  			<a class="btn btn-default btn-sm" role="button" href="boardmain.do?search=false&sort=free">더보기</a>
+                      			</div>
+	                      		<div class="centered">
+	                      		<div class="col-md-12 col-sm-12 mb">
+									<table class="table table-striped">
+									<thead>
+									<tr>
+										<th  style="text-align : center;">번호</th>
+										<th  style="text-align : center;">글쓴이</th>
+										<th  style="text-align : center;">제목</th>
+										<th  style="text-align : center;">조회수</th>
+									</tr>
+									</thead>
+									<tbody>
+									<c:forEach items="${free}" var="f">
+										<tr>
+											<td>${f.id}</td>
+											<td>${f.u_id}</td>
+											<td><a href="boarddetail.do?id=${f.id}">${f.title}</a></td>
+											<td>${f.counter}</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+									</table>
+									</div>
+	                      		</div>
+                      		</div>
+                      	</div><!-- /col-md-4 -->
+                      	
+						<div class="col-md-4 mb">
+							<!-- WHITE PANEL - TOP USER -->
+							<div class="white-panel pn">
+								<div class="white-header">
+									<h5>관리자</h5>
+								</div>
+								<p><img src="img/user/index.jpg" class="img-circle" width="80"></p>
+								<p><b>Library Manager</b></p>
+								<div class="row">
+									<div class="col-md-6">
+										<p class="small mt">MANAGER SINCE</p>
+										<p>2015.06</p>
+									</div>
+									<div class="col-md-6">
+										<p class="small mt">PERIOD YEAR</p>
+										<p>4 years</p>
+									</div>
+								</div>
+							</div>
+						</div><!-- /col-md-4 -->
+                      	
+
+                    </div><!-- /row -->
+  
+  
+  
+
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<meta name="description" content="3D Book Showcase with CSS 3D Transforms" />
-		<meta name="keywords" content="3d transforms, css3 3d, book, jquery, open book, css transitions" />
-		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/default.css" />
 	<!-- 	<link rel="stylesheet" type="text/css" href="bootstrap/css/component2.css" /> -->
@@ -136,10 +184,9 @@
 		</script>
 	</head>
 	<body>
-		<div class="container">	
 			<br>
 		<div class="well well-sm"><b>최신 도서 5</b></div>
-			<div class="main">
+		<div class="main">
 				<ul id="bk-list" class="bk-list clearfix">
 				<c:forEach items="${book}" var="b" varStatus ="status">
 					<li>
@@ -172,8 +219,6 @@
 					</li>
 					</c:forEach>
 				</ul>	
-			</div>
-		</div><!-- /container -->
 		<script src="bootstrap/js/books1.js"></script>
 		<script>
 			$(function() {
@@ -182,6 +227,7 @@
 
 			});
 		</script>
+		</div>
 	</body>
 
 

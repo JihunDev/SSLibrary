@@ -39,13 +39,8 @@
 			$('#extendMySeat').popup('open');
 			$("#extendMySeatbutton").click(function() {
 				location.href = "m_userseatmodify.do?id=${userseat.s_id}";
-				$('#extendMySeat').popup('close');
-				window.setTimeout(function name() {
-					$('#seatuppopup').popup('open');
-				}, 1000);
-
 			});
-		} else {
+		} else if ('${userseat.renew_qt}' == 2){
 			$('#seatpopup').popup('open');
 		}
 	}
@@ -54,11 +49,6 @@
 		$('#returnMySeat').popup('open');
 		$("#returnMySeatbutton").click(function() {
 			location.href = "m_userseatremove.do?id=${userseat.s_id}";
-			$('#returnMySeat').popup('close');
-			window.setTimeout(function name() {
-				$('#seatrepopup').popup('open');
-			}, 1000);
-
 		});
 	}
 </script>

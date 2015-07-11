@@ -50,50 +50,59 @@
 		<table width="670" class="table table-hover">
 			<thead>
 				<tr>
-					<th colspan="4">현재이용정보</th>
+					<th colspan="4">현재 이용정보</th>
 				<tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td colspan="4">현재 예약한 열람실정보</td>
+					<td colspan="4">과거 예약한 열람실 내역</td>
 				</tr>
-
+				<c:if test="${userseat != null }">
+					<tr>
+						<td colspan="4">현재 예약한 열람실 정보</td>
+					</tr>
+					<tr>
+						<td>열람실 좌석</td>
+						<td>${userseat.s_id}번좌석</td>
+						<td>연장회수</td>
+						<c:if test="${user.isadmin != 's'}">
+							<td><a class="btn btn-primary" href="javascript:;"
+								onClick="extendMySeat();">연장</a></td>
+							<!-- 추후수정 -->
+						</c:if>
+						<c:if test="${user.isadmin == 's'}">
+							<td></td>
+						</c:if>
+					</tr>
+					<tr>
+						<td>사용시간</td>
+						<td>${userseat.start_time}~${userseat.end_time}</td>
+						<td>${userseat.renew_qt}</td>
+						<c:if test="${user.isadmin != 's'}">
+							<td><a class="btn btn-primary" href="javascript:;"
+								onClick="returnMySeat();">반납</a></td>
+							<!-- 추후수정 -->
+						</c:if>
+						<c:if test="${user.isadmin == 's'}">
+							<td></td>
+						</c:if>
+					</tr>
+				</c:if>
 				<tr>
-					<td>열람실 좌석</td>
-					<td>${userseat.s_id}번좌석</td>
-					<td>연장회수</td>
-					<c:if test="${user.isadmin != 's'}">
-						<td><a class="btn btn-primary" href="javascript:;"
-							onClick="extendMySeat();">연장</a></td>
-						<!-- 추후수정 -->
-					</c:if>
-					<c:if test="${user.isadmin == 's'}">
-						<td></td>
-					</c:if>
-				</tr>
 				<tr>
-					<td>사용시간</td>
-					<td>${userseat.start_time}~${userseat.end_time}</td>
-					<td>${userseat.renew_qt}</td>
-					<c:if test="${user.isadmin != 's'}">
-						<td><a class="btn btn-primary" href="javascript:;"
-							onClick="returnMySeat();">반납</a></td>
-						<!-- 추후수정 -->
-					</c:if>
-					<c:if test="${user.isadmin == 's'}">
-						<td></td>
-					</c:if>
-				</tr>
-				<tr>
-				<tr>
-
 					<td colspan="4"><a class="btn btn-primary btn-block"
 						href="seatloglist.do?id=${user.id}">이력</a></td>
-
 				</tr>
-				<tr>
-					<td colspan="4">현재대여 도서 정보</td>
-				</tr>
+				<c:if test="${booklist.size() == 0}">
+					<tr>
+						<td colspan="4">과거 대여 도서 정보</td>
+					</tr>
+				</c:if>
+				<c:if test="${booklist.size() != 0}">
+					<tr>
+						<td colspan="4">현재 대여 도서 정보</td>
+					</tr>
+				</c:if>
 				<c:forEach items="${booklist}" var="book" varStatus="status">
 					<tr>
 						<td>도서번호 : ${book[0]}</td>

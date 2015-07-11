@@ -29,7 +29,6 @@
 
     <!--external css-->
     <link href="bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/lineicons/style.css">    
     
@@ -71,6 +70,9 @@
 	margin : 6% 6% 6% 6%;
 }
 .table{
+	text-align : center;
+}
+.table>thead>tr>th{
 	text-align : center;
 }
 

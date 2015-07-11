@@ -70,10 +70,13 @@
 .fieldsetform {
 	margin : 6% 6% 6% 6%;
 }
+.table{
+	text-align : center;
+}
 
 </style>
 <script>
-function makeHeight() {
+/* function makeHeight() {
 	var section = document.querySelector("#main-content");
 	var center = document.querySelector("#center");
 
@@ -87,7 +90,7 @@ function makeHeight() {
 }
 $(document).ready(function() {
 	makeHeight();
-});
+}); */
 <%-- 	$(document).ready(function() {
 		setInterval(function() { //ÁÂ¼® ÀÚµ¿ ¹Ý³³
 			$.ajax({

@@ -45,7 +45,8 @@ function register(f){
    } 
 };
 </script>
-<div class="row centered-form">
+<div class="givemargin">
+<div class="centered-form">
  <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -79,4 +80,5 @@ function register(f){
                           </div>
                             </div>
                 </div>
-            </div>                
+            </div>       
+            </div>         

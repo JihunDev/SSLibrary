@@ -127,8 +127,6 @@ window.onload = function(){
 }
 
 </script>
-
-
 <div class="fieldsetform">
 <div id="book_center">
 <form class="form-inline">

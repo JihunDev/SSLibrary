@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
 	function makeHeight() {
-		var section = document.querySelector("#section");
-		var left = document.querySelector("#left");
+		var section = document.querySelector("#main-conten");
 		var center = document.querySelector("#center");
 		var center_area = document.querySelector('#home_center');
 
@@ -15,7 +14,6 @@
 		}
 		center.style.height = mHeight + 'px';
 		section.style.height = mHeight + 'px';
-		left.style.height = mHeight + 'px';
 	};
 
 	function displaybook(data) {
@@ -50,7 +48,6 @@
 		if (element2.height() >= 500) {
 			$('#lastbooklist').addClass("scroll");
 		}
-		makeHeight();
 
 	}
 
@@ -67,7 +64,6 @@
 			url : 'adminbooklogsearch.do',
 			success : function(data) {
 				displaybook(data);
-				makeHeight();
 			}
 		});
 	};

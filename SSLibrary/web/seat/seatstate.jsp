@@ -109,7 +109,7 @@
 		if('${myseat.s_id}' != ''){
 			$('button[value=${myseat.s_id}]').css('background-color','#FF5E00');			
 		}
-		makeHeight();
+		//makeHeight();
 	}
 </script>
 <style>
@@ -156,7 +156,7 @@
 
 .f_btn, #seattable>form>.f_btn, #seattable>form>.f_btn:hover, #seattable>form>.f_btn:active,
 	#seattable>form>.f_btn:focus {
-	background: #35B62C;
+	background: #66c1bd;
 }
 
 .modify {

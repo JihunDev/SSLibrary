@@ -67,6 +67,10 @@
     border-radius : 0px 0px 0px 0px;
 }
 
+.fieldsetform {
+	margin : 60px 60px 60px 60px;
+}
+
 </style>
 <script>
 function makeHeight() {

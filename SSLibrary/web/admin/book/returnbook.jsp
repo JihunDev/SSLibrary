@@ -33,7 +33,7 @@
 		<legend align="center">실시간 반납 도서 정보</legend>
 		<form>
 			<div>
-				<table width="700" id="listtable" class="table table-hover">
+				<table width="700" id="listtable" class="table table-striped">
 					<thead>
 						<tr>
 							<th>U_ID</th>

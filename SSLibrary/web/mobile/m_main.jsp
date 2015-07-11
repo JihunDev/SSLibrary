@@ -21,6 +21,7 @@
 </script>
 <script
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <script>
 	$.mobile.defaultPageTransition = "slide";
 
@@ -39,6 +40,11 @@
 	$(document).on("pagecontainerbeforeshow", contentHeight);
 </script>
 <style>
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -57,9 +63,7 @@
 		<div data-role="header" data-position="fixed">
 			<c:if test="${user != null}">
 				<a href="#myPanel"
-					class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-r ui-btn-icon-notext">Open</a>
-				<a href="m_center.do"
-					class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext">Home</a>
+					class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-notext">Open</a>
 			</c:if>
 			<h1>SSLibrary</h1>
 		</div>
@@ -69,9 +73,20 @@
 			<jsp:include page="${m_center}" />
 		</div>
 		<div data-role="footer" data-position="fixed">
+			<c:if test="${user == null}">
+				<h3>Secure Code Team 5</h3>
+			</c:if>
 			<c:if test="${user != null}">
-				<a href="#" data-rel="back"
-					class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" data-rel="back"
+							class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-top">back</a></li>
+						<li><a href="m_center.do"
+							class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top">Home</a></li>
+						<li><a href="m_usinginfo.do?id=${user.id}"
+							class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-top">이용정보</a></li>
+					</ul>
+				</div>
 			</c:if>
 		</div>
 	</div>

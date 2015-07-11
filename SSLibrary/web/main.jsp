@@ -258,7 +258,7 @@ $(document).ready(function() {
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-	@2015 sangyi design inc. All rights Reserved. Privacy policy | Terms of Use
+	SDS Campus Secure Code Team 5 : YouSangYi | LeeDongWoo | KimJiHun 
               <a href="main.do" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

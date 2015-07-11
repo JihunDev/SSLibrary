@@ -17,7 +17,6 @@
 	}
 	$(document).ready(
 			function() {
-				makeHeight();
 				var element = document.getElementById("listtable");
 				var element2 = $("#returnbooklist");
 				if ("${userbooklist}" == "[]") {

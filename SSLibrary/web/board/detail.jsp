@@ -18,7 +18,6 @@ function update(f) {
 		var content = f.old_content.value;
 		$('#content_'+id+'').html("<input type='text' id='content_id' value='"+content+"'>");
 		$('#btn_'+id+'').val("완료");	
-		alert("Before : " + f.old_content.value);
 		
 	}else if(reg_number != 0 && $('#btn_'+id+'').val() == "완료"){// 댓글수정을 완료할때
 
@@ -26,7 +25,6 @@ function update(f) {
 		if (c == true) {
 			var content = $('#content_id').val();
 			$('input[name="content"]').val(content);
-			alert("After : " + f.content.value);
 			
 			f.action = 'boardmodifyimpl.do';
 			f.method = 'POST';

@@ -306,6 +306,7 @@ public class MainControl {
 		MultipartFile file = com.getImg();
 		String dir = "C:/lib/SSLibrary/web/img/user/";
 		String img = file.getOriginalFilename();
+		
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
@@ -443,6 +444,7 @@ public class MainControl {
 		ArrayList<Object> msg_list2 = new ArrayList<Object>();
 		HttpSession session = request.getSession();
 		int msgchecknumber = 0;
+		
 		try {
 			msg_list = messagelogbiz.get();
 			for (Object obj : msg_list) {
@@ -452,7 +454,9 @@ public class MainControl {
 				if (getid.equals(id)) {
 					if (read.equals("n")) {
 						msgchecknumber += 1;
+						System.out.println(log);
 						msg_list2.add(log);
+						System.out.println(msg_list2);
 					}
 				}
 			}

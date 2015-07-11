@@ -90,27 +90,26 @@ tr td:last-child, tr th:last-child {
 	border-bottom-right-radius: 6px;
 }
 
+table.scroll tbody, table.scroll thead {
+	display: block;
+}
 
-table.scroll tbody,
-table.scroll thead { display: block; }
-
-table.scroll thead tr th { 
-    height: 20px;
-    width : 700px;
-    line-height: 20px;
-    /* text-align: left; */
+table.scroll thead tr th {
+	height: 20px;
+	width: 700px;
+	line-height: 20px;
+	/* text-align: left; */
 }
 
 table.scroll tbody {
-    height: 500px; 
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-table.scroll tbody tr td{
-	width : 700px;
+	height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
-
+table.scroll tbody tr td {
+	width: 700px;
+}
 
 .centered-form {
 	margin-top: 40px;
@@ -361,50 +360,49 @@ footer>div {
 		section.style.height = mHeight + 'px';
 		left.style.height = mHeight + 'px';
 	}
-	$(document).ready(function(){
+	$(document).ready(function() {
 		makeHeight();
-		   setInterval(function() { //좌석 자동 반납
-		      $.ajax({
-		         async : 'false',
-		         url : 'expireseat.do',
-		         data : {},
-		         success : function(data){
-		   //      alert(data);
-		         },
-		         error : function(data) {
-		             //alert("좌석 자동반납이 종료 안 돼");
-		         }
-		      });
-		   }, 5000);
-		   
-		   setInterval(function(){ //연체된 사람 정지되게 함.
-				$.ajax({
-					async : 'false',
-					url : 'stopborrowbook.do',
-					success : function(data) {
+		setInterval(function() { //좌석 자동 반납
+			$.ajax({
+				async : 'false',
+				url : 'expireseat.do',
+				data : {},
+				success : function(data) {
+					//      alert(data);
+				},
+				error : function(data) {
+					//alert("좌석 자동반납이 종료 안 돼");
+				}
+			});
+		}, 5000);
+
+		setInterval(function() { //연체된 사람 정지되게 함.
+			$.ajax({
+				async : 'false',
+				url : 'stopborrowbook.do',
+				success : function(data) {
 					//	alert(data);
-					},
-					error : function() {
+				},
+				error : function() {
 					//	alert("으앙 에러 ㅠㅠ")
-					}
-				});
-			}, 5000);	 
-		});
+				}
+			});
+		}, 5000);
+
+		setInterval(function() {
+			$.ajax({
+				async : 'false',
+				url : 'resetuser.do',
+				success : function(data) {
+				},
+				error : function() {
+				}
+			});
+		}, 5000);
+	});
 	window.onload = function() {
 		makeHeight();
-		  //유저 초기화
-		/*   setInterval(function(){
-		      $.ajax({
-		         async : 'false',
-		         url : 'resetuser.do',
-		         success : function(data) {
-		         },
-		         error : function() {
-		         }
-		      });
-		   }, 5000); */
-
-	<%-- 	setInterval(function() {
+		setInterval(function() {
 			$.ajax({
 				async : 'false',
 				url : 'msgchecked.do',
@@ -422,11 +420,10 @@ footer>div {
 		function display(data) {
 			document.getElementById("msgnumber").innerHTML = data;
 			if ("${msgcheck}" != null) {
-				<%session.removeAttribute("msgcheck");%>
-			}
+<%session.removeAttribute("msgcheck");%>
+	}
 		}
 		;
- --%>
 	};
 </script>
 </head>

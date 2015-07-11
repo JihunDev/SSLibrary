@@ -92,8 +92,7 @@
 
 <script>
 function makeHeight() {
-   var section = document.querySelector("#section");
-   var left = document.querySelector("#left");
+   var section = document.querySelector("#main-content");
    var center = document.querySelector("#center");
    var center_area = document.querySelector('#book_center');
    

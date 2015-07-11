@@ -6,7 +6,7 @@
 <script>
 $(document).ready(function(){
 	if("${adminseatloglist}" == "[]")
-		$('#seatloglist_div').html("<tr><td colspan=6>등록된 게시물이 없습니다.</td><tr>");
+		$('#seatloglist_div').html("<tr><td colspan=6>등록된 내역이 없습니다.</td><tr>");
 	
 });
 function searchseatlog(f){
@@ -68,7 +68,7 @@ function searchseatlog(f){
 <br><br>
 <fieldset >
 	<legend align="center">Seat Log List Page</legend>
-	<table width="700" class="table table-hover" id="seatlogtable">
+	<table width="700" class="table table-hover scroll" id="seatlogtable">
 		<thead>
 			<tr>
 				<th>예약자 ID</th>

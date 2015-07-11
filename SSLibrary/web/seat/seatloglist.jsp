@@ -5,7 +5,7 @@
 <div class="fieldsetform">
 <fieldset>
 <legend align="center">Seat Log List Page</legend>
-	<table width="700" class="table table-hover">		
+	<table width="700" class="table table-hover scroll">		
 		<thead>
 			<tr>
 				<th>¿¹¾àÀÚ ID</th>

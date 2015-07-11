@@ -28,10 +28,6 @@ import com.frame.UpdateAndReturnBiz;
 @Transactional
 @Controller
 public class SeatControl {
-
-	@Resource(name = "userbiz")
-	Biz user_biz;
-	
 	@Resource(name = "seatbiz")
 	Biz biz;
 	
@@ -47,7 +43,9 @@ public class SeatControl {
 	@Resource(name = "seatlogbiz")
 	UpdateAndReturnBiz ur_lbiz;
 
-
+	@Resource(name = "seatimpl")
+	SeatImpl seatimpl;
+	
 	@RequestMapping("/seatmain.do")
 	public ModelAndView seatmain(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -154,26 +152,7 @@ public class SeatControl {
 		}
 
 		JSONObject result = null;
-		try {
-			
-			User user = (User) user_biz.get(u_id);
-			UserSeat userseat = (UserSeat) ubiz.get(u_id); 
-			result = new JSONObject();
-			result.put("s_id", userseat.getS_id());
-			result.put("u_id", userseat.getU_id());
-			result.put("pwd", user.getPwd());
-			result.put("name", user.getName());
-			result.put("phone", user.getPhone());
-			result.put("img", user.getImg());
-			result.put("email", user.getEmail());
-			result.put("start_time", userseat.getStart_time());
-			result.put("end_time", userseat.getEnd_time());
-			result.put("renew_qt", userseat.getRenew_qt());
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		result = seatimpl.getSetUserInfo(u_id);
 
 		System.out.println("receiver_sid: " + seat.getId());
 		System.out.println("receiver_uid: " + u_id);
@@ -333,7 +312,9 @@ public class SeatControl {
 				UserSeat us = (UserSeat) obj;
 				s_id = us.getS_id();	// 예약시간이 지난 Seat의 ID
 				u_id = us.getU_id(); // 그 Seat의 User ID
-				
+
+				//userimpl.tr_usermodifyimpl(u_id);
+	
 				ubiz.remove(new UserSeat(u_id));		// 해당 현재 이용정보 삭제
 				ur_lbiz.logreturn(new SeatLog(u_id));	// 강제 반납된 좌석 정보를 기록에 갱신
 				biz.modify(new Seat(s_id, "y"));			// 좌석 상태를 예약가능 상태로 변경

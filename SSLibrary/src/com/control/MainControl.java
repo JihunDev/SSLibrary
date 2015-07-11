@@ -438,8 +438,10 @@ public class MainControl {
 
 	@ResponseBody
 	@RequestMapping("/msgchecked.do")
-	public String msgchecked(String id) {
+	public String msgchecked(String id, HttpServletRequest request) {
 		ArrayList<Object> msg_list = new ArrayList<Object>();
+		ArrayList<Object> msg_list2 = new ArrayList<Object>();
+		HttpSession session = request.getSession();
 		int msgchecknumber = 0;
 		try {
 			msg_list = messagelogbiz.get();
@@ -450,6 +452,7 @@ public class MainControl {
 				if (getid.equals(id)) {
 					if (read.equals("n")) {
 						msgchecknumber += 1;
+						msg_list2.add(log);
 					}
 				}
 			}
@@ -457,6 +460,7 @@ public class MainControl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("msg_list", msg_list2);
 		String stringmsgchecknumber = String.valueOf(msgchecknumber);
 		return stringmsgchecknumber;
 	}

@@ -12,11 +12,10 @@
                   <li class="sub-menu">
                    <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
-                          <span>회원 정보</span>
+                          <span>내 정보</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="usinginfo.do?id=${user.id}">현재이용정보</a></li>
-                          <li><a  href="modify.do?id=${user.id}">개인정보수정</a></li>
                           <li><a  href="msgloglist.do?id=${user.id}">메세지 내역</a></li>
                       </ul>
                   </li>
@@ -46,11 +45,10 @@
                   <li class="sub-menu">
                    <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
-                          <span>회원 정보</span>
+                          <span>내 정보</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="usinginfo.do?id=${user.id}">현재이용정보</a></li>
-                          <li><a  href="modify.do?id=${user.id}">개인정보수정</a></li>
                           <li><a  href="msgloglist.do?id=${user.id}">메세지 내역</a></li>
                       </ul>
                   </li>

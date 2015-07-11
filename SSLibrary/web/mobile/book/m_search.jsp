@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+tr {
+	border-bottom: 1px solid lightgray;
+}
 
+table {
+	background: white;
+	
+}
+</style>
 <!-- 책 검색 -->
 <form action="m_booksearch.do" method="POST">
 	<div class="ui-grid-a">
@@ -21,13 +30,14 @@
 			</select>
 		</div>
 	</div>
-	<input type="text" name="search" placeholder="Search for...">
-	<input type="submit" value="검색">
+	<input type="text" name="search" placeholder="Search for..."> <input
+		type="submit" value="검색">
 </form>
 
 <!-- 책 출력부  -->
 <div id="book_result">
-	<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable">
+	<table data-role="table" data-mode="columntoggle" class="ui-responsive"
+		id="myTable">
 		<thead>
 			<tr>
 				<th data-priority="8">ID</th>
@@ -41,10 +51,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${booklist}" var="b"  varStatus="status">
-				<tr>	
-					<td><a href="m_bookdetail.do?id=${b.id}">${b.id}</a></td>
-					<td>${b.name}</td>
+			<c:forEach items="${booklist}" var="b" varStatus="status">
+				<tr>
+					<td>${b.id}</td>
+					<td><a href="m_bookdetail.do?id=${b.id}">${b.name}</a></td>
 					<td>${b.writer}</td>
 					<td><img width="30px" src="img/book/${b.img}"></td>
 					<td>${b.floor}</td>

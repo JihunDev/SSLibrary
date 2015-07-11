@@ -79,7 +79,7 @@ function update(f) {
                  <input type="text" name="email" class="form-control" placeholder="EMAIL" value="${userupdate.email}">           
                 </div>
                 <div class="form-group">
-                <label class="control-label" for="oldimg">원래 사진 : <img class="img-circle" alt="Cinque Terre" width="30" height="30" src="img/user/${userupdate.img}"></label>
+                <label class="control-label" for="oldimg">기존 사진 : <img class="img-circle" alt="Cinque Terre" width="30" height="30" src="img/user/${userupdate.img}"></label>
                 </div>
                 <div class="form-group">
                  <label class="control-label" for="img">IMG</label><input type="file" id="img" name="img"  class="file">

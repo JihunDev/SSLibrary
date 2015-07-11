@@ -126,7 +126,7 @@ window.onload = function(){
 			<th>글번호</th>
 			<th>제목</th>
 			<th>글쓴이</th>
-			<th>작성일</th>
+			<th class="hidden-xs">작성일</th>
 			<th>조회수</th>
 		</tr>
 	</thead>
@@ -141,7 +141,7 @@ window.onload = function(){
 				<td>${b.id}</td>
 				<td><a href="boarddetail.do?id=${b.id}">${b.title}(${b.reply_num})</a></td>
 				<td>${b.u_id}</td>
-				<td>${b.reg_date}</td>
+				<td class="hidden-xs">${b.reg_date}</td>
 				<td>${b.counter}</td>
 			</tr>
 			<%}%>

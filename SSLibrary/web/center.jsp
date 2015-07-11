@@ -186,7 +186,7 @@
 	<body>
 	 <div class="row mt">
 		<br>
-		<div class="well well-sm"><b>최신 도서 5</b></div>
+		<div class="well well-sm" style="margin-left : 1.5%; margin-right : 1.5%;"><b>최신 도서 5</b></div>
 		<div class="main">
 				<ul id="bk-list" class="bk-list clearfix">
 				<c:forEach items="${book}" var="b" varStatus ="status">
@@ -228,7 +228,7 @@
 
 			});
 		</script>
-		</div></div></div>
+		</div></div>
 	</body>
 
 

@@ -5,7 +5,6 @@
 <%User user = (User)session.getAttribute("user");%>
 <script>
 $(document).ready(function(){
-	makeHeight();
 	var borrowbook = $('#borrowbook').val();
 	if(borrowbook==1){
 		alert("이미 빌린 책입니다.")	

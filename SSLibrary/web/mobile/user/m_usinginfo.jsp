@@ -4,13 +4,19 @@
 <script>
 	$(document).ready(function() {
 		if ("${returnqt}" == 1) {
-			$('#bookokpopup').popup('open');
+			window.setTimeout(function name() {
+				$('#bookokpopup1').popup('open');
+			}, 1000);
 		}
 		var qt = $('#qt').val();
 		if (qt == 1) {
-			$('#bookfailpopup').popup('open');
+			window.setTimeout(function name() {
+				$('#bookfailpopup').popup('open');
+			}, 1000);
 		} else if (qt == 2) {
-			$('#bookokpopup').popup('open');
+			window.setTimeout(function name() {
+				$('#bookokpopup').popup('open');
+			}, 1000);
 		}
 	});
 
@@ -176,7 +182,7 @@
 
 <!-- book popup -->
 
-<div data-role="popup" id="bookokpopup">
+<div data-role="popup" id="bookokpopup1">
 	<div data-role="header">
 		<h1>¾Ë¶÷</h1>
 		<a href="#" data-rel="back"

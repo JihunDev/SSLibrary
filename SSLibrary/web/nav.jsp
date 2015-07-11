@@ -26,12 +26,27 @@
                       </a>
                   </li>
 
-                  <li class="sub-menu">
+ 				<li class="sub-menu">
+                   <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>자료실 관리</span>
+                      </a>
+                      <ul class="sub">
+                     	  <li><a href="bookmain.do?search=false">도서 자료</a></li>
+                          <li><a href="bookregister.do">책 등록</a></li>
+                          <li><a href="adminbookloglist.do">도서 대여 기록</a></li>
+                          <li><a href="userbookremoveconfirm.do">회원 도서 반납 내역</a></li>
+                      </ul>
+                  </li>
+
+
+
+               <!--    <li class="sub-menu">
                        <a  href="bookmain.do?search=false">
                           <i class="fa fa-desktop"></i>
                           <span>자료실관리</span>
                       </a>
-                  </li>
+                  </li> -->
                   <li class="sub-menu">
                       <a href="usersearch.do?search=false">
                           <i class="fa fa-desktop"></i>

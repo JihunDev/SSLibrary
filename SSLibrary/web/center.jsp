@@ -184,7 +184,8 @@
 		</script>
 	</head>
 	<body>
-			<br>
+	 <div class="row mt">
+		<br>
 		<div class="well well-sm"><b>최신 도서 5</b></div>
 		<div class="main">
 				<ul id="bk-list" class="bk-list clearfix">
@@ -227,7 +228,7 @@
 
 			});
 		</script>
-		</div>
+		</div></div></div>
 	</body>
 
 

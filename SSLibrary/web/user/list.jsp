@@ -18,14 +18,13 @@ function display(data) {
 	var output = '';
 	output += "<table class='table table-hover'>";
 	output += "<thead>";
-	output += "<tr><th>ID</th><th>PWD</th><th>NAME</th><th>TEL</th><th>E-MAIL</th></tr>";
+	output += "<tr><th>ID</th><th>¿Ã∏ß</th><th>TEL</th><th>E-MAIL</th></tr>";
 	output += "</thead>";
 	output += "<tbody>";
 	$(data).each(function(index, item) {
 						with (item) {
 							output += '<tr>';
 							output += '<td><a href="userdetail.do?id='+id+'">'+id+'</a></td>';
-							output += '<td>'+pwd+'</td>';
 							output += '<td>'+name+'</td>';
 							output += '<td>'+phone+'</td>';
 							output += '<td>'+email+'</td>';

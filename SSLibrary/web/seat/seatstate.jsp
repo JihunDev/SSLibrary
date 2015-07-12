@@ -103,14 +103,7 @@
 			showDialog(s_id, s_state);
 		}
 	};
-	
-	window.onload = function(){
-		
-		if('${myseat.s_id}' != ''){
-			$('button[value=${myseat.s_id}]').css('background-color','#fcce18');			
-		}
-		//makeHeight();
-	}
+
 	
 	function resize_seatstate(){
 		var windowwidth = $(window).width();
@@ -120,6 +113,14 @@
 			$('footer[class=site-footer]').css('width','100%');				
 		}		
 	};
+	
+	$(window).ready(function(){
+		
+		if('${myseat.s_id}' != ''){
+			$('button[value=${myseat.s_id}]').css('background-color','#fcce18');			
+		}
+		resize_seatstate();
+	});
 	// 사이즈 조절 
 	$(window).resize(function(){
 		resize_seatstate();

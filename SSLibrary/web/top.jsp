@@ -8,7 +8,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="¸Þ´º"></div>
               </div>
             <!--logo start-->
-            <a href="main.do" class="logo"><b>SangSang Library</b></a>
+            <a href="main.do" id="logo" class="logo"><b>SangSang Library</b></a>
             <!--logo end-->
        
             <div class="top-menu">
@@ -66,7 +66,7 @@ function logincheck(f){
 </div>
 
 <%}else{ %>
-     <div class="nav notify-row" id="top_menu">
+     <div class="nav notify-row" id="top_menu" style="display : block;">
                
                
                 <!--  notification start -->
@@ -141,7 +141,7 @@ function logincheck(f){
                 <!--  notification end -->
             </div>
 
-            	<ul class="nav pull-right top-menu">
+            	<ul class="nav pull-right top-menu" style="width : 60px;">
                     <li><a class="logout" href="logout.do">Logout</a></li>
             	</ul>
             </div>

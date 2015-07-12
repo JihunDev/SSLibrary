@@ -50,7 +50,6 @@
 a{
 	text-decoration: none;
 	color: black;
-	margin:0 4px;
 }
 .carousel-inner > .item > img,
  .carousel-inner > .item > a > img {

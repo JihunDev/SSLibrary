@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.entity.MessageLog;
 import com.entity.Seat;
 import com.entity.SeatLog;
 import com.entity.User;
@@ -20,6 +21,10 @@ public class UserImpl {
    Biz userseatbiz;
    @Resource(name = "seatbiz")
    Biz seatbiz;
+   @Resource(name = "messagelogbiz")
+   Biz message_biz;
+
+   
    @Resource(name = "seatlogbiz")
    UpdateAndReturnBiz seatlogbiz;
 
@@ -29,7 +34,8 @@ public class UserImpl {
       try {
          biz.modify(userinfo);
          UserSeat userseat = (UserSeat) userseatbiz.get(new UserSeat(id));
-
+         message_biz.register(new MessageLog(id, 0, "System", id+"님의 계정이 일시정지 되었습니다."));
+         
          if (userseat != null) {
             userseatbiz.remove(new UserSeat(id));// 좌석 반납
             seatlogbiz.logreturn(new SeatLog(id));// 로그에 남김

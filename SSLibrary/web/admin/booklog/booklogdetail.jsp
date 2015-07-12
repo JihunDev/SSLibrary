@@ -22,8 +22,8 @@
 
 		$('#book_result').empty();
 		var output = '';
-		output += '<fieldset><legend align="center">검색 결과</legend><table id="lastbooklist" class="table table-hover">'
-		output += '<thead><tr><th >ID</th><th >B_ID</th><th>U_ID</th><th>START_DATE</th><th class="hidden-xs">END_DATE</th><th>REAL_DATE</th><th class="hidden-xs">RENEW_QT</th></thead>';
+		output += '<fieldset><table id="lastbooklist" class="table table-striped theadcolor">'
+		output += '<thead><th>등록 번호</th><th>도서 ID</th><th>대여자 ID</th><th>대여 시간</th><th class="hidden-xs">반납 예정 시간</th><th>반납 완료 시간</th><th class="hidden-xs">연장</th></thead>';
 		output += '<tbody id="bookloglist">';
 		if (cont == 0) {
 			output += '<tr><td colspan=7>검색 결과가 존재하지 않습니다.</td><tr>';
@@ -69,26 +69,30 @@
 	};
 </script>
 <div id="home_center" class="fieldsetform">
-	<div class="logtabletitle">	
+	<div class="listtabletitle">	
 		<table class="table" style="width:100%;min-width:300px;">
 			<tr>
 				<th><h1>Books Rental History</h1></th>
 			</tr>
 		</table>	
 	</div>
-<button class="btn btn-default btn-sm" type="submit" onclick='location.href="adminbookloglist.do"'>전체 목록</button>
-	<form class="form-inline" style="float:right;">		
+	<form class="form-inline" style="float:right;">
+	<div class="input-group">
+<!-- 		<button class="btn btn-default btn-sm" type="submit" onclick='location.href="adminbookloglist.do"'>전체 목록</button> -->
+	
 		<select class="form-control input-sm" style="width:auto;" id="whatsearch">
 			<option value="user">회원</option>
 			<option value="book">도서</option>
 		</select>
 		<input type="text" id="searchname" name="searchname" class="form-control input-sm" style="width:150px;margin:0 2px 0 0;" placeholder="Search for...">
-		<button class="btn btn-default btn-sm" style="width:auto;"  type="button" onclick="getLogBook();">검색</button>
+		<button class="btn btn-default btn-sm btncolor" style="width:auto;"  type="button" onclick="getLogBook();">검색</button>
+	</span>
+	</div>
 	</form>
 	<br><br>
 	<div id="book_result">
 		<fieldset>
-			<table width="700" class="table table-hover scroll theadcolor">
+			<table width="700" class="table table-striped scroll theadcolor">
 				<thead>
 					<tr>
 						<th>등록 번호</th>

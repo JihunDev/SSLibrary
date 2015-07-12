@@ -28,9 +28,11 @@ window.onload = function(){
 	</select>
 	<input type="text" class="form-control input-sm" name="title" value="${boardupdate.title}"><br><br>
 	</div>
+	<br>
 	<div class="form-group">
 	<textarea class="form-control" rows="10" cols="90" name="content" style="resize:none">${boardupdate.content}</textarea><br><br>
 	</div>
+	<br>
 	<div class="form-group">
 	<input type="file" name="file_name"><br>
 	<input type="hidden" name="id" value="${boardupdate.id}">

@@ -22,7 +22,7 @@
 
 				}
 			});
-		}, 5000);
+		}, 2000);
 	});
 </script>
 
@@ -48,7 +48,7 @@
 			data-inline="true"
 			style="height: 100px; width: 70%; background-color: #ebcf60; border: 1px solid #ebcf60;"><img
 			width="80" src="img/mobile/Mail.png"><br>¸Þ¼¼Áö : <span
-			id="msgnumber">${msgcheck}</span></a>
+			id="msgnumber"></span></a>
 	</div>
 	<div class="ui-block-a">
 		<a href="m_boardmain.do?sort=notice" data-role="button"

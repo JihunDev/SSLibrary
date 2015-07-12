@@ -85,7 +85,7 @@
 							class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-top">이용정보</a></li>
 						<li><a href="m_msgloglist.do?id=${user.id}" style="background-color: #266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-mail ui-btn-icon-top"><span
-								id="msgnumber">${msgcheck}</span><br>
+								id="msgnumber"></span><br>
 						</a></li>
 					</ul>
 				</div>

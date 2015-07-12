@@ -77,13 +77,13 @@
 				<h3>Secure Code Team 5</h3>
 			</c:if>
 			<c:if test="${user != null}">
-				<div data-role="navbar">
+				<div data-role="navbar"style="background-color:#266999">
 					<ul>
-						<li><a href="#" data-rel="back"
+						<li><a href="#" data-rel="back" style="background-color:#266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-top">back</a></li>
-						<li><a href="m_center.do"
+						<li><a href="m_center.do" style="background-color:#266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top">Home</a></li>
-						<li><a href="m_usinginfo.do?id=${user.id}"
+						<li><a href="m_usinginfo.do?id=${user.id}" style="background-color:#266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-top">이용정보</a></li>
 					</ul>
 				</div>

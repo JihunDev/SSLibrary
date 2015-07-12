@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="fieldsetform">
-<div class="logtabletitle">	
+<div class="listtabletitle">	
 	<table class="table" style="width:100%;min-width:300px;">
 		<tr>
 			<th><h1>My Message</h1></th>

@@ -19,8 +19,12 @@ public class Book {
 		this.id = id;
 	}
 	
-	
-	
+
+	public Book(String name, String writer) {
+		super();
+		this.name = name;
+		this.writer = writer;
+	}
 
 	public Book(String id, int current_qt) {
 		super();

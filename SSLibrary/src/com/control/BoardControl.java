@@ -41,7 +41,6 @@ public class BoardControl {
 		int reply_count = 0;
 		try {
 			list = boardsearchbiz.getid(sort);
-
 			System.out.println(list);
 			for (Object obj1 : list) {
 				Board b = (Board) obj1;						
@@ -263,7 +262,7 @@ public class BoardControl {
 	@RequestMapping("/boardsearch.do")
 	public ModelAndView boardsearch(String search, String sort, String issearch, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("main");
-		BoardUploadCommand board = null;
+		Board board = null;
 		
 		
 		ArrayList<Object> result_list = new ArrayList<Object>();
@@ -274,35 +273,35 @@ public class BoardControl {
 		switch (issearch) {
 			case "id":
 				String u_id = search;
-				board = new BoardUploadCommand(u_id, null, null, sort);
+				board = new Board(u_id, null, null, sort);
 				break;
 			case "ct":
 				String text = search;
-				board = new BoardUploadCommand(null, text, text, sort);
+				board = new Board(null, text, text, sort);
 				break;
 			case "title":
 				String title = search;
-				board = new BoardUploadCommand(null, title, null, sort);
+				board = new Board(null, title, null, sort);
 				break;
 			case "content":
 				String content = search;
-				board = new BoardUploadCommand(null, null, content, sort);
+				board = new Board(null, null, content, sort);
 				break;
 		}
+		System.out.println(board);
 		int reply_count=0;
 		try {
-			list = boardsearchbiz.getwriter(board);
-			System.out.println("get list: " + list);
-			for (Object obj1 : list) {
-				Board b = (Board) obj1;						
-				reply_count = boardsearchbiz.getnum_reply(b);
-				BoardGetReplyNumCommand bcom = new BoardGetReplyNumCommand(b.getId(), b.getU_id(),
-						b.getCounter(),b.getTitle(), b.getContent(), b.getReg_date(),
-						b.getSort(), b.getFile_name(),
-						b.getReg_number(), reply_count);
-				result_list.add(bcom);
+			for (Object obj1 : boardsearchbiz.getwriter(board)) {
+				Board b = (Board) obj1;
+				if(sort.equals(b.getSort())){
+					reply_count = boardsearchbiz.getnum_reply(b);
+					BoardGetReplyNumCommand bcom = new BoardGetReplyNumCommand(b.getId(), b.getU_id(),
+							b.getCounter(),b.getTitle(), b.getContent(), b.getReg_date(),
+							b.getSort(), b.getFile_name(),
+							b.getReg_number(), reply_count);
+					result_list.add(bcom);
+				}
 			}
-
 			
 		} catch (Exception e) {
 			e.printStackTrace();

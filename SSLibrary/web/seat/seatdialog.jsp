@@ -52,6 +52,8 @@ function modifystate(f, i) {
 }
 #sendMsgDialog{
 }
+
+
 </style>
 
 
@@ -70,10 +72,10 @@ function modifystate(f, i) {
       <form>
       <div class="modal-body">
 			<form>
-					<input type="hidden" class="seatstate" name="seatstate">
+					<h4><input type="hidden" class="seatstate" name="seatstate">
 					 <input type="hidden" class="seatid" name="seatid">
 					 <input type="radio" class="stateclass" name="seatY" id="ableseatY" value="y" checked>예약 가능<br>
-					 <input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br>
+					 <input type="radio" class="stateclass" name="seatY" id="fixseatY" value="f">수리 중<br></h4>
 			</div>
       <!-- Footer -->
       <div class="modal-footer">
@@ -100,11 +102,11 @@ function modifystate(f, i) {
       </div>
       <!-- body -->
       <div class="modal-body">
-			<form>					
+			<form><h4>		
 				<input type="hidden" class="seatstate" name="seatstate">
 				<input type="hidden" class="seatid" name="seatid">
 				<input type="radio" class="stateclass" name="seatF" id="ableseatF" value="y">예약 가능<br>
-				<input type="radio" class="stateclass" name="seatF" id="fixseatF" value="f" checked>수리 중<br>					
+				<input type="radio" class="stateclass" name="seatF" id="fixseatF" value="f" checked>수리 중<br></h4>					
 			</div>
       <!-- Footer -->
       <div class="modal-footer">
@@ -121,7 +123,7 @@ function modifystate(f, i) {
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- header -->
-			<div class="modal-header" style="background:gray;color:white;border-radius:5px 5px 0 0;">
+			<div class="modal-header" style="border-radius:5px 5px 0 0;">
 				<!-- 닫기(x) 버튼 -->
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<!-- header title -->
@@ -151,9 +153,9 @@ function modifystate(f, i) {
 							<input type="hidden" class="seatstate" name="seatstate">
 							<input type="hidden" class="seatid" name="seatid">
 							<br>
-							<input type="radio" class="stateclass" name="seatN" id="ableseatN" value="y">예약 가능<br>
+							<h4><input type="radio" class="stateclass" name="seatN" id="ableseatN" value="y">예약 가능<br>
 							<input type="radio" class="stateclass" name="seatN" id="unableseatN" value="n" checked>예약 불가<br>
-							<input type="radio" class="stateclass" name="seatN" id="fixseatN" value="f">수리 중<br>
+							<input type="radio" class="stateclass" name="seatN" id="fixseatN" value="f">수리 중<br></h4>
 							<br>
 							
 							<div class="modal-footer">		

@@ -35,11 +35,6 @@ function searchseatlog(f){
 
 </script>
 <style>
-#seatlogtable>thead>tr>th{
-	background: #66c1bd;
-	color:white;
-	vertical-align: middle;
-}
 .seattableform {
 	background: rgba(255, 255, 194, 0.8);
 	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
@@ -48,10 +43,16 @@ function searchseatlog(f){
 	border-radius: 10px 10px 10px 10px;
 	
 }
+
+.theadcolor>thead>tr>th,
+.btncolor{
+	background:#e76e6e;
+	color:#EAEAEA;
+}
 </style>
 
 <div class="fieldsetform"> 
-<div style="height:100px">	
+<div class="listtabletitle">	
 	<table class="table" style="width:100%;min-width:300px;">
 		<tr>
 			<th><h1>Seated Log List</h1></th>
@@ -75,7 +76,7 @@ function searchseatlog(f){
 
 <br><br>
 <fieldset>
-	<table width="700" class="table table-hover scroll table-striped" id="seatlogtable">
+	<table width="700" class="table table-hover scroll theadcolor">
 		<thead>
 			<tr>
 				<th>ÀÌ¿ëÀÚ ID</th>

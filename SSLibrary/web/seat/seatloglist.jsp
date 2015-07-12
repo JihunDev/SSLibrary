@@ -2,9 +2,16 @@
     pageEncoding="EUC-KR"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-
-</style>
+<script>
+window.onload = function(){
+  	var backgroundColor_ = "#fcce18";
+  	var color_ = "black";
+  	
+  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+	$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+	
+}
+</script>
 
 <div class="fieldsetform">
 <div class="listtabletitle">	
@@ -15,7 +22,7 @@
 	</table>	
 </div>
 <fieldset>
-	<table width="700" class="table table-hover scroll table-striped theadcolor">		
+	<table width="700" class="table scroll table-striped theadcolor">		
 		<thead>
 			<tr>
 				<th>ÀÌ¿ëÀÚ ID</th>

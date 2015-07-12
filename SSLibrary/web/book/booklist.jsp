@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<script type="text/javascript">
+window.onload = function(){
+  	var backgroundColor_ = "#fcce18";
+  	var color_ = "black";
+  	
+  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+	$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+	
+}</script>
+
 <div class="fieldsetform">
 	
 <div class="listtabletitle">	
@@ -10,7 +20,7 @@
 		</tr>
 	</table>	
 </div>
-	<table width="700" class="table table-hover theadcolor">
+	<table width="700" class="table table-striped theadcolor">
 		<thead>
 			<tr>
 				<th>책 등록번호</th>

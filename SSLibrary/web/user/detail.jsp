@@ -32,7 +32,7 @@
 		<table class="table table-hover" width="700">
 			<!-- 추후수정 -->
 			<tr>
-				<td id="hi"><img width="300px" src="img/user/${user.img}"></td>
+				<td id="hi" rowspan="2"> <img src="img/user/${user.img}"></td>
 			<tr>
 				<th>ID</th>
 				<td>${user.id}</td>

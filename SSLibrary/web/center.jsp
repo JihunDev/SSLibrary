@@ -141,7 +141,7 @@
 								<div class="white-header">
 									<h5>°ü¸®ÀÚ</h5>
 								</div>
-								<p><img src="img/user/index.jpg" class="img-circle" width="80"></p>
+								<p><img src="img/css/admin.jpg" class="img-circle" width="80"></p>
 								<p><b>Library Manager</b></p>
 								<div class="row">
 									<div class="col-md-6">

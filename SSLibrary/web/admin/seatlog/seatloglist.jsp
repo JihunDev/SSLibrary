@@ -59,16 +59,16 @@ function searchseatlog(f){
 	</table>	
 </div>
 
-<form class="form-inline" style="float:right;" >
+<form class="form-inline" style="float:right;dislplay:block;" >
     <div class="input-group">
     <span class="input-group-btn">
-    	<button class="btn btn-default btn-sm" style="width:70px;float:right;" type="button" onclick='location.href="seatmain.do"'>좌석 현황</button>
-       <button class="btn btn-default btn-sm" style="width:50px;float:right;"  type="button" onclick="searchseatlog(this.form);">검색</button>
-     	<input type="text" id="search" name="search" class="form-control input-sm"  style="width:35%;float:right;" placeholder="Search for ID">
-       <select id="issearch" name="issearch" style="width:100px;float:right;"  class="form-control input-sm" >
+       <button class="btn btn-default btn-sm btncolor" style="width:50px;float:right;margin:0 2px;"  type="button" onclick="searchseatlog(this.form);">검색</button>
+     	<input type="text" id="search" name="search" class="form-control input-sm"  style="width:35%;margin:0 2px;float:right;" placeholder="Search for ID">
+       <select id="issearch" name="issearch" style="width:100px;float:right;margin:0 2px;"  class="form-control input-sm" >
 			<option value="s_id">좌석번호</option>
 			<option value="u_id">사용자ID</option>
 		</select>
+<!--     	<button class="btn btn-default btn-sm" style="width:70px;float:right;margin:0 2px;" type="button" onclick='location.href="seatmain.do"'>좌석 현황</button> -->
      </span>
    </div>
 </form>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.command.BoardUploadCommand;
 import com.command.BookUploadCommand;
 import com.entity.Book;
 import com.entity.BookLog;
@@ -119,7 +120,8 @@ public class BookControl {
 		/*
 		 * HttpHeaders header = new HttpHeaders(); header.add("Content-type",
 		 * "application/json;charset=EUC-KR");
-		 */ArrayList<Object> list = new ArrayList<Object>();
+		 */
+		ArrayList<Object> list = new ArrayList<Object>();
 		ArrayList<Object> resultlist = new ArrayList<Object>();
 		ArrayList<Object> sublist1 = new ArrayList<Object>();
 		ArrayList<Object> sublist2 = new ArrayList<Object>();
@@ -127,51 +129,26 @@ public class BookControl {
 		System.out.println(issearch);
 		System.out.println(category);
 		System.out.println(search);
-
-		if (issearch.equals("name")) { // 책제목 검색할 때
-			try {
-				list = sbookbiz.getname(search);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (issearch.equals("writer")) { // 글쓴이 검색할 때
-			try {
-				list = sbookbiz.getwriter(search);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else { // 책제목과 글쓴이 모두에서 검색할 때
-			try {
-				list = sbookbiz.getname(search);
-				for (Object o : list) {
-					sublist1.add(o);
-				}
-				sublist2 = sbookbiz.getwriter(search);
-				for (Object o1 : sublist2) {
-					Book b1 = (Book) o1;
-					Iterator<Object> it = sublist1.iterator();
-					while (it.hasNext()) {
-						Book b2 = (Book) it.next();
-						if (b1.getId().equals(b2.getId())) {
-						} else {
-							sublist1.add(o1);
-							break;
-						}
-					}
-					/*for (Object o2 : sublist1) {
-						Book b2 = (Book) o2;
-						if (b1.getId().equals(b2.getId())) {
-						} else {
-							sublist1.add(o1);
-						}
-					}*/
-				}
-
-				list = sublist1;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
+		//검색할 것 분류대로 처리
+		Book BOOK = null;
+		switch (issearch) {// 책제목과 글쓴이 모두에서 검색할 때
+		case "":
+			BOOK = new Book(search, search);
+			break;
+		case "name":// 책제목 검색할 때
+			BOOK = new Book(search, null);
+			break;
+		case "writer":// 글쓴이 검색할 때
+			BOOK = new Book(null,search);
+			break;
+	}
+		try {
+			System.out.println("검색 분류 들어온 값 : "+BOOK);
+			list = sbookbiz.getname(BOOK);
+		
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 		switch (category) { // 카테고리 분류

@@ -94,10 +94,7 @@ a{
 	color:white;
 	vertical-align: middle;
 }
-.logtabletitle{
-	height:150px;
-}
-.searchtabletitle{
+.listtabletitle{
 	height:100px;
 }
 .listpagingnum{
@@ -185,6 +182,15 @@ $(document).ready(function() {
       }
       ;
    }; --%>
+// 사이즈 조절 
+	$(window).resize(function(){
+		var windowwidth = $(window).width();
+		if (windowwidth < 600) {
+			$('#top_menu').css('margin-left','1%');
+		}else{
+			$('#top_menu').css('margin-left','92px');				
+		}
+	});
 </script>
   </head>
 

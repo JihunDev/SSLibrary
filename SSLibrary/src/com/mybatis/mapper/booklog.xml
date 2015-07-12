@@ -4,24 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.BookLogMapper">
 	<select id="selectlogbooks" resultType="booklog">
-	SELECT * FROM A_BOOKLOG
+	SELECT * FROM A_BOOKLOG ORDER BY START_DATE DESC
 	</select>
 	<select id="selectlogbook" parameterType="booklog" resultType="booklog">
-	SELECT * FROM A_BOOKLOG WHERE ID = #{id}
+	SELECT * FROM A_BOOKLOG WHERE ID = #{id} ORDER BY START_DATE DESC
 	</select>
 	<select id="selectnamelogbooks" parameterType="java.lang.String" resultType="booklog">
-	SELECT * FROM A_BOOKLOG WHERE * LIKE '%'||#{s}||'%'
+	SELECT * FROM A_BOOKLOG WHERE * LIKE '%'||#{s}||'%'  ORDER BY START_DATE DESC
 	</select>
 	<select id="selectidlogbook" parameterType="booklog" resultType ="booklog">
-	SELECT * FROM A_BOOKLOG WHERE B_ID = #{b_id} AND U_ID = #{u_id} 
+	SELECT * FROM A_BOOKLOG WHERE B_ID = #{b_id} AND U_ID = #{u_id}  ORDER BY START_DATE DESC
 	</select>
 	<select id="selectuseridlogbooks" parameterType="booklog" resultType ="booklog">
 	<!-- userid로 찾기 booklog 다 찾기 -->
-	SELECT * FROM A_BOOKLOG WHERE U_ID LIKE '%'||#{u_id}||'%'
+	SELECT * FROM A_BOOKLOG WHERE U_ID LIKE '%'||#{u_id}||'%'  ORDER BY START_DATE DESC
 	</select>
 	<select id="selectbookidlogbooks" parameterType="booklog" resultType ="booklog">
 	<!-- b_id로 찾기 booklog 다 찾기 -->
-	SELECT * FROM A_BOOKLOG WHERE B_ID LIKE '%'||#{b_id}||'%'
+	SELECT * FROM A_BOOKLOG WHERE B_ID LIKE '%'||#{b_id}||'%'  ORDER BY START_DATE DESC
 	</select>
 	<insert id="insertlogbook" parameterType="booklog">
 	INSERT INTO A_BOOKLOG VALUES(BOOKLOG_SQ.NEXTVAL,#{b_id},#{u_id},SYSDATE,SYSDATE+14,null,0)

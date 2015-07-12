@@ -4,18 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.mapper.UserBookMapper">
 	<select id="selectuserbooks" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('n')
+	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('n')  ORDER BY START_DATE DESC
 	</select>
 	<select id="selectuserbook" parameterType="userbook" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id} AND ISRETURN in ('n')
+	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id} AND B_ID = #{b_id} AND ISRETURN in ('n')  ORDER BY START_DATE DESC
 	</select>
 	<select id="selectiduserbooks" parameterType="java.lang.String" resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%' 
+	SELECT * FROM A_USERBOOK WHERE U_ID LIKE '%'||#{s}||'%'  ORDER BY START_DATE DESC
 	</select>
 	<insert id="insertuserbook" parameterType="userbook">
 	INSERT INTO A_USERBOOK VALUES(#{u_id},#{b_id},SYSDATE,SYSDATE+14,0,'n')	
 	<selectKey resultType="userbook">
-	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id}
+	SELECT * FROM A_USERBOOK WHERE U_ID = #{u_id}  ORDER BY START_DATE DESC
 	</selectKey>
 	</insert>
 	<delete id="deleteuserbook" parameterType="userbook">
@@ -29,7 +29,7 @@
 	</update>
 	<select id="selectreturnuserbooks" parameterType="userbook" resultType="userbook">
 	<!-- 반납이 y인 유저들의 정보 -->
-	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('y')
+	SELECT * FROM A_USERBOOK WHERE ISRETURN in ('y')  ORDER BY START_DATE DESC
 	</select>
 	<!--주기적으로 연체자 정지회원으로 만들기 -->
 	<select id="selectoverduebooks" resultType="userbook">

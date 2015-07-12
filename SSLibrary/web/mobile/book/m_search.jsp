@@ -8,7 +8,7 @@ tr {
 
 table {
 	background: white;
-	border-radius : 5px 5px 5px 5px;
+	border-radius : 8px 8px 8px 8px;
 }
 
 

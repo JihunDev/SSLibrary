@@ -183,14 +183,25 @@ $(document).ready(function() {
       ;
    }; --%>
 // 사이즈 조절 
-	$(window).resize(function(){
+	function resize(){
 		var windowwidth = $(window).width();
 		if (windowwidth < 600) {
 			$('#top_menu').css('margin-left','1%');
+			$('#logo').css('margin-left','-1%');
 		}else{
-			$('#top_menu').css('margin-left','92px');				
+			$('#top_menu').css('margin-left','92px');
+			$('#logo').css('margin-left','1%');
 		}
+	};
+	
+	$(document).ready(function(){
+		resize();
 	});
+	$(window).resize(function(){
+		resize();
+		
+	});
+
 </script>
   </head>
 

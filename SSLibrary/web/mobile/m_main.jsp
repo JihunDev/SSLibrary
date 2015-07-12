@@ -52,8 +52,8 @@
 		data-position="fixed"
 		class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
 		<div data-role="panel" id="myPanel" data-display="overlay"
-			style="background-color: #c2d9eb;">
-			<h2>${user.name}님환영합니다.</h2>
+			style="background-color: #c2d9eb; width: 200px;">
+			<h2>${user.name}님<br>환영합니다.</h2>
 			<img width="150px" height="150px"
 				style="border: 5px solid #256799; border-radius: 120px; background-position: center center;"
 				src="img/user/${user.img}"> <a
@@ -65,7 +65,7 @@
 				<a href="#myPanel"
 					class="ui-btn ui-shadow ui-corner-all ui-icon-user ui-btn-icon-notext">Open</a>
 			</c:if>
-			<h1>SSLibrary</h1>
+			<h1>SangSang Library</h1>
 		</div>
 		<div data-role="main"
 			class="ui-content ui-content jqm-content jqm-fullwidth jqm-fullheight"

@@ -24,7 +24,7 @@
 		var bookname = f.bookname.value;
 		$('#extendbook').popup('open');
 		$("#extendbookbutton").click(function() {
-			f.action = "m_userbookmodifyimpl.do?id="+bookname;
+			f.action = "m_userbookmodifyimpl.do?id=" + bookname;
 			f.method = "POST";
 			f.submit();
 		});
@@ -34,7 +34,7 @@
 		var bookname = f.bookname.value;
 		$('#returnbook').popup('open');
 		$("#returnbookbutton").click(function() {
-			f.action = "m_userbookremove.do?id="+bookname;
+			f.action = "m_userbookremove.do?id=" + bookname;
 			f.method = "POST";
 			f.submit();
 		});
@@ -46,7 +46,7 @@
 			$("#extendMySeatbutton").click(function() {
 				location.href = "m_userseatmodify.do?id=${userseat.s_id}";
 			});
-		} else if ('${userseat.renew_qt}' == 2){
+		} else if ('${userseat.renew_qt}' == 2) {
 			$('#seatpopup').popup('open');
 		}
 	}
@@ -58,20 +58,20 @@
 		});
 	}
 </script>
-<h2>좌석 이용 내용</h2>
-<div>
-	<ul data-role="listview" data-inset="true">
-		<li>
-			<h3>사용좌석 : ${userseat.s_id}번좌석</h3>
-			<P>사용시간</P>
-			<p>${userseat.start_time}~${userseat.end_time}</p>
-			<p class="ui-li-aside">
-				<strong>연장횟수 : ${userseat.renew_qt}</strong>
-			</p>
-		</li>
-	</ul>
-</div>
 <c:if test="${userseat.s_id != null}">
+<h2>좌석 이용 내용</h2>
+	<div>
+		<ul data-role="listview" data-inset="true">
+			<li>
+				<h3>사용좌석 : ${userseat.s_id}번좌석</h3>
+				<P>사용시간</P>
+				<p>${userseat.start_time}~${userseat.end_time}</p>
+				<p class="ui-li-aside">
+					<strong>연장횟수 : ${userseat.renew_qt}</strong>
+				</p>
+			</li>
+		</ul>
+	</div>
 	<div class="ui-grid-b">
 		<div class="ui-block-a">
 			<a href="javascript:;" onClick="extendMySeat();" data-role="button">연장</a>
@@ -87,9 +87,15 @@
 <input type="hidden" id="qt" value="${qt}">
 <br>
 <c:if test="${userseat.s_id == null}">
+<h2>좌석 과거 이용 내용</h2><br>
 	<a href="m_seatloglist.do?id=${user.id}" data-role="button">내역</a>
 </c:if>
+<c:if test="${booklist.size() == 0}">
+<h2>도서 과거 이용 내용</h2>
+</c:if>
+<c:if test="${booklist.size() != 0}">
 <h2>도서 이용 내용</h2>
+</c:if>
 <div>
 	<c:forEach items="${booklist}" var="book" varStatus="status">
 		<form>
@@ -163,7 +169,7 @@
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
 	<div data-role="main">
-		<h2>${userseat.s_id}번좌석을 연장하시겠습니까?</h2>
+		<h2>${userseat.s_id}번좌석을연장하시겠습니까?</h2>
 		<button type="button" id="extendMySeatbutton">연장</button>
 	</div>
 </div>
@@ -175,7 +181,7 @@
 			class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
 	</div>
 	<div data-role="main">
-		<h2>${userseat.s_id}번좌석을 반납하시겠습니까?</h2>
+		<h2>${userseat.s_id}번좌석을반납하시겠습니까?</h2>
 		<button type="button" id="returnMySeatbutton">반납</button>
 	</div>
 </div>

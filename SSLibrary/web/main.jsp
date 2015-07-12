@@ -1,6 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,94 +14,101 @@
 
 
 <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 
-   <!-- Bootstrap -->
+<!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!--external css-->
-    <link href="bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="bootstrap/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="bootstrap/lineicons/style.css">    
-    
-    <!-- Custom styles for this template -->
-    <link href="bootstrap/css/style.css" rel="stylesheet">
-    <link href="bootstrap/css/style-responsive.css" rel="stylesheet">
+<!--external css-->
+<link href="bootstrap/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/js/gritter/css/jquery.gritter.css" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/lineicons/style.css">
+
+<!-- Custom styles for this template -->
+<link href="bootstrap/css/style.css" rel="stylesheet">
+<link href="bootstrap/css/style-responsive.css" rel="stylesheet">
 
 <!--     <script src="bootstrap/js/chart-master/Chart.js"></script> -->
-    
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->  
+    <![endif]-->
 <style>
-#myCarousel{
-   width : 100%;
+#myCarousel {
+	width: 100%;
 }
-a{
+
+a {
 	text-decoration: none;
 	color: black;
 }
-.carousel-inner > .item > img,
- .carousel-inner > .item > a > img {
-      width: 100%;
-      margin: auto;
-  }
-  
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	width: 100%;
+	margin: auto;
+}
+
 .navbar-default {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 1002;
-    background: #66c1bd;
-    border-bottom: 1px solid #5eada9;
-    min-height: 60px;
-    padding: 0 15px;
-    border-radius : 0px 0px 0px 0px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 1002;
+	background: #66c1bd;
+	border-bottom: 1px solid #5eada9;
+	min-height: 60px;
+	padding: 0 15px;
+	border-radius: 0px 0px 0px 0px;
 }
 
 .fieldsetform {
-   margin : 6% 6% 6% 6%;
+	margin: 6% 6% 6% 6%;
 }
 
 .givemargin {
-    margin-top: 3%;
-    width : 100%;
+	margin-top: 3%;
+	width: 100%;
 }
 
-.table{
-   text-align : center;
-}
-.table>thead>tr>th{
-   text-align : center;
-}
-.theadcolor>thead>tr>th{
-	background: #66c1bd;
-	color:white;
-	vertical-align: middle;
-}
-.btncolor{
-	background: #66c1bd;
-	color:white;
-	vertical-align: middle;
-}
-.listtabletitle{
-	height:100px;
-}
-.listpagingnum{
+.table {
 	text-align: center;
 }
 
+.table>thead>tr>th {
+	text-align: center;
+}
 
+.theadcolor>thead>tr>th {
+	background: #66c1bd;
+	color: white;
+	vertical-align: middle;
+}
+
+.btncolor {
+	background: #66c1bd;
+	color: white;
+	vertical-align: middle;
+}
+
+.listtabletitle {
+	height: 100px;
+}
+
+.listpagingnum {
+	text-align: center;
+}
 </style>
 <script>
  /*function makeHeight() {
@@ -185,18 +192,19 @@ $(document).ready(function() {
 // 사이즈 조절 
 	function resize_main(){
 		var windowwidth = $(window).width();
-		if (windowwidth < 600) {
-			$('#top_menu').css('margin-left','1%');
-			$('#logo').css('margin-left','-1%');
-			$('#msg_ul').css('float','right');
-			document.getElementById("msg_ul").className = 'dropdown-menu dropdown-menu-right extended inbox'; 
-			
-		}else{
-			$('#top_menu').css('margin-left','92px');
-			$('#logo').css('margin-left','1%');
-			document.getElementById("msg_ul").className = 'dropdown-menu extended inbox'; 
+		var classname = document.getElementById("msg_ul");
+		if(classname != null){
+			if (windowwidth < 600) {
+				$('#top_menu').css('margin-left','1%');
+				$('#logo').css('margin-left','-1%');
+				$('#msg_ul').css('float','right');
+				document.getElementById("msg_ul").className = 'dropdown-menu dropdown-menu-right extended inbox'; 
+			}else{
+				$('#top_menu').css('margin-left','92px');
+				$('#logo').css('margin-left','1%');
+				document.getElementById("msg_ul").className = 'dropdown-menu extended inbox'; 
+			}
 		}
-		
 	};
 	
 	$(document).ready(function(){
@@ -208,42 +216,42 @@ $(document).ready(function() {
 	});
 
 </script>
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <nav class="navbar navbar-default" role="navigation">
-      <jsp:include page="${top}"/>
-        </nav>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
+		<!--header start-->
+		<nav class="navbar navbar-default" role="navigation">
+			<jsp:include page="${top}" />
+		</nav>
+		<!--header end-->
+
+		<!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar">
-              <!-- sidebar menu start-->
-              <jsp:include page="${nav}"/>
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
+		<!--sidebar start-->
+		<aside>
+			<div id="sidebar">
+				<!-- sidebar menu start-->
+				<jsp:include page="${nav}" />
+			</div>
+		</aside>
+		<!--sidebar end-->
+
+		<!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section id="center" class="wrapper">
-              <div class="row">
-           <jsp:include page="${center}"/> 
-                                
-            <%--    <div class="row">
+		<!--main content start-->
+		<section id="main-content">
+			<section id="center" class="wrapper">
+				<div class="row">
+					<jsp:include page="${center}" />
+
+					<%--    <div class="row">
                   <!-- TWITTER PANEL -->
                   <div class="col-md-4 mb">
                             <div class="darkblue-panel pn">
@@ -303,45 +311,50 @@ $(document).ready(function() {
                   
                </div><!-- /row -->
              --%>
-               
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
-              </div>    <!--  /row  -->
-          </section>
-      </section>
+				</div>
+				<!-- /col-lg-9 END SECTION MIDDLE -->
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-   SDS Campus Secure Code Team 5 : YouSangYi | LeeDongWoo | KimJiHun 
-              <a href="main.do" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+				</div>
+				<!--  /row  -->
+			</section>
+		</section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="bootstrap/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="bootstrap/js/jquery.scrollTo.min.js"></script>
-    <script src="bootstrap/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="bootstrap/js/jquery.sparkline.js"></script>
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				SDS Campus Secure Code Team 5 : YouSangYi | LeeDongWoo | KimJiHun <a
+					href="main.do" class="go-top"> <i class="fa fa-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+
+	<!-- js placed at the end of the document so the pages load faster -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="bootstrap/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="bootstrap/js/jquery.scrollTo.min.js"></script>
+	<script src="bootstrap/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="bootstrap/js/jquery.sparkline.js"></script>
 
 
-    <!--common script for all pages-->
-    <script src="bootstrap/js/common-scripts.js"></script>
-    
-    <script type="text/javascript" src="bootstrap/js/gritter/js/jquery.gritter.js"></script>
-    <script type="text/javascript" src="bootstrap/js/gritter-conf.js"></script>
+	<!--common script for all pages-->
+	<script src="bootstrap/js/common-scripts.js"></script>
 
-    <!--script for this page-->
-    <script src="bootstrap/js/sparkline-chart.js"></script>    
-   <script src="bootstrap/js/zabuto_calendar.js"></script>   
-   
-   <script type="application/javascript">
+	<script type="text/javascript"
+		src="bootstrap/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript" src="bootstrap/js/gritter-conf.js"></script>
+
+	<!--script for this page-->
+	<script src="bootstrap/js/sparkline-chart.js"></script>
+	<script src="bootstrap/js/zabuto_calendar.js"></script>
+
+	<script type="application/javascript">
+		
+		
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -374,8 +387,10 @@ $(document).ready(function() {
             var to = $("#" + id).data("to");
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
-    </script>
-  
+    
+	
+	</script>
 
-  </body>
+
+</body>
 </html>

@@ -108,6 +108,7 @@ a {
 
 .listpagingnum {
 	text-align: center;
+	font-size: large;
 }
 </style>
 <script>

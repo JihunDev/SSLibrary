@@ -29,19 +29,28 @@
 			});
 </script>
 <div class="fieldsetform">
+<div class="logtabletitle">	
+	<table class="table" style="width:100%;min-width:300px;">
+		<tr>
+			<th><h1>Returning Books Approval</h1></th>
+		</tr>
+	</table>	
+</div>
+				<div style="text-align:right;margin:2px;">
+					<input type="button" class="btn btncolor btn-default"  value="반납 승인" onclick="removeUserbook();">
+				</div>
 	<fieldset>
-		<legend align="center">실시간 반납 도서 정보</legend>
 		<form>
 			<div>
-				<table width="700" id="listtable" class="table table-striped">
+				<table width="700" id="listtable" class="table table-striped theadcolor">
 					<thead>
 						<tr>
-							<th>U_ID</th>
-							<th>B_ID</th>
-							<th class="hidden-xs">START_DATE</th>
-							<th>END_DATE</th>
-							<th class="hidden-xs">RENEW_QT</th>
-							<th width="100px">ISRETURN</th>
+							<th>반납자</th>
+							<th>도서 등록 번호</th>
+							<th class="hidden-xs">대여 시간</th>
+							<th>반납 예정시간</th>
+							<th class="hidden-xs">연장</th>
+<!-- 							<th width="100px">반납 여부</th> -->
 						</tr>
 					</thead>
 					<tbody id="returnbooklist">
@@ -53,13 +62,12 @@
 								<td class="hidden-xs">${b.start_date}</td>
 								<td>${b.end_date}</td>
 								<td class="hidden-xs">${b.renew_qt}</td>
-								<td>${b.isreturn}</td>
+<%-- 								<td>${b.isreturn}</td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<input type="button" class="btn btn-default" value="반납확인"
-					onclick="removeUserbook();">
+
 			</div>
 		</form>
 	</fieldset>

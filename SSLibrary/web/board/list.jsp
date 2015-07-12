@@ -120,7 +120,7 @@ window.onload = function(){
 
 	<fieldset>
 <legend align="center">board list</legend>
-<table class="table table-hover">
+<table class="table table-hover theadcolor">
 	<thead>
 		<tr>
 			<th>±Û¹øÈ£</th>

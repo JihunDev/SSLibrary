@@ -1,6 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -14,18 +14,18 @@
 
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 
-	<!-- Bootstrap -->
+   <!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!--external css-->
     <link href="bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -45,11 +45,15 @@
     <![endif]-->  
 <style>
 #myCarousel{
-	width : 100%;
+   width : 100%;
 }
-
+a{
+	text-decoration: none;
+	color: black;
+	margin:0 4px;
+}
 .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
+ .carousel-inner > .item > a > img {
       width: 100%;
       margin: auto;
   }
@@ -67,7 +71,7 @@
 }
 
 .fieldsetform {
-	margin : 6% 6% 6% 6%;
+   margin : 6% 6% 6% 6%;
 }
 
 .givemargin {
@@ -76,92 +80,112 @@
 }
 
 .table{
-	text-align : center;
+   text-align : center;
 }
 .table>thead>tr>th{
-	text-align : center;
+   text-align : center;
 }
+.theadcolor>thead>tr>th{
+	background: #66c1bd;
+	color:white;
+	vertical-align: middle;
+}
+.btncolor{
+	background: #66c1bd;
+	color:white;
+	vertical-align: middle;
+}
+.logtabletitle{
+	height:150px;
+}
+.searchtabletitle{
+	height:100px;
+}
+.listpagingnum{
+	text-align: center;
+}
+
 
 </style>
 <script>
  /*function makeHeight() {
-	var section = document.querySelector("#main-content");
-	var center = document.querySelector("#center");
+   var section = document.querySelector("#main-content");
+   var center = document.querySelector("#center");
 
-	var mHeight = center.clientHeight + 30;
-	// ClientHeight를 써서 표 높이만큼 늘리게 함.
-	if (mHeight < 400) {
-		mHeight = 690;
-	}
-	center.style.height = mHeight + 'px';
-	section.style.height = mHeight + 'px';
+   var mHeight = center.clientHeight + 30;
+   // ClientHeight를 써서 표 높이만큼 늘리게 함.
+   if (mHeight < 400) {
+      mHeight = 690;
+   }
+   center.style.height = mHeight + 'px';
+   section.style.height = mHeight + 'px';
 }
 $(document).ready(function() {
-	makeHeight();
+   makeHeight();
 }); */
-<%-- 	$(document).ready(function() {
-		setInterval(function() { //좌석 자동 반납
-			$.ajax({
-				async : 'false',
-				url : 'expireseat.do',
-				data : {},
-				success : function(data) {
-					//      alert(data);
-				},
-				error : function(data) {
-					//alert("좌석 자동반납이 종료 안 돼");
-				}
-			});
-		}, 5000);
+<%--    $(document).ready(function() {
+      setInterval(function() { //좌석 자동 반납
+         $.ajax({
+            async : 'false',
+            url : 'expireseat.do',
+            data : {},
+            success : function(data) {
+               //      alert(data);
+            },
+            error : function(data) {
+               //alert("좌석 자동반납이 종료 안 돼");
+            }
+         });
+      }, 5000);
 
-		setInterval(function() { //연체된 사람 정지되게 함.
-			$.ajax({
-				async : 'false',
-				url : 'stopborrowbook.do',
-				success : function(data) {
-					//	alert(data);
-				},
-				error : function() {
-					//	alert("으앙 에러 ㅠㅠ")
-				}
-			});
-		}, 5000);
+      setInterval(function() { //연체된 사람 정지되게 함.
+         $.ajax({
+            async : 'false',
+            url : 'stopborrowbook.do',
+            success : function(data) {
+               //   alert(data);
+            },
+            error : function() {
+               //   alert("으앙 에러 ㅠㅠ")
+            }
+         });
+      }, 5000);
 
-		setInterval(function() {
-			$.ajax({
-				async : 'false',
-				url : 'resetuser.do',
-				success : function(data) {
-				},
-				error : function() {
-				}
-			});
-		}, 5000);
-	});
-	window.onload = function() {
-		setInterval(function() {
-			$.ajax({
-				async : 'false',
-				url : 'msgchecked.do',
-				data : {
-					'id' : "${user.id}"
-				},
-				success : function(data) {
-					display(data);
-				},
-				error : function(data) {
+      setInterval(function() {
+         $.ajax({
+            async : 'false',
+            url : 'resetuser.do',
+            success : function(data) {
+            },
+            error : function() {
+            }
+         });
+      }, 5000);
+   });
+   window.onload = function() {
+      setInterval(function() {
+         $.ajax({
+            async : 'false',
+            url : 'msgchecked.do',
+            data : {
+               'id' : "${user.id}"
+            },
+            success : function(data) {
+               display(data);
+            },
+            error : function(data) {
 
-				}
-			});
-		}, 5000);
-		function display(data) {
-			document.getElementById("msgnumber").innerHTML = data;
-			if ("${msgcheck}" != null) {
-				<%session.removeAttribute("msgcheck");%>
-	}
-		}
-		;
-	}; --%>
+            }
+         });
+      }, 5000);
+      function display(data) {
+         document.getElementById("msgnumber").innerHTML = data;
+         if ("${msgcheck}" != null) {
+            <%session.removeAttribute("msgcheck");%>
+   }
+      }
+      ;
+   }; --%>
 </script>
   </head>
 
@@ -197,68 +221,68 @@ $(document).ready(function() {
           <section id="center" class="wrapper">
               <div class="row">
            <jsp:include page="${center}"/> 
-                    				
-				<%-- 	<div class="row">
-						<!-- TWITTER PANEL -->
-						<div class="col-md-4 mb">
-                      		<div class="darkblue-panel pn">
-                      			<div class="darkblue-header">
-						  			<h5>DROPBOX STATICS</h5>
-                      			</div>
-								<canvas id="serverstatus02" height="120" width="120"></canvas>
-								<script>
-									var doughnutData = [
-											{
-												value: 60,
-												color:"#68dff0"
-											},
-											{
-												value : 40,
-												color : "#444c57"
-											}
-										];
-										var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
-								</script>
-								<p>April 17, 2014</p>
-								<footer>
-									<div class="pull-left">
-										<h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-									</div>
-									<div class="pull-right">
-										<h5>60% Used</h5>
-									</div>
-								</footer>
-                      		</div><! -- /darkblue panel -->
-						</div><!-- /col-md-4 -->
-						
-						
-						<div class="col-md-4 mb">
-							<!-- INSTAGRAM PANEL -->
-							<div class="instagram-panel pn">
-								<i class="fa fa-instagram fa-4x"></i>
-								<p>@THISISYOU<br/>
-									5 min. ago
-								</p>
-								<p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
-							</div>
-						</div><!-- /col-md-4 -->
-						
-						<div class="col-md-4 col-sm-4 mb">
-							<!-- REVENUE PANEL -->
-							<div class="darkblue-panel pn">
-								<div class="darkblue-header">
-									<h5>REVENUE</h5>
-								</div>
-								<div class="chart mt">
-									<div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-								</div>
-								<p class="mt"><b>$ 17,980</b><br/>Month Income</p>
-							</div>
-						</div><!-- /col-md-4 -->
-						
-					</div><!-- /row -->
-				 --%>
-					
+                                
+            <%--    <div class="row">
+                  <!-- TWITTER PANEL -->
+                  <div class="col-md-4 mb">
+                            <div class="darkblue-panel pn">
+                               <div class="darkblue-header">
+                             <h5>DROPBOX STATICS</h5>
+                               </div>
+                        <canvas id="serverstatus02" height="120" width="120"></canvas>
+                        <script>
+                           var doughnutData = [
+                                 {
+                                    value: 60,
+                                    color:"#68dff0"
+                                 },
+                                 {
+                                    value : 40,
+                                    color : "#444c57"
+                                 }
+                              ];
+                              var myDoughnut = new Chart(document.getElementById("serverstatus02").getContext("2d")).Doughnut(doughnutData);
+                        </script>
+                        <p>April 17, 2014</p>
+                        <footer>
+                           <div class="pull-left">
+                              <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
+                           </div>
+                           <div class="pull-right">
+                              <h5>60% Used</h5>
+                           </div>
+                        </footer>
+                            </div><! -- /darkblue panel -->
+                  </div><!-- /col-md-4 -->
+                  
+                  
+                  <div class="col-md-4 mb">
+                     <!-- INSTAGRAM PANEL -->
+                     <div class="instagram-panel pn">
+                        <i class="fa fa-instagram fa-4x"></i>
+                        <p>@THISISYOU<br/>
+                           5 min. ago
+                        </p>
+                        <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+                     </div>
+                  </div><!-- /col-md-4 -->
+                  
+                  <div class="col-md-4 col-sm-4 mb">
+                     <!-- REVENUE PANEL -->
+                     <div class="darkblue-panel pn">
+                        <div class="darkblue-header">
+                           <h5>REVENUE</h5>
+                        </div>
+                        <div class="chart mt">
+                           <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                        </div>
+                        <p class="mt"><b>$ 17,980</b><br/>Month Income</p>
+                     </div>
+                  </div><!-- /col-md-4 -->
+                  
+               </div><!-- /row -->
+             --%>
+               
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
               </div>    <!--  /row  -->
@@ -269,7 +293,7 @@ $(document).ready(function() {
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-	SDS Campus Secure Code Team 5 : YouSangYi | LeeDongWoo | KimJiHun 
+   SDS Campus Secure Code Team 5 : YouSangYi | LeeDongWoo | KimJiHun 
               <a href="main.do" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
@@ -294,9 +318,9 @@ $(document).ready(function() {
 
     <!--script for this page-->
     <script src="bootstrap/js/sparkline-chart.js"></script>    
-	<script src="bootstrap/js/zabuto_calendar.js"></script>	
-	
-	<script type="application/javascript">
+   <script src="bootstrap/js/zabuto_calendar.js"></script>   
+   
+   <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();

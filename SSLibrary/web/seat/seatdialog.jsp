@@ -192,19 +192,18 @@ function modifystate(f, i) {
     </div>
   </div>
 </div>
-
-<!--   Confirm Sending Message-->
+<!-- 
 <div class="modal fade" id="confirmMsg"  tabindex='-1'>
   <div class="modal-dialog" id="sendMsgDialog">
     <div class="modal-content">
-      <!-- header -->
+      header
       <div class="modal-header">
-        <!-- 닫기(x) 버튼 -->
+        닫기(x) 버튼
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <!-- header title -->
+        header title
         <h4 class="modal-title">확인</h4>
       </div>
-      <!-- body -->
+      body
       <div class="modal-body">
 		정말로 보내실테요???
 	  </div>
@@ -214,7 +213,7 @@ function modifystate(f, i) {
 	</div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 

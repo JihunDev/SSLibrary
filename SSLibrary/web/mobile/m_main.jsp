@@ -40,11 +40,6 @@
 	$(document).on("pagecontainerbeforeshow", contentHeight);
 </script>
 <style>
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -53,7 +48,8 @@
 		class="jqm-demos ui-page ui-page-active ui-page-header-fixed ui-page-footer-fixed">
 		<div data-role="panel" id="myPanel" data-display="overlay"
 			style="background-color: #c2d9eb; width: 200px;">
-			<h2>${user.name}님<br>환영합니다.</h2>
+			<h2>${user.name}님<br>환영합니다.
+			</h2>
 			<img width="150px" height="150px"
 				style="border: 5px solid #256799; border-radius: 120px; background-position: center center;"
 				src="img/user/${user.img}"> <a
@@ -77,14 +73,20 @@
 				<h3>Secure Code Team 5</h3>
 			</c:if>
 			<c:if test="${user != null}">
-				<div data-role="navbar"style="background-color:#266999">
+				<div data-role="navbar" style="background-color: #266999">
 					<ul>
-						<li><a href="#" data-rel="back" style="background-color:#266999"
+						<li><a href="#" data-rel="back"
+							style="background-color: #266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-top">back</a></li>
-						<li><a href="m_center.do" style="background-color:#266999"
+						<li><a href="m_center.do" style="background-color: #266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-home ui-btn-icon-top">Home</a></li>
-						<li><a href="m_usinginfo.do?id=${user.id}" style="background-color:#266999"
+						<li><a href="m_usinginfo.do?id=${user.id}"
+							style="background-color: #266999"
 							class="ui-btn ui-shadow ui-corner-all ui-icon-star ui-btn-icon-top">이용정보</a></li>
+						<li><a href="#" style="background-color: #266999"
+							class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-top"><span
+								id="msgnumber">${msgcheck}</span><br> <span id="msgnumber">${msgcheck}</span>
+						</a></li>
 					</ul>
 				</div>
 			</c:if>

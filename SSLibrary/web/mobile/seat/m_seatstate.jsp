@@ -22,8 +22,8 @@
 	//회원의 메세지 전송 함수
 	function sendMsg(f) {
 		var s_id = f.s_id.value;
-		location.href="m_msgsend.do?s_id="+s_id;
-		
+		location.href = "m_msgsend.do?s_id=" + s_id;
+
 	}
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
@@ -126,9 +126,13 @@
 	height: 20px;
 	border: 0
 }
+
+h2 {
+	text-align: center;
+}
 </style>
 
-<h3>열람실 좌석 현황</h3>
+<h2>열람실 좌석 현황</h2>
 <button class="door"
 	style="border-radius: 0 0 20px 0; width: 1px; border-top: 3px solid black;"></button>
 <br>

@@ -28,14 +28,17 @@
 <style>
 tr td{
 	border-bottom: 1px solid lightgray;
+	text-align: center;
 }
 tr th{
 	border-bottom: 1px solid lightgray;
+	text-align: center;
 }
 
 table {
 	background: white;
 	border-radius : 8px 8px 8px 8px;
+	
 }
 </style>
 <button type="button" class="btn btn-default" onclick="rentbook();">´ë¿©</button>

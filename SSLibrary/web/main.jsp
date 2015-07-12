@@ -183,22 +183,27 @@ $(document).ready(function() {
       ;
    }; --%>
 // 사이즈 조절 
-	function resize(){
+	function resize_main(){
 		var windowwidth = $(window).width();
 		if (windowwidth < 600) {
 			$('#top_menu').css('margin-left','1%');
 			$('#logo').css('margin-left','-1%');
+			$('#msg_ul').css('float','right');
+			document.getElementById("msg_ul").className = "dropdown-menu dropdown-menu-right extended inbox"; 
+			
 		}else{
 			$('#top_menu').css('margin-left','92px');
 			$('#logo').css('margin-left','1%');
+			document.getElementById("msg_ul").className = "dropdown-menu extended inbox"; 
 		}
+		
 	};
 	
 	$(document).ready(function(){
-		resize();
+		resize_main();
 	});
 	$(window).resize(function(){
-		resize();
+		resize_main();
 		
 	});
 

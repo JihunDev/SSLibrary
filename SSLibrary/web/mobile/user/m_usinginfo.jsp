@@ -58,6 +58,12 @@
 		});
 	}
 </script>
+
+<style>
+h2{
+text-align: center;
+}
+</style>
 <c:if test="${userseat.s_id != null}">
 <h2>좌석 이용 내용</h2>
 	<div>

@@ -9,11 +9,10 @@
 			$('#registers').popup('open');
 			$("#registerbutton").click(function() {
 				window.setTimeout(function name() {
-					$('#registers').popup('close');
+					f.action = 'm_boardwriteimpl.do';
+					f.method = 'POST';
+					f.submit();
 				}, 1000);
-				f.action = 'm_boardwriteimpl.do';
-				f.method = 'POST';
-				f.submit();
 			});
 		}
 	}

@@ -10,9 +10,19 @@
 	SELECT * FROM A_BOOK WHERE ID = #{id} ORDER BY 8 DESC
 	</select>
 	<select id="selectnamebooks" parameterType="java.lang.String" resultType="book">
-	SElECT * FROM A_BOOK WHERE NAME LIKE '%'||#{s}||'%' ORDER BY 8 DESC
+	SElECT * FROM A_BOOK 
+	<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="name != null">
+				NAME LIKE '%'||#{name}||'%'
+			</if>
+			<if test="writer != null">
+				AND WRITER LIKE '%'||#{writer}||'%'
+			</if>
+		</trim>
+		ORDER BY 8 DESC
 	</select>
-	<select id="selectwriterbooks" parameterType="java.lang.String" resultType="book">
+	
+	<select id="selectwriterbooks" parameterType="java.lang.String" resultType="book"> <!-- 안씀 -->
 	SElECT * FROM A_BOOK WHERE WRITER LIKE '%'||#{s}||'%' ORDER BY 8 DESC
 	</select>
 	<insert id="insertbook" parameterType="book">

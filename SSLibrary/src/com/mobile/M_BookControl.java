@@ -68,43 +68,24 @@ public class M_BookControl {
 		ArrayList<Object> sublist1 = new ArrayList<Object>();
 		ArrayList<Object> sublist2 = new ArrayList<Object>();
 
-		if (issearch.equals("name")) {
-			try {
-				list = sbookbiz.getname(search);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (issearch.equals("writer")) {
-			try {
-				list = sbookbiz.getwriter(search);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				list = sbookbiz.getname(search);
-				for (Object o : list) {
-					sublist1.add(o);
-				}
-				sublist2 = sbookbiz.getwriter(search);
-				for (Object o1 : sublist2) {
-					Book b1 = (Book) o1;
-					Iterator<Object> it = sublist1.iterator();
-					while (it.hasNext()) {
-						Book b2 = (Book) it.next();
-						if (b1.getId().equals(b2.getId())) {
-						} else {
-							sublist1.add(o1);
-							break;
-						}
-
-					}
-				}
-				list = sublist1;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		Book BOOK = null;
+		switch (issearch) {// 책제목과 글쓴이 모두에서 검색할 때
+		case "":
+			BOOK = new Book(search, search);
+			break;
+		case "name":// 책제목 검색할 때
+			BOOK = new Book(search, null);
+			break;
+		case "writer":// 글쓴이 검색할 때
+			BOOK = new Book(null,search);
+			break;
+	}
+		try {
+			System.out.println("검색 분류 들어온 값 : "+BOOK);
+			list = sbookbiz.getname(BOOK);
+		
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 		switch (category) {

@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="selectseatlogs" resultType="seatlog">
-		SELECT * FROM A_SEATLOG
+		SELECT * FROM A_SEATLOG ORDER BY START_DATE DESC
 	</select>
 
 	<!--반납 -->

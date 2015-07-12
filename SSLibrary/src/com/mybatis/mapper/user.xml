@@ -38,9 +38,9 @@
 		</selectKey>
 	</insert>
 
-
 	<update id="deleteuser" parameterType="user">
-		UPDATE A_USER SET ISADMIN = 'd' WHERE ID = #{id}
+		UPDATE A_USER SET ISADMIN
+		= 'd' WHERE ID = #{id}
 	</update>
 
 	<update id="updateuser" parameterType="user">

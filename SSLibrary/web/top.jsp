@@ -77,7 +77,7 @@ function logincheck(f){
                             <i class="fa fa-envelope-o"></i>
                             <span id="msgnumber" class="badge bg-theme">${msgcheck}</span>
                         </a>
-                        <ul class="dropdown-menu extended inbox">
+                        <ul class="dropdown-menu extended inbox" id="msg_ul">
                             <li>
                                 <p class="green">You have new messages</p>
                             </li>

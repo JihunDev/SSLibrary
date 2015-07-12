@@ -14,6 +14,8 @@
 <%
 	int list_length = toInt((String) pageContext.getAttribute("list_length"));
 	String sort = request.getParameter("sort");
+	
+	String sort_name = sort.substring(0,1).toUpperCase() + sort.substring(1);
 	String search = request.getParameter("search");
 	int pageno = toInt(request.getParameter("pageno"));
 
@@ -97,30 +99,52 @@ window.onload = function(){
 			$('#boardlist_div').html("<tr><td colspan=5>등록된 게시물이 없습니다.</td><tr>");
 		}   
 
-		makeHeight();
+		//makeHeight();
 }
 </script>
 <div class="fieldsetform">
+<div class="listtabletitle">	
+	<table class="table" style="width:100%;">
+		<tr>
+			<th><h1><%=sort_name%> Board</h1></th>
+		</tr>
+	</table>	
+</div>
+
+<div style="float:right;">
 <form class="form-inline">
+	<div class="input-group">
 	<input type="hidden" name="sort" value="<%=sort%>">
-	<select id="issearch" name="issearch" class="form-control input-sm">
-		<option value="id">ID</option>
+
+	<button class="btn btn-default btn-sm btncolor" style="width:auto;float:right;margin:0 2px;"  type="button" onclick="getBoard(this.form);">검색</button>
+	<input type="text" style="width:auto;float:right;margin:0 2px;"  id="search" name="search" class="form-control input-sm" placeholder="Search for...">
+	<select id="issearch" style="width:auto;float:right;margin:0 2px;"  name="issearch" class="form-control input-sm">
 		<option value="ct">제목+내용</option>
 		<option value="title">제목</option>
 		<option value="content">내용</option>
+		<option value="id">ID</option>
 	</select>
-	
-	<div class="input-group">
-		<input type="text" id="search" name="search" class="form-control input-sm" placeholder="Search for...">
-		<span class="input-group-btn">
-			<button class="btn btn-default btn-sm" type="button" onclick="getBoard(this.form);">검색</button>
-		</span>
+	<c:set var="loginuser_isadmin" value="${user.isadmin}" />
+		<%
+	   String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
+	   if(sort.equals("notice") && loginuser_isadmin != null){
+	      if(loginuser_isadmin.equals("y")){
+	         %><a class="btn btn-default btn-sm btncolor" href="boardwrite.do?sort=<%=sort%>">글쓰기</a><%
+	      }
+	   }else if(loginuser_isadmin != null){
+	      if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
+	         %><a class="btn btn-default btn-sm btncolor" href="boardwrite.do?sort=<%=sort%>">글쓰기</a><%   
+	      }
+	   }
+	%>
 	</div>
 	<!-- /input-group -->
-
+</form>
+</div>
+<br>
+<br>
 	<fieldset>
-<legend align="center">board list</legend>
-<table class="table table-hover theadcolor">
+<table class="table table-striped theadcolor">
 	<thead>
 		<tr>
 			<th>글번호</th>
@@ -151,8 +175,9 @@ window.onload = function(){
 </table>
 
 <hr>
-<a href="boardmain.do?${search}sort=<%=sort%>&pageno=1">[맨앞으로]</a>
-<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=prev_pageno%>">[이전]</a>
+<div class="listpagingnum">
+<a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=1"><span class="glyphicon glyphicon-backward"></span></a>
+<a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=prev_pageno%>"><span class="glyphicon glyphicon-triangle-left"></span></a>
 <%if(page_eno == 0){
 	%><b><a href="boardmain.do?${search}sort=<%=sort%>&pageno=1">[1]</a></b><%
 }else{
@@ -180,21 +205,9 @@ window.onload = function(){
 	}}
 %>
 
-<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=next_pageno%>">[다음]</a>
-<a href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=total_page%>">[맨뒤로]</a>
+<a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=next_pageno%>"><span class="glyphicon glyphicon-triangle-right"></span></a>
+<a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=total_page%>"><span class="glyphicon glyphicon-forward"></span></a>
+</div>
 
-<c:set var="loginuser_isadmin" value="${user.isadmin}" />
-<%
-   String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
-   if(sort.equals("notice") && loginuser_isadmin != null){
-      if(loginuser_isadmin.equals("y")){
-         %><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%
-      }
-   }else if(loginuser_isadmin != null){
-      if(loginuser_isadmin.equals("y") || loginuser_isadmin.equals("n")){
-         %><a href="boardwrite.do?sort=<%=sort%>">[등록]</a><%   
-      }
-   }
-%>
-</fieldset></form>
+</fieldset>
 </div>

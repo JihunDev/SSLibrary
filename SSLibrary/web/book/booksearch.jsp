@@ -117,7 +117,7 @@ function getBook(f) {
 };
 
 window.onload = function(){
-	makeHeight();
+	//makeHeight();
   	if(<%=page_eno%>==0){
 		$('#booklist_div').html("<tr><td colspan=8>검색 결과가 존재하지 않습니다.</td><tr>");
 	}  
@@ -126,87 +126,108 @@ window.onload = function(){
 
 </script>
 <div class="fieldsetform">
-<div id="book_center">
-<form class="form-inline">
- <select id="issearch" name="issearch" class="form-control input-sm"><option value="">선택</option><option value="name">책이름</option><option value="writer">저자</option></select>
- <select id="category" name="category" class="form-control input-sm"><option value="">선택</option><option value="i">IT</option><option value="n">소설</option><option value="m">만화책</option></select>
-    <div class="input-group">
-     <input type="text" id="search" name="search" class="form-control input-sm" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default btn-sm" type="button" onclick="getBook(this.form);" >검색</button>
-      </span>
-    </div><!-- /input-group -->
 
-   <%if(user!=null && user.getIsadmin().equals("y")){ %>
-   <div class="btn-group">
-   <a class="btn btn-default btn-sm" href="bookregister.do" role="button">등록</a>
-   <a class="btn btn-default btn-sm" href="adminbookloglist.do" role="button">도서 대여 기록</a>
-   <a class="btn btn-default btn-sm" href="userbookremoveconfirm.do" role="button">회원 도서 반납 내역</a>
-   </div>
-   <%} %>
-   <fieldset>
-   <legend align="center">Book list (count: ${bookcount})</legend>
-				<div id="book_result">
-					<table width="700" class="table table-hover">
-						<thead>
-							<tr>
-								<th class="hidden-xs hidden-sm">등록번호</th>
-								<th>제목</th>
-								<th>저자</th>
-								<th class="hidden-xs hidden-sm">표지</th>
-								<th>위치</th>
-								<th>총 수량</th>
-								<th>남은 수량</th>
-								<th class="hidden-xs hidden-sm">등록일자</th>
-							</tr>
-						</thead>
-						<tbody id="booklist_div">
-							<c:forEach items="${booklist}" var="b" varStatus="book_status">
-								<c:set var="foreach_count" value="${book_status.count}" />
-								<%
-										int count = (int) pageContext.getAttribute("foreach_count");
-										if(count >= record_start_no &&  count <= record_end_no){
-								%>
-								<tr>
-									<td class="hidden-xs hidden-sm">${b.id}</td>
-									<td><a href="bookdetail.do?id=${b.id}">${b.name}</a></td>
-									<td>${b.writer}</td>
-									<td class="hidden-xs hidden-sm"><img width="30px" src="img/book/${b.img}"></td>
-									<td>${b.floor}</td>
-									<td>${b.total_qt}</td>
-									<td>${b.current_qt}</td>
-									<td class="hidden-xs hidden-sm">${b.reg_date}</td>
-								</tr>
-								<%}%>
-							</c:forEach>
-						</tbody>
-					</table>
-					<hr>
-<a href="bookmain.do?${search}pageno=1">[맨앞으로]</a>
-<a href="bookmain.do?${search}pageno=<%=prev_pageno%>">[이전]</a>
-<%
-	if(page_eno == 0){
-		%><b><a href="bookmain.do?${search}pageno=1">[1]</a></b><%
-	}else{
-	for(int i =page_sno;i<=page_eno;i++){
-%>
-<a href="bookmain.do?${search}pageno=<%=i%>">
-	<%if(pageno == i){ %>
-		<b>[<%=i%>]</b>
-	<%}else{%>
-		 [<%=i%>]
-	<%} %>
-</a>
-<%--   콤마    --%>
-	<%if(i<page_eno){%>
-	,
-	<%}%>
-<%}}%>
-
-<a href="bookmain.do?${search}pageno=<%=next_pageno%>">[다음]</a>
-<a href="bookmain.do?${search}pageno=<%=total_page%>">[맨뒤로]</a>
-				</div>
-			</fieldset>
-     </form>
+<div class="searchtabletitle">	
+	<table class="table" style="width:100%;">
+		<tr>
+			<th><h1>Library Book List</h1></th>
+		</tr>
+	</table>	
 </div>
+	<div id="book_center">
+			<%if (user != null && user.getIsadmin().equals("y")) {%>
+			<div class="btn-group" style="width:auto;float:right;">
+				<a class="btn btn-default btn-sm" style="width:128px;"href="bookregister.do" role="button">신규 도서 등록</a>
+				<a class="btn btn-default btn-sm" style="width:128px;" href="adminbookloglist.do" role="button">도서 대여 기록</a>
+				<a class="btn btn-default btn-sm" style="width:128px;" href="userbookremoveconfirm.do" role="button">도서 반납 내역</a>
+			</div>
+			<%} %>
+			<br><br>
+			<form class="form-inline">
+				<button class="btn btn-default btn-sm btncolor" style="width:58px;float:right;margin:0 2px;" type="button" onclick="getBook(this.form);">검색</button>
+				<input type="text" id="search" name="search"	style="width:148px;float:right;;margin:0 2px;" class="form-control input-sm" placeholder="Search for...">
+				<select id="category" name="category" style="width:98px;float:right;;margin:0 2px;" class="form-control input-sm">
+					<option value="">분류</option>
+					<option value="i">IT</option>
+					<option value="n">소설</option>
+					<option value="m">만화책</option>
+				</select>
+				<select id="issearch" name="issearch" style="width:78px;float:right;;margin:0 2px;"  class="form-control input-sm">
+					<option value="">이름</option>
+					<option value="name">책</option>
+					<option value="writer">저자</option>
+				</select>
+			</form>		
+			
+
+<br><br>
+<fieldset>
+	<div id="book_result">
+		<table width="700" class="table table-hover theadcolor">
+			<thead>
+				<tr>
+					<th class="hidden-xs hidden-sm">등록번호</th>
+					<th class="hidden-xs hidden-sm">표지</th>
+					<th>제목</th>
+					<th>저자</th>
+					<th>자료실</th>
+					<th>총 수량</th>
+					<th>남은 수량</th>
+					<th class="hidden-xs hidden-sm">등록일자</th>
+				</tr>
+			</thead>
+			<tbody id="booklist_div">
+				<c:forEach items="${booklist}" var="b" varStatus="book_status">
+					<c:set var="foreach_count" value="${book_status.count}" />
+					<%
+							int count = (int) pageContext.getAttribute("foreach_count");
+							if(count >= record_start_no &&  count <= record_end_no){
+					%>
+					<tr>
+						<td class="hidden-xs hidden-sm">${b.id}</td>
+						<td class="hidden-xs hidden-sm"><img height="30px" src="img/book/${b.img}"></td>
+						<td><a href="bookdetail.do?id=${b.id}">${b.name}</a></td>
+						<td>${b.writer}</td>
+						<td>${b.floor}</td>
+						<td>${b.total_qt}</td>
+						<td>${b.current_qt}</td>
+						<td class="hidden-xs hidden-sm">${b.reg_date}</td>
+					</tr>
+					<%}%>
+				</c:forEach>
+			</tbody>
+		</table>
+		
+
+		
+		<div class="listpagingnum" style="font-size: large;">
+				<a class="btn btn-default btn-sm btncolor" href="bookmain.do?${search}pageno=1"><span class="glyphicon glyphicon-backward"></span></a>
+				<a class="btn btn-default btn-sm btncolor" href="bookmain.do?${search}pageno=<%=prev_pageno%>"> <span class="glyphicon glyphicon-triangle-left"></span></a>
+					<%if(page_eno == 0){%>
+							<b><a href="bookmain.do?${search}pageno=1">[1]</a></b>
+					<%}else{
+							for(int i =page_sno;i<=page_eno;i++){%>
+						<a href="bookmain.do?${search}pageno=<%=i%>">
+							<%if(pageno == i){ %>
+								<b>[<%=i%>]</b>
+							<%}else{%>
+								 [<%=i%>]
+							<%} %>
+						</a>
+						<%--   콤마    --%>
+							<%if(i<page_eno){%>
+							,
+							<%}%>
+						<%}				
+						}%>
+					
+					<a class="btn btn-default btn-sm btncolor" href="bookmain.do?${search}pageno=<%=next_pageno%>"><span class="glyphicon glyphicon-triangle-right"></span></a>
+					<a class="btn btn-default btn-sm btncolor" href="bookmain.do?${search}pageno=<%=total_page%>"><span class="glyphicon glyphicon-forward"></span></a>
+				<br><br>
+			
+			</div>	
+		
+		</div>
+	</fieldset>
+	</div>
 </div>

@@ -15,15 +15,19 @@
                           <span>내 정보</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="usinginfo.do?id=${user.id}">현재이용정보</a></li>
+                          <li><a  href="usinginfo.do?id=${user.id}">현재 이용 정보</a></li>
                           <li><a  href="msgloglist.do?id=${user.id}">메세지 내역</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="seatmain.do">
+                      <a href="javascript:;">
                           <i class="fa fa-desktop"></i>
-                          <span>열람실관리</span>
+                          <span>열람실 관리</span>
                       </a>
+                      <ul class="sub">
+                          <li><a href="seatmain.do">열람실 좌석 현황</a></li>
+                          <li><a href="adminseatloglist.do">좌석 이용 내역</a></li>
+                      </ul>
                   </li>
 
  				<li class="sub-menu">
@@ -33,9 +37,9 @@
                       </a>
                       <ul class="sub">
                      	  <li><a href="bookmain.do?search=false">도서 자료</a></li>
-                          <li><a href="bookregister.do">책 등록</a></li>
+                          <li><a href="bookregister.do">신규 도서 등록</a></li>
                           <li><a href="adminbookloglist.do">도서 대여 기록</a></li>
-                          <li><a href="userbookremoveconfirm.do">회원 도서 반납 내역</a></li>
+                          <li><a href="userbookremoveconfirm.do">도서 반납 내역</a></li>
                       </ul>
                   </li>
 
@@ -63,7 +67,7 @@
                           <span>내 정보</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="usinginfo.do?id=${user.id}">현재이용정보</a></li>
+                          <li><a  href="usinginfo.do?id=${user.id}">현재 이용 정보</a></li>
                           <li><a  href="msgloglist.do?id=${user.id}">메세지 내역</a></li>
                       </ul>
                   </li>

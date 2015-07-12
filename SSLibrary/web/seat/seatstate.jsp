@@ -26,8 +26,7 @@
 		if(s_id == "${myseat.s_id}"){
 			alert("회원님의 자리로 메세지를 보낼 수 없습니다.");	
 		}else{// 좌석의 id 값 대입
-			$(".seatid").val(s_id);
-		
+			$(".seatid").val(s_id);	
 			
 			//메세지 전송 다이얼로그 출력
 			$("#sendMsg").modal({
@@ -38,13 +37,13 @@
 		}
 	}
 	
-	function confirmmsg(){
+/* 	function confirmmsg(){
 		$("#confirmMsg").modal({
 			'width' : 500,
 			'height' : 400
 		});			
 	}
-	
+	 */
 	
 	// 예약 못 한 회원이 예약된 좌석을 클릭한 경우
 	function registeredSeat() {
@@ -64,6 +63,7 @@
 		var state = s_state;
 		$(".seatstate").val(s_state);
 		$(".seatid").val(s_id);
+		
 
 		if (state == 'y') {
 			$('#modifyY').modal();
@@ -111,6 +111,16 @@
 		}
 		//makeHeight();
 	}
+	
+	// 사이즈 조절 
+	$(window).resize(function(){
+		var windowwidth = $(window).width();
+		if (windowwidth < 600) {
+			$('footer[class=site-footer]').css('width','600px');
+		}else{
+			$('footer[class=site-footer]').css('width','100%');				
+		}
+	});
 </script>
 <style>
 

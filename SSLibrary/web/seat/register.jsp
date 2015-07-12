@@ -15,7 +15,7 @@ function	 sendMsgImpl(f){
 	// 내용
 	var text = f.textarea.value;
 	
-	//alert("s_id: " +s_id  + ", sender_id: " + sender_id + ", text: "+ text);
+	alert("s_id: " +s_id  + ", sender_id: " + sender_id + ", text: "+ text);
 	
 	var c = confirm(s_id + "번 자리의 사용자에게 메세지를 보내시겠습니까?");
 	if (c == true) {
@@ -46,12 +46,10 @@ function	 sendMsgImpl(f){
 }
 </style>
 <form>
-	<h4 style="float:left;">Sender ID: ${user.id}(${user.name}) </h4>
-	<h4 style='float:right;''>Receiver Seat ID:<input type="number" name="receiver_sid" class="seatid"></h4>
-	
+	<h4>Sender ID:          ${user.id}(${user.name}) </h4>
+	<h4>Receiver Seat ID: <input type="text" style="width:10px;background:white;border:0 white solid;" name="receiver_sid" class="seatid" disabled>번</h4>	
 	
 	<input type="hidden" name="sender_uid" value="${user.id}">
-	<input type="hidden" name="receiver_sid" class="seatid">
 	<div>
 	<textarea rows="2" name="textarea" class="messagetextarea" style="resize: none;"></textarea></div>
 	<br>	

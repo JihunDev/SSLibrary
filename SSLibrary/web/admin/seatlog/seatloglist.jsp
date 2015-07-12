@@ -38,6 +38,7 @@ function searchseatlog(f){
 #seatlogtable>thead>tr>th{
 	background: #66c1bd;
 	color:white;
+	vertical-align: middle;
 }
 .seattableform {
 	background: rgba(255, 255, 194, 0.8);
@@ -59,7 +60,7 @@ function searchseatlog(f){
 </div>
 
 <form class="form-inline" style="float:right;" >
-    <div class="input-group" style="">
+    <div class="input-group">
     <span class="input-group-btn">
     	<button class="btn btn-default btn-sm" style="width:70px;float:right;" type="button" onclick='location.href="seatmain.do"'>좌석 현황</button>
        <button class="btn btn-default btn-sm" style="width:50px;float:right;"  type="button" onclick="searchseatlog(this.form);">검색</button>
@@ -74,10 +75,10 @@ function searchseatlog(f){
 
 <br><br>
 <fieldset>
-	<table width="700" class="table table-hover scroll" id="seatlogtable">
+	<table width="700" class="table table-hover scroll table-striped" id="seatlogtable">
 		<thead>
 			<tr>
-				<th>예약자 ID</th>
+				<th>이용자 ID</th>
 				<th>좌석 ID</th>
 				<th>예약 시작 시간</th>
 				<th class="hidden-xs">반납 예정 시간</th>

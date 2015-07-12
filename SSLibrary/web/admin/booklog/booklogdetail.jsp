@@ -69,37 +69,35 @@
 	};
 </script>
 <div id="home_center" class="fieldsetform">
-	<form class="form-inline">
-		<select class="form-control input-sm" id="whatsearch">
+	<div class="logtabletitle">	
+		<table class="table" style="width:100%;min-width:300px;">
+			<tr>
+				<th><h1>Books Rental History</h1></th>
+			</tr>
+		</table>	
+	</div>
+<button class="btn btn-default btn-sm" type="submit" onclick='location.href="adminbookloglist.do"'>전체 목록</button>
+	<form class="form-inline" style="float:right;">		
+		<select class="form-control input-sm" style="width:auto;" id="whatsearch">
 			<option value="user">회원</option>
 			<option value="book">도서</option>
 		</select>
-		<div class="input-group">
-			<input type="text" id="searchname" name="searchname"
-				class="form-control input-sm" placeholder="Search for..."> <span
-				class="input-group-btn">
-				<button class="btn btn-default btn-sm" type="button"
-					onclick="getLogBook();">검색</button>
-			</span>
-		</div>
-		<div style="float: right;">
-			<button class="btn btn-default btn-sm" style="float: right;"
-				type="submit" onclick='location.href="adminbookloglist.do"'>목록</button>
-		</div>
+		<input type="text" id="searchname" name="searchname" class="form-control input-sm" style="width:150px;margin:0 2px 0 0;" placeholder="Search for...">
+		<button class="btn btn-default btn-sm" style="width:auto;"  type="button" onclick="getLogBook();">검색</button>
 	</form>
+	<br><br>
 	<div id="book_result">
 		<fieldset>
-			<legend align="center">도서 과거 대여 내역</legend>
-			<table width="700" class="table table-hover scroll">
+			<table width="700" class="table table-hover scroll theadcolor">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>B_ID</th>
-						<th>U_ID</th>
-						<th>START_DATE</th>
-						<th class="hidden-xs">END_DATE</th>
-						<th>REAL_DATE</th>
-						<th class="hidden-xs">RENEW_QT</th>
+						<th>등록 번호</th>
+						<th>도서 ID</th>
+						<th>대여자 ID</th>
+						<th>대여 시간</th>
+						<th class="hidden-xs">반납 예정 시간</th>
+						<th>반납 완료 시간</th>
+						<th class="hidden-xs">연장</th>
 				</thead>
 				<tbody>
 					<c:forEach items="${loglist}" var="b">

@@ -189,12 +189,12 @@ $(document).ready(function() {
 			$('#top_menu').css('margin-left','1%');
 			$('#logo').css('margin-left','-1%');
 			$('#msg_ul').css('float','right');
-			document.getElementById("msg_ul").className = "dropdown-menu dropdown-menu-right extended inbox"; 
+			document.getElementById("msg_ul").className = 'dropdown-menu dropdown-menu-right extended inbox'; 
 			
 		}else{
 			$('#top_menu').css('margin-left','92px');
 			$('#logo').css('margin-left','1%');
-			document.getElementById("msg_ul").className = "dropdown-menu extended inbox"; 
+			document.getElementById("msg_ul").className = 'dropdown-menu extended inbox'; 
 		}
 		
 	};

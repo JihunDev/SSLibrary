@@ -112,14 +112,17 @@
 		//makeHeight();
 	}
 	
-	// 사이즈 조절 
-	$(window).resize(function(){
+	function resize_seatstate(){
 		var windowwidth = $(window).width();
 		if (windowwidth < 600) {
 			$('footer[class=site-footer]').css('width','600px');
 		}else{
 			$('footer[class=site-footer]').css('width','100%');				
-		}
+		}		
+	};
+	// 사이즈 조절 
+	$(window).resize(function(){
+		resize_seatstate();
 	});
 </script>
 <style>

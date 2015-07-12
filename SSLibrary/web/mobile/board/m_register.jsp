@@ -8,6 +8,9 @@
 		} else {
 			$('#registers').popup('open');
 			$("#registerbutton").click(function() {
+				window.setTimeout(function name() {
+					$('#registers').popup('close');
+				}, 1000);
 				f.action = 'm_boardwriteimpl.do';
 				f.method = 'POST';
 				f.submit();

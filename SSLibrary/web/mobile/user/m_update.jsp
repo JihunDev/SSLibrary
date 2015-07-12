@@ -16,7 +16,7 @@ function update(f) {
 	}else{
 		$('#userupdateuser').popup('open');
 		$("#updatebutton").click(function() {
-			f.action = 'm_modifyimpl.do';/* 추후 수정 */
+			f.action = 'm_modifyimpl.do';
 			f.method = 'POST';
 			f.submit();
 		});

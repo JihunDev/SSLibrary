@@ -44,14 +44,14 @@ table {
 		id="myTable">
 		<thead>
 			<tr>
-				<th data-priority="8">ID</th>
-				<th data-priority="8">NAME</th>
-				<th data-priority="8">WRITER</th>
-				<th data-priority="4">IMG</th>
-				<th data-priority="3">FLOOR</th>
-				<th data-priority="2">TOTAL_QT</th>
-				<th data-priority="1">CURRENT_QT</th>
-				<th data-priority="5">REGDATE</th>
+				<th data-priority="8">등록번호</th>
+				<th data-priority="8">책 이름</th>
+				<th data-priority="8">저자</th>
+				<th data-priority="4">표지</th>
+				<th data-priority="3">서가/층</th>
+				<th data-priority="2">총 갯수</th>
+				<th data-priority="1">대여가능 갯수</th>
+				<th data-priority="5">등록일</th>
 			</tr>
 		</thead>
 		<tbody>

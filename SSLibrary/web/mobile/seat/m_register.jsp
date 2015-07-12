@@ -7,8 +7,8 @@
 }
 </style>
 <form action="m_msgsendimpl.do" method="get">
-	<h4 style="float: left;">Sender ID: ${user.id}(${user.name})</h4>
-	<h4 style='float: right;'>Receiver Seat ID: ${s_id}</h4>
+	<h4 style="float: left;">보내는 사람 : ${user.id}(${user.name})</h4>
+	<h4 style='float: right;'>받는 사람 : ${s_id}</h4>
 	
 	<input type="hidden" name="sender_id" value="${user.id}"> 
 	<input type="hidden" name="s_id_str" value="${s_id}">

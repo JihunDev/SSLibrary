@@ -7,7 +7,7 @@
 </style>
 
 <div class="fieldsetform">
-<div class="logtabletitle">	
+<div class="listtabletitle">	
 	<table class="table" style="width:100%;min-width:300px;">
 		<tr>
 			<th><h1>My Rental History (Seat)</h1></th>

@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.theadcolor>thead>tr>th{
+	background:#fcce18;
+	color:black;
+}
+</style>
+<script>
+window.onload=function(){
+	if ("${messagelog}" == "[]") {
+		$('#received_msg').html(
+				"<tr><td colspan=4>받은 메세지가 없습니다.</td><tr>");
+	}
+	
+}
+
+
+</script>
 <div class="fieldsetform">
 <div class="listtabletitle">	
 	<table class="table" style="width:100%;min-width:300px;">
@@ -19,12 +36,12 @@
 <!-- 				<th>확인</th> -->
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="received_msg">
 			<c:forEach items="${messagelog}" var="m">
 				<!-- 추후수정 -->
 				<c:choose>
 				<c:when test="${m.read == 'n'}">
-					<tr style="background:#FAED7D;">
+					<tr style="background:#FAF4C0;">
 				</c:when>
 				<c:otherwise>
 					<tr>

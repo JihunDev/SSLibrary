@@ -127,7 +127,10 @@
 	});
 </script>
 <style>
-
+.modal-header{
+	background:#e76e6e;
+	color:#EAEAEA;
+}
 #seattable{
 	position:relative;
 	width:100%;
@@ -181,12 +184,12 @@
 
 .n_btn, #seattable>tbody>tr>td>form>.n_btn, #seattable>tbody>tr>td>form>.n_btn:hover, #seattable>tbody>tr>td>form>.n_btn:active,
 	#seattable>tbody>tr>td>form>.n_btn:focus {
-	background: #66c1bd;
+	background: #e76e6e; 
 }
 
 .f_btn, #seattable>tbody>tr>td>form>.f_btn, #seattable>tbody>tr>td>form>.f_btn:hover, #seattable>tbody>tr>td>form>.f_btn:active,
 	#seattable>tbody>tr>td>form>.f_btn:focus {
-	background: #FFB2D9;
+	background:#66c1bd;
 }
 
 .modify {

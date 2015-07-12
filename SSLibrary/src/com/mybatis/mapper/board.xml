@@ -40,19 +40,20 @@
 		SELECT * FROM A_BOARD WHERE 
 		<choose>
 			<when test="title != null and content == null">
-				TITLE LIKE '%'||#{title}||'%'	AND 
+				TITLE LIKE '%'||#{title}||'%'	 AND SORT = #{sort} AND REG_NUMBER = 0 ORDER BY 8 DESC 
 			</when>
 			<when test="title == null and content != null">
-			 	CONTENT LIKE '%'||#{content}||'%' AND 
+			 	CONTENT LIKE '%'||#{content}||'%'  AND SORT = #{sort} AND REG_NUMBER = 0 ORDER BY 8 DESC 
 			</when>
 			<when test="title != null and content != null">
-				 CONTENT LIKE '%'||#{content}||'%' OR TITLE LIKE '%'||#{title}||'%' AND 
+				 CONTENT LIKE '%'||#{content}||'%' OR TITLE LIKE '%'||#{title}||'%' AND SORT = #{sort} AND REG_NUMBER = 0 ORDER BY 8 DESC 
 			</when>
 			<when test="title == null and content == null">
-				 U_ID = #{u_id} AND
+				 U_ID = #{u_id} AND SORT = #{sort} AND REG_NUMBER = 0 ORDER BY 8 DESC
 			</when>
+			<otherwise>
+			</otherwise>
 		</choose>
-		SORT = #{sort} AND REG_NUMBER IN(0) ORDER BY 8 DESC
 	</select>
 	
 	

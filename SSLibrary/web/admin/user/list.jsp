@@ -91,6 +91,12 @@ $(document).ready(function(){
 	  	if(<%=page_eno%>==0){
 			alert("검색결과가 없습니다.");
 		}   
+	  	var backgroundColor_ = "#050099";
+	  	var color_ = "#D9E5FF";
+	  	
+	  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+		$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+
 	});
 	
 function searchByName(f){
@@ -129,7 +135,7 @@ function searchByName(f){
 <br>
 
 	<div>
-		<table class="table table-striped theadcolor">
+		<table class="table table-hover theadcolor">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -182,7 +188,7 @@ if(page_eno == 0){
 <%
 	if(i<page_eno){
 %>
-,
+&nbsp;
 <%
 	}
 %>

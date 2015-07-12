@@ -120,8 +120,13 @@ window.onload = function(){
 	//makeHeight();
   	if(<%=page_eno%>==0){
 		$('#booklist_div').html("<tr><td colspan=8>검색 결과가 존재하지 않습니다.</td><tr>");
-	}  
+	} 
+  	var backgroundColor_ = "#84b683";
+  	var color_ = "white";
   	
+  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+	$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+	
 }
 
 </script>
@@ -216,7 +221,7 @@ window.onload = function(){
 						</a>
 						<%--   콤마    --%>
 							<%if(i<page_eno){%>
-							,
+							&nbsp;
 							<%}%>
 						<%}				
 						}%>

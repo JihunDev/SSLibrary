@@ -84,9 +84,6 @@
 %>
 
 <style>
-a {
-	text-decoration: none;
-}
 </style>
 <script>
 function getBoard(f){
@@ -94,13 +91,27 @@ function getBoard(f){
 	 f.method="post";
 	 f.submit();
 }
-window.onload = function(){
-	  	if(<%=page_eno%>==0){
+$(window).ready(function(){
+		var sort = "<%=sort%>";
+	  	var backgroundColor_ = "";
+	  	var color_ = "";
+		
+		if("<%=page_eno%>"=="0"){
 			$('#boardlist_div').html("<tr><td colspan=5>등록된 게시물이 없습니다.</td><tr>");
-		}   
-
+		}
+	  	if(sort=="notice"){
+			backgroundColor_ = "#acc4cd";
+			color_ = "black";
+	  	}else if(sort=="free"){
+			backgroundColor_ = "#b48ec3";
+			color_ = "white";
+		}
+	  	
+	  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+		$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+		
 		//makeHeight();
-}
+});
 </script>
 <div class="fieldsetform">
 <div class="listtabletitle">	
@@ -124,7 +135,55 @@ window.onload = function(){
 		<option value="content">내용</option>
 		<option value="id">ID</option>
 	</select>
-	<c:set var="loginuser_isadmin" value="${user.isadmin}" />
+	
+	</div>
+	<!-- /input-group -->
+</form>
+</div>
+<br>
+<br>
+	<fieldset>
+<table class="table theadcolor">
+	<thead>
+		<tr>
+			<th>글 번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th class="hidden-xs">작성일</th>
+			<th>조회</th>
+		</tr>
+	</thead>
+	<tbody id="boardlist_div">
+		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
+			<c:set var="foreach_count" value="${board_status.count}" />
+			<%
+				int count = (int) pageContext.getAttribute("foreach_count");
+				if(count >= record_start_no &&  count <= record_end_no){
+			%>
+			<tr>
+				<td>${b.id}</td>
+				<td style="text-align:left;"><a href="boarddetail.do?id=${b.id}">${b.title}
+				<c:if test="${b.reply_num != 0}">
+				<font color="red" size="x-small">
+				[${b.reply_num}]
+				</font>		
+				</c:if>
+				</a></td>
+				<td>${b.u_id}</td>
+				<td class="hidden-xs">${b.reg_date}</td>
+				<td>${b.counter}</td>
+			</tr>
+			<%
+				}
+			%>
+		</c:forEach>
+	</tbody>
+	<!-- test후 페이지 넘어가는 거 만듬 -->
+</table>
+
+<hr>
+<div style="text-align:right;">
+<c:set var="loginuser_isadmin" value="${user.isadmin}" />
 		<%
 	   String loginuser_isadmin = (String) pageContext.getAttribute("loginuser_isadmin");
 	   if(sort.equals("notice") && loginuser_isadmin != null){
@@ -137,44 +196,8 @@ window.onload = function(){
 	      }
 	   }
 	%>
-	</div>
-	<!-- /input-group -->
-</form>
 </div>
-<br>
-<br>
-	<fieldset>
-<table class="table table-striped theadcolor">
-	<thead>
-		<tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>글쓴이</th>
-			<th class="hidden-xs">작성일</th>
-			<th>조회수</th>
-		</tr>
-	</thead>
-	<tbody id="boardlist_div">
-		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
-			<c:set var="foreach_count" value="${board_status.count}" />
-			<%
-				int count = (int) pageContext.getAttribute("foreach_count");
-				if(count >= record_start_no &&  count <= record_end_no){
-			%>
-			<tr>
-				<td>${b.id}</td>
-				<td><a href="boarddetail.do?id=${b.id}">${b.title}(${b.reply_num})</a></td>
-				<td>${b.u_id}</td>
-				<td class="hidden-xs">${b.reg_date}</td>
-				<td>${b.counter}</td>
-			</tr>
-			<%}%>
-		</c:forEach>
-	</tbody>
-	<!-- test후 페이지 넘어가는 거 만듬 -->
-</table>
 
-<hr>
 <div class="listpagingnum">
 <a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=1"><span class="glyphicon glyphicon-backward"></span></a>
 <a class="btn btn-default btn-sm btncolor" href="boardmain.do?${search}sort=<%=sort%>&pageno=<%=prev_pageno%>"><span class="glyphicon glyphicon-triangle-left"></span></a>
@@ -197,7 +220,7 @@ window.onload = function(){
 <%
 	if(i<page_eno){
 %>
-,
+&nbsp;
 <%
 	}
 %>

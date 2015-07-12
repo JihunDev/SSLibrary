@@ -21,7 +21,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;">
-                          <i class="fa fa-desktop"></i>
+                          <i class="glyphicon glyphicon-th"></i>
                           <span>열람실 관리</span>
                       </a>
                       <ul class="sub">
@@ -32,7 +32,7 @@
 
  				<li class="sub-menu">
                    <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
+                          <i class="glyphicon glyphicon-book"></i>
                           <span>자료실 관리</span>
                       </a>
                       <ul class="sub">
@@ -53,8 +53,8 @@
                   </li> -->
                   <li class="sub-menu">
                       <a href="usersearch.do?search=false">
-                          <i class="fa fa-desktop"></i>
-                          <span>회원관리</span>
+                          <i class="glyphicon glyphicon-user"></i>
+                          <span>회원 관리</span>
                       </a>
                   </li>
     <%}else if((user!=null && user.getIsadmin().equals("n")) || (user!=null && user.getIsadmin().equals("s"))){ %>              
@@ -73,7 +73,7 @@
                   </li>
                  <li class="sub-menu">
                       <a href="seatmain.do">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-book"></i>
                           <span>열람실</span>
                       </a>
                   </li>
@@ -87,7 +87,7 @@
     <%}else{%>
        <li class="sub-menu">
                       <a href="seatmain.do">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-book"></i>
                           <span>열람실</span>
                       </a>
                   </li>
@@ -101,13 +101,13 @@
     <%} %>
                   <li class="sub-menu">
                       <a href="boardmain.do?search=false&sort=notice">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-list"></i>
                           <span>공지사항</span>
                       </a>
                   </li>
                   <li class="sub-menu">
                      <a href="boardmain.do?search=false&sort=free">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-list"></i>
                           <span>자유게시판</span>
                       </a>
                   </li>

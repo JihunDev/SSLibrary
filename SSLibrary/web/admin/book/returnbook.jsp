@@ -26,6 +26,13 @@
 						&& element2.height() >= 500) {
 					$('#listtable').addClass("scroll");
 				}
+			  	var backgroundColor_ = "#84b683";
+			  	var color_ = "white";
+			  	
+			  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+				$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+				
+				
 			});
 </script>
 <div class="fieldsetform">

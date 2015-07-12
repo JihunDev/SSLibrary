@@ -35,9 +35,9 @@ function display(data) {
 	output += "</table>";
 	$('#userlist').html(output);
 };
-
 $(document).ready(function() {
-	u_list();		
+	u_list();
+	
 });
 </script>
 <h1>User list</h1>

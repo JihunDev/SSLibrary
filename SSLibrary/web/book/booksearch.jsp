@@ -127,7 +127,7 @@ window.onload = function(){
 </script>
 <div class="fieldsetform">
 
-<div class="searchtabletitle">	
+<div class="listtabletitle">	
 	<table class="table" style="width:100%;">
 		<tr>
 			<th><h1>Library Book List</h1></th>
@@ -137,25 +137,25 @@ window.onload = function(){
 	<div id="book_center">
 			<%if (user != null && user.getIsadmin().equals("y")) {%>
 			<div class="btn-group" style="width:auto;float:right;">
-				<a class="btn btn-default btn-sm" style="width:128px;"href="bookregister.do" role="button">신규 도서 등록</a>
-				<a class="btn btn-default btn-sm" style="width:128px;" href="adminbookloglist.do" role="button">도서 대여 기록</a>
-				<a class="btn btn-default btn-sm" style="width:128px;" href="userbookremoveconfirm.do" role="button">도서 반납 내역</a>
+				<a class="btn btn-default btn-sm" style="width:100px;margin:0 2px;"href="bookregister.do" role="button">신규 도서 등록</a>
+				<a class="btn btn-default btn-sm" style="width:108px;margin:0 2px;" href="adminbookloglist.do" role="button">도서 대여 기록</a>
+				<a class="btn btn-default btn-sm" style="width:108px;margin:0 2px;" href="userbookremoveconfirm.do" role="button">도서 반납 내역</a>
 			</div>
 			<%} %>
 			<br><br>
 			<form class="form-inline">
 				<button class="btn btn-default btn-sm btncolor" style="width:58px;float:right;margin:0 2px;" type="button" onclick="getBook(this.form);">검색</button>
-				<input type="text" id="search" name="search"	style="width:148px;float:right;;margin:0 2px;" class="form-control input-sm" placeholder="Search for...">
-				<select id="category" name="category" style="width:98px;float:right;;margin:0 2px;" class="form-control input-sm">
-					<option value="">분류</option>
+				<input type="text" id="search" name="search"	style="width:20%;float:right;;margin:0 2px;" class="form-control input-sm" placeholder="Search for...">
+				<select id="issearch" name="issearch" style="width:78px;float:right;;margin:0 2px;"  class="form-control input-sm">
+					<option value="">선택2</option>
+					<option value="name">책 이름</option>
+					<option value="writer">저자</option>
+				</select>
+				<select id="category" name="category" style="width:78px;float:right;;margin:0 2px;" class="form-control input-sm">
+					<option value="">선택1</option>
 					<option value="i">IT</option>
 					<option value="n">소설</option>
 					<option value="m">만화책</option>
-				</select>
-				<select id="issearch" name="issearch" style="width:78px;float:right;;margin:0 2px;"  class="form-control input-sm">
-					<option value="">이름</option>
-					<option value="name">책</option>
-					<option value="writer">저자</option>
 				</select>
 			</form>		
 			

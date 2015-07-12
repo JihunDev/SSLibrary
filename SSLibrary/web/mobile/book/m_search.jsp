@@ -10,10 +10,6 @@ table {
 	background: white;
 	border-radius : 8px 8px 8px 8px;
 }
-
-
-
-
 </style>
 <!-- Ã¥ °Ë»ö -->
 <form action="m_booksearch.do" method="POST">

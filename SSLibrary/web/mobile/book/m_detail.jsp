@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <script>
 	$(document).ready(function() {
 		var borrowbook = "${borrowbook}";
@@ -24,12 +25,28 @@
 		;
 	}
 </script>
+<style>
+tr td{
+	border-bottom: 1px solid lightgray;
+}
+tr th{
+	border-bottom: 1px solid lightgray;
+}
+
+table {
+	background: white;
+	border-radius : 8px 8px 8px 8px;
+}
+</style>
 <button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
 <!-- 디테일 페이지 -->
 <table width="100%">
 	<tbody>
 		<tr>
-			<th>ID</th>
+			<td colspan="2" align ="center"><img width="60%"src="img/book/${bookdetail.img}"></td>
+		</tr>
+		<tr>
+			<th>등록 번호</th>
 			<td>${bookdetail.id}</td>
 		</tr>
 		<tr>

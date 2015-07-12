@@ -117,18 +117,18 @@ public class UserControl {
 		if (img == null || img.equals("")) {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), old_img, com.getEmail(), com.getIsadmin());
-			System.out.println("usermodifyimpl.do user: " + user);
 		} else {
 			user = new User(com.getId(), com.getPwd(), com.getName(),
 					com.getPhone(), com.getImg().getOriginalFilename(),
 					com.getEmail(), com.getIsadmin());
-			System.out.println("usermodifyimpl.do user: " + user);
 			byte[] data;
 			try {
 				data = file.getBytes();
+				System.out.println(data);
 				FileOutputStream out = new FileOutputStream(dir
 						+ file.getOriginalFilename());
 				out.write(data);
+				System.out.println(out.toString());
 				out.close();
 			} catch (IOException e) {
 				e.printStackTrace();

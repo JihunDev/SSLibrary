@@ -63,8 +63,6 @@ public class MainControl {
 		while (enum_app.hasMoreElements()) {
 			ls_name = enum_app.nextElement().toString();
 			ls_value = session.getAttribute(ls_name).toString();
-			System.out.println("얻어온 세션 이름 :" + ls_name);
-			System.out.println("얻어온 세션 값 :" + ls_value);
 		}
 		int count = 0;
 		// 메인 공지사항 게시판

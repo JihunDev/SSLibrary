@@ -6,7 +6,7 @@
 <br>
 <form action="m_login.do" method="POST">
 	<input type="text" name="id" placeholder="ID" data-clear-btn="true">
-	<input type="text" name="pwd" placeholder="PASSWORD"
+	<input type="password" name="pwd" placeholder="PASSWORD"
 		data-clear-btn="true">
 	<div class="ui-grid-a">
 		<div class="ui-block-a">

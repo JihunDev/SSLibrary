@@ -100,6 +100,7 @@
 		</select>
 		<input type="text" id="searchname" name="searchname" class="form-control input-sm" style="width:150px;margin:0 2px 0 0;" placeholder="Search for...">
 		<button class="btn btn-default btn-sm btncolor" style="width:auto;"  type="button" onclick="getLogBook();">검색</button>
+		<a class="btn btn-default btn-sm btncolor" style="width:auto;"  type="button" href="adminbookloglist.do">목록</a>
 	</span>
 	</div>
 	</form>

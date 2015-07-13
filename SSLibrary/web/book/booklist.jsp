@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<script type="text/javascript">
+<script type="text/javascript">
 window.onload = function(){
   	var backgroundColor_ = "#fcce18";
   	var color_ = "black";

@@ -47,6 +47,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 #myCarousel {
 	width: 100%;
 }
@@ -127,7 +128,7 @@ a {
 $(document).ready(function() {
    makeHeight();
 }); */
-<%--    $(document).ready(function() {
+    $(document).ready(function() {
       setInterval(function() { //좌석 자동 반납
          $.ajax({
             async : 'false',
@@ -186,10 +187,9 @@ $(document).ready(function() {
          document.getElementById("msgnumber").innerHTML = data;
          if ("${msgcheck}" != null) {
             <%session.removeAttribute("msgcheck");%>
-   }
-      }
-      ;
-   }; --%>
+  		 }
+      };
+   }; 
 // 사이즈 조절 
 	function resize_main(){
 		var windowwidth = $(window).width();

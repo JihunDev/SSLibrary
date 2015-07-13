@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.booktablecolor>thead>tr>th {
+	 background-color : #84b683; 
+	 color: white;
+}
+</style>
 <script>
 	function makeHeight() {
 		var section = document.querySelector("#main-conten");
@@ -22,7 +28,7 @@
 
 		$('#book_result').empty();
 		var output = '';
-		output += '<fieldset><table id="lastbooklist" class="table table-striped theadcolor">'
+		output += '<fieldset><table id="lastbooklist" class="table table-striped booktablecolor">'
 		output += '<thead><th>등록 번호</th><th>도서 ID</th><th>대여자 ID</th><th>대여 시간</th><th class="hidden-xs">반납 예정 시간</th><th>반납 완료 시간</th><th class="hidden-xs">연장</th></thead>';
 		output += '<tbody id="bookloglist">';
 		if (cont == 0) {

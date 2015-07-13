@@ -91,8 +91,8 @@ $(document).ready(function(){
 	  	if(<%=page_eno%>==0){
 			alert("검색결과가 없습니다.");
 		}   
-	  	var backgroundColor_ = "#050099";
-	  	var color_ = "#D9E5FF";
+	  	var backgroundColor_ = "#4f7eb0"; /* "#050099"; */
+	  	var color_ = "#ffffff";/* "#D9E5FF"; */
 	  	
 	  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
 		$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});

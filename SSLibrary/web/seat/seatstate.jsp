@@ -117,7 +117,7 @@
 	$(window).ready(function(){
 		
 		if('${myseat.s_id}' != ''){
-			$('button[value=${myseat.s_id}]').css({background-color:'#fcce18', color:'black'});
+			$('button[value=${myseat.s_id}]').css({backgroundColor:'#fcce18', color:'black'});
 		}
 		resize_seatstate();
 	});

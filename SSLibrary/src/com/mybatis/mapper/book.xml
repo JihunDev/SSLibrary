@@ -10,16 +10,18 @@
 	SELECT * FROM A_BOOK WHERE ID = #{id} ORDER BY 8 DESC
 	</select>
 	<select id="selectnamebooks" parameterType="book" resultType="book">
-	SElECT * FROM A_BOOK 
-	<trim prefix="WHERE" prefixOverrides="AND">
-			<if test="name != null">
-				NAME LIKE '%'||#{name}||'%'
-			</if>
-			<if test="writer != null">
-				AND WRITER LIKE '%'||#{writer}||'%'
-			</if>
-		</trim>
-		ORDER BY 8 DESC
+	SElECT * FROM A_BOOK WHERE 
+	<choose>
+		<when test="name != null and writer == null">
+		NAME LIKE '%'||#{name}||'%' ORDER BY 8 DESC
+		</when>
+		<when test="writer != null and name == null">
+		WRITER LIKE '%'||#{writer}||'%' ORDER BY 8 DESC
+		</when>
+		<when test="writer != null and name != null">
+		NAME LIKE '%'||#{name}||'%' OR WRITER LIKE '%'||#{writer}||'%' ORDER BY 8 DESC
+		</when>
+	</choose>
 	</select>
 	
 	<select id="selectwriterbooks" parameterType="java.lang.String" resultType="book"> <!-- 안씀 -->

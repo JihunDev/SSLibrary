@@ -103,6 +103,7 @@
 			if (user != null && user.getIsadmin().equals("y")) {
 		%>
 		<div class="btn-group">
+			<a class="btn btn-default" href="bookmain.do?search=false">목록</a>
 			<a class="btn btn-default" href="bookmodify.do?id=${bookdetail.id}">수정</a>
 			<button type="button" class="btn btn-default" onclick="deletebook();">삭제</button>
 			<button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
@@ -110,7 +111,10 @@
 		<%
 			} else if (user != null && user.getIsadmin().equals("n")) {
 		%>
+		<div class="btn-group">
+		<a class="btn btn-default" href="bookmain.do?search=false">목록</a>
 		<button type="button" class="btn btn-default" onclick="rentbook();">대여</button>
+		</div>
 		<%
 			} else {
 		%>

@@ -164,7 +164,7 @@ $(window).ready(function(){
 				if(count >= record_start_no &&  count <= record_end_no){
 			%>
 			<tr>
-				<td>${b.id}</td>
+				<td width="80px">${b.id}</td>
 				<td style="text-align:left;"><a href="boarddetail.do?id=${b.id}">${b.title}
 				<c:if test="${b.reply_num != 0}">
 				<font color="red" size="x-small">
@@ -172,9 +172,9 @@ $(window).ready(function(){
 				</font>		
 				</c:if>
 				</a></td>
-				<td>${b.u_id}</td>
-				<td class="hidden-xs"><%=reg_date_day %></td>
-				<td>${b.counter}</td>
+				<td width="150px">${b.u_id}</td>
+				<td width="150px" class="hidden-xs"><%=reg_date_day %></td>
+				<td width="80px">${b.counter}</td>
 			</tr>
 			<%
 				}

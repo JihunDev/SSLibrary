@@ -16,7 +16,7 @@ function update(f) {
 	//alert(reg_number);
 	if(reg_number != 0 && $('#btn_'+id+'').val() == "수정"){// 댓글을 수정하려할때
 		var content = f.old_content.value;
-		$('#content_'+id+'').html("<input type='text' id='content_id' value='"+content+"'>");
+		$('#content_'+id+'').html("<textarea class='form-control' rows='2' cols='20' name='content' style='resize:none' id='content_id' value='"+content+"'>"+content+"</textarea>");
 		$('#btn_'+id+'').val("완료");	
 		
 	}else if(reg_number != 0 && $('#btn_'+id+'').val() == "완료"){// 댓글수정을 완료할때
@@ -143,7 +143,7 @@ function update(f) {
 			<tr>
 				<th>Comment</th>
 				<th colspan="2" id = "content_${reply.id}" width="100%"><pre style="text-align:left;border:none;background: none;">${reply.content}</pre></th>
-				<td><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" class="btn btn-default btn-xs" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></td>
+				<th><c:if test="${id == reply.u_id || user.isadmin  == 'y'}"><input type="button" class="btn btn-default btn-xs" id="btn_${reply.id}" value="수정" onclick="update(this.form)"></c:if></th>
 			</tr>
 			</thead>
 		</form>

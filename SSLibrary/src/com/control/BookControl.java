@@ -39,7 +39,7 @@ public class BookControl {
 	// 책 검색
 	SearchBiz sbookbiz;
 	// ---------------------------------------
-	@Resource(name = "userbookbiz")
+	@Resource(name = "userbookbiz")   
 	// 대여시 회원의 책들 정보
 	Biz userbookbiz;
 	@Resource(name = "userbookbiz")

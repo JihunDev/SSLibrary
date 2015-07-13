@@ -7,7 +7,7 @@
 	User user = (User)session.getAttribute("user");
 	ArrayList<Object> booklist = (ArrayList<Object>) session.getAttribute("booklist");
 	String bookcount = (String) session.getAttribute("bookcount");
-	String search = (String) session.getAttribute("search");
+	String search = (String) session.getAttribute("search");  
 %> 
 <%!public Integer toInt(String x) {
 		int a = 0;

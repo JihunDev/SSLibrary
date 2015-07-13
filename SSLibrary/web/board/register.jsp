@@ -56,7 +56,7 @@ window.onload = function(){
 		<tr>
 			<th><h4>Title</h4></th>
 			<td>
-				<input type="text" class="form-control" name="title" style="width:100%;" placeholder="제목을 입력하세요."><br>
+				<input type="text" class="form-control" name="title" style="width:98%;" placeholder="제목을 입력하세요."><br>
 			 </td>
 		</tr>
 		<tr>
@@ -73,7 +73,7 @@ window.onload = function(){
 	<br>
 	<h4>Content</h4>
 	
-	<textarea id="textarea_" class="form-control" rows="10" cols="90" name="content" style="resize:none"></textarea><br><br>
+	<textarea id="textarea_" class="form-control" rows="10" cols="126" name="content" style="resize:none"></textarea><br><br>
 	<div style="text-align: center;" >
 		<input type="button" class="btn btn-default btncolor" value="등록" onclick="register(this.form)">
 	</div>

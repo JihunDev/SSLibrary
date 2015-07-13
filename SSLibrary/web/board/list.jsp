@@ -95,7 +95,7 @@ $(window).ready(function(){
 		var sort = "<%=sort%>";
 	  	var backgroundColor_ = "";
 	  	var color_ = "";
-		
+	  			
 		if("<%=page_eno%>"=="0"){
 			$('#boardlist_div').html("<tr><td colspan=5>등록된 게시물이 없습니다.</td><tr>");
 		}
@@ -156,8 +156,11 @@ $(window).ready(function(){
 	<tbody id="boardlist_div">
 		<c:forEach items="${boardlist}" var="b" varStatus="board_status">
 			<c:set var="foreach_count" value="${board_status.count}" />
+			<c:set var="reg_date_" value="${b.reg_date}" />
 			<%
 				int count = (int) pageContext.getAttribute("foreach_count");
+				String reg_date_ = (String) pageContext.getAttribute("reg_date_");
+				String reg_date_day = reg_date_.substring(0, 10);
 				if(count >= record_start_no &&  count <= record_end_no){
 			%>
 			<tr>
@@ -170,7 +173,7 @@ $(window).ready(function(){
 				</c:if>
 				</a></td>
 				<td>${b.u_id}</td>
-				<td class="hidden-xs">${b.reg_date}</td>
+				<td class="hidden-xs"><%=reg_date_day %></td>
 				<td>${b.counter}</td>
 			</tr>
 			<%

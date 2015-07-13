@@ -453,9 +453,7 @@ public class MainControl {
 				if (getid.equals(id)) {
 					if (read.equals("n")) {
 						msgchecknumber += 1;
-						System.out.println(log);
 						msg_list2.add(log);
-						System.out.println(msg_list2);
 					}
 				}
 			}

@@ -166,30 +166,30 @@ $(document).ready(function() {
             }
          });
       }, 5000);
-   });
-   window.onload = function() {
+      
       setInterval(function() {
-         $.ajax({
-            async : 'false',
-            url : 'msgchecked.do',
-            data : {
-               'id' : "${user.id}"
-            },
-            success : function(data) {
-               display(data);
-            },
-            error : function(data) {
+          $.ajax({
+             async : 'false',
+             url : 'msgchecked.do',
+             data : {
+                'id' : "${user.id}"
+             },
+             success : function(data) {
+                display(data);
+             },
+             error : function(data) {
 
-            }
-         });
-      }, 5000);
-      function display(data) {
-         document.getElementById("msgnumber").innerHTML = data;
-         if ("${msgcheck}" != null) {
-            <%session.removeAttribute("msgcheck");%>
-  		 }
-      };
-   }; 
+             }
+          });
+       }, 1000);
+       function display(data) {
+          document.getElementById("msgnumber").innerHTML = data;
+          if ("${msgcheck}" != null) {
+             <%session.removeAttribute("msgcheck");%>
+   		 }
+       };
+      
+   });
 // 사이즈 조절 
 	function resize_main(){
 		var windowwidth = $(window).width();

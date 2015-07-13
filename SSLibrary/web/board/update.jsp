@@ -56,7 +56,7 @@ window.onload = function(){
 <table style="width:100%;">
 	<tbody style="vertical-align: middle;">
 		<tr>
-			<th width="100px"><h4>Category</h4></th>
+			<th width="130px"><h4>Category</h4></th>
 			<td>
 			<select class="form-control input-sm" name="sort" style="width:150px;">
   			    <option value="">º±≈√</option>

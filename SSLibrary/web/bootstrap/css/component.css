@@ -355,7 +355,7 @@
 
 .book-1 .bk-cover h2 span:last-child,
 .book-1 .bk-left h2 span:last-child {
-	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, 'Nanum Gothic', serif ;
+	font-family: "Big Caslon", "Book Antiqua","Hanna", "Palatino Linotype", Georgia, 'Nanum Gothic', serif ;
 } 
 
 .book-1 .bk-content p {
@@ -367,7 +367,7 @@
 	font-size: 12px;
 	line-height: 40px;
 	padding-right: 45px;
-	text-align: right;
+	text-align: center;
 }
 
 .book-1 .bk-back p {
@@ -442,7 +442,7 @@
 	position: absolute;
 	top: -32px;
 	left: 62px;
-	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
+	font-family: "Big Caslon", "Hanna", "Book Antiqua", "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
 }
 
 .book-2 .bk-cover h2 span:last-child:after {
@@ -458,6 +458,7 @@
 
 .book-2 .bk-left h2 {
 	font-size: 18px;
+	font-family : "Hanna";
 	line-height: 40px;
 	padding-right: 72px;
 	text-align: right;
@@ -511,7 +512,7 @@
 .book-3 .bk-cover h2 span:last-child,
 .book-3 .bk-left h2 span:last-child,
 .book-3 .bk-content p  {
-	font-family: Georgia, Times, "Times New Roman", 'Nanum Gothic', serif;
+	font-family: Georgia, Times, "Times New Roman","Hanna", 'Nanum Gothic', serif;
 } 
 
 .book-3 .bk-cover img {
@@ -588,7 +589,7 @@
 
 .book-4 .bk-cover h2 span:last-child,
 .book-4 .bk-left h2 span:last-child {
-	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
+	font-family: "Big Caslon", "Book Antiqua","Hanna",  "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
 } 
 
 .book-4 .bk-content p {
@@ -599,8 +600,8 @@
 	color: #fff;
 	font-size: 18px;
 	line-height: 40px;
-	padding-right: 5px;
-	text-align: right;
+	padding-right: 10px;
+	text-align: center;
 }
 
 .book-4 .bk-back p {
@@ -656,19 +657,19 @@
 
 .book-5 .bk-cover h2 span:last-child,
 .book-5 .bk-left h2 span:last-child {
-	font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
+	font-family: "Hanna", "Big Caslon", "Book Antiqua" , " "Palatino Linotype", Georgia, 'Nanum Gothic', serif;
 } 
 
 .book-5 .bk-content p {
-	font-family: Georgia, Times, "Times New Roman", 'Nanum Gothic', serif;
+	font-family: Georgia, Times,"Times New Roman", 'Nanum Gothic', serif;
 }
 
 .book-5 .bk-left h2 {
 	color: #fff;
 	font-size: 18px;
 	line-height: 40px;
-	padding-right: 5px;
-	text-align: right;
+	padding-right: 10px;
+	text-align: center;
 }
 
 .book-5 .bk-back p {

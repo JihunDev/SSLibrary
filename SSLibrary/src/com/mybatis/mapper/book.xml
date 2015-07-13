@@ -9,7 +9,7 @@
 	<select id="selectbook" parameterType="book" resultType="book">
 	SELECT * FROM A_BOOK WHERE ID = #{id} ORDER BY 8 DESC
 	</select>
-	<select id="selectnamebooks" parameterType="java.lang.String" resultType="book">
+	<select id="selectnamebooks" parameterType="book" resultType="book">
 	SElECT * FROM A_BOOK 
 	<trim prefix="WHERE" prefixOverrides="AND">
 			<if test="name != null">

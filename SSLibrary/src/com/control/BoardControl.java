@@ -197,23 +197,20 @@ public class BoardControl {
 		System.out.println("기존파일 : " + old_file_name);
 		System.out.println(" com.getReg_number() : " + com.getReg_number());
 		System.out.println("com.getU_id: " + com.getU_id());
+		System.out.println(com);
 
-		MultipartFile file = com.getFile_name();
-		String dir = "C:/lib/SSLibrary/web/img/board/";
-		String img = file.getOriginalFilename();
-		
+
 		
 		if(com.getReg_number() == 0){
 		// 게시글
+			MultipartFile file = com.getFile_name();
+			String dir = "C:/lib/SSLibrary/web/img/board/";
+			String img = file.getOriginalFilename();
+			
 			if(img == null || img.equals("")){
 				board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), old_file_name);
 			}else{
 				board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
-			}
-			try {
-				biz.modify(board);
-			} catch (Exception e1) {
-				e1.printStackTrace();
 			}
 			if (com.getFile_name() != null) {
 
@@ -241,7 +238,12 @@ public class BoardControl {
 			board = new Board(com.getId(), com.getContent(), com.getSort());	
 			System.out.println("댓글 board: " + board);
 			mv.setViewName("redirect:/boarddetail.do?id=" + com.getReg_number());				
-		}		
+		}	
+		try {
+			biz.modify(board);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}	
 		
 		return mv;
 	}

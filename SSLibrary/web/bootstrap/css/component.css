@@ -5,7 +5,7 @@
 
 .bk-list li {
 	position: relative;
-	width: 70px;
+	width: 100px;
 	float: left;
 	z-index: 1;
 	margin: 0px 50px 0px 0;
@@ -13,9 +13,9 @@
 	perspective: 1800px;
 }
 
-.bk-list li:last-child {
+/* .bk-list li:last-child {
 	margin-right: 0;
-}
+} */
 
 .bk-info {
 	position: relative;

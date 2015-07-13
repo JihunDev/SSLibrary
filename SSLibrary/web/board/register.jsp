@@ -78,7 +78,4 @@ window.onload = function(){
 		<input type="button" class="btn btn-default btncolor" value="µî·Ï" onclick="register(this.form)">
 	</div>
 </form>
-<fieldset>
-
-</fieldset>
 </div>

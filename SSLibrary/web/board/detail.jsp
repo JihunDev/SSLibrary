@@ -63,8 +63,18 @@ function update(f) {
 		}else{
 			$("#thtitle").html("<h1>Free Board</h1>");			
 		}
-		
+	 	if(sort=="notice"){
+			backgroundColor_ = "#acc4cd";
+			color_ = "black";
+	  	}else if(sort=="free"){
+			backgroundColor_ = "#b48ec3";
+			color_ = "white";
 		}
+	  	
+	  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+		$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+		$('.listtabletitle>table>tbody>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+	}
 </script>
 <style>
 .boarddetailtable>thead>tr>th{
@@ -115,10 +125,16 @@ function update(f) {
 	<input type="hidden" name="sort" value="${boarddetail.sort}">
 	<input type="hidden" name="id" value="${boarddetail.id}">
 	<input type="hidden" name="reg_number" value="${boarddetail.reg_number}">	
+	<div style="display:block;">
+	<span style="text-align:left;">
 	<input type="button" class="btn btn-default" value="목록" onclick="location.href='boardmain.do?search=false&sort=${boarddetail.sort}'">
+	</span>
 	<c:if test="${id == boarddetail.u_id || user.isadmin == 'y'}">
-		<input type="button" class="btn btn-default" value="삭제" onclick="del(this.form)">
-		<input type="button" class="btn btn-default" value="수정" onclick="update(this.form)">
+	<span style="float:right;">
+		<input type="button" class="btn btn-default btncolor" value="수정" onclick="update(this.form)">
+		<input type="button" class="btn btn-default btncolor" value="삭제" onclick="del(this.form)">
+	</span>
+	</div>
 	</c:if>
 </form>
 	<table  class="table table-condensed boarddetailtable">
@@ -137,7 +153,7 @@ function update(f) {
 				<th>Writer</th><th>${reply.u_id}</th>
 				<th style="text-align:center;">${reply.reg_date}</th>
 				<th><c:if test="${id == reply.u_id || user.isadmin == 'y'}">	
-				<input type="button" class="btn btn-default btn-xs " value="삭제" onclick="del(this.form)">
+				<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="del(this.form)">
 				</c:if></th>
 			</tr>
 			<tr>
@@ -159,7 +175,8 @@ function update(f) {
 		<div class="form-group">
  		<label for="content">Comment:</label>
  		<textarea class="form-control" rows="5" cols="40" name="content" style="resize:none;width:100%" ></textarea>
-		<input type="button" class="btn btn-default" value="등록" onclick="register(this.form)">
+ 		<br>
+		<input type="button" class="btn btn-default btncolor" value="등록" onclick="register(this.form)">
 		</div>
 		</div>
 	</div>

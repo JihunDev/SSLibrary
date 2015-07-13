@@ -26,7 +26,19 @@
 window.onload = function(){
 		var sort = "${sort}";
 		$("select[name='sort']").val(sort).attr("selected", "selected");
-		//게시판에 종류에 따른 SelectBox 옵션 선택		
+		//게시판에 종류에 따른 SelectBox 옵션 선택
+		if(sort=="notice"){
+			backgroundColor_ = "#acc4cd";
+			color_ = "black";
+	  	}else if(sort=="free"){
+			backgroundColor_ = "#b48ec3";
+			color_ = "white";
+		}
+	  	
+	  	$('.theadcolor>thead>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+		$('.btncolor').css({backgroundColor:backgroundColor_, color:color_});
+		$('.logtabletitle>table>tbody>tr>th').css({backgroundColor:backgroundColor_, color:color_});
+
 }
 </script>
 <div class="fieldsetform">
@@ -44,7 +56,7 @@ window.onload = function(){
 <table style="width:100%;">
 	<tbody style="vertical-align: middle;">
 		<tr>
-			<th width="100px"><h4>Category</h4></th>
+			<th width="130px"><h4>Category</h4></th>
 			<td>
 			<select class="form-control input-sm" id="sort" name="sort" style="width:150px;">
 				<option value="">선택</option>

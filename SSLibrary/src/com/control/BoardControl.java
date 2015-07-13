@@ -190,49 +190,59 @@ public class BoardControl {
 	}
 
 	@RequestMapping("/boardmodifyimpl.do")
-	public ModelAndView boardmodifyimpl(BoardUploadCommand com) {
+	public ModelAndView boardmodifyimpl(HttpServletRequest request, BoardUploadCommand com) {
 		Board board =  null;
 		ModelAndView mv = new ModelAndView();
+		String old_file_name = request.getParameter("old_file_name");
+		System.out.println("기존파일 : " + old_file_name);
 		System.out.println(" com.getReg_number() : " + com.getReg_number());
 		System.out.println("com.getU_id: " + com.getU_id());
+
+		MultipartFile file = com.getFile_name();
+		String dir = "C:/lib/SSLibrary/web/img/board/";
+		String img = file.getOriginalFilename();
+		
+		
 		if(com.getReg_number() == 0){
 		// 게시글
-			board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
-//			mv.setViewName("redirect:/boardmain.do?sort=" + board.getSort());
+			if(img == null || img.equals("")){
+				board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), old_file_name);
+			}else{
+				board = new Board(com.getId(), com.getTitle(), com.getContent(),	com.getSort(), com.getFile_name().getOriginalFilename());
+			}
+			try {
+				biz.modify(board);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			if (com.getFile_name() != null) {
+
+				if (img == null || img.equals("")) {
+
+				} else {
+					byte[] data;
+					try {
+						data = file.getBytes();
+						FileOutputStream out = new FileOutputStream(dir
+								+ file.getOriginalFilename());
+						out.write(data);
+						out.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
+				}
+			}
 			mv.setViewName("redirect:/boarddetail.do?id=" + com.getId());
+			
+			
 		}else{
 		//댓글
 			board = new Board(com.getId(), com.getContent(), com.getSort());	
 			System.out.println("댓글 board: " + board);
 			mv.setViewName("redirect:/boarddetail.do?id=" + com.getReg_number());				
-		}
+		}		
 		
-		try {
-			biz.modify(board);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		if (com.getFile_name() != null) {
-
-			MultipartFile file = com.getFile_name();
-			String dir = "C:/lib/SSLibrary/web/img/board/";
-			String img = file.getOriginalFilename();
-			if (img == null || img.equals("")) {
-
-			} else {
-				byte[] data;
-				try {
-					data = file.getBytes();
-					FileOutputStream out = new FileOutputStream(dir
-							+ file.getOriginalFilename());
-					out.write(data);
-					out.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-			}
-		}
 		return mv;
 	}
 

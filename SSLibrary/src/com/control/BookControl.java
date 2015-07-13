@@ -146,6 +146,7 @@ public class BookControl {
 		try {
 			System.out.println("검색 분류 들어온 값 : "+BOOK);
 			list = sbookbiz.getname(BOOK);
+			System.out.println("list : "+list);
 		
 		} catch (Exception e1) {
 			e1.printStackTrace();

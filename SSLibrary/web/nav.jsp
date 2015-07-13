@@ -73,28 +73,28 @@
                   </li>
                  <li class="sub-menu">
                       <a href="seatmain.do">
-                          <i class="glyphicon glyphicon-book"></i>
+                          <i class="glyphicon glyphicon-th"></i>
                           <span>열람실</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
                        <a href="bookmain.do?search=false">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-book"></i>
                           <span>자료실</span>
                       </a>
                   </li>        
     <%}else{%>
        <li class="sub-menu">
                       <a href="seatmain.do">
-                          <i class="glyphicon glyphicon-book"></i>
+                          <i class="glyphicon glyphicon-th"></i>
                           <span>열람실</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
                        <a href="bookmain.do?search=false">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="glyphicon glyphicon-book"></i>
                           <span>자료실</span>
                       </a>
                   </li>

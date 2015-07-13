@@ -72,7 +72,6 @@ public class MainControl {
 			ArrayList<Object> list = new ArrayList<Object>();
 			list = boardsearchbiz.getid(board[0]);
 
-			System.out.println(list);
 			for (Object obj : list) {
 				Board one_board = (Board) obj;
 				notice_list.add(one_board);

@@ -1,5 +1,4 @@
 # SangSang Library Web Site
-====================
 [![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/JihunDev/sslibrary-web-site)
 
 도서관 관리 웹사이트 프로젝트
